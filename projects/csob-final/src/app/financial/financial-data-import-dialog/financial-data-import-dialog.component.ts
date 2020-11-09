@@ -5,8 +5,8 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { FileItem, FileUploader, Headers } from 'ng2-file-upload';
 import { CurrentLangService, EUpdateRowsResult, FinancialApiService, ICodebookItem, IImportFileRowDto, ILogger, ImportFinancialStatementResultDto, LogFactoryService, SelectedPartyService, TranslationService, UserNotificationService, UserProgressService } from 'projects/services/src/public-api';
 import { mergeMap, tap } from 'rxjs/operators';
-import { ICodebookProvider } from '../../app-common/components/editor-codebook/editor-codebook.component';
-import { MessageBoxDialogComponent } from '../../app-common/components/message-box-dialog/message-box-dialog.component';
+import { ICodebookProvider } from 'projects/app-common/src/public-api';
+import { MessageBoxDialogComponent } from 'projects/app-common/src/public-api';
 import { FinancialDetailUtils } from '../financial-detail/financial-detail-utils';
 
 @UntilDestroy()

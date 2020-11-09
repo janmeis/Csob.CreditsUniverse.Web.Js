@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { mergeMap, tap } from 'rxjs/operators';
-import { toDateOnlyString } from '../../app-common/dates';
+import { toDateOnlyString } from 'projects/app-common/src/public-api';
 import { SelectedPartyService } from 'projects/services/src/public-api';
 import { TranslationService } from 'projects/services/src/public-api';
 import { UserProgressService } from 'projects/services/src/public-api';

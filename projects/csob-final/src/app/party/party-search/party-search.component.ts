@@ -1,24 +1,15 @@
 import { Location } from '@angular/common';
-import { AfterViewInit, Component, Injector, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CellClickEvent, DataStateChangeEvent, GridDataResult } from '@progress/kendo-angular-grid';
 import { TooltipDirective } from '@progress/kendo-angular-tooltip';
 import { SortDescriptor, State } from '@progress/kendo-data-query';
-import { SecurityService } from 'projects/services/src/public-api';
-import { setCriteriaToGrid, setGridToCriteria } from '../../app-common/models/GridBaseDto';
-import { SelectedPartyService } from 'projects/services/src/public-api';
-import { TranslationService } from 'projects/services/src/public-api';
-import { UrlHelperService } from 'projects/services/src/public-api';
-import { UserNotificationService } from 'projects/services/src/public-api';
-import { UserProgressService } from 'projects/services/src/public-api';
-import { PartyApiService } from 'projects/services/src/public-api';
-import { IPartyDetailDto, ISearchClientReqDto, ISearchClientResDto } from 'projects/services/src/public-api';
-import { SearchClientReqDto } from 'projects/services/src/public-api';
+import { setCriteriaToGrid, setGridToCriteria } from 'projects/app-common/src/public-api';
+import { ENotificationType, IPartyDetailDto, ISearchClientReqDto, ISearchClientResDto, NotificationMessageOptions, PartyApiService, SearchClientReqDto, SecurityService, SelectedPartyService, TranslationService, UrlHelperService, UserNotificationService, UserProgressService } from 'projects/services/src/public-api';
 import { normalizeIdentificationNumber } from '../party-search-criteria/identification-number-normalization';
 import { PartySearchCriteriaComponent } from '../party-search-criteria/party-search-criteria.component';
-import { ENotificationType, NotificationMessageOptions } from 'projects/services/src/public-api';
 
 @Component({
     selector: 'app-party-search',

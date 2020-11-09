@@ -1,9 +1,9 @@
 import { Location } from '@angular/common';
 import { Component, Inject, Injector, LOCALE_ID, OnInit } from '@angular/core';
 
-import { ICodebookProvider } from '../../app-common/components/editor-codebook/editor-codebook.component';
-import { MessageBoxDialogComponent } from '../../app-common/components/message-box-dialog/message-box-dialog.component';
-import { EditorValidation } from '../../app-common/directives/editor-validator.directive';
+import { ICodebookProvider } from 'projects/app-common/src/public-api';
+import { MessageBoxDialogComponent } from 'projects/app-common/src/public-api';
+import { EditorValidation } from 'projects/app-common/src/public-api';
 import { CanComponentDeactivate, CurrentLangService } from 'projects/services/src/public-api';
 import { CodebookItem } from 'projects/services/src/public-api';
 import { TranslationService } from 'projects/services/src/public-api';
@@ -11,7 +11,7 @@ import { UrlHelperService } from 'projects/services/src/public-api';
 import { ENotificationType, UserNotificationService } from 'projects/services/src/public-api';
 import { TestApiService } from 'projects/services/src/public-api';
 import { EPartyType, ITestData } from 'projects/services/src/public-api';
-import { toDateOnlyString, fromDateOnlyString } from '../../app-common/dates';
+import { toDateOnlyString, fromDateOnlyString } from 'projects/app-common/src/public-api';
 
 class TestModel {
     Street: string = null

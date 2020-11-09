@@ -1,14 +1,14 @@
 import { IFinConversionOptions, EFinDataTabOrder } from 'projects/services/src/public-api';
 import { Component, EventEmitter, Injector, Input, Output, ViewEncapsulation, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormArray, FormGroup } from '@angular/forms';
-import { EditorValidation } from '../../app-common/directives/editor-validator.directive';
-import { getDecimalPlaces, getPrecision, tryParseNumber } from '../../app-common/numbers';
+import { EditorValidation } from 'projects/app-common/src/public-api';
+import { getDecimalPlaces, getPrecision, tryParseNumber } from 'projects/app-common/src/public-api';
 import { TranslationService } from 'projects/services/src/public-api';
 import { FinancialApiService } from 'projects/services/src/public-api';
 import { EFont, EStateFinData, ETypeOfStatement, IFinStatDataDto, IFinStatHeaderDto, IFinStatItemDto, IFinStatRowDto, IFinStatTabDto } from 'projects/services/src/public-api';
 import { UserNotificationService } from 'projects/services/src/public-api';
 import { UserProgressService } from 'projects/services/src/public-api';
-import { UserBlobService } from '../../app-common/services/user-blob-service';
+import { UserBlobService } from 'projects/app-common/src/public-api';
 
 function validateDecimal(
     value: number,

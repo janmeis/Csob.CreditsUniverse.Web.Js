@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Injector, Input, OnInit, Output } from '@angular/core';
-import { GetEmptyCodebookProvider, GetStaticCodebookProvider, ICodebookProvider } from '../../../app-common/components/editor-codebook/editor-codebook.component';
-import { uniqueId } from '../../../app-common/uniqueId';
+import { GetEmptyCodebookProvider, GetStaticCodebookProvider, ICodebookProvider } from 'projects/app-common/src/public-api';
+import { uniqueId } from 'projects/app-common/src/public-api';
 import { PartySearchDialogComponent } from '../../../party/party-search-dialog/party-search-dialog.component';
 import { SharedCacheService } from 'projects/services/src/public-api';
 import { TranslationService } from 'projects/services/src/public-api';

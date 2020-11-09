@@ -6,8 +6,8 @@ import { AppDialog, AppDialogContainerService } from 'projects/app-common/src/pu
 import { EColor, EMonitoringCategory, IMonitoringCellClickDto, IMonitoringCellEditDto, IPartyHeaderDto, MonitoringApiService, SecurityService, SelectedPartyService, TranslationService, UserProgressService } from 'projects/services/src/public-api';
 import { Observable, of } from 'rxjs';
 import { first, map, mergeMap, tap } from 'rxjs/operators';
-import { fixToNumber, fixToString, showTooltip } from '../../app-common/common-functions';
-import { MessageBoxDialogComponent } from '../../app-common/components/message-box-dialog/message-box-dialog.component';
+import { fixToNumber, fixToString, showTooltip } from 'projects/app-common/src/public-api'
+import { MessageBoxDialogComponent } from 'projects/app-common/src/public-api';
 import { BasePermissionsComponent } from '../../app-shell/basePermissionsComponent';
 
 @Component({

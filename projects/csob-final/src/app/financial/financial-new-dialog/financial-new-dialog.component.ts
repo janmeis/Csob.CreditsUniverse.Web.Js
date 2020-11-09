@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 import { AppDialog, AppDialogContainerService } from 'projects/app-common/src/public-api';
 import { CodebooksService, ECodetable, EFormat, EUnit, FinancialApiService, IFinStatHeaderDto, SelectedPartyService, TranslationService, UrlHelperService, UserProgressService } from 'projects/services/src/public-api';
 import { Observable, of } from 'rxjs';
-import { MessageBoxDialogComponent } from '../../app-common/components/message-box-dialog/message-box-dialog.component';
+import { MessageBoxDialogComponent } from 'projects/app-common/src/public-api';
 import { FinancialDomainService } from '../services/financial-domain.service';
 
 @Component({

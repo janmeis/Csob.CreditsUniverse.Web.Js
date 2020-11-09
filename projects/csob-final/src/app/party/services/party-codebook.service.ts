@@ -1,11 +1,11 @@
 import { Injectable, Injector } from '@angular/core';
-import { ICodebookProvider2, EditorCodeBookComponent } from '../../app-common/components/editor-codebook/editor-codebook.component';
+import { ICodebookProvider2, EditorCodeBookComponent } from 'projects/app-common/src/public-api';
 import { ICodebookItem, ISearchClientInCuReqDto } from 'projects/services/src/public-api';
 import { PartyApiService } from 'projects/services/src/public-api';
 import { SearchClientInCuReqDto } from 'projects/services/src/public-api';
 import { of } from 'rxjs';
 import { TranslationService } from 'projects/services/src/public-api';
-import { Arrays } from '../../app-common/arrays';
+import { Arrays } from 'projects/app-common/src/public-api';
 
 function getName(item: { FullName: string, ClientName: string }) {
     var s = item.ClientName || item.FullName;

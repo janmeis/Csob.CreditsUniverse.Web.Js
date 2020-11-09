@@ -4,29 +4,15 @@ import { NgForm } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { EnumValue, MessageBoxDialogComponent } from 'projects/app-common/src/public-api';
+import { AppConfig, CanComponentDeactivate, CodebooksService, EAnswerType, ECriterionType, EPDRatingCategory, EStatePDRating, FinancialApiService, IExportOptions, IFinStatDataDto, IFinStatTabDto, IPartyHeaderDto, IPDRatingApprovedDto, IPDRatingCritDto, IPDRatingDataDto, IPDRatingEditDto, IPDRatingItemValueDto, IPDRatingSectionDto, IPDRatingTabDto, IPDRSelectedAnswerSaveDto, PdRatingApiService, PDRSelectedAnswerDto, SecurityService, SelectedPartyService, TranslationService, UrlHelperService, UserNotificationService, UserProgressService } from 'projects/services/src/public-api';
 import { Observable, of } from 'rxjs';
 import { first, map, mergeMap, tap } from 'rxjs/operators';
-import { EnumValue } from '../../app-common/components/editor-enum/editor-enum.component';
-import { AppConfig } from 'projects/services/src/public-api';
 import { BasePermissionsComponent } from '../../app-shell/basePermissionsComponent';
-import { CodebooksService } from 'projects/services/src/public-api';
-import { SecurityService } from 'projects/services/src/public-api';
-import { UrlHelperService } from 'projects/services/src/public-api';
-import { MessageBoxDialogComponent } from '../../app-common/components/message-box-dialog/message-box-dialog.component';
 import { FinancialStatementSelectDialogComponent } from '../../financial/financial-select-dialog/financial-select-dialog.component';
-import { CanComponentDeactivate } from 'projects/services/src/public-api';
-import { SelectedPartyService } from 'projects/services/src/public-api';
-import { TranslationService } from 'projects/services/src/public-api';
-import { UserNotificationService } from 'projects/services/src/public-api';
-import { UserProgressService } from 'projects/services/src/public-api';
-import { FinancialApiService } from 'projects/services/src/public-api';
-import { PdRatingApiService } from 'projects/services/src/public-api';
-import { EAnswerType, ECriterionType, EPDRatingCategory, EStatePDRating, IExportOptions, IFinStatDataDto, IFinStatTabDto, IPDRatingApprovedDto, IPDRatingCritDto, IPDRatingDataDto, IPDRatingEditDto, IPDRatingItemValueDto, IPDRatingSectionDto, IPDRatingTabDto, IPDRSelectedAnswerSaveDto } from 'projects/services/src/public-api';
-import { PDRSelectedAnswerDto } from 'projects/services/src/public-api';
 import { PdRatingExportDialogComponent } from '../components/pd-rating-export-dialog/pd-rating-export-dialog.component';
 import { PdRatingSelectDialogComponent } from '../components/pd-rating-select-dialog/pd-rating-select-dialog.component';
 import { TabLabel, TabType } from '../models/pd-overview';
-import { IPartyHeaderDto } from 'projects/services/src/public-api';
 
 @UntilDestroy()
 @Component({
@@ -176,7 +162,7 @@ export class PDRatingDetailComponent extends BasePermissionsComponent implements
     }
     onSave() {
         this.notification.clear();
-        this.selectedTabType = this.selectedTab.Type;;
+        this.selectedTabType = this.selectedTab.Type;
 
         this.progress.runProgress(
             this.saveAndRefresh())

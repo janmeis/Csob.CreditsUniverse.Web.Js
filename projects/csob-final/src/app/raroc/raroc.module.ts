@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { LayoutModule } from '@progress/kendo-angular-layout';
 
-import { AppCommonModule } from '../app-common/app-common.module';
+import { AppCommonModule } from 'projects/app-common/src/lib/app-common.module';
 import { RarocDetailCollateralDialogComponent } from './raroc-detail-collateral-dialog/raroc-detail-collateral-dialog.component';
 import { RarocDetailCollateralComponent } from './raroc-detail-collateral/raroc-detail-collateral.component';
 import { RarocDetailGeneralComponent } from './raroc-detail-general/raroc-detail-general.component';
@@ -23,8 +23,8 @@ import { RarocProductCollateralService } from './raroc-detail-product-dialog/rar
         FormsModule,
         RarocRoutingModule,
         AppCommonModule,
-        LayoutModule
-    ],
+        LayoutModule,
+  ],
     declarations: [
         RarocOverviewComponent,
         RarocDetailComponent,

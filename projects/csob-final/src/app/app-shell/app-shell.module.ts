@@ -7,11 +7,12 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { HeaderComponent } from './components/header/header.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { NotificationAreaComponent } from './components/notification-area/notification-area.component';
-import { AppCommonModule } from '../app-common/app-common.module';
+import { AppCommonModule } from 'projects/app-common/src/lib/app-common.module';
 import { FormsModule } from '@angular/forms';
 import { LanguageChooserComponent } from './components/language-chooser/language-chooser.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { OperationModelDialogComponent } from './components/operation-model-dialog/operation-model-dialog.component';
+
 
 @NgModule({
     imports: [
@@ -19,7 +20,7 @@ import { OperationModelDialogComponent } from './components/operation-model-dial
         FormsModule,
         CommonModule,
         AppCommonModule,
-        LayoutModule
+        LayoutModule,
     ],
     declarations: [
         NavigationComponent,

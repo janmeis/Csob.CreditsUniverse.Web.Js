@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ICodebookProvider } from '../../../app-common/components/editor-codebook/editor-codebook.component';
+import { ICodebookProvider } from 'projects/app-common/src/public-api';
 import { EStatePDRating, IPDRatingItemValueDto } from 'projects/services/src/public-api';
 
 @Component({

@@ -1,16 +1,9 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { EnumValue, GetStaticCodebookProvider, ICodebookProvider } from 'projects/app-common/src/public-api';
+import { CodebookApiService, CodebooksService, EPDRatingCategory, EStatePDRating, ICodebookItem, IExternalCodebookItem, IPDRatingResultTabDto, IRatingCodebookItem, PDRatingItemValueDto, SecurityService, UserProgressService } from 'projects/services/src/public-api';
 import { of } from 'rxjs';
 import { map, mergeMap, tap } from 'rxjs/operators';
-import { GetStaticCodebookProvider, ICodebookProvider } from '../../../app-common/components/editor-codebook/editor-codebook.component';
-import { EnumValue } from '../../../app-common/components/editor-enum/editor-enum.component';
-import { CodebooksService } from 'projects/services/src/public-api';
-import { SecurityService } from 'projects/services/src/public-api';
-import { UserProgressService } from 'projects/services/src/public-api';
-import { CodebookApiService } from 'projects/services/src/public-api';
-import { EPDRatingCategory, EStatePDRating, ICodebookItem, IExternalCodebookItem, IPDRatingResultTabDto, IRatingCodebookItem } from 'projects/services/src/public-api';
-import { PDRatingItemValueDto } from 'projects/services/src/public-api';
-
 
 @Component({
     selector: 'app-pd-rating-view',

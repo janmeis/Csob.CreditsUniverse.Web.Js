@@ -3,8 +3,8 @@ import { NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { flatMap, map, tap } from 'rxjs/operators';
 
-import { EditorCodeBookComponent, ICodebookProvider, GetStaticCodebookProvider } from '../../app-common/components/editor-codebook/editor-codebook.component';
-import { EditorValidation } from '../../app-common/directives/editor-validator.directive';
+import { EditorCodeBookComponent, ICodebookProvider, GetStaticCodebookProvider } from 'projects/app-common/src/public-api';
+import { EditorValidation } from 'projects/app-common/src/public-api';
 import { BasePermissionsComponent } from '../../app-shell/basePermissionsComponent';
 import { PdRatingSelectDialogComponent } from '../../pd-rating/components/pd-rating-select-dialog/pd-rating-select-dialog.component';
 import { SecurityService } from 'projects/services/src/public-api';

@@ -8,8 +8,8 @@ import { AppDialogContainerService } from 'projects/app-common/src/public-api';
 import { CanComponentDeactivate, EFormat, ENotificationType, EStateFinData, EUpdateRowsResult, FinancialApiService, FinConversionOptions, FinStatDataDto, IExportOptions, IFinConversionOptions, IFinStatDataDto, IFinStatHeaderDto, IFinStatItemDto, IFinStatRatiosDataDto, IFinStatRowDto, IFinStatTabDto, IPartyHeaderDto, SecurityService, SelectedPartyService, TranslationService, UrlHelperService, UserNotificationService, UserProgressService } from 'projects/services/src/public-api';
 import { from, interval, Observable, of, Subscription } from 'rxjs';
 import { mergeMap, tap } from 'rxjs/operators';
-import { Arrays } from '../../app-common/arrays';
-import { MessageBoxDialogComponent } from '../../app-common/components/message-box-dialog/message-box-dialog.component';
+import { Arrays } from 'projects/app-common/src/public-api';
+import { MessageBoxDialogComponent } from 'projects/app-common/src/public-api';
 import { BasePermissionsComponent } from '../../app-shell/basePermissionsComponent';
 import { ConvertCurrencyDialogComponent } from '../convert-currency-dialog/convert-currency-dialog.component';
 import { FinancialCommentDialogComponent } from '../financial-comment-dialog/financial-comment-dialog.component';
@@ -559,7 +559,7 @@ export class FinancialDetailComponent extends BasePermissionsComponent implement
 		·	1 až N finančních výkazů v případě UC0124: Zobrazit Finanční výkaz
 		*/
         //this.canChangePeriod = this.rightIds.length > 0;
-        this.canChangePeriod = this.finModel.EditableHeaders && this.finModel.EditableHeaders.length <= 1 && Arrays.all(this.finModel.EditableHeaders, x => this.finDomain.canChangePeriod(x));;
+        this.canChangePeriod = this.finModel.EditableHeaders && this.finModel.EditableHeaders.length <= 1 && Arrays.all(this.finModel.EditableHeaders, x => this.finDomain.canChangePeriod(x));
         this.canComplete = this.finModel.EditableHeaders.length > 0 && Arrays.all(this.finModel.EditableHeaders, x => this.finDomain.canBeCompleted(x));
         this.canConvert = this.finDomain.canConvert(this.finModel.EditableHeaders);
         this.canRecalculate = this.leftIds.length > 0 && this.rightIds.length == 0;

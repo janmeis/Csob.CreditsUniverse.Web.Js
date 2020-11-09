@@ -4,8 +4,8 @@ import { TooltipDirective } from '@progress/kendo-angular-tooltip';
 import { EMonitoringCategory, IMonitoringCellClickDto, IMonitoringContainerDto, IMonitoringGroupContainerDto, Language, Languages, MonitoringApiService, UserProgressService } from 'projects/services/src/public-api';
 import { Observable } from 'rxjs';
 import { shareReplay, tap } from 'rxjs/operators';
-import { getUrlAndQuery, showTooltip } from '../../app-common/common-functions';
-import { UserBlobService } from '../../app-common/services/user-blob-service';
+import { getUrlAndQuery, showTooltip } from 'projects/app-common/src/public-api'
+import { UserBlobService } from 'projects/app-common/src/public-api';
 
 @Component({
     selector: 'app-monitoring-semaphore-detail',

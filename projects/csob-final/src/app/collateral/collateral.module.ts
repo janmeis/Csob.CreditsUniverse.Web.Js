@@ -2,7 +2,7 @@ import { CommonModule } from "@angular/common";
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
-import { AppCommonModule } from "../app-common/app-common.module";
+import { AppCommonModule } from 'projects/app-common/src/lib/app-common.module';
 import { CollateralOverviewComponent } from './collateral-overview/collateral-overview.component';
 import { CollateralRoutingModule } from './collateral-routing.module';
 import { ProductModule } from '../product/product.module';

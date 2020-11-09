@@ -3,7 +3,7 @@ import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { fromDateOnlyString, toDateOnlyString } from '../../app-common/dates';
+import { fromDateOnlyString, toDateOnlyString } from 'projects/app-common/src/public-api';
 import { BasePermissionsComponent } from '../../app-shell/basePermissionsComponent';
 import { SecurityService } from 'projects/services/src/public-api';
 import { TranslationService } from 'projects/services/src/public-api';

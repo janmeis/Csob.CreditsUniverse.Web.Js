@@ -2,9 +2,9 @@ import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RowClassArgs } from '@progress/kendo-angular-grid';
-import { fixToNumber } from '../../../app-common/common-functions';
-import { GetStaticCodebookProvider, ICodebookProvider } from '../../../app-common/components/editor-codebook/editor-codebook.component';
-import { EditorValidation } from '../../../app-common/directives/editor-validator.directive';
+import { fixToNumber } from 'projects/app-common/src/public-api'
+import { GetStaticCodebookProvider, ICodebookProvider } from 'projects/app-common/src/public-api';
+import { EditorValidation } from 'projects/app-common/src/public-api';
 import { TranslationService } from 'projects/services/src/public-api';
 import { EMonitoringCategory, ICodebookItem, IMonitoringCellEditDto, IMonitoringCellEditRowDto } from 'projects/services/src/public-api';
 import { getLinkClicked } from '../../monitoring-overview/monitoring-overview-utils';

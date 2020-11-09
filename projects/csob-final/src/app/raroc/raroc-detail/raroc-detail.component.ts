@@ -7,9 +7,9 @@ import { SelectEvent, TabStripComponent } from '@progress/kendo-angular-layout';
 import { Observable, of, Subscription, timer } from 'rxjs';
 import { first, flatMap, map, mergeMap, tap } from 'rxjs/operators';
 
-import { markControlsDirty } from '../../app-common/common-functions';
-import { MessageBoxDialogComponent, Options } from '../../app-common/components/message-box-dialog/message-box-dialog.component';
-import { EditorValidation } from '../../app-common/directives/editor-validator.directive';
+import { markControlsDirty } from 'projects/app-common/src/public-api'
+import { MessageBoxDialogComponent, Options } from 'projects/app-common/src/public-api';
+import { EditorValidation } from 'projects/app-common/src/public-api';
 import { AppConfig } from 'projects/services/src/public-api';
 import { BasePermissionsComponent } from '../../app-shell/basePermissionsComponent';
 import { CanComponentDeactivate } from 'projects/services/src/public-api';

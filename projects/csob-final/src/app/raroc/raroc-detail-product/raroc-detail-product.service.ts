@@ -3,7 +3,7 @@ import { DataResult, process, State } from '@progress/kendo-data-query';
 import { Observable, of } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 
-import { ICodebookProvider } from '../../app-common/components/editor-codebook/editor-codebook.component';
+import { ICodebookProvider } from 'projects/app-common/src/public-api';
 import { CodebooksService } from 'projects/services/src/public-api';
 import { TranslationService } from 'projects/services/src/public-api';
 import { CodebookApiService } from 'projects/services/src/public-api';

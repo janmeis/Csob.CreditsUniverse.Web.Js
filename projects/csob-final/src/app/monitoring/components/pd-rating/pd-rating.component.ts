@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { isNumber } from '../../../app-common/common-functions';
+import { isNumber } from 'projects/app-common/src/public-api'
 import { EMonitoringCategory, IMonitoringRowDto } from 'projects/services/src/public-api';
 import { getLinkClicked } from '../../monitoring-overview/monitoring-overview-utils';
 

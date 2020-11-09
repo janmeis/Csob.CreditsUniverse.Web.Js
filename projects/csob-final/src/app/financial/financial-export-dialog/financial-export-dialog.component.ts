@@ -1,10 +1,8 @@
 import { Component, EventEmitter, Injector, OnInit } from '@angular/core';
-import { AppDialog, AppDialogContainerService } from 'projects/app-common/src/public-api';
+import { AppDialog, AppDialogContainerService, EnumValue, UserBlobService } from 'projects/app-common/src/public-api';
 import { EExportFormat, FinancialApiService, FinStatDataDto, IExportOptions, IFinConversionOptions, IFinStatDataDto, IFinStatRatiosDataDto, Languages, TranslationService, UserNotificationService, UserProgressService } from 'projects/services/src/public-api';
 import { Observable, of } from 'rxjs';
 import { mergeMap, tap } from 'rxjs/operators';
-import { EnumValue } from '../../app-common/components/editor-enum/editor-enum.component';
-import { UserBlobService } from '../../app-common/services/user-blob-service';
 import { FinancialDetailUtils } from '../financial-detail/financial-detail-utils';
 
 @Component({

@@ -7,9 +7,9 @@ import { TooltipDirective } from '@progress/kendo-angular-tooltip';
 import { CompositeFilterDescriptor, FilterDescriptor, process, State } from '@progress/kendo-data-query';
 import { Observable } from 'rxjs';
 import { mergeMap, tap } from 'rxjs/operators';
-import { getUrlAndQuery, showTooltip } from '../../app-common/common-functions';
-import { GetStaticCodebookProvider, ICodebookProvider } from '../../app-common/components/editor-codebook/editor-codebook.component';
-import { toDateOnlyString } from '../../app-common/dates';
+import { getUrlAndQuery, showTooltip } from 'projects/app-common/src/public-api'
+import { GetStaticCodebookProvider, ICodebookProvider } from 'projects/app-common/src/public-api';
+import { toDateOnlyString } from 'projects/app-common/src/public-api';
 import { BasePermissionsComponent } from '../../app-shell/basePermissionsComponent';
 import { SecurityService } from 'projects/services/src/public-api';
 import { UrlHelperService } from 'projects/services/src/public-api';

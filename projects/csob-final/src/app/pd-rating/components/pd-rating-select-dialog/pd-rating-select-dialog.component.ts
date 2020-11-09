@@ -1,21 +1,16 @@
-import { Component, Injector, Input } from '@angular/core';
+import { Component, Injector, Input, OnDestroy, OnInit } from '@angular/core';
 import { DataStateChangeEvent } from '@progress/kendo-angular-grid';
+import { AppDialogContainerService, SelectDialogBase, setGridToCriteria } from 'projects/app-common/src/public-api';
+import { IPDRatingOverviewReqDto, IPDRatingOverviewResDto, PartyApiService, TranslationService } from 'projects/services/src/public-api';
 import { Subscription } from 'rxjs';
-import { SelectDialogBase } from '../../../app-common/components/SelectDialogBase';
-import { setGridToCriteria } from '../../../app-common/models/GridBaseDto';
-import { TranslationService } from 'projects/services/src/public-api';
-import { PartyApiService } from 'projects/services/src/public-api';
-import { IPDRatingOverviewReqDto, IPDRatingOverviewResDto } from 'projects/services/src/public-api';
 import { PdRatingSelectDialogService } from './pd-rating-select-dialog.service';
-import { AppDialogContainerService } from 'projects/app-common/src/public-api';
-
 
 @Component({
     selector: 'pd-rating-select-dialog',
     templateUrl: './pd-rating-select-dialog.component.html',
     styleUrls: ['./pd-rating-select-dialog.component.less'],
 })
-export class PdRatingSelectDialogComponent extends SelectDialogBase<IPDRatingOverviewResDto> {
+export class PdRatingSelectDialogComponent extends SelectDialogBase<IPDRatingOverviewResDto> implements OnInit, OnDestroy {
     @Input() title: string;
     @Input() partyId: number;
     @Input() onlyCompleted: boolean;
@@ -47,7 +42,7 @@ export class PdRatingSelectDialogComponent extends SelectDialogBase<IPDRatingOve
                 } as IPDRatingOverviewReqDto;
 
                 if (this.isCopy && data.PDModelId && +data.PDModelId > 0)
-                    this.criteria.PDRatingModelId = data.PDModelId
+                    this.criteria.PDRatingModelId = data.PDModelId;
 
                 this.criteria.PDRatingToHideId = this.currentPdRatingId;
                 this.criteria.ForRaroc = this.isForRaroc;

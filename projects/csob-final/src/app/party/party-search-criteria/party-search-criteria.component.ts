@@ -1,12 +1,12 @@
 import { Component, EventEmitter, Injector, Input, Output, OnInit } from '@angular/core';
 
-import { EditorValidation } from '../../app-common/directives/editor-validator.directive';
+import { EditorValidation } from 'projects/app-common/src/public-api';
 import { TranslationService } from 'projects/services/src/public-api';
 import { ENotificationType, UserNotificationService } from 'projects/services/src/public-api';
 import { ISearchClientReqDto } from 'projects/services/src/public-api';
 import { AppConfig } from 'projects/services/src/public-api';
 import { normalizeIdentificationNumber } from './identification-number-normalization';
-import { getCurrentComponetPath } from '../../app-common/common-functions';
+import { getCurrentComponetPath } from 'projects/app-common/src/public-api'
 
 @Component({
     selector: 'app-party-search-criteria',

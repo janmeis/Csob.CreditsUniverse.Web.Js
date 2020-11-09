@@ -3,11 +3,9 @@ import { NgForm } from '@angular/forms';
 import { DataStateChangeEvent, SelectionEvent } from '@progress/kendo-angular-grid';
 import { TooltipDirective } from '@progress/kendo-angular-tooltip';
 import { SortDescriptor, State } from '@progress/kendo-data-query';
-import { AppDialogContainerService } from 'projects/app-common/src/public-api';
+import { AppDialogContainerService, SelectDialogBase, setGridToCriteria } from 'projects/app-common/src/public-api';
 import { ENotificationType, IPartyHeaderDto, IPDRatingOverviewReqDto, ISearchClientReqDto, ISearchClientResDto, NotificationMessageOptions, PartyApiService, PdRatingApiService, TranslationService, UserNotificationService } from 'projects/services/src/public-api';
 import { first, flatMap, map, tap } from 'rxjs/operators';
-import { SelectDialogBase } from '../../app-common/components/SelectDialogBase';
-import { setGridToCriteria } from '../../app-common/models/GridBaseDto';
 import { PartySearchCriteriaComponent } from './../party-search-criteria/party-search-criteria.component';
 import { PartySearchDialogService } from './party-search-dialog.service';
 

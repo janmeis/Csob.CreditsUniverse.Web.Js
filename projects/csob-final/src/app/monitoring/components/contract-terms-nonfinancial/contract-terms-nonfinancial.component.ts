@@ -1,7 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { tap } from 'rxjs/operators';
-import { GetStaticCodebookProvider, ICodebookProvider } from '../../../app-common/components/editor-codebook/editor-codebook.component';
+import { GetStaticCodebookProvider, ICodebookProvider } from 'projects/app-common/src/public-api';
 import { UserProgressService } from 'projects/services/src/public-api';
 import { CodebookApiService } from 'projects/services/src/public-api';
 import { ICodebookItem, IMonitoringCellEditDto } from 'projects/services/src/public-api';

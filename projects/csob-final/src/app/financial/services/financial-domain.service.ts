@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
+import { LocalDatePipe } from 'projects/app-common/src/lib/pipes/local-date.pipe';
+import { Arrays } from 'projects/app-common/src/public-api';
 import { CurrentLangService, EFormat, EStateFinData, ETypeOfStatement, IFinStatHeaderDto, IFinStatOverviewResDto, ILogger, LogFactoryService } from 'projects/services/src/public-api';
-import { Arrays } from '../../app-common/arrays';
-import { LocalDatePipe } from './../../app-common/pipes/local-date.pipe';
 
 interface FinSimple {
     Id?: number;

@@ -4,8 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CodebookApiService, CodebooksService, ECodetable, EInterestRateType, EKeyEnum, ICodebookItem, IInterestDto, IProductSubTypeCUDto, IProductTypeCUDto, IProductViewDto, ProductApiService, SelectedPartyService, TranslationService, UserNotificationService, UserProgressService } from 'projects/services/src/public-api';
 import { Observable } from 'rxjs';
 import { map, mergeMap, tap } from 'rxjs/operators';
-import { GetCodebookProvider, GetStaticCodebookProvider, ICodebookProvider } from '../../app-common/components/editor-codebook/editor-codebook.component';
-import { GridEnumService } from '../../app-common/services/grid-enum.service';
+import { GetCodebookProvider, GetStaticCodebookProvider, GridEnumService, ICodebookProvider } from 'projects/app-common/src/public-api';
 import { ProductCollateralDialogComponent } from '../product-collateral-dialog/product-collateral-dialog.component';
 
 

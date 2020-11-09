@@ -4,7 +4,7 @@ import { AppDialog, AppDialogContainerService } from 'projects/app-common/src/pu
 import { ICollateralDto, ICollateralProductMatrixDto, ICollateralProductMatrixRowDto, ProductApiService, TranslationService, UserProgressService } from 'projects/services/src/public-api';
 import { Observable } from 'rxjs';
 import { first, map, tap } from 'rxjs/operators';
-import { MessageBoxDialogComponent } from '../../app-common/components/message-box-dialog/message-box-dialog.component';
+import { MessageBoxDialogComponent } from 'projects/app-common/src/public-api';
 
 
 @Component({
@@ -15,7 +15,7 @@ import { MessageBoxDialogComponent } from '../../app-common/components/message-b
 export class ProductCollateralDialogComponent implements AppDialog, OnInit {
     @Input() creditFileId: number;
     @Input() sectionId: number;
-    @Input() readonly: boolean;;
+    @Input() readonly: boolean;
     matrix = {
         CollateralColumns: [] as ICollateralDto[],
         CollateralProductRows: [] as ICollateralProductMatrixRowDto[],

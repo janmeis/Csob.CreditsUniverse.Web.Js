@@ -1,6 +1,6 @@
+import { IComponentWithPermissionState, PartyPermissionState } from 'projects/app-common/src/public-api';
 import { ApiBaseService } from 'projects/services/src/lib/api-base.service';
 import { IPartyHeaderDto, SecurityService } from 'projects/services/src/public-api';
-import { IComponentWithPermissionState, PartyPermissionState } from '../app-common/services/permission-service';
 
 // do not use this, use PermissionService
 export abstract class BasePermissionsComponent implements IComponentWithPermissionState {

@@ -9,7 +9,7 @@ import { RouterModule } from '@angular/router';
 import { MessageService } from '@progress/kendo-angular-l10n';
 
 /* app */
-import { AppCommonModule } from './app-common/app-common.module';
+import { AppCommonModule } from 'projects/app-common/src/lib/app-common.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppShellModule } from './app-shell/app-shell.module';
 import { AppComponent } from './app.component';

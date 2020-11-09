@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AppCommonModule } from '../app-common/app-common.module';
+import { AppCommonModule } from 'projects/app-common/src/lib/app-common.module';
 import { AgendaViewComponent } from './components/agenda-view/agenda-view.component';
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { DayViewComponent } from './components/day-view/day-view.component';

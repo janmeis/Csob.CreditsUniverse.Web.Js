@@ -1,5 +1,5 @@
 import { Component, Injector, OnInit } from '@angular/core';
-import { MessageBoxDialogComponent, Options } from '../../../app-common/components/message-box-dialog/message-box-dialog.component';
+import { MessageBoxDialogComponent, Options } from 'projects/app-common/src/public-api';
 import { CurrentLangService, Languages, TranslationService } from 'projects/services/src/public-api';
 
 @Component({

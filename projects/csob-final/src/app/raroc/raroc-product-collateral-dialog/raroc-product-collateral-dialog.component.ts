@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 import { DialogComponent } from '@progress/kendo-angular-dialog';
 import { AppDialog, AppDialogContainerService } from 'projects/app-common/src/public-api';
 import { IMatrixDto, TranslationService, UserProgressService } from 'projects/services/src/public-api';
-import { MessageBoxDialogComponent } from '../../app-common/components/message-box-dialog/message-box-dialog.component';
+import { MessageBoxDialogComponent } from 'projects/app-common/src/public-api';
 import { RarocProductCollateralService } from '../raroc-detail-product-dialog/raroc-product-collateral.service';
 
 

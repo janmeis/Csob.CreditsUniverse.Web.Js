@@ -4,11 +4,11 @@ import { AppDialog, AppDialogContainerService } from 'projects/app-common/src/pu
 import { ETimeUnit, EValidationType, ICodebookItem, IRarocCollateralValueDto, TranslationService, UserNotificationService, UserProgressService } from 'projects/services/src/public-api';
 import { of, timer } from 'rxjs';
 import { first, map } from 'rxjs/operators';
-import { markControlsDirty } from '../../app-common/common-functions';
-import { EditorCodeBookComponent, GetStaticCodebookProvider, ICodebookProvider } from '../../app-common/components/editor-codebook/editor-codebook.component';
-import { MessageBoxDialogComponent } from '../../app-common/components/message-box-dialog/message-box-dialog.component';
-import { getToday } from '../../app-common/dates';
-import { EditorValidation } from '../../app-common/directives/editor-validator.directive';
+import { markControlsDirty } from 'projects/app-common/src/public-api'
+import { EditorCodeBookComponent, GetStaticCodebookProvider, ICodebookProvider } from 'projects/app-common/src/public-api';
+import { MessageBoxDialogComponent } from 'projects/app-common/src/public-api';
+import { getToday } from 'projects/app-common/src/public-api';
+import { EditorValidation } from 'projects/app-common/src/public-api';
 import { RarocDetailCollateralService } from '../raroc-detail-collateral/raroc-detail-collateral.service';
 import { RarocDetailService } from '../raroc-detail/raroc-detail.service';
 import { IsValid } from '../raroc-overview/raroc-overview.component';

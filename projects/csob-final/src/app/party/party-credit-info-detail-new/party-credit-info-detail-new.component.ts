@@ -2,14 +2,12 @@ import { AfterViewInit, Component, EventEmitter, Injector, OnInit, Output, ViewC
 import { NgForm } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { SelectFn } from 'projects/app-common/src/lib/components/editor-selector/editor-selector.component';
+import { CalendarService } from 'projects/app-common/src/lib/services/calendar.service';
+import { EditorCodeBookComponent, GetEmptyCodebookProvider, GetStaticCodebookProvider, ICodebookProvider, MessageBoxDialogComponent, PartyPermissionState } from 'projects/app-common/src/public-api';
 import { CanComponentDeactivate, CodebookApiService, ECreditInfoType, EPermissionType, ICodebookItem, ICreditInfoContainerDto, ILGDModelCodebookItem, IPDRatingModelDto, PartyApiService, SelectedPartyService, SharedCacheService, TranslationService, UserProgressService } from 'projects/services/src/public-api';
 import { Observable, of } from 'rxjs';
 import { first, mergeMap, tap } from 'rxjs/operators';
-import { EditorCodeBookComponent, GetEmptyCodebookProvider, GetStaticCodebookProvider, ICodebookProvider } from '../../app-common/components/editor-codebook/editor-codebook.component';
-import { SelectFn } from '../../app-common/components/editor-selector/editor-selector.component';
-import { MessageBoxDialogComponent } from '../../app-common/components/message-box-dialog/message-box-dialog.component';
-import { CalendarService } from '../../app-common/services/calendar.service';
-import { PartyPermissionState } from '../../app-common/services/permission-service';
 import { SelectorKbcDialogComponent } from '../components/selector-kbc-dialog/selector-kbc-dialog.component';
 
 @UntilDestroy()

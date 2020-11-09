@@ -5,8 +5,8 @@ import { TooltipDirective } from '@progress/kendo-angular-tooltip';
 import { SortDescriptor, State } from '@progress/kendo-data-query';
 import { pipe } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { showTooltip } from '../../app-common/common-functions';
-import { MessageBoxDialogComponent } from '../../app-common/components/message-box-dialog/message-box-dialog.component';
+import { showTooltip } from 'projects/app-common/src/public-api'
+import { MessageBoxDialogComponent } from 'projects/app-common/src/public-api';
 import { BasePermissionsComponent } from '../../app-shell/basePermissionsComponent';
 import { SecurityService } from 'projects/services/src/public-api';
 import { SelectedPartyService } from 'projects/services/src/public-api';

@@ -1,5 +1,5 @@
+import { GridState } from 'projects/app-common/src/lib/models/GridBaseDto';
 import { IPDRatingOverviewReqDto } from 'projects/services/src/public-api';
-import { GridState } from "../../app-common/models/GridBaseDto";
 
 export class PdCriteria extends GridState implements IPDRatingOverviewReqDto {
     OnlyCompleted: boolean;

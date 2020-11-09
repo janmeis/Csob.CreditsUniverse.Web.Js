@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LayoutModule } from '@progress/kendo-angular-layout';
 // Components
-import { AppCommonModule } from '../app-common/app-common.module';
+import { AppCommonModule } from 'projects/app-common/src/lib/app-common.module';
 import { ConvertCurrencyDialogComponent } from './convert-currency-dialog/convert-currency-dialog.component';
 import { FinancialCommentDialogComponent } from './financial-comment-dialog/financial-comment-dialog.component';
 import { FinancialCopyDialogComponent } from './financial-copy-dialog/financial-copy-dialog.component';

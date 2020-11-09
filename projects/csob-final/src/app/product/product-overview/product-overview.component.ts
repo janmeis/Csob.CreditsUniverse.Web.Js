@@ -6,7 +6,7 @@ import { SelectionEvent } from '@progress/kendo-angular-grid';
 import { TooltipDirective } from '@progress/kendo-angular-tooltip';
 import { GroupDescriptor, State } from '@progress/kendo-data-query';
 import { tap } from 'rxjs/operators';
-import { showTooltip } from '../../app-common/common-functions';
+import { showTooltip } from 'projects/app-common/src/public-api'
 import { BasePermissionsComponent } from '../../app-shell/basePermissionsComponent';
 import { SecurityService } from 'projects/services/src/public-api';
 import { SelectedPartyService } from 'projects/services/src/public-api';

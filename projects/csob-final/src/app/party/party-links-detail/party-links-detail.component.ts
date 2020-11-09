@@ -5,8 +5,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CanComponentDeactivate, IPartyLinkDto, PartyApiService, PartyLinkDto, PartyLinksApiService, TranslationService, UserNotificationService, UserProgressService } from 'projects/services/src/public-api';
 import { Observable, of } from 'rxjs';
 import { first, map, mergeMap, tap } from 'rxjs/operators';
-import { MessageBoxDialogComponent } from '../../app-common/components/message-box-dialog/message-box-dialog.component';
-import { EditorValidation } from '../../app-common/directives/editor-validator.directive';
+import { MessageBoxDialogComponent } from 'projects/app-common/src/public-api';
+import { EditorValidation } from 'projects/app-common/src/public-api';
 import { PartySearchDialogComponent } from '../party-search-dialog/party-search-dialog.component';
 import { PartyCodebookService } from '../services/party-codebook.service';
 

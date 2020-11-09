@@ -3,7 +3,7 @@ import { RowClassArgs } from '@progress/kendo-angular-grid/dist/es2015/rendering
 import { TooltipDirective } from '@progress/kendo-angular-tooltip';
 import { flatMap, tap } from 'rxjs/operators';
 
-import { showTooltip } from '../../app-common/common-functions';
+import { showTooltip } from 'projects/app-common/src/public-api'
 import { BasePermissionsComponent } from '../../app-shell/basePermissionsComponent';
 import { SecurityService } from 'projects/services/src/public-api';
 import { SelectedPartyService } from 'projects/services/src/public-api';

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { IPDRatingCritDto } from 'projects/services/src/public-api';
-import { uniqueId } from '../../../app-common/uniqueId';
+import { uniqueId } from 'projects/app-common/src/public-api';
 
 @Component({
     selector: 'question-ess-country',

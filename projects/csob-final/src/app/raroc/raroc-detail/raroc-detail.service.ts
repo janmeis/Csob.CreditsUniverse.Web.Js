@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { CodebookApiService, EKeyEnum, ETimeUnit, ICodebookItem, ILGDModelCodebookItem, IRarocContainerDto, IRarocValidationDto, RarocApiService } from 'projects/services/src/public-api';
 import { Observable, of } from 'rxjs';
 import { flatMap, map, tap } from 'rxjs/operators';
-import { GetEmptyCodebookProvider, ICodebookProvider } from '../../app-common/components/editor-codebook/editor-codebook.component';
-import { GridEnumService } from '../../app-common/services/grid-enum.service';
+import { GetEmptyCodebookProvider, GridEnumService, ICodebookProvider } from 'projects/app-common/src/public-api';
 
 @Injectable()
 export class RarocDetailService {

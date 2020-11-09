@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { hexToRGB } from '../../../app-common/common-functions';
+import { hexToRGB } from 'projects/app-common/src/public-api'
 import { IDashboardItemDto } from 'projects/services/src/public-api';
 import { IDashboardType } from '../../dashboard-events/dashboard-events.service';
 

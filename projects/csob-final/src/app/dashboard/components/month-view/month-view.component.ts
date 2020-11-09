@@ -1,6 +1,6 @@
 import { Component, Injector, OnInit } from '@angular/core';
 import * as dates from '@progress/kendo-date-math';
-import { Arrays } from '../../../app-common/arrays';
+import { Arrays } from 'projects/app-common/src/public-api';
 import { DayView, Header, MonthView, MonthWeek } from '../calendar-model';
 import { CalendarViewBase } from '../calendar-view-base';
 

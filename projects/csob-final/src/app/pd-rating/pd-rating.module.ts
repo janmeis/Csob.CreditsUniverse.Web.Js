@@ -4,7 +4,7 @@ import { LayoutModule } from '@progress/kendo-angular-layout';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { AppCommonModule } from '../app-common/app-common.module';
+import { AppCommonModule } from 'projects/app-common/src/lib/app-common.module';
 import { PdRatingSelectDialogComponent } from './components/pd-rating-select-dialog/pd-rating-select-dialog.component';
 import { PdRatingSelectDialogService } from './components/pd-rating-select-dialog/pd-rating-select-dialog.service';
 import { PdRatingViewComponent } from './components/pd-rating-view/pd-rating-view.component';
@@ -28,7 +28,7 @@ import { LabelEssComponent } from './components/label-ess/label-ess.component';
         AppCommonModule,
         PdRatingRoutingModule,
         FinancialModule,
-        LayoutModule
+        LayoutModule,
     ],
     declarations: [
         PDRatingOverviewComponent,

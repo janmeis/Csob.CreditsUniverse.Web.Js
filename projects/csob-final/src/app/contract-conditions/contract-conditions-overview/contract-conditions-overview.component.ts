@@ -5,7 +5,7 @@ import { CellClickEvent, RowClassArgs } from '@progress/kendo-angular-grid';
 import { TooltipDirective } from '@progress/kendo-angular-tooltip';
 import { EFrequencyUnit, IContractConditionFilterDto, IContractConditionViewDto, IProductInfoDto, SecurityService, SelectedPartyService, TranslationService, UserProgressService } from 'projects/services/src/public-api';
 import { mergeMap, tap } from 'rxjs/operators';
-import { hideTooltip, showTooltip } from '../../app-common/common-functions';
+import { hideTooltip, showTooltip } from 'projects/app-common/src/public-api'
 import { BasePermissionsComponent } from '../../app-shell/basePermissionsComponent';
 import { ContractConditionsService } from '../services/contract-conditions.service';
 import { ContractConditionsOverviewService } from './contract-conditions-overview.service';

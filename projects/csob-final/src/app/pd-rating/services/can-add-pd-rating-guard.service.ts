@@ -3,7 +3,7 @@ import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot } from '@angul
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 
-import { MessageBoxDialogComponent } from '../../app-common/components/message-box-dialog/message-box-dialog.component';
+import { MessageBoxDialogComponent } from 'projects/app-common/src/public-api';
 import { SelectedPartyService } from 'projects/services/src/public-api';
 import { TranslationService } from 'projects/services/src/public-api';
 import { IPartyHeaderDto } from 'projects/services/src/public-api';

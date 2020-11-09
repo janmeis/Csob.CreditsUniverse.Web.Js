@@ -4,7 +4,7 @@ import { AppDialog, AppDialogContainerService } from 'projects/app-common/src/pu
 import { ICreditComponentManagerModel, ICreditComponentManagerUserModel, PartyCreditFileManagementApiService, SecurityService, TranslationService, UserProgressService } from 'projects/services/src/public-api';
 import { Observable, of } from 'rxjs';
 import { first, map, tap } from 'rxjs/operators';
-import { MessageBoxDialogComponent } from '../../app-common/components/message-box-dialog/message-box-dialog.component';
+import { MessageBoxDialogComponent } from 'projects/app-common/src/public-api';
 import { BasePermissionsComponent } from '../../app-shell/basePermissionsComponent';
 
 @Component({

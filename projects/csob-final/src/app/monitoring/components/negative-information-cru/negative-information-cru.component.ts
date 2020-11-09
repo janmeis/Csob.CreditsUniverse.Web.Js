@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CompositeFilterDescriptor, filterBy, FilterDescriptor } from '@progress/kendo-data-query';
-import { fixToNumber } from '../../../app-common/common-functions';
+import { fixToNumber } from 'projects/app-common/src/public-api'
 import { EColor, IMonitoringRowDto } from 'projects/services/src/public-api';
 
 

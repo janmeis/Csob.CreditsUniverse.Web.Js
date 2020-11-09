@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CellClickEvent, DataStateChangeEvent, RowClassArgs } from '@progress/kendo-angular-grid';
 import { TooltipDirective } from '@progress/kendo-angular-tooltip';
 import { DataResult, FilterDescriptor, State } from '@progress/kendo-data-query';
-import { showTooltip } from '../../../app-common/common-functions';
+import { showTooltip } from 'projects/app-common/src/public-api'
 import { TranslationService } from 'projects/services/src/public-api';
 import { UserProgressService } from 'projects/services/src/public-api';
 import { EDashboardState, ICodebookItem, IDashboardEventDto } from 'projects/services/src/public-api';

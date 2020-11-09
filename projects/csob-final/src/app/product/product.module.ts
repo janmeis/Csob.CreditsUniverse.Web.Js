@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { LayoutModule } from '@progress/kendo-angular-layout';
-import { AppCommonModule } from '../app-common/app-common.module';
+import { AppCommonModule } from 'projects/app-common/src/lib/app-common.module';
 import { ProductApiService } from 'projects/services/src/public-api';
 import { ProductCollateralDialogComponent } from './product-collateral-dialog/product-collateral-dialog.component';
 import { ProductDetailHeaderComponent } from './product-detail-header/product-detail-header.component';
@@ -16,7 +16,7 @@ import { ProductRoutingModule } from './product-routing.module';
         FormsModule,
         LayoutModule,
         ProductRoutingModule,
-    ],
+  ],
     declarations: [
         ProductCollateralDialogComponent,
         ProductDetailHeaderComponent,

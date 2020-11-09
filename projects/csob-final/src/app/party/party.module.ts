@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { LayoutModule } from '@progress/kendo-angular-layout';
-import { AppCommonModule } from '../app-common/app-common.module';
+import { AppCommonModule } from 'projects/app-common/src/lib/app-common.module';
 import { AppShellModule } from '../app-shell/app-shell.module';
 import { SelectorKbcDialogComponent } from './components/selector-kbc-dialog/selector-kbc-dialog.component';
 import { PartyCreditFileManageDialogComponent } from './party-credit-file-manage-dialog/party-credit-file-manage-dialog.component';
@@ -29,7 +29,7 @@ import { TestPageComponent } from './test-page/test-page.component';
         LayoutModule,
         PartyRoutingModule,
         AppCommonModule,
-        AppShellModule
+        AppShellModule,
     ],
     providers: [PartySearchDialogService],
     declarations: [

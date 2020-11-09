@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AppCommonModule } from './../app-common/app-common.module';
+import { AppCommonModule } from 'projects/app-common/src/lib/app-common.module';
 import { DropdownColorsComponent } from './components/dropdown-colors/dropdown-colors.component';
 import { MonitoringDetailInfoDialogComponent } from './monitoring-detail-info-dialog/monitoring-detail-info-dialog.component';
 import { MonitoringOverviewComponent } from './monitoring-overview/monitoring-overview.component';
@@ -33,7 +33,7 @@ import { MonitoringOverviewRowComponent } from './components/monitoring-overview
         AppCommonModule,
         ReactiveFormsModule,
         MonitoringRoutingModule,
-        AppShellModule
+        AppShellModule,
     ],
     declarations: [
         MonitoringOverviewComponent,

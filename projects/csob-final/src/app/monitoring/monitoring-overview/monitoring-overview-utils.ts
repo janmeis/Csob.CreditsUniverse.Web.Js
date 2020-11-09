@@ -1,6 +1,6 @@
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import * as dates from '@progress/kendo-date-math';
-import { getToday, fromDateOnlyString } from '../../app-common/dates';
+import { getToday, fromDateOnlyString } from 'projects/app-common/src/public-api';
 import { EFrequencyUnit, EMonitoringCategory, IMonitoringFilterDto } from 'projects/services/src/public-api';
 import { IMonitoringQueryParams } from './monitoring-overview.component';
 

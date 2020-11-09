@@ -59,7 +59,7 @@
           Accessibility = null,
           Parameters = { new FunctionParameter("api") { Accessibility = AccessibilityEnum.Public, ParameterType = proxyType } },
         });
-        
+
       foreach(var action in controller.Actions)
       {
         cls.Members.Add(GenerateAction(action));
@@ -77,7 +77,7 @@
     private FunctionMember GenerateAction(TypeGen.Generators.WebApiControllerGenerator.ActionModel action)
     {
 	  var cats = action.Source?.GetCustomAttributes().OfType<System.ComponentModel.CategoryAttribute>().Select(cat=>cat.Category).Where(cat=>cat.StartsWith("TYPEGEN")).ToArray();
-      var apiMethod = action.HttpMethod == "POST" ? "post" : "get";	  
+      var apiMethod = action.HttpMethod == "POST" ? "post" : "get";
 	  if (cats.Any(x=>x=="TYPEGEN:DOWNLOAD")){
 		  apiMethod = "download";
 	  }
@@ -110,7 +110,7 @@
       else
       {
           method.ResultType = new TypescriptTypeReference("Observable")
-                        { GenericParameters = { PrimitiveType.Any } };;
+                        { GenericParameters = { PrimitiveType.Any } };
       }
 	  if (apiMethod=="download")
 	  {
@@ -151,8 +151,8 @@
                   ParameterType = reflectionGenerator.GenerateFromType(p.Type),
                   IsOptional = false
               }));
-          //consider: 
-          //  if there is only one optional parameter, or all opt. parameters are last (it must be in c# decl), 
+          //consider:
+          //  if there is only one optional parameter, or all opt. parameters are last (it must be in c# decl),
           //  we can generate myMethod(p1,p2,..., po1:string? = null, po2:number? = null)
           //  but, it is needed then to call it with positional params (TypeScript doesn't know named params)
           //  xxx.myMethod("asd","qwe",...,null, 42)

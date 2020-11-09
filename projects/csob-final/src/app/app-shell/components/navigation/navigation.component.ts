@@ -4,8 +4,8 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { ApiBaseService } from 'projects/services/src/lib/api-base.service';
 import { AppConfig, EPermissionAreaType, IAppVersionInfo, ILogger, IPartyHeaderDto, IWebUserDto, LogFactoryService, SecurityService, SelectedPartyService, TracerService, TranslationService, UserProgressService } from 'projects/services/src/public-api';
 import { tap } from 'rxjs/operators';
-import { Arrays } from '../../../app-common/arrays';
-import { hasPermission } from '../../../app-common/common-functions';
+import { Arrays } from 'projects/app-common/src/public-api';
+import { hasPermission } from 'projects/app-common/src/public-api'
 import * as AppVersion from '../../../app-version';
 
 interface MenuItemContext {

@@ -1,5 +1,5 @@
 import { FinStatTabDto } from 'projects/services/src/public-api';
-import { Arrays } from '../../app-common/arrays';
+import { Arrays } from 'projects/app-common/src/public-api';
 import { IFinStatTabDto, IFinStatDataDto, IFinStatRatiosDataDto, EUpdateRowsResult } from 'projects/services/src/public-api';
 
 export class FinancialDetailUtils {

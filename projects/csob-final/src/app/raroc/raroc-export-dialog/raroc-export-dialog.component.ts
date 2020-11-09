@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Injector } from '@angular/core';
 import { AppDialog, AppDialogContainerService } from 'projects/app-common/src/public-api';
 import { Language, Languages, RarocApiService, RarocExportOptions, TranslationService, UserNotificationService, UserProgressService } from 'projects/services/src/public-api';
-import { UserBlobService } from '../../app-common/services/user-blob-service';
+import { UserBlobService } from 'projects/app-common/src/public-api';
 
 @Component({
     selector: 'raroc-export-dialog',

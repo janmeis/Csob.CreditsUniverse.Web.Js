@@ -3,7 +3,7 @@ import { Injector } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CellClickEvent, DataStateChangeEvent } from '@progress/kendo-angular-grid';
 import { CompositeFilterDescriptor, FilterDescriptor, State } from '@progress/kendo-data-query';
-import { fromDateOnlyString, toDateOnlyString } from '../../app-common/dates';
+import { fromDateOnlyString, toDateOnlyString } from 'projects/app-common/src/public-api';
 import { BasePermissionsComponent } from '../../app-shell/basePermissionsComponent';
 import { SecurityService } from 'projects/services/src/public-api';
 import { TranslationService } from 'projects/services/src/public-api';

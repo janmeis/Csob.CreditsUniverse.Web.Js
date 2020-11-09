@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
-import { isColor } from '../../../app-common/common-functions';
+import { isColor } from 'projects/app-common/src/public-api'
 import { MonitoringApiService } from 'projects/services/src/public-api';
 import { EMonitoringCategory, IMonitoringCellClickDto, IMonitoringGroupDto, IMonitoringRowDto } from 'projects/services/src/public-api';
 import { getLinkClicked } from '../../monitoring-overview/monitoring-overview-utils';

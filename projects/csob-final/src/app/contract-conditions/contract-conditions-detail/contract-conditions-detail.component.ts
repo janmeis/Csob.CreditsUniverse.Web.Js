@@ -5,10 +5,10 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Observable, of } from 'rxjs';
 import { first, map, mergeMap, tap } from 'rxjs/operators';
-import { markControlsDirty } from '../../app-common/common-functions';
-import { GetStaticCodebookProvider, ICodebookProvider } from '../../app-common/components/editor-codebook/editor-codebook.component';
-import { MessageBoxDialogComponent } from '../../app-common/components/message-box-dialog/message-box-dialog.component';
-import { EditorValidation } from '../../app-common/directives/editor-validator.directive';
+import { markControlsDirty } from 'projects/app-common/src/public-api'
+import { GetStaticCodebookProvider, ICodebookProvider } from 'projects/app-common/src/public-api';
+import { MessageBoxDialogComponent } from 'projects/app-common/src/public-api';
+import { EditorValidation } from 'projects/app-common/src/public-api';
 import { BasePermissionsComponent } from '../../app-shell/basePermissionsComponent';
 import { CanComponentDeactivate } from 'projects/services/src/public-api';
 import { CodebooksService } from 'projects/services/src/public-api';

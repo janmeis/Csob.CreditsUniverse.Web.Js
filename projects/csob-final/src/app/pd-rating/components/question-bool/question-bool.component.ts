@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, Injector, EventEmitter, Optional } from '@angular/core';
 import { IPDRatingCritDto } from 'projects/services/src/public-api';
-import { uniqueId } from '../../../app-common/uniqueId';
+import { uniqueId } from 'projects/app-common/src/public-api';
 import { ControlContainer, NgForm, NgModelGroup } from '@angular/forms';
 import { TranslationService } from 'projects/services/src/public-api';
 

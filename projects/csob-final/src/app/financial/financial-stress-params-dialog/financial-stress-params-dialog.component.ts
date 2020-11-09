@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Injector, OnInit } from '@angular/core';
 import { AppDialog, AppDialogContainerService } from 'projects/app-common/src/public-api';
 import { EStressAnalysisVariant, FinancialApiService, IFinStatDataDto, IStressAnalysisDto, StressAnalysisDto, TranslationService, UserProgressService } from 'projects/services/src/public-api';
-import { EditorValidation } from '../../app-common/directives/editor-validator.directive';
+import { EditorValidation } from 'projects/app-common/src/public-api';
 
 function ensureArrayLength<T>(data: T[], count: number, newItemFactory: (index: number) => T): T[] {
     if (!data) {
