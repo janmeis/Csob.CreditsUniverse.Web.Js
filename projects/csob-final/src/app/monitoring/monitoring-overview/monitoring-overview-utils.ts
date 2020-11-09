@@ -1,7 +1,7 @@
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import * as dates from '@progress/kendo-date-math';
-import { getToday, fromDateOnlyString } from 'src/app/app-common/dates';
-import { EFrequencyUnit, EMonitoringCategory, IMonitoringFilterDto } from 'src/app/services/webapi/webapi-models';
+import { getToday, fromDateOnlyString } from '../../app-common/dates';
+import { EFrequencyUnit, EMonitoringCategory, IMonitoringFilterDto } from '../../services/webapi/webapi-models';
 import { IMonitoringQueryParams } from './monitoring-overview.component';
 
 const getSessionStorageKey = (partyId: number) => `monitoringParams_${partyId}`;

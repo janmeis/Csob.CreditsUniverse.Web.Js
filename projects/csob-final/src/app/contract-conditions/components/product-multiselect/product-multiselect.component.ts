@@ -1,13 +1,12 @@
-import { Component, EventEmitter, Injector, Input, Optional, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, Optional, Output } from '@angular/core';
 import { ControlContainer, NgForm, NgModelGroup } from '@angular/forms';
-
-import { EditorValidate, EditorValidation } from 'src/app/app-common/directives/editor-validator.directive';
-import { uniqueId } from 'src/app/app-common/uniqueId';
-import { TranslationService } from 'src/app/services/translation-service';
-import { IProductInfoDto } from 'src/app/services/webapi/webapi-models';
-import { ContractConditionsService } from '../../services/contract-conditions.service';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { EditorValidate, EditorValidation } from '../../../app-common/directives/editor-validator.directive';
+import { uniqueId } from '../../../app-common/uniqueId';
+import { TranslationService } from '../../../services/translation-service';
+import { IProductInfoDto } from '../../../services/webapi/webapi-models';
+import { ContractConditionsService } from '../../services/contract-conditions.service';
 
 @Component({
     selector: 'product-multiselect',

@@ -2,9 +2,9 @@ import { Injectable, Injector } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { MessageBoxDialogComponent } from 'src/app/app-common/components/message-box-dialog/message-box-dialog.component';
-import { SecurityService } from 'src/app/services/security.service';
-import { TranslationService } from 'src/app/services/translation-service';
+import { MessageBoxDialogComponent } from '../../app-common/components/message-box-dialog/message-box-dialog.component';
+import { SecurityService } from '../../services/security.service';
+import { TranslationService } from '../../services/translation-service';
 import { PdRatingApiService } from './../../services/webapi/pdrating-api-service';
 
 @Injectable({

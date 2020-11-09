@@ -5,16 +5,16 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map, mergeMap, tap } from 'rxjs/operators';
 
-import { ICodebookProvider, GetStaticCodebookProvider, GetCodebookProvider } from 'src/app/app-common/components/editor-codebook/editor-codebook.component';
-import { GridEnumService } from 'src/app/app-common/services/grid-enum.service';
-import { SelectedPartyService } from 'src/app/services/selected-party.service';
-import { TranslationService } from 'src/app/services/translation-service';
-import { UserNotificationService } from 'src/app/services/user-notification.service';
-import { UserProgressService } from 'src/app/services/user-progress.service';
-import { ProductApiService } from 'src/app/services/webapi/product-api-service';
-import { EInterestRateType, ICodebookItem, IInterestDto, IProductSubTypeCUDto, IProductTypeCUDto, IProductViewDto, ECodetable } from 'src/app/services/webapi/webapi-models';
+import { ICodebookProvider, GetStaticCodebookProvider, GetCodebookProvider } from '../../app-common/components/editor-codebook/editor-codebook.component';
+import { GridEnumService } from '../../app-common/services/grid-enum.service';
+import { SelectedPartyService } from '../../services/selected-party.service';
+import { TranslationService } from '../../services/translation-service';
+import { UserNotificationService } from '../../services/user-notification.service';
+import { UserProgressService } from '../../services/user-progress.service';
+import { ProductApiService } from '../../services/webapi/product-api-service';
+import { EInterestRateType, ICodebookItem, IInterestDto, IProductSubTypeCUDto, IProductTypeCUDto, IProductViewDto, ECodetable } from '../../services/webapi/webapi-models';
 import { ProductCollateralDialogComponent } from '../product-collateral-dialog/product-collateral-dialog.component';
-import { CodebookApiService } from 'src/app/services/webapi/codebook-api-service';
+import { CodebookApiService } from '../../services/webapi/codebook-api-service';
 import { CodebooksService } from '../../services/codebooks.service';
 
 @Component({

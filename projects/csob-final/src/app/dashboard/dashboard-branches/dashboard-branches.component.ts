@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { mergeMap, tap } from 'rxjs/operators';
-import { toDateOnlyString } from 'src/app/app-common/dates';
-import { SelectedPartyService } from 'src/app/services/selected-party.service';
-import { TranslationService } from 'src/app/services/translation-service';
-import { UserProgressService } from 'src/app/services/user-progress.service';
-import { IDashboardItemDto } from 'src/app/services/webapi/webapi-models';
+import { toDateOnlyString } from '../../app-common/dates';
+import { SelectedPartyService } from '../../services/selected-party.service';
+import { TranslationService } from '../../services/translation-service';
+import { UserProgressService } from '../../services/user-progress.service';
+import { IDashboardItemDto } from '../../services/webapi/webapi-models';
 import { DashboardEventsService, IDashboardType } from '../dashboard-events/dashboard-events.service';
 
 @Component({

@@ -1,11 +1,10 @@
 import { DatePipe } from '@angular/common';
-import { Component, Injector, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { tap } from 'rxjs/operators';
-import { GetStaticCodebookProvider, ICodebookProvider } from 'src/app/app-common/components/editor-codebook/editor-codebook.component';
-import { TranslationService } from 'src/app/services/translation-service';
-import { UserProgressService } from 'src/app/services/user-progress.service';
-import { CodebookApiService } from 'src/app/services/webapi/codebook-api-service';
-import { ICodebookItem, IMonitoringCellEditDto, IMonitoringCellEditRowDto } from 'src/app/services/webapi/webapi-models';
+import { GetStaticCodebookProvider, ICodebookProvider } from '../../../app-common/components/editor-codebook/editor-codebook.component';
+import { UserProgressService } from '../../../services/user-progress.service';
+import { CodebookApiService } from '../../../services/webapi/codebook-api-service';
+import { ICodebookItem, IMonitoringCellEditDto } from '../../../services/webapi/webapi-models';
 
 @Component({
     selector: 'app-contract-terms-nonfinancial',

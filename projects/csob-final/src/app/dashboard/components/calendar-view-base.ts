@@ -1,7 +1,7 @@
 import { EventEmitter, Injector, Input, Output, Directive } from '@angular/core';
 import * as dates from '@progress/kendo-date-math';
-import { CurrentLangService } from 'src/app/services/current-lang-service';
-import { IDashboardItemDto, IDashboardItemResDto } from 'src/app/services/webapi/webapi-models';
+import { CurrentLangService } from '../../services/current-lang-service';
+import { IDashboardItemDto, IDashboardItemResDto } from '../../services/webapi/webapi-models';
 import { IDashboardType } from '../dashboard-events/dashboard-events.service';
 
 @Directive()

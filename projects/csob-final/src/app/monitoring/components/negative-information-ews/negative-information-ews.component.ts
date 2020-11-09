@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { fixToNumber } from 'src/app/app-common/common-functions';
-import { IMonitoringRowDto } from 'src/app/services/webapi/webapi-models';
+import { fixToNumber } from '../../../app-common/common-functions';
+import { IMonitoringRowDto } from '../../../services/webapi/webapi-models';
 
 interface INegativeInfoEwsRow {
     valueFoundOn: string;

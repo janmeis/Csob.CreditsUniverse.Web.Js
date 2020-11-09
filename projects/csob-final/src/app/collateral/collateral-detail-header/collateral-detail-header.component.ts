@@ -3,17 +3,17 @@ import { Component, Injector, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { tap, mergeMap, flatMap } from 'rxjs/operators';
-import { ICodebookProvider, GetStaticCodebookProvider } from 'src/app/app-common/components/editor-codebook/editor-codebook.component';
-import { GridEnumService } from 'src/app/app-common/services/grid-enum.service';
-import { SelectedPartyService } from 'src/app/services/selected-party.service';
-import { TranslationService } from 'src/app/services/translation-service';
-import { UserNotificationService } from 'src/app/services/user-notification.service';
-import { UserProgressService } from 'src/app/services/user-progress.service';
-import { CollateralApiService } from 'src/app/services/webapi/collateral-api-service';
-import { ETimeUnit, ICollateralSubTypeCUDto, ICollateralViewDto, ICodebookItem } from 'src/app/services/webapi/webapi-models';
+import { ICodebookProvider, GetStaticCodebookProvider } from '../../app-common/components/editor-codebook/editor-codebook.component';
+import { GridEnumService } from '../../app-common/services/grid-enum.service';
+import { SelectedPartyService } from '../../services/selected-party.service';
+import { TranslationService } from '../../services/translation-service';
+import { UserNotificationService } from '../../services/user-notification.service';
+import { UserProgressService } from '../../services/user-progress.service';
+import { CollateralApiService } from '../../services/webapi/collateral-api-service';
+import { ETimeUnit, ICollateralSubTypeCUDto, ICollateralViewDto, ICodebookItem } from '../../services/webapi/webapi-models';
 import { Observable, of } from 'rxjs';
-import { ProductCollateralDialogComponent } from 'src/app/product/product-collateral-dialog/product-collateral-dialog.component';
-import { PartyApiService } from 'src/app/services/webapi/party-api-service';
+import { ProductCollateralDialogComponent } from '../../product/product-collateral-dialog/product-collateral-dialog.component';
+import { PartyApiService } from '../../services/webapi/party-api-service';
 
 @Component({
     selector: 'app-collateral-detail-header',

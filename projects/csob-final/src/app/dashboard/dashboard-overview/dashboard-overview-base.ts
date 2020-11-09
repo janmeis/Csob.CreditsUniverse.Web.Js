@@ -3,13 +3,13 @@ import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { fromDateOnlyString, toDateOnlyString } from 'src/app/app-common/dates';
-import { BasePermissionsComponent } from 'src/app/app-shell/basePermissionsComponent';
-import { SecurityService } from 'src/app/services/security.service';
-import { TranslationService } from 'src/app/services/translation-service';
-import { UrlHelperService } from 'src/app/services/url-helper.service';
-import { UserProgressService } from 'src/app/services/user-progress.service';
-import { ECalendarType, EDashboardTypeId, IDashboardItemResDto } from 'src/app/services/webapi/webapi-models';
+import { fromDateOnlyString, toDateOnlyString } from '../../app-common/dates';
+import { BasePermissionsComponent } from '../../app-shell/basePermissionsComponent';
+import { SecurityService } from '../../services/security.service';
+import { TranslationService } from '../../services/translation-service';
+import { UrlHelperService } from '../../services/url-helper.service';
+import { UserProgressService } from '../../services/user-progress.service';
+import { ECalendarType, EDashboardTypeId, IDashboardItemResDto } from '../../services/webapi/webapi-models';
 import { DashboardEventsService, IDashboardType } from '../dashboard-events/dashboard-events.service';
 
 export abstract class DashboardOverviewBase extends BasePermissionsComponent {

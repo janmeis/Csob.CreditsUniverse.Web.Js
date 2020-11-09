@@ -1,17 +1,15 @@
-import { Component, EventEmitter, Injector, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { of } from 'rxjs';
-import { mergeMap, map, tap } from 'rxjs/operators';
-
-import { GetStaticCodebookProvider, ICodebookProvider } from 'src/app/app-common/components/editor-codebook/editor-codebook.component';
-import { EnumValue } from 'src/app/app-common/components/editor-enum/editor-enum.component';
-import { CodebooksService } from 'src/app/services/codebooks.service';
-import { SecurityService } from 'src/app/services/security.service';
-import { TranslationService } from 'src/app/services/translation-service';
-import { UserProgressService } from 'src/app/services/user-progress.service';
-import { CodebookApiService } from 'src/app/services/webapi/codebook-api-service';
-import { EStatePDRating, ICodebookItem, IExternalCodebookItem, IPDRatingResultTabDto, IRatingCodebookItem, EPDRatingCategory } from 'src/app/services/webapi/webapi-models';
-import { PDRatingItemValueDto } from 'src/app/services/webapi/webapi-models-classes';
+import { map, mergeMap, tap } from 'rxjs/operators';
+import { GetStaticCodebookProvider, ICodebookProvider } from '../../../app-common/components/editor-codebook/editor-codebook.component';
+import { EnumValue } from '../../../app-common/components/editor-enum/editor-enum.component';
+import { CodebooksService } from '../../../services/codebooks.service';
+import { SecurityService } from '../../../services/security.service';
+import { UserProgressService } from '../../../services/user-progress.service';
+import { CodebookApiService } from '../../../services/webapi/codebook-api-service';
+import { EPDRatingCategory, EStatePDRating, ICodebookItem, IExternalCodebookItem, IPDRatingResultTabDto, IRatingCodebookItem } from '../../../services/webapi/webapi-models';
+import { PDRatingItemValueDto } from '../../../services/webapi/webapi-models-classes';
 
 
 @Component({

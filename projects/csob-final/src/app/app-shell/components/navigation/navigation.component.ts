@@ -2,10 +2,9 @@ import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@
 import { Event, NavigationCancel, NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { tap } from 'rxjs/operators';
-import { hasPermission } from 'src/app/app-common/common-functions';
-import { AppConfig } from 'src/app/app-config';
-import { UserProgressService } from 'src/app/services/user-progress.service';
 import { Arrays } from '../../../app-common/arrays';
+import { hasPermission } from '../../../app-common/common-functions';
+import { AppConfig } from '../../../app-config';
 import * as AppVersion from '../../../app-version';
 import { ApiBaseService } from '../../../services/api-base.service';
 import { ILogger, LogFactoryService } from '../../../services/log-factory.service';
@@ -13,6 +12,7 @@ import { SecurityService } from '../../../services/security.service';
 import { SelectedPartyService } from '../../../services/selected-party.service';
 import { TracerService } from '../../../services/tracer.service';
 import { TranslationService } from '../../../services/translation-service';
+import { UserProgressService } from '../../../services/user-progress.service';
 import { EPermissionAreaType, IAppVersionInfo, IWebUserDto } from '../../../services/webapi/webapi-models';
 import { IPartyHeaderDto } from './../../../services/webapi/webapi-models';
 

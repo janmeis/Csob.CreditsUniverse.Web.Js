@@ -1,5 +1,4 @@
-import { Component, Injector, OnInit, Input, Output, EventEmitter } from "@angular/core";
-import { TranslationService } from "src/app/services/translation-service";
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Language, Languages } from '../../models/language';
 
 @Component({

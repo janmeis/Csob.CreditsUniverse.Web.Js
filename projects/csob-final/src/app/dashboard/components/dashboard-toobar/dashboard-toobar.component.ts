@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ECalendarType } from 'src/app/services/webapi/webapi-models';
+import { ECalendarType } from '../../../services/webapi/webapi-models';
 import { CalendarComponent } from '../calendar/calendar.component';
 
 @Component({

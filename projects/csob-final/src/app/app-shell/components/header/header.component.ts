@@ -1,16 +1,15 @@
 import { Component, Injector, Input, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { first } from 'rxjs/operators';
+import { CurrentLangService } from '../../../services/current-lang-service';
 import { SecurityService } from '../../../services/security.service';
 import { SelectedPartyService } from '../../../services/selected-party.service';
-import { TranslationService } from '../../../services/translation-service';
+import { UserProgressService } from '../../../services/user-progress.service';
 import { UserApiService } from '../../../services/webapi/user-api-service';
 import { BasePermissionsComponent } from '../../basePermissionsComponent';
 import { OperationModelDialogComponent } from '../operation-model-dialog/operation-model-dialog.component';
-import { IPartyHeaderDto, IWebUserDto, IOperationModelDto } from './../../../services/webapi/webapi-models';
-import { CurrentLangService } from 'src/app/services/current-lang-service';
-import { UserProgressService } from 'src/app/services/user-progress.service';
-import { first } from 'rxjs/operators';
+import { IPartyHeaderDto, IWebUserDto } from './../../../services/webapi/webapi-models';
 
 
 @Component({

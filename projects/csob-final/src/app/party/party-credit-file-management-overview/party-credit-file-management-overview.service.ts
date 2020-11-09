@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { DataResult, process, State } from '@progress/kendo-data-query';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
-import { PartyCreditFileManagementApiService } from 'src/app/services/webapi/partycreditfilemanagement-api-service';
-import { ICreditComponentManagerModel } from 'src/app/services/webapi/webapi-models';
+import { PartyCreditFileManagementApiService } from '../../services/webapi/partycreditfilemanagement-api-service';
+import { ICreditComponentManagerModel } from '../../services/webapi/webapi-models';
 
 @Injectable()
 export class PartyCreditFileManagementOverviewService extends BehaviorSubject<DataResult> {

@@ -3,10 +3,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CellClickEvent, DataStateChangeEvent, RowClassArgs } from '@progress/kendo-angular-grid';
 import { TooltipDirective } from '@progress/kendo-angular-tooltip';
 import { DataResult, FilterDescriptor, State } from '@progress/kendo-data-query';
-import { showTooltip } from 'src/app/app-common/common-functions';
-import { TranslationService } from 'src/app/services/translation-service';
-import { UserProgressService } from 'src/app/services/user-progress.service';
-import { EDashboardState, ICodebookItem, IDashboardEventDto } from 'src/app/services/webapi/webapi-models';
+import { showTooltip } from '../../../app-common/common-functions';
+import { TranslationService } from '../../../services/translation-service';
+import { UserProgressService } from '../../../services/user-progress.service';
+import { EDashboardState, ICodebookItem, IDashboardEventDto } from '../../../services/webapi/webapi-models';
 import { DashboardEventsService, IDashboardType } from '../../dashboard-events/dashboard-events.service';
 
 @Directive()

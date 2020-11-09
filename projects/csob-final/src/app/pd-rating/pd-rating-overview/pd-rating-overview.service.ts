@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
-import { PdRatingApiService } from 'src/app/services/webapi/pdrating-api-service';
-import { IGridResult, IPDRatingOverviewResDto } from 'src/app/services/webapi/webapi-models';
+import { PdRatingApiService } from '../../services/webapi/pdrating-api-service';
+import { IGridResult, IPDRatingOverviewResDto } from '../../services/webapi/webapi-models';
 import { PdCriteria } from '../models/pd-overview';
 
 @Injectable()

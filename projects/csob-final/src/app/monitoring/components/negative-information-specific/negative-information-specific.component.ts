@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { tap } from 'rxjs/operators';
-import { UserProgressService } from 'src/app/services/user-progress.service';
-import { CodebookApiService } from 'src/app/services/webapi/codebook-api-service';
-import { ICodebookItem, IMonitoringCellEditDto, IMonitoringCellEditRowDto, IMonitoringRowDto } from 'src/app/services/webapi/webapi-models';
+import { UserProgressService } from '../../../services/user-progress.service';
+import { CodebookApiService } from '../../../services/webapi/codebook-api-service';
+import { ICodebookItem, IMonitoringCellEditDto, IMonitoringCellEditRowDto, IMonitoringRowDto } from '../../../services/webapi/webapi-models';
 
 @Component({
     selector: 'app-negative-information-specific',

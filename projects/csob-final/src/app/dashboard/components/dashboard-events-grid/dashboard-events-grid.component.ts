@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Injector, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { State } from '@progress/kendo-data-query';
-import { TranslationService } from 'src/app/services/translation-service';
-import { UserProgressService } from 'src/app/services/user-progress.service';
+import { TranslationService } from '../../../services/translation-service';
+import { UserProgressService } from '../../../services/user-progress.service';
 import { DashboardEventsService } from '../../dashboard-events/dashboard-events.service';
 import { DashboardEventsGridBase } from './dashboard-events-grid-base';
 

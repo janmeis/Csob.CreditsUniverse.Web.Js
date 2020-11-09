@@ -3,12 +3,12 @@ import { DataResult, process, State } from '@progress/kendo-data-query';
 import { Observable, of } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 
-import { ICodebookProvider } from 'src/app/app-common/components/editor-codebook/editor-codebook.component';
-import { CodebooksService } from 'src/app/services/codebooks.service';
-import { TranslationService } from 'src/app/services/translation-service';
-import { CodebookApiService } from 'src/app/services/webapi/codebook-api-service';
-import { RarocApiService } from 'src/app/services/webapi/raroc-api-service';
-import { ECodetable, EValidationType, ICodebookItem, IProductSubTypeCUDto, IProductTypeCUDto, IRarocProductDto, IRarocProductsDto, IRarocProductValueDto } from 'src/app/services/webapi/webapi-models';
+import { ICodebookProvider } from '../../app-common/components/editor-codebook/editor-codebook.component';
+import { CodebooksService } from '../../services/codebooks.service';
+import { TranslationService } from '../../services/translation-service';
+import { CodebookApiService } from '../../services/webapi/codebook-api-service';
+import { RarocApiService } from '../../services/webapi/raroc-api-service';
+import { ECodetable, EValidationType, ICodebookItem, IProductSubTypeCUDto, IProductTypeCUDto, IRarocProductDto, IRarocProductsDto, IRarocProductValueDto } from '../../services/webapi/webapi-models';
 import { RarocProductCollateralService } from '../raroc-detail-product-dialog/raroc-product-collateral.service';
 import { RarocDetailService } from '../raroc-detail/raroc-detail.service';
 

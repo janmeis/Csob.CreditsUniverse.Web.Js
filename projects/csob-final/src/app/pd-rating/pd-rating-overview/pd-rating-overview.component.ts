@@ -7,9 +7,9 @@ import { SortDescriptor, State } from '@progress/kendo-data-query';
 import { of } from 'rxjs';
 import { flatMap, tap } from 'rxjs/operators';
 
-import { showTooltip } from 'src/app/app-common/common-functions';
-import { BasePermissionsComponent } from 'src/app/app-shell/basePermissionsComponent';
-import { SecurityService } from 'src/app/services/security.service';
+import { showTooltip } from '../../app-common/common-functions';
+import { BasePermissionsComponent } from '../../app-shell/basePermissionsComponent';
+import { SecurityService } from '../../services/security.service';
 import { SelectedPartyService } from '../../services/selected-party.service';
 import { TranslationService } from '../../services/translation-service';
 import { ENotificationType, UserNotificationService } from '../../services/user-notification.service';

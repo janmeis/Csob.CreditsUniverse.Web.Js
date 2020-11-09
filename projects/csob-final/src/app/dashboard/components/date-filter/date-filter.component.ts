@@ -2,8 +2,8 @@ import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/cor
 import { DateInputComponent } from '@progress/kendo-angular-dateinputs';
 import { BaseFilterCellComponent, ColumnComponent, FilterService } from '@progress/kendo-angular-grid';
 import { CompositeFilterDescriptor } from '@progress/kendo-data-query';
-import { CalendarService } from 'src/app/app-common/services/calendar.service';
-import { CurrentLangService } from 'src/app/services/current-lang-service';
+import { CalendarService } from '../../../app-common/services/calendar.service';
+import { CurrentLangService } from '../../../services/current-lang-service';
 
 declare var kendo: any;
 

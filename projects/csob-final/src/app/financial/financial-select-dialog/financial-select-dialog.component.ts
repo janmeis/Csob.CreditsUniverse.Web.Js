@@ -3,8 +3,8 @@ import { DataStateChangeEvent, GridDataResult, SelectableSettings } from '@progr
 import { TooltipDirective } from '@progress/kendo-angular-tooltip';
 import { State } from '@progress/kendo-data-query';
 
-import { showTooltip } from 'src/app/app-common/common-functions';
-import { UserNotificationService } from 'src/app/services/user-notification.service';
+import { showTooltip } from '../../app-common/common-functions';
+import { UserNotificationService } from '../../services/user-notification.service';
 import { MessageBoxDialogComponent } from '../../app-common/components/message-box-dialog/message-box-dialog.component';
 import { setGridToCriteria } from '../../app-common/models/GridBaseDto';
 import { AppDialog, AppDialogContainerService } from '../../app-common/services/app-dialog-container.service';

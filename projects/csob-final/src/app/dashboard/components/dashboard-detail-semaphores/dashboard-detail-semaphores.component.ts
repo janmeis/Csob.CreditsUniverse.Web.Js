@@ -1,5 +1,4 @@
-import { Component, EventEmitter, Injector, Input, Output } from '@angular/core';
-import { TranslationService } from 'src/app/services/translation-service';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
     selector: 'app-dashboard-detail-semaphores',

@@ -1,7 +1,6 @@
-import { Component, EventEmitter, Injector, Input, OnDestroy, Output } from '@angular/core';
-import { TranslationService } from '../../../services/translation-service';
-import { IPDRatingItemValueDto, EStatePDRating } from '../../../services/webapi/webapi-models';
-import { ICodebookProvider } from 'src/app/app-common/components/editor-codebook/editor-codebook.component';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ICodebookProvider } from '../../../app-common/components/editor-codebook/editor-codebook.component';
+import { EStatePDRating, IPDRatingItemValueDto } from '../../../services/webapi/webapi-models';
 
 @Component({
     selector: 'app-pd-rating-item-value',

@@ -52,7 +52,7 @@
               "projects/csob-final/src/assets"
             ],
             "styles": [
-              "projects/csob-final/src/styles/styles.less"
+              "projects/csob-final/src/styles/style.less"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
@@ -130,7 +130,7 @@
               "projects/csob-final/src/assets"
             ],
             "styles": [
-              "projects/csob-final/src/styles.less"
+              "projects/csob-final/src/style.less"
             ],
             "scripts": []
           }

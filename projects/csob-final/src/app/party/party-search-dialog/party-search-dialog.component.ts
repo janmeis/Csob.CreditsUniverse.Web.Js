@@ -4,7 +4,7 @@ import { DataStateChangeEvent, SelectionEvent } from '@progress/kendo-angular-gr
 import { SortDescriptor, State } from '@progress/kendo-data-query';
 import { first, flatMap, map, tap } from 'rxjs/operators';
 
-import { PartyApiService } from 'src/app/services/webapi/party-api-service';
+import { PartyApiService } from '../../services/webapi/party-api-service';
 import { SelectDialogBase } from '../../app-common/components/SelectDialogBase';
 import { setGridToCriteria } from '../../app-common/models/GridBaseDto';
 import { AppDialogContainerService } from '../../app-common/services/app-dialog-container.service';
@@ -15,7 +15,7 @@ import { IPartyHeaderDto, IPDRatingOverviewReqDto, ISearchClientReqDto, ISearchC
 import { UserNotificationService } from './../../services/user-notification.service';
 import { PartySearchCriteriaComponent } from './../party-search-criteria/party-search-criteria.component';
 import { PartySearchDialogService } from './party-search-dialog.service';
-import { showTooltip } from 'src/app/app-common/common-functions';
+import { showTooltip } from '../../app-common/common-functions';
 import { TooltipDirective } from '@progress/kendo-angular-tooltip';
 
 type DialogMode = 'pdrating' | 'partylink';

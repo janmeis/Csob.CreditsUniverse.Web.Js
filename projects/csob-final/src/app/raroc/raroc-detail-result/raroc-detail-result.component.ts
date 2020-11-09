@@ -3,11 +3,11 @@ import { RowClassArgs } from '@progress/kendo-angular-grid/dist/es2015/rendering
 import { TooltipDirective } from '@progress/kendo-angular-tooltip';
 import { flatMap, tap } from 'rxjs/operators';
 
-import { showTooltip } from 'src/app/app-common/common-functions';
-import { BasePermissionsComponent } from 'src/app/app-shell/basePermissionsComponent';
-import { SecurityService } from 'src/app/services/security.service';
-import { SelectedPartyService } from 'src/app/services/selected-party.service';
-import { UserProgressService } from 'src/app/services/user-progress.service';
+import { showTooltip } from '../../app-common/common-functions';
+import { BasePermissionsComponent } from '../../app-shell/basePermissionsComponent';
+import { SecurityService } from '../../services/security.service';
+import { SelectedPartyService } from '../../services/selected-party.service';
+import { UserProgressService } from '../../services/user-progress.service';
 import { TranslationService } from '../../services/translation-service';
 import { IPartyHeaderDto, IRarocDto, IRarocOutputContainerDto, IRarocOutputDto } from '../../services/webapi/webapi-models';
 import { RarocExportDialogComponent } from '../raroc-export-dialog/raroc-export-dialog.component';

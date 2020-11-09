@@ -4,15 +4,15 @@ import { DialogComponent } from '@progress/kendo-angular-dialog';
 import { TooltipDirective } from '@progress/kendo-angular-tooltip';
 import { Observable, of } from 'rxjs';
 import { first, map, mergeMap, tap } from 'rxjs/operators';
-import { fixToNumber, fixToString, showTooltip } from 'src/app/app-common/common-functions';
-import { MessageBoxDialogComponent } from 'src/app/app-common/components/message-box-dialog/message-box-dialog.component';
-import { BasePermissionsComponent } from 'src/app/app-shell/basePermissionsComponent';
-import { SecurityService } from 'src/app/services/security.service';
-import { SelectedPartyService } from 'src/app/services/selected-party.service';
-import { TranslationService } from 'src/app/services/translation-service';
-import { UserProgressService } from 'src/app/services/user-progress.service';
-import { MonitoringApiService } from 'src/app/services/webapi/monitoring-api-service';
-import { EColor, EMonitoringCategory, IMonitoringCellClickDto, IMonitoringCellEditDto, IPartyHeaderDto } from 'src/app/services/webapi/webapi-models';
+import { fixToNumber, fixToString, showTooltip } from '../../app-common/common-functions';
+import { MessageBoxDialogComponent } from '../../app-common/components/message-box-dialog/message-box-dialog.component';
+import { BasePermissionsComponent } from '../../app-shell/basePermissionsComponent';
+import { SecurityService } from '../../services/security.service';
+import { SelectedPartyService } from '../../services/selected-party.service';
+import { TranslationService } from '../../services/translation-service';
+import { UserProgressService } from '../../services/user-progress.service';
+import { MonitoringApiService } from '../../services/webapi/monitoring-api-service';
+import { EColor, EMonitoringCategory, IMonitoringCellClickDto, IMonitoringCellEditDto, IPartyHeaderDto } from '../../services/webapi/webapi-models';
 import { AppDialog, AppDialogContainerService } from './../../app-common/services/app-dialog-container.service';
 
 @Component({

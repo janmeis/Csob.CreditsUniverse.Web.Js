@@ -4,9 +4,9 @@ import { EditorValidation } from '../../app-common/directives/editor-validator.d
 import { TranslationService } from '../../services/translation-service';
 import { ENotificationType, UserNotificationService } from '../../services/user-notification.service';
 import { ISearchClientReqDto } from '../../services/webapi/webapi-models';
-import { AppConfig } from 'src/app/app-config';
+import { AppConfig } from '../../app-config';
 import { normalizeIdentificationNumber } from './identification-number-normalization';
-import { getCurrentComponetPath } from 'src/app/app-common/common-functions';
+import { getCurrentComponetPath } from '../../app-common/common-functions';
 
 @Component({
     selector: 'app-party-search-criteria',

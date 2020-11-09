@@ -5,11 +5,11 @@ import { CellClickEvent, DataStateChangeEvent, RowArgs } from '@progress/kendo-a
 import { TooltipDirective } from '@progress/kendo-angular-tooltip';
 import { SortDescriptor, State } from '@progress/kendo-data-query';
 
-import { showTooltip } from 'src/app/app-common/common-functions';
-import { MessageBoxDialogComponent } from 'src/app/app-common/components/message-box-dialog/message-box-dialog.component';
-import { EditorValidation } from 'src/app/app-common/directives/editor-validator.directive';
-import { BasePermissionsComponent } from 'src/app/app-shell/basePermissionsComponent';
-import { SecurityService } from 'src/app/services/security.service';
+import { showTooltip } from '../../app-common/common-functions';
+import { MessageBoxDialogComponent } from '../../app-common/components/message-box-dialog/message-box-dialog.component';
+import { EditorValidation } from '../../app-common/directives/editor-validator.directive';
+import { BasePermissionsComponent } from '../../app-shell/basePermissionsComponent';
+import { SecurityService } from '../../services/security.service';
 import { SelectedPartyService } from '../../services/selected-party.service';
 import { TranslationService } from '../../services/translation-service';
 import { UserProgressService } from '../../services/user-progress.service';
@@ -18,7 +18,7 @@ import { EStateRaroc, IPartyHeaderDto } from '../../services/webapi/webapi-model
 import { IRarocOverviewResDto } from './../../services/webapi/webapi-models';
 import { RarocCriteria, RarocOverviewService } from './raroc-overview.service';
 import { tap } from 'rxjs/operators';
-import { UserNotificationService, ENotificationType } from 'src/app/services/user-notification.service';
+import { UserNotificationService, ENotificationType } from '../../services/user-notification.service';
 
 export enum EViewMode {
     DetailView = 0,

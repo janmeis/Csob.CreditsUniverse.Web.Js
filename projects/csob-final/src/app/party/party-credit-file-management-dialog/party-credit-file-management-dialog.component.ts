@@ -2,12 +2,12 @@ import { Component, EventEmitter, Injector, OnInit, ViewChild } from '@angular/c
 import { NgForm } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { tap } from 'rxjs/operators';
-import { AppDialog, AppDialogContainerService } from 'src/app/app-common/services/app-dialog-container.service';
-import { SelectedPartyService } from 'src/app/services/selected-party.service';
-import { TranslationService } from 'src/app/services/translation-service';
-import { UserProgressService } from 'src/app/services/user-progress.service';
-import { PartyCreditFileManagementApiService } from 'src/app/services/webapi/partycreditfilemanagement-api-service';
-import { ECodetable, ICreditComponentManagerModel } from 'src/app/services/webapi/webapi-models';
+import { AppDialog, AppDialogContainerService } from '../../app-common/services/app-dialog-container.service';
+import { SelectedPartyService } from '../../services/selected-party.service';
+import { TranslationService } from '../../services/translation-service';
+import { UserProgressService } from '../../services/user-progress.service';
+import { PartyCreditFileManagementApiService } from '../../services/webapi/partycreditfilemanagement-api-service';
+import { ECodetable, ICreditComponentManagerModel } from '../../services/webapi/webapi-models';
 
 @UntilDestroy()
 @Component({

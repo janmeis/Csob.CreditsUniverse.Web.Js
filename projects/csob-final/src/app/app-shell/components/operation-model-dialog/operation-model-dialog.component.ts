@@ -1,13 +1,9 @@
-import { TabStripComponent } from '@progress/kendo-angular-layout';
-import { NgForm } from '@angular/forms';
-import { TranslationService } from './../../../services/translation-service';
 import { Component, EventEmitter, Injector, Input, OnInit } from '@angular/core';
-import { AppDialog, AppDialogContainerService } from 'src/app/app-common/services/app-dialog-container.service';
-import { SecurityService } from 'src/app/services/security.service';
-import { OperationModelDto } from 'src/app/services/webapi/webapi-models-classes';
-import { CurrentLangService } from 'src/app/services/current-lang-service';
-
-
+import { AppDialog, AppDialogContainerService } from '../../../app-common/services/app-dialog-container.service';
+import { CurrentLangService } from '../../../services/current-lang-service';
+import { SecurityService } from '../../../services/security.service';
+import { OperationModelDto } from '../../../services/webapi/webapi-models-classes';
+import { TranslationService } from './../../../services/translation-service';
 
 
 @Component({

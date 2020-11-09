@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { CodebookItem } from 'src/app/services/webapi/webapi-models-classes';
+import { CodebookItem } from '../../../services/webapi/webapi-models-classes';
 
 @Component({
     // tslint:disable-next-line: component-selector

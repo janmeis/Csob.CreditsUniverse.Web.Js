@@ -1,4 +1,4 @@
-import { CurrentLangService } from 'src/app/services/current-lang-service';
+import { CurrentLangService } from '../../services/current-lang-service';
 import { LocalDatePipe } from './../../app-common/pipes/local-date.pipe';
 import { IFinStatOverviewResDto } from './../../services/webapi/webapi-models';
 import { Injectable } from '@angular/core';

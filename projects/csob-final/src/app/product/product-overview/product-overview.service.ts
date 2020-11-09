@@ -2,7 +2,7 @@ import { IProductViewDto } from './../../services/webapi/webapi-models';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { DataResult, process, State } from '@progress/kendo-data-query';
-import { ProductApiService } from 'src/app/services/webapi/product-api-service';
+import { ProductApiService } from '../../services/webapi/product-api-service';
 import { map, tap } from 'rxjs/operators';
 
 @Injectable()

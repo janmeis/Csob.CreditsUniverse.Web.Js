@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { flatMap, map, tap } from 'rxjs/operators';
-import { ICodebookProvider, GetStaticCodebookProvider, GetEmptyCodebookProvider } from 'src/app/app-common/components/editor-codebook/editor-codebook.component';
-import { GridEnumService } from 'src/app/app-common/services/grid-enum.service';
-import { CodebookApiService } from 'src/app/services/webapi/codebook-api-service';
-import { RarocApiService } from 'src/app/services/webapi/raroc-api-service';
-import { ETimeUnit, ICodebookItem, ILGDModelCodebookItem, IRarocContainerDto, IRarocValidationDto, EKeyEnum, EFrequencyUnit } from 'src/app/services/webapi/webapi-models';
+import { ICodebookProvider, GetStaticCodebookProvider, GetEmptyCodebookProvider } from '../../app-common/components/editor-codebook/editor-codebook.component';
+import { GridEnumService } from '../../app-common/services/grid-enum.service';
+import { CodebookApiService } from '../../services/webapi/codebook-api-service';
+import { RarocApiService } from '../../services/webapi/raroc-api-service';
+import { ETimeUnit, ICodebookItem, ILGDModelCodebookItem, IRarocContainerDto, IRarocValidationDto, EKeyEnum, EFrequencyUnit } from '../../services/webapi/webapi-models';
 
 @Injectable()
 export class RarocDetailService {

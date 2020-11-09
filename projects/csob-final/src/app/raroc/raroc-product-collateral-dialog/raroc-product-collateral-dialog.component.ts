@@ -1,12 +1,12 @@
 import { Component, ComponentRef, EventEmitter, Injector, OnInit, ViewChild } from '@angular/core';
 import { DialogComponent } from '@progress/kendo-angular-dialog';
 
-import { AppDialog, AppDialogContainerService } from 'src/app/app-common/services/app-dialog-container.service';
-import { TranslationService } from 'src/app/services/translation-service';
-import { UserProgressService } from 'src/app/services/user-progress.service';
-import { IMatrixDto } from 'src/app/services/webapi/webapi-models';
+import { AppDialog, AppDialogContainerService } from '../../app-common/services/app-dialog-container.service';
+import { TranslationService } from '../../services/translation-service';
+import { UserProgressService } from '../../services/user-progress.service';
+import { IMatrixDto } from '../../services/webapi/webapi-models';
 import { RarocProductCollateralService } from '../raroc-detail-product-dialog/raroc-product-collateral.service';
-import { MessageBoxDialogComponent } from 'src/app/app-common/components/message-box-dialog/message-box-dialog.component';
+import { MessageBoxDialogComponent } from '../../app-common/components/message-box-dialog/message-box-dialog.component';
 import { NgForm } from '@angular/forms';
 import { of } from 'core-js/fn/array';
 

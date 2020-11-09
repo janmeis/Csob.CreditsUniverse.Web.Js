@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
-import { RarocApiService } from 'src/app/services/webapi/raroc-api-service';
-import { IGridResult, IRarocOverviewResDto, IRarocOverviewReqDto } from 'src/app/services/webapi/webapi-models';
-import { GridState } from 'src/app/app-common/models/GridBaseDto';
+import { RarocApiService } from '../../services/webapi/raroc-api-service';
+import { IGridResult, IRarocOverviewResDto, IRarocOverviewReqDto } from '../../services/webapi/webapi-models';
+import { GridState } from '../../app-common/models/GridBaseDto';
 
 export class RarocCriteria extends GridState implements IRarocOverviewReqDto {
     CreditFileId: number;

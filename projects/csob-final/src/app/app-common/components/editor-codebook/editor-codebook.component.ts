@@ -3,7 +3,7 @@ import { ControlContainer, NgForm, NgModelGroup } from '@angular/forms';
 import { ComboBoxComponent } from '@progress/kendo-angular-dropdowns';
 import { TooltipDirective } from '@progress/kendo-angular-tooltip';
 import { Observable, of, Subject } from 'rxjs';
-import { showTooltip } from 'src/app/app-common/common-functions';
+import { showTooltip } from '../../../app-common/common-functions';
 import { CodebookItem, CodebooksService } from '../../../services/codebooks.service';
 import { TranslationService } from '../../../services/translation-service';
 import { ICodebookItem } from '../../../services/webapi/webapi-models';

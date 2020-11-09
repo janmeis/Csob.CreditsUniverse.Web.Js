@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { DataResult } from '@progress/kendo-data-query';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { RarocApiService } from 'src/app/services/webapi/raroc-api-service';
-import { IMatrixDto } from 'src/app/services/webapi/webapi-models';
+import { RarocApiService } from '../../services/webapi/raroc-api-service';
+import { IMatrixDto } from '../../services/webapi/webapi-models';
 
 @Injectable()
 export class RarocProductCollateralService extends BehaviorSubject<DataResult>{

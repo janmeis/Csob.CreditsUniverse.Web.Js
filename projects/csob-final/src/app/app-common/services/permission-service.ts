@@ -1,4 +1,4 @@
-import { BasePermissionsComponent } from 'src/app/app-shell/basePermissionsComponent';
+import { BasePermissionsComponent } from '../../app-shell/basePermissionsComponent';
 import { Injectable, ViewContainerRef } from '@angular/core';
 import { ILogger, LogFactoryService } from '../../services/log-factory.service';
 import { IPartyHeaderDto, EPermissionType } from '../../services/webapi/webapi-models';

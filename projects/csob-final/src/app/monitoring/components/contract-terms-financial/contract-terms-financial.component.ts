@@ -2,11 +2,11 @@ import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RowClassArgs } from '@progress/kendo-angular-grid';
-import { fixToNumber } from 'src/app/app-common/common-functions';
-import { GetStaticCodebookProvider, ICodebookProvider } from 'src/app/app-common/components/editor-codebook/editor-codebook.component';
-import { EditorValidation } from 'src/app/app-common/directives/editor-validator.directive';
-import { TranslationService } from 'src/app/services/translation-service';
-import { EMonitoringCategory, ICodebookItem, IMonitoringCellEditDto, IMonitoringCellEditRowDto } from 'src/app/services/webapi/webapi-models';
+import { fixToNumber } from '../../../app-common/common-functions';
+import { GetStaticCodebookProvider, ICodebookProvider } from '../../../app-common/components/editor-codebook/editor-codebook.component';
+import { EditorValidation } from '../../../app-common/directives/editor-validator.directive';
+import { TranslationService } from '../../../services/translation-service';
+import { EMonitoringCategory, ICodebookItem, IMonitoringCellEditDto, IMonitoringCellEditRowDto } from '../../../services/webapi/webapi-models';
 import { getLinkClicked } from '../../monitoring-overview/monitoring-overview-utils';
 
 @Component({

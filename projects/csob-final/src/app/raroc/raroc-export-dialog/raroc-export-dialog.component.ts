@@ -2,11 +2,11 @@ import { Component, EventEmitter, Injector } from '@angular/core';
 import { AppDialog, AppDialogContainerService } from '../../app-common/services/app-dialog-container.service';
 import { TranslationService } from '../../services/translation-service';
 import { UserProgressService } from '../../services/user-progress.service';
-import { RarocApiService } from 'src/app/services/webapi/raroc-api-service';
-import { RarocExportOptions } from 'src/app/services/webapi/webapi-models-classes';
-import { UserNotificationService } from 'src/app/services/user-notification.service';
+import { RarocApiService } from '../../services/webapi/raroc-api-service';
+import { RarocExportOptions } from '../../services/webapi/webapi-models-classes';
+import { UserNotificationService } from '../../services/user-notification.service';
 import { UserBlobService } from '../../app-common/services/user-blob-service';
-import { Language, Languages } from 'src/app/app-common/models/language';
+import { Language, Languages } from '../../app-common/models/language';
 
 @Component({
     selector: 'raroc-export-dialog',

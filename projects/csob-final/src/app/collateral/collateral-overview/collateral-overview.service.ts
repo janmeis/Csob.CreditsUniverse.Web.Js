@@ -3,8 +3,8 @@ import { DataResult, process, State } from '@progress/kendo-data-query';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 
-import { CollateralApiService } from 'src/app/services/webapi/collateral-api-service';
-import { ICollateralViewDto } from 'src/app/services/webapi/webapi-models';
+import { CollateralApiService } from '../../services/webapi/collateral-api-service';
+import { ICollateralViewDto } from '../../services/webapi/webapi-models';
 
 @Injectable()
 export class CollateralOverviewService extends BehaviorSubject<DataResult> {

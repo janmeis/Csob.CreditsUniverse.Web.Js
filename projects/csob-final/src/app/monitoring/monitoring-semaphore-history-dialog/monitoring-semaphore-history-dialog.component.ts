@@ -3,14 +3,14 @@ import { DialogComponent } from '@progress/kendo-angular-dialog';
 import { TooltipDirective } from '@progress/kendo-angular-tooltip';
 import { CompositeFilterDescriptor } from '@progress/kendo-data-query';
 import { tap } from 'rxjs/operators';
-import { showTooltip } from 'src/app/app-common/common-functions';
-import { AppDialog, AppDialogContainerService } from 'src/app/app-common/services/app-dialog-container.service';
-import { BasePermissionsComponent } from 'src/app/app-shell/basePermissionsComponent';
-import { SecurityService } from 'src/app/services/security.service';
-import { TranslationService } from 'src/app/services/translation-service';
-import { UserProgressService } from 'src/app/services/user-progress.service';
-import { MonitoringApiService } from 'src/app/services/webapi/monitoring-api-service';
-import { IMonitoringClientSemaphoreDto } from 'src/app/services/webapi/webapi-models';
+import { showTooltip } from '../../app-common/common-functions';
+import { AppDialog, AppDialogContainerService } from '../../app-common/services/app-dialog-container.service';
+import { BasePermissionsComponent } from '../../app-shell/basePermissionsComponent';
+import { SecurityService } from '../../services/security.service';
+import { TranslationService } from '../../services/translation-service';
+import { UserProgressService } from '../../services/user-progress.service';
+import { MonitoringApiService } from '../../services/webapi/monitoring-api-service';
+import { IMonitoringClientSemaphoreDto } from '../../services/webapi/webapi-models';
 
 
 @Component({

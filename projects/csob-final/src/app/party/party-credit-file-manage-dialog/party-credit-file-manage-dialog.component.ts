@@ -1,14 +1,14 @@
 import { Component, EventEmitter, Injector, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { tap, map, first } from 'rxjs/operators';
-import { AppDialog, AppDialogContainerService } from 'src/app/app-common/services/app-dialog-container.service';
-import { BasePermissionsComponent } from 'src/app/app-shell/basePermissionsComponent';
-import { SecurityService } from 'src/app/services/security.service';
-import { TranslationService } from 'src/app/services/translation-service';
-import { UserProgressService } from 'src/app/services/user-progress.service';
-import { PartyCreditFileManagementApiService } from 'src/app/services/webapi/partycreditfilemanagement-api-service';
-import { ICreditComponentManagerModel, ICreditComponentManagerUserModel } from 'src/app/services/webapi/webapi-models';
-import { MessageBoxDialogComponent } from 'src/app/app-common/components/message-box-dialog/message-box-dialog.component';
+import { AppDialog, AppDialogContainerService } from '../../app-common/services/app-dialog-container.service';
+import { BasePermissionsComponent } from '../../app-shell/basePermissionsComponent';
+import { SecurityService } from '../../services/security.service';
+import { TranslationService } from '../../services/translation-service';
+import { UserProgressService } from '../../services/user-progress.service';
+import { PartyCreditFileManagementApiService } from '../../services/webapi/partycreditfilemanagement-api-service';
+import { ICreditComponentManagerModel, ICreditComponentManagerUserModel } from '../../services/webapi/webapi-models';
+import { MessageBoxDialogComponent } from '../../app-common/components/message-box-dialog/message-box-dialog.component';
 import { Observable, of } from 'rxjs';
 
 @Component({

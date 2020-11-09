@@ -1,7 +1,7 @@
-import { UserNotificationService } from 'src/app/services/user-notification.service';
+import { UserNotificationService } from '../../services/user-notification.service';
 import { Component, EventEmitter, Injector, OnInit } from '@angular/core';
 import { mergeMap, tap } from 'rxjs/operators';
-import { EnumValue } from 'src/app/app-common/components/editor-enum/editor-enum.component';
+import { EnumValue } from '../../app-common/components/editor-enum/editor-enum.component';
 import { AppDialog, AppDialogContainerService } from '../../app-common/services/app-dialog-container.service';
 import { TranslationService } from '../../services/translation-service';
 import { UserProgressService } from '../../services/user-progress.service';
@@ -11,7 +11,7 @@ import { FinancialDetailUtils } from '../financial-detail/financial-detail-utils
 import { FinStatDataDto } from './../../services/webapi/webapi-models-classes';
 import { Observable, of } from 'rxjs';
 import { UserBlobService } from '../../app-common/services/user-blob-service';
-import { Languages } from 'src/app/app-common/models/language';
+import { Languages } from '../../app-common/models/language';
 
 @Component({
   // tslint:disable-next-line: component-selector

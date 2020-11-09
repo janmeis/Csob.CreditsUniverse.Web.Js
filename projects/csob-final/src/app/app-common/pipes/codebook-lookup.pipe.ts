@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { CodebookItem } from 'src/app/services/webapi/webapi-models-classes';
+import { CodebookItem } from '../../services/webapi/webapi-models-classes';
 import { CodebooksService } from '../../services/codebooks.service';
 import { ILogger, LogFactoryService } from '../../services/log-factory.service';
 

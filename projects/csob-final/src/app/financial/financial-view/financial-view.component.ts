@@ -6,8 +6,8 @@ import { getDecimalPlaces, getPrecision, tryParseNumber } from '../../app-common
 import { TranslationService } from '../../services/translation-service';
 import { FinancialApiService } from '../../services/webapi/financial-api-service';
 import { EFont, EStateFinData, ETypeOfStatement, IFinStatDataDto, IFinStatHeaderDto, IFinStatItemDto, IFinStatRowDto, IFinStatTabDto } from '../../services/webapi/webapi-models';
-import { UserNotificationService } from 'src/app/services/user-notification.service';
-import { UserProgressService } from 'src/app/services/user-progress.service';
+import { UserNotificationService } from '../../services/user-notification.service';
+import { UserProgressService } from '../../services/user-progress.service';
 import { UserBlobService } from '../../app-common/services/user-blob-service';
 
 function validateDecimal(

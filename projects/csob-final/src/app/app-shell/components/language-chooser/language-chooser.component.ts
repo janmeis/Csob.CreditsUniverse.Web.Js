@@ -1,8 +1,8 @@
 import { Component, Injector, OnInit } from '@angular/core';
-import { MessageBoxDialogComponent, Options } from 'src/app/app-common/components/message-box-dialog/message-box-dialog.component';
-import { TranslationService } from 'src/app/services/translation-service';
+import { MessageBoxDialogComponent, Options } from '../../../app-common/components/message-box-dialog/message-box-dialog.component';
+import { Languages } from '../../../app-common/models/language';
 import { CurrentLangService } from '../../../services/current-lang-service';
-import { Languages } from 'src/app/app-common/models/language';
+import { TranslationService } from '../../../services/translation-service';
 
 @Component({
     selector: 'app-language-chooser',

@@ -6,7 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CellClickEvent, DataStateChangeEvent, GridDataResult } from '@progress/kendo-angular-grid';
 import { TooltipDirective } from '@progress/kendo-angular-tooltip';
 import { SortDescriptor, State } from '@progress/kendo-data-query';
-import { SecurityService } from 'src/app/services/security.service';
+import { SecurityService } from '../../services/security.service';
 import { setCriteriaToGrid, setGridToCriteria } from '../../app-common/models/GridBaseDto';
 import { SelectedPartyService } from '../../services/selected-party.service';
 import { TranslationService } from '../../services/translation-service';

@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CompositeFilterDescriptor, filterBy, FilterDescriptor } from '@progress/kendo-data-query';
-import { fixToNumber } from 'src/app/app-common/common-functions';
-import { EColor, IMonitoringRowDto } from 'src/app/services/webapi/webapi-models';
+import { fixToNumber } from '../../../app-common/common-functions';
+import { EColor, IMonitoringRowDto } from '../../../services/webapi/webapi-models';
 
 
 interface IMonitoringCruRow {

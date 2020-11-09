@@ -4,7 +4,7 @@ import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { first, map, mergeMap, tap } from 'rxjs/operators';
-import { AppConfig } from 'src/app/app-config';
+import { AppConfig } from '../../app-config';
 import { MessageBoxDialogComponent } from '../../app-common/components/message-box-dialog/message-box-dialog.component';
 import { fromDateOnlyString } from '../../app-common/dates';
 import { EditorValidation } from '../../app-common/directives/editor-validator.directive';

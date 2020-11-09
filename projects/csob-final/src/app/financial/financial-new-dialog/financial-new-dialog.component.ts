@@ -1,6 +1,6 @@
 import { of, Observable } from 'rxjs';
 import { Component, EventEmitter, Injector, OnInit, ViewChild } from '@angular/core';
-import { CodebooksService } from 'src/app/services/codebooks.service';
+import { CodebooksService } from '../../services/codebooks.service';
 
 import { AppDialog, AppDialogContainerService } from '../../app-common/services/app-dialog-container.service';
 import { TranslationService } from '../../services/translation-service';
@@ -11,7 +11,7 @@ import { EFormat, EUnit, IFinStatHeaderDto, ECodetable } from '../../services/we
 import { NgForm } from '@angular/forms';
 import { SelectedPartyService } from '../../services/selected-party.service';
 import { FinancialDomainService } from '../services/financial-domain.service';
-import { MessageBoxDialogComponent } from 'src/app/app-common/components/message-box-dialog/message-box-dialog.component';
+import { MessageBoxDialogComponent } from '../../app-common/components/message-box-dialog/message-box-dialog.component';
 
 @Component({
     selector: 'app-financial-new-dialog',

@@ -1,7 +1,5 @@
-import { Component, Injector, Input, OnInit } from '@angular/core';
-import { CompositeFilterDescriptor, filterBy, FilterDescriptor } from '@progress/kendo-data-query';
-import { TranslationService } from 'src/app/services/translation-service';
-import { EColor, IMonitoringRowDto } from 'src/app/services/webapi/webapi-models';
+import { Component, Input, OnInit } from '@angular/core';
+import { IMonitoringRowDto } from '../../../services/webapi/webapi-models';
 
 interface IMonitoringPaymentFlowRow {
     Validity: boolean;

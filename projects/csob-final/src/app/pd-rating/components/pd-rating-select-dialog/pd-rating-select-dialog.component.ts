@@ -1,14 +1,14 @@
-import { AppDialogContainerService } from '../../../app-common/services/app-dialog-container.service';
 import { Component, Injector, Input } from '@angular/core';
 import { DataStateChangeEvent } from '@progress/kendo-angular-grid';
 import { Subscription } from 'rxjs';
-
 import { SelectDialogBase } from '../../../app-common/components/SelectDialogBase';
 import { setGridToCriteria } from '../../../app-common/models/GridBaseDto';
+import { AppDialogContainerService } from '../../../app-common/services/app-dialog-container.service';
 import { TranslationService } from '../../../services/translation-service';
+import { PartyApiService } from '../../../services/webapi/party-api-service';
 import { IPDRatingOverviewReqDto, IPDRatingOverviewResDto } from '../../../services/webapi/webapi-models';
 import { PdRatingSelectDialogService } from './pd-rating-select-dialog.service';
-import { PartyApiService } from 'src/app/services/webapi/party-api-service';
+
 
 @Component({
     selector: 'pd-rating-select-dialog',

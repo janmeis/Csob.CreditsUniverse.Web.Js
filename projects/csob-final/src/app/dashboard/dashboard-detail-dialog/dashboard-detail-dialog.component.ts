@@ -4,19 +4,19 @@ import { NgForm } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { of } from 'rxjs';
 import { map, mergeMap, tap } from 'rxjs/operators';
-import { EditorCodeBookComponent, GetStaticCodebookProvider, ICodebookProvider } from 'src/app/app-common/components/editor-codebook/editor-codebook.component';
-import { MessageBoxDialogComponent } from 'src/app/app-common/components/message-box-dialog/message-box-dialog.component';
-import { AppDialog, AppDialogContainerService } from 'src/app/app-common/services/app-dialog-container.service';
-import { GridEnumService } from 'src/app/app-common/services/grid-enum.service';
-import { ApiBaseService } from 'src/app/services/api-base.service';
-import { SecurityService } from 'src/app/services/security.service';
-import { TranslationService } from 'src/app/services/translation-service';
-import { UserNotificationService } from 'src/app/services/user-notification.service';
-import { UserProgressService } from 'src/app/services/user-progress.service';
-import { DashboardApiService } from 'src/app/services/webapi/dashboard-api-service';
-import { PartyApiService } from 'src/app/services/webapi/party-api-service';
-import { EColor, EDashboardState, EDashboardTypeId, EKeyEnum, ICodebookItem, IDashboardEventDto, IDashMonIncidentDto, IMonitoringClientSemaphoreDto } from 'src/app/services/webapi/webapi-models';
-import { CodebookItem } from 'src/app/services/webapi/webapi-models-classes';
+import { EditorCodeBookComponent, GetStaticCodebookProvider, ICodebookProvider } from '../../app-common/components/editor-codebook/editor-codebook.component';
+import { MessageBoxDialogComponent } from '../../app-common/components/message-box-dialog/message-box-dialog.component';
+import { AppDialog, AppDialogContainerService } from '../../app-common/services/app-dialog-container.service';
+import { GridEnumService } from '../../app-common/services/grid-enum.service';
+import { ApiBaseService } from '../../services/api-base.service';
+import { SecurityService } from '../../services/security.service';
+import { TranslationService } from '../../services/translation-service';
+import { UserNotificationService } from '../../services/user-notification.service';
+import { UserProgressService } from '../../services/user-progress.service';
+import { DashboardApiService } from '../../services/webapi/dashboard-api-service';
+import { PartyApiService } from '../../services/webapi/party-api-service';
+import { EColor, EDashboardState, EDashboardTypeId, EKeyEnum, ICodebookItem, IDashboardEventDto, IDashMonIncidentDto, IMonitoringClientSemaphoreDto } from '../../services/webapi/webapi-models';
+import { CodebookItem } from '../../services/webapi/webapi-models-classes';
 
 @UntilDestroy()
 @Component({
