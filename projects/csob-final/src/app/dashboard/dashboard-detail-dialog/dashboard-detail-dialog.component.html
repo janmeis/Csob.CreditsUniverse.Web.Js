@@ -1,0 +1,68 @@
+<form *ngIf="!!model" #form="ngForm" (ngSubmit)="onSave()">
+    <div *ngIf="model.DashboardTypeId!=EDashboardTypeId.User" class="row">
+        <div class="col-md-4">
+            <span class="d-block"><span class="fa fa-user pr-2"></span><strong>{{model.ClientName}}</strong></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <editor-text [value]="model.DashboardType" readonly="true" label="{{ 'dashboard_detail_dialog.dashboard_type' | translate }}" i18n-label></editor-text>
+        </div>
+        <div class="col-md-4">
+            <editor-text *ngIf="model.DashboardTypeId!=EDashboardTypeId.User;else newDashboard" [value]="model.DashboardReason" readonly="true" label="{{ 'dashboard_detail_dialog.dashboard_reason' | translate }}" i18n-label></editor-text>
+            <ng-template #newDashboard>
+                <editor-codebook *ngIf="!!partyDashboards" [(value)]="model.CreditFileId" [codebook]="partyDashboards" [readonly]="!!model.Id && model.Id>0" [required]="true" label="{{ 'dashboard_detail_dialog.party_for_dashboard' | translate }}"  i18n-label></editor-codebook>
+            </ng-template>
+        </div>
+        <div class="col-md-4">
+            <editor-date [(value)]="model.FulfilmentRequiredOn" [readonly]="model.DashboardTypeId!=EDashboardTypeId.User || (!!model.DashboardState  && model.DashboardState!=EDashboardState.New)" [required]="true" label="{{ 'dashboard_detail_dialog.fulfilment_required_on' | translate }}" i18n-label></editor-date>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <editor-codebook *ngIf="!!dashboardStates" #dashboardState  [(value)]="model.DashboardState" [codebook]="dashboardStates" [readonly]="readonly" [required]="true" label="{{ 'dashboard_detail_dialog.dashboard_state' | translate }}"  i18n-label></editor-codebook>
+        </div>
+        <div class="col-md-8">
+            <editor-text [(value)]="model.Comment" mode="multiline" maxlength="350" label="{{ 'dashboard_detail_dialog.comment' | translate }}" i18n-label></editor-text>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <editor-date [value]="model.FulfilmentOn" readonly="true" label="{{ 'dashboard_detail_dialog.fulfilment_on' | translate }}" i18n-label></editor-date>
+        </div>
+        <div class="col-md-4">
+            <editor-text [value]="model.FulfilledBy" readonly="true" label="{{ 'dashboard_detail_dialog.fulfilled_by' | translate }}" i18n-label></editor-text>
+        </div>
+        <div *ngIf="!!clientSemaphore && model.DashboardTypeId!=EDashboardTypeId.User && model.DashboardTypeId!=EDashboardTypeId.Review" class="col-md-4">
+            <app-dashboard-detail-semaphores [(clientSemaphoreColor)]="clientSemaphore.Color" (clientSemaphoreColorChange)="clientSemaphoreColorChange($event)" [readonly]="readonly || !isStateChanged"></app-dashboard-detail-semaphores>
+        </div>
+    </div>
+
+    <div *ngIf="!!clientSemaphore && model.DashboardTypeId!=EDashboardTypeId.User && model.DashboardTypeId!=EDashboardTypeId.Review" class="row event-incidents">
+        <div class="col-md-12">
+            <label i18n>{{ 'dashboard_detail_dialog.event_incidents' | translate }}</label>
+            <kendo-grid [data]="incidents"
+                        name="dash-monitoring-incidents-grid"
+                        [loading]="progress.loading">
+                <kendo-grid-column width="300" field="IncidentCode" title="{{ 'dashboard_detail_dialog.incident_code' | translate}}" i18n-title></kendo-grid-column>
+                <kendo-grid-column width="300" field="IncidentValue" title="{{ 'dashboard_detail_dialog.incident_value' | translate}}" i18n-title></kendo-grid-column>
+                <kendo-grid-column field="GeneratedOn" title="{{ 'dashboard_detail_dialog.generated_on' | translate}}" i18n-title>
+                    <ng-template kendoGridCellTemplate let-dataItem>
+                        <div class="w-100 text-right">
+                            {{ dataItem.GeneratedOn | localDate:'dateTime' }}
+                        </div>
+                    </ng-template>
+                </kendo-grid-column>
+            </kendo-grid>
+        </div>
+    </div>
+
+    <div class="k-button-group mt-4">
+        <button type="submit" class="k-button k-primary" [disabled]="(form.pristine && !!model.Id && model.Id>0) || form.invalid" i18n>
+            {{ 'dashboard_detail_dialog.save' | translate }}
+        </button>
+        <button type="button" class="k-button" (click)="close(false)" i18n>
+            {{ 'dashboard_detail_dialog.close' | translate }}
+        </button>
+    </div>
+</form>

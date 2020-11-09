@@ -1,0 +1,39 @@
+@import "../../../styles/atoms/_variables.less";
+
+.not_fulfilled() {
+    background-color: rgba(255, 182, 193, 0.5);
+    color: red;
+    font-weight: bold;
+    border-color: red;
+    border-width: .05em;
+}
+
+::ng-deep .not_fulfilled3>td:nth-child(3) {
+    .not_fulfilled();
+}
+
+::ng-deep .not_fulfilled4>td:nth-child(4) {
+    .not_fulfilled();
+}
+
+div.negative-information-row {
+    margin-top: -5px;
+
+    editor-text.last-modified {
+        ::ng-deep p.text-box-readonly span {
+            text-align: right !important;
+            width: 100% !important;
+        }
+    }
+}
+
+.monitoring-value-red {
+    ::ng-deep p.text-box-readonly>span {
+		font-weight: 900;
+		color: @series-e;
+    }
+}
+
+::ng-deep .monitoring-detail-window {
+	 	z-index: 10001 !important;
+}

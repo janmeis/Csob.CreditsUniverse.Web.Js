@@ -1,0 +1,230 @@
+<script>
+
+$(document).ready(function () {
+      $("#exportButton").prop('disabled', false);
+})
+
+</script>
+
+<section *ngIf="rarocOutput">
+    <div class="k-button-group text-right pull-right">
+        <button type="button"
+                id="exportButton"
+                name="exportButton"
+                class="k-button"
+                (click)="onExport()"
+                *hasRightTo="hasRightTo?.Rarocexport">
+            <span i18n>{{ 'raroc_detail_result.export' | translate }}</span>
+        </button>
+    </div>
+    <div class="header">
+        <label i18n>{{ 'raroc_detail_result.client_name' | translate }}</label>
+        <h2 class="clientName">{{raroc.PartyName}}</h2>
+    </div>
+
+    <div class="raroc-table__wrapper">
+        <table class="raroc-table" *ngIf="resultSet">
+            <tbody>
+                <tr>
+                    <td class="label boldCell" i18n>{{ 'raroc_detail_result.id_no' | translate }}</td>
+                    <td style="width: 100px">{{ party.IdentificationNumber }}</td>
+
+                    <td class="label boldCell" i18n>{{ 'raroc_detail_result.currency_calculation' | translate }}</td>
+                    <td class="valueCell">{{raroc.CurrencyId | codebookLookup:'currency' }}</td>
+
+                    <td class="label " i18n>{{ 'raroc_detail_result.deposit_income' | translate }}</td>
+                    <td class="valueCell">{{resultSet.DepositIncomeOut | number : '1.0-0'}}</td>
+
+                    <td class="label boldCell" i18n>{{ 'raroc_detail_result.gross_total' | translate }}</td>
+                    <td class="valueCell boldCell">{{resultSet.TotalGrossIncome | number : '1.0-0'}}</td>
+
+                    <td class="highlightedCell" i18n>{{ 'raroc_detail_result.raroc' | translate }}</td>
+                    <td class="lastValueCell highlightedCell" *ngIf="resultSet">
+                        <ng-container *ngIf="!resultSet.Raroc">N/A</ng-container>
+                        <ng-container *ngIf="resultSet.Raroc > 0.5">{{50 | number:'1.2-2'}}+</ng-container>
+                        <ng-container *ngIf="resultSet.Raroc >=0 && resultSet?.Raroc <= 0.5">{{resultSet.Raroc | percent:'1.2-2'}}</ng-container>
+                        <ng-container *ngIf="resultSet.Raroc < 0">{{0 | number:'1.2-2'}}-</ng-container>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label boldCell" i18n>{{ 'raroc_detail_result.calculate_date' | translate }}</td>
+                    <td>{{resultSet.CalculationDate | localDate : 'dateTime' }}</td>
+
+                    <td class="label boldCell" i18n>{{ 'raroc_detail_result.risk_class' | translate }}</td>
+                    <td class="valueCell">{{resultSet.RiskClass | romanNumber}}</td>
+
+                    <td class="label" i18n>{{ 'raroc_detail_result.payment_income' | translate }}</td>
+                    <td class="valueCell">{{resultSet.PaymentIncomeOut | number : '1.0-0'}}</td>
+
+                    <td class="label" i18n>{{ 'raroc_detail_result.operation_cost_adj' | translate }}</td>
+                    <td class="valueCell">{{resultSet.TotalCostAdj | number:'1.0-0'}}</td>
+
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="label boldCell" i18n>{{ 'raroc_detail_result.title' | translate }}</td>
+                    <td>{{raroc.Title}}</td>
+
+                    <td class="label boldCell" i18n>{{ 'raroc_detail_result.pd_rating' | translate }}</td>
+                    <td class="valueCell">{{resultSet.PDRatingValue}}</td>
+
+                    <td class="label" i18n>{{ 'raroc_detail_result.fx_income' | translate }}</td>
+                    <td class="valueCell">{{resultSet.FxIncomeOut | number : '1.0-0'}}</td>
+
+                    <td class="label" i18n>{{ 'raroc_detail_result.expected_loss' | translate }}</td>
+                    <td class="valueCell">{{resultSet.ExpectedLoss| number : '1.0-0'}}</td>
+
+                    <td class="label boldCell" i18n>{{ 'raroc_detail_result.rwa_basel2abs' | translate }}</td>
+                    <td class="lastValueCell">{{resultSet.RWABasel2Abs | number : '1.0-0'}}</td>
+                </tr>
+                <tr>
+                    <td class="label boldCell" i18n>{{ 'raroc_detail_result.branch' | translate }}</td>
+                    <td>{{resultSet.Branch}}</td>
+
+                    <td class="label boldCell" i18n>{{ 'raroc_detail_result.pd' | translate }}</td>
+                    <td class="valueCell">{{resultSet.PDRatingPercent | percent:'1.0-2'}}</td>
+
+                    <td class="label" i18n>{{ 'raroc_detail_result.other_income' | translate }}</td>
+                    <td class="valueCell">{{resultSet.OtherIncomeOut| number : '1.0-0'}}</td>
+
+                    <td class="label" i18n>{{ 'raroc_detail_result.total_tax' | translate }}</td>
+                    <td class="valueCell">{{resultSet.TotalTax| number : '1.0-0'}}</td>
+
+                    <td class="label boldCell">{{ 'raroc_detail_result.el_percent' | translate }}</td>
+                    <td class="lastValueCell">{{resultSet.ELProcTTC | percent:'1.2-2'}}</td>
+                </tr>
+                <tr>
+                    <td class="label boldCell" i18n>{{ 'raroc_detail_result.lgd_model' | translate }}</td>
+                    <td>{{resultSet.LGDModel}}</td>
+
+                    <td class="label"></td>
+                    <td></td>
+
+                    <td class="label boldCell" i18n>{{ 'raroc_detail_result.total_nc_income' | translate }}</td>
+                    <td class="valueCell boldCell">{{resultSet.TotalNCIncome | number : '1.0-0'}}</td>
+
+                    <td class="label boldCell" i18n>{{ 'raroc_detail_result.net_total' | translate}}</td>
+                    <td class="valueCell boldCell">{{resultSet.TotalRANI | number : '1.0-0'}}</td>
+
+                    <td class="label boldCell" i18n>{{ 'raroc_detail_result.lgd_percent' | translate}}</td>
+                    <td class="lastValueCell">{{resultSet.LGDPercent | percent:'1.2-2'}}</td>
+                </tr>
+                <tr>
+                    <td class="label"></td>
+                    <td></td>
+                    <td class="label"></td>
+                    <td></td>
+                    <td class="label" i18n>{{ 'raroc_detail_result.interest_total' | translate }}</td>
+                    <td class="valueCell">{{resultSet.TotalInterestIncome | number : '1.0-0'}}</td>
+
+                    <td></td>
+                    <td></td>
+
+                    <td class="label boldCell" i18n>{{ 'raroc_detail_result.ci_ratio_transaction' | translate }}</td>
+                    <td class="lastValueCell">{{resultSet.CIRatioTransaction | percent:'1.2-2'}}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+
+                    <td></td>
+                    <td></td>
+
+                    <td class="label" i18n>{{ 'raroc_detail_result.fee_total' | translate }}</td>
+                    <td class="valueCell">{{resultSet.TotalFeeIncome | number : '1.0-0'}}</td>
+
+                    <td></td>
+                    <td></td>
+
+                    <td class="label boldCell" i18n>{{ 'raroc_detail_result.ci_ratio_client' | translate }}</td>
+                    <td class="lastValueCell">{{resultSet.CIRatioClient | percent:'1.2-2'}}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+
+                    <td></td>
+                    <td></td>
+
+                    <td class="label boldCell">{{ 'raroc_detail_result.total_interest_fee_income' | translate }}</td>
+                    <td class="valueCell boldCell">{{resultSet.TotalInterestIncome + resultSet.TotalFeeIncome | number : '1.0-0'}}</td>
+
+                    <td></td>
+                    <td></td>
+
+                    <td class="label boldCell" i18n>{{ 'raroc_detail_result.tax_total' | translate}}</td>
+                    <td class="lastValueCell">{{resultSet.TaxRate | percent:'1.2-2'}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="h3 mt-5" i18n>{{ 'raroc_detail_result.raroc_of_transaction' | translate }}</div>
+    <div *ngIf="rarocOutput.SummaryProducts"
+         kendoTooltip #kendoTooltipInstance="kendoTooltip"
+         showOn="none"
+         [tooltipTemplate]="template"
+         filter=".k-grid th, .k-grid td"
+         (mouseover)="showTooltip($event, kendoTooltipInstance)">
+        <kendo-grid [data]="rarocOutput.SummaryProducts"
+                    [resizable]="false"
+                    [rowClass]="getRowClass">
+            <kendo-grid-column headerClass="boldCell" footerClass="boldCell" width="110" field="LineNo" title="{{ 'raroc_detail_result.line_no' | translate }}" class="wrap-column" i18n-title></kendo-grid-column>
+            <kendo-grid-column headerClass="boldCell" footerClass="boldCell" width="120" field="SubTypeDescription" title="{{ 'raroc_detail_result.product_type' | translate }}" class="wrap-column" i18n-title></kendo-grid-column>
+            <kendo-grid-column headerClass="boldCell" footerClass="boldCell" width="180" field="Title" title="{{ 'raroc_detail_result.product_title' | translate }}" class="wrap-column" i18n-title></kendo-grid-column>
+            <kendo-grid-column headerClass="boldCell" footerClass="boldCell" width="100" field="LimitValueOut" title="{{ 'raroc_detail_result.amount' | translate }}" class="wrap-column column-align-right" format="{0:n0}" i18n-title></kendo-grid-column>
+            <kendo-grid-column headerClass="boldCell" footerClass="boldCell" width="115" field="ExpectedDrawdown" title="{{ 'raroc_detail_result.utilisation' | translate }}" class="wrap-column column-align-right" i18n-title>
+                <ng-template kendoGridCellTemplate let-dataItem>
+                    <ng-container *ngIf="dataItem.ExpectedDrawdown">
+                        {{ (dataItem.ExpectedDrawdown / 100) | percent:'1.0-0'}}
+                    </ng-container>
+                </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column headerClass="boldCell" footerClass="boldCell" width="115" field="MarginUsed" title="{{ 'raroc_detail_result.margin_bps' | translate }}" class="wrap-column column-align-right" format="{0:n0}" i18n-title></kendo-grid-column>
+            <kendo-grid-column headerClass="boldCell" footerClass="boldCell" width="115" field="MarginUnusedOut" title="{{ 'raroc_detail_result.commitment_fee_bps' | translate }}" class="wrap-column column-align-right" format="{0:n0}" i18n-title></kendo-grid-column>
+            <kendo-grid-column headerClass="boldCell" footerClass="boldCell" width="115" field="ProdMaturityCount" title="{{ 'raroc_detail_result.length_years' | translate }}" class="wrap-column" i18n-title>
+                <ng-template kendoGridCellTemplate let-dataItem>
+                    <ng-container *ngIf="dataItem.UFN;else length_years">UFN</ng-container>
+                    <ng-template #length_years>
+                        <div class="w-100 text-right">{{dataItem.ProdMaturityCount| number:'1.0-0'}}</div>
+                    </ng-template>
+                </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column headerClass="boldCell" footerClass="boldCell" width="120" field="InterestIncome" title="{{ 'raroc_detail_result.interest_income' | translate }}" class="wrap-column column-align-right" format="{0:n0}" i18n-title></kendo-grid-column>
+            <kendo-grid-column headerClass="boldCell" footerClass="boldCell" width="120" field="FeeIncome" title="{{ 'raroc_detail_result.fee_income' | translate }}" class="wrap-column column-align-right" format="{0:n0}" i18n-title></kendo-grid-column>
+            <kendo-grid-column headerClass="boldCell" footerClass="boldCell" width="80" field="ExpectedLoss" title="{{ 'raroc_detail_result.expected_loss' | translate }}" class="wrap-column column-align-right" format="{0:n0}" i18n-title></kendo-grid-column>
+            <kendo-grid-column headerClass="boldCell" footerClass="boldCell" width="100" field="LGD" title="{{ 'raroc_detail_result.lgd' | translate }}" class="wrap-column column-align-right" format="{0:n0}" i18n-title></kendo-grid-column>
+            <kendo-grid-column headerClass="boldCell" footerClass="boldCell" width="100" field="LGDirr" title="{{ 'raroc_detail_result.lgdirr' | translate }}" class="wrap-column column-align-right" format="{0:n0}" i18n-title></kendo-grid-column>
+            <kendo-grid-column headerClass="boldCell" footerClass="boldCell" width="80" field="Raroc" title="{{ 'raroc_detail_result.raroc' | translate }}" i18n-title>
+                <ng-template kendoGridCellTemplate let-dataItem>
+                    <div name="name" class="w-100 text-right" *ngIf="!dataItem.IsTotal">
+                        <ng-container *ngIf="dataItem.Raroc == undefined || dataItem.Raroc == null">N/A</ng-container>
+                        <ng-container *ngIf="dataItem.Raroc > 0.5">{{50 | number:'1.2-2'}}+</ng-container>
+                        <ng-container *ngIf="dataItem.Raroc >=0 && dataItem?.Raroc <= 0.5">{{ dataItem.Raroc | percent:'1.2-2' }}</ng-container>
+                        <ng-container *ngIf="dataItem.Raroc < 0">{{ 0 | number:'1.2-2' }}-</ng-container>
+                    </div>
+                </ng-template>
+            </kendo-grid-column>
+        </kendo-grid>
+
+        <div class="h3 mt-5" i18n>{{ 'raroc_detail_result.allocation_of_collateral' | translate }}</div>
+        <div>
+            <kendo-grid *ngIf="rarocOutput.SummaryCollaterals"
+                        [data]="rarocOutput.SummaryCollaterals"
+                        [resizable]="false"
+                        [rowClass]="getRowClass">
+                <kendo-grid-column headerClass="boldCell" footerClass="boldCell" width="150" field="LineNo" title="{{ 'raroc_detail_result.related_line_no' | translate }}" class="wrap-column" i18n-title></kendo-grid-column>
+                <kendo-grid-column headerClass="boldCell" footerClass="boldCell" width="100" field="TypeDescription" title="{{ 'raroc_detail_result.collateral_type' | translate }}" class="wrap-column" i18n-title></kendo-grid-column>
+                <kendo-grid-column headerClass="boldCell" footerClass="boldCell" width="180" field="SubTypeDescription" title="{{ 'raroc_detail_result.collateral_subtype' | translate }}" class="wrap-column" i18n-title></kendo-grid-column>
+                <kendo-grid-column headerClass="boldCell" footerClass="boldCell" width="250" field="Title" title="{{ 'raroc_detail_result.collateral_title' | translate }}" class="wrap-column" i18n-title></kendo-grid-column>
+                <kendo-grid-column headerClass="boldCell" footerClass="boldCell" width="150" field="PledgeValueOut" title="{{ 'raroc_detail_result.market_value' | translate }}" class="wrap-column column-align-right" format="{0:n0}" i18n-title></kendo-grid-column>
+                <kendo-grid-column headerClass="boldCell" footerClass="boldCell" width="150" field="CollateralValueOut" title="{{ 'raroc_detail_result.coverage_value' | translate }}" class="wrap-column column-align-right" format="{0:n0}" i18n-title></kendo-grid-column>
+            </kendo-grid>
+        </div>
+    </div>
+    <ng-template #template let-anchor>
+        <span>{{ anchor.nativeElement.innerText }}</span>
+    </ng-template>
+</section>
+<a #anchor></a>

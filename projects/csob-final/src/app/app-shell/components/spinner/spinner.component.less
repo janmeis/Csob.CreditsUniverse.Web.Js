@@ -1,0 +1,22 @@
+@import "../../../../styles/atoms/_variables.less";
+
+div {
+    position: fixed;
+    z-index: 50000; //10000 kendo dialog
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+}
+
+i {
+    top: calc(50vh - 16px);
+    left: calc(50vw - 16px);
+    position: absolute;
+    color: @color-c1
+}
+
+.fa-spin {
+    -webkit-animation: fa-spin 1s infinite linear;
+    animation: fa-spin 1s infinite linear;
+}

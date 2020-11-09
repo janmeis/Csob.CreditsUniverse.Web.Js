@@ -1,0 +1,10 @@
+<div class="form-group semaphores">
+    <label class="editor-label" i18n>{{ 'dashboard_detail_semaphores.client_color' | translate}}</label>
+    <p class="k-textbox" [ngClass]="readonly ? 'text-box-readonly' : ''">
+        <span class="w-100">
+            <i class="fa fa-circle fa-3x color-red" [style.opacity]="clientSemaphoreColor=='red' ? 1 : 0.1" (click)="onClientSemaphoreColorClick('red')"></i>
+            <i class="fa fa-circle fa-3x color-orange" [style.opacity]="clientSemaphoreColor=='orange' ? 1 : 0.1"></i>
+            <i class="fa fa-circle fa-3x color-green" [style.opacity]="clientSemaphoreColor=='green' ? 1 : 0.1" (click)="onClientSemaphoreColorClick('green')"></i>
+        </span>
+    </p>
+</div>

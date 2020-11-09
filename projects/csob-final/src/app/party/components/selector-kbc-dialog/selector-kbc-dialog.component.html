@@ -1,0 +1,20 @@
+<div>
+    <input [(ngModel)]="search" [ngModelOptions]="{standalone:true,updateOn:'change'}"
+           kendoTextBox placeholder="{{ 'selector_kbc_dialog.search' | translate }}" i18n-placeholder />
+    <kendo-treeview [nodes]="visibleItems"
+                    textField="text"
+                    [hasChildren]="onHasChildren"
+                    [children]="onGetChildren"
+                    kendoTreeViewExpandable expandBy="uid"
+                    [expandedKeys]="expandedKeys"
+                    kendoTreeViewSelectable (selectionChange)="onSelectionChange($event.dataItem)"
+                    kendoTreeViewHierarchyBinding>
+    </kendo-treeview>
+
+    <div class="buttons">
+        <div class="pull-right">
+            <button class="btn btn-primary" [disabled]="!selection" (click)="onSelect()" i18n>{{ 'selector_kbc_dialog.select' | translate }}</button>
+            <button class="btn btn-default" (click)="close()" i18n>{{ 'selector_kbc_dialog.cancel' | translate }}</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,34 @@
+<kendo-tabstrip>
+    <kendo-tabstrip-tab title="{{ 'operation_model_dialog.SubLevel' | translate }}" [selected]="true">
+        <ng-template kendoTabContent>
+            <kendo-treeview
+                [nodes]="secondData"
+                textField="text"
+                kendoTreeViewExpandable
+                kendoTreeViewHierarchyBinding
+                childrenField="items"
+            >
+            </kendo-treeview>
+        </ng-template>
+    </kendo-tabstrip-tab>
+    <kendo-tabstrip-tab title="{{ 'operation_model_dialog.SupLevel' | translate }}">
+        <ng-template kendoTabContent>
+            <kendo-treeview
+                [nodes]="data"
+                textField="text"
+                kendoTreeViewExpandable
+                kendoTreeViewHierarchyBinding
+                childrenField="items"
+            >
+            </kendo-treeview>
+        </ng-template>
+    </kendo-tabstrip-tab>
+</kendo-tabstrip>
+
+
+
+<div class="k-button-group mt-4">
+    <button class="k-button k-primary" (click)="onClose()">
+        <span i18n>{{ 'operation_model_dialog.Close' | translate }}</span>
+    </button>
+</div>

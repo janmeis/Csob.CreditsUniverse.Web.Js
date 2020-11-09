@@ -1,0 +1,18 @@
+<header>
+    <h1 i18n>{{ 'dashboard_client.page_title' | translate }}</h1>
+</header>
+<div class="icon-button-group">
+    <button type="button"
+            class="icon-button -success"
+            (click)="onAddMyEventClick()">
+        <span class="fa fa-plus"></span>
+        <span i18n>{{ 'dashboard_client.add_my_event' | translate }}</span>
+    </button>
+</div>
+
+<app-dashboard-client-grid *ngIf="(view$ | async) as data"
+                           [data]="data"
+                           [grid]="grid"
+                           [isForUser]="true"
+                           (gridUpdateHandler)="onGridUpdate($event)"
+                           (gridCellClickHandler)="onGridCellClicked($event)"></app-dashboard-client-grid>

@@ -1,0 +1,84 @@
+<section class="container">
+    <form #form="ngForm" (ngSubmit)="onSave()">
+
+        <div class="k-button-group text-right mb-4-5">
+            <button type="submit" class="k-button k-primary" [disabled]="form.invalid || form.pristine">
+                <span i18n>{{ 'party_links_detail.save' | translate }}</span>
+            </button>
+            <button type="button" class="k-button" (click)="onCancel()" i18n>{{ 'party_links_detail.cancel' | translate }}</button>
+        </div>
+
+        <div class="row">
+            <div class="col-md-5">
+                <editor-codebook [value]="model.EssRelationTypeId"
+                                 (valueChange)="model.EssRelationTypeId = $event; OnPartyTypeChanged()"
+                                 codebook="EssRelationType"
+                                 [required]="true" label="{{ 'party_links_detail.link_type' | translate }}" i18n-label></editor-codebook>
+            </div>
+            <div class="col-md-3">
+                <editor-text [(value)]="model.PercentOwnership" mode="number" numdecplaces="3" numfracplaces="2" [hidden]="!needsPercent" [required]="needsPercent"
+                             (validate)="validatePercentValue($event)"
+                             label="{{ 'party_links_detail.strength_percent' | translate }}" i18n-label></editor-text>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-5">
+                <a class="pull-right btn-search" (click)="onSearchParty('source')" href="#">
+                    <span class="fa fa-search"></span>
+                    <span i18n>{{ 'party_links_detail.search' | translate }}</span>
+                </a>
+                <a class="pull-right btn-search" (click)="onSetCurrent('source')" href="#">
+                    <span class="fa fa-user"></span>
+                    <span i18n>{{ 'party_links_detail.set_current' | translate }}</span>
+                </a>
+                <!--<ng-container *ngIf="model.SourcePartyId && model.SourcePartyId!=partyId">
+                    <a class="pull-right btn-show"
+                       [routerLink]="['/party/detail', model.SourcePartyId, 'links']">
+                        <span class="fa fa-info-circle"></span>
+                        <span i18n>{{ 'party_links_detail.show_links' | translate }}</span>
+                    </a>
+                </ng-container>-->
+                <editor-codebook [(value)]="model.SourcePartyId"
+                                 [codebook]="Parties"
+                                 label="{{ 'party_links_detail.source_party' | translate }}"
+                                 [required]="true"
+                                 i18n-label></editor-codebook>
+            </div>
+            <div class="col-md-1">
+                <a class="pull-right btn-show" (click)="onSwap()" href="#" style="white-space:nowrap">
+                    <span class="fa fa-exchange"></span>
+                    <span i18n>{{ 'party_links_detail.swap' | translate }}</span>
+                </a>
+            </div>
+            <div class="col-md-5">
+                <a class="pull-right btn-search" (click)="onSearchParty('target')" href="#">
+                    <span class="fa fa-search"></span>
+                    <span i18n>{{ 'party_links_detail.search' | translate }}</span>
+                </a>
+                <a class="pull-right btn-search" (click)="onSetCurrent('target')" href="#">
+                    <span class="fa fa-user"></span>
+                    <span i18n>{{ 'party_links_detail.set_current' | translate }}</span>
+                </a>
+                <!--<ng-container *ngIf="model.TargetPartyId && model.TargetPartyId!=partyId">
+                    <a class="pull-right btn-show"
+                       [routerLink]="['/party/detail', model.TargetPartyId, 'links']">
+                        <span class="fa fa-info-circle"></span>
+                        <span i18n>{{ 'party_links_detail.show_links' | translate }}</span>
+                    </a>
+                </ng-container>-->
+                <editor-codebook [(value)]="model.TargetPartyId"
+                                 [codebook]="Parties"
+                                 label="{{ 'party_links_detail.target_party' | translate }}"
+                                 [required]="true"
+                                 i18n-label></editor-codebook>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-11">
+                <editor-text [(value)]="model.Comment" mode="multiline" maxlength="500" label="{{ 'party_links_detail.comment' | translate }}" i18n-label></editor-text>
+            </div>
+        </div>
+    </form>
+</section>

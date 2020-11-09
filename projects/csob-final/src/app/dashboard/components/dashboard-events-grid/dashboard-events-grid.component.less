@@ -1,0 +1,65 @@
+@import "../../../../styles/atoms/_variables.less";
+
+.hover-mixin() {
+	cursor: pointer !important;
+	text-decoration: underline !important;
+}
+
+.k-grid {
+	height: calc(100vh - 261px);
+}
+
+::ng-deep [name="dashboard-events-grid"] tr {
+	th:first-child,
+	td:first-child {
+		padding-left: 10px;
+	}
+	&[kendoGridFilterRow] td {
+		padding-right: 2px;
+		padding-left: 2px;
+	}
+	td {
+		position: relative;
+
+		span.client-link:hover {
+			.hover-mixin();
+		}
+
+		&:first-child > span.client-link {
+			color: @color-primary-dark !important;
+		}
+
+		.dashboard-type {
+			display: block;
+			border-radius: 2px;
+			width: 12px;
+			height: 18px;
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			left: 12px;
+			+ span {
+				padding-left: 24px;
+			}
+		}
+	}
+
+	&.event-status-new,
+	&.event-status-unfulfilled,
+	&.event-status-fulfilled {
+		td:nth-child(5) {
+			font-weight: 400;
+			color: black;
+		}
+	}
+
+	&.event-status-unfulfilled td:nth-child(5) {
+		font-weight: 600;
+		color: red;
+	}
+
+	&.event-status-fulfilled td:nth-child(5) {
+		font-style: italic;
+		color: grey;
+	}
+}

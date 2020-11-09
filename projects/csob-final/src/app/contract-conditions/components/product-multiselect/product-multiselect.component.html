@@ -1,0 +1,26 @@
+<div class="form-group">
+    <label [class.required]="required" [for]="name">{{ label }}</label>
+    <span *ngIf="!readonly && label2" style="padding-left: 2px;">{{label2}}</span>
+    <ng-container>
+        <kendo-multiselect [name]="name"
+                           [data]="source | async"
+                           [(ngModel)]="values"
+                           [readonly]="readonly"
+                           [required]="required"
+                           textField="ShortDescription"
+                           valueField="Id"
+                           [popupSettings]="{appendTo: 'component', popupClass: 'checkbox-select'}"
+                           [valuePrimitive]="true"
+                           [autoClose]="false"
+                           #state="ngModel">
+            <ng-template kendoMultiSelectItemTemplate let-dataItem>
+                <input type="checkbox" class="k-checkbox" [checked]="isItemSelected(dataItem)" />
+                <label class="k-checkbox-label">{{ dataItem.LongDescription }}</label>
+            </ng-template>
+            <ng-template kendoMultiSelectNoDataTemplate>
+                <h4><span class="k-icon k-i-warning"></span><br /><br /> <span i18n>{{ 'product_multiselect.no_data_found' | translate }}</span></h4>
+            </ng-template>
+        </kendo-multiselect>
+        <editor-validations [state]="state" [label]="label"></editor-validations>
+    </ng-container>
+</div>

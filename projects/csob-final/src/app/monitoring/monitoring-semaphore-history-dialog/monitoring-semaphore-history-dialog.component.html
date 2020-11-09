@@ -1,0 +1,50 @@
+<div class="row">
+    <div class="col-md-2">
+        <div class="form-group">
+            <label i18n>{{ 'monitoring_semaphore_history_dialog.current_client_light' | translate }}</label>
+            <i [ngClass]="'fa fa-circle fa-2x color-' + clientSemaphoreColor"></i>
+        </div>
+    </div>
+</div>
+
+<div class="row semaphore-history">
+    <div class="col-md-12">
+        <label i18n>{{ 'monitoring_semaphore_history_dialog.semaphore_history' | translate }}</label>
+
+        <section kendoTooltip
+                    #kendoTooltipInstance="kendoTooltip"
+                    showOn="none"
+                    [tooltipTemplate]="template"
+                    (mouseover)="showTooltip($event, kendoTooltipInstance)">
+            <kendo-grid *ngIf="semaphoreHistory"
+                        name="semaphore-history-grid"
+                        [data]="semaphoreHistory"
+                        [loading]="progress.loading"
+                        [height]="247">
+                <kendo-grid-column field="ValidFrom" title="{{ 'monitoring_semaphore_history_dialog.date_time' | translate}}" i18n-title>
+                    <ng-template kendoGridCellTemplate let-dataItem>
+                        {{dataItem.ValidFrom | localDate : 'dateTime'}}
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column width="60" field="Color" title="{{ 'monitoring_semaphore_history_dialog.color' | translate}}" i18n-title>
+                    <ng-template kendoGridCellTemplate let-dataItem>
+                        <div class="fa fa-circle fa-lg" [ngClass]="'color-' + dataItem?.Color"></div>
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column field="Author" title="{{ 'monitoring_semaphore_history_dialog.set' | translate}}" i18n-title></kendo-grid-column>
+                <kendo-grid-column field="CreatedBy" title="{{ 'monitoring_semaphore_history_dialog.author' | translate}}" i18n-title></kendo-grid-column>
+                <kendo-grid-column field="Comment" title="{{ 'monitoring_semaphore_history_dialog.comment' | translate}}" i18n-title></kendo-grid-column>
+            </kendo-grid>
+        </section>
+    </div>
+</div>
+<ng-template #template let-anchor>
+    <span>{{ anchor.nativeElement.innerText }}</span>
+</ng-template>
+
+
+<div class="k-button-group mt-4">
+    <button type="button" class="k-button" (click)="close(true)">
+        <span i18n>{{ 'monitoring_semaphore_history_dialog.close' | translate }}</span>
+    </button>
+</div>

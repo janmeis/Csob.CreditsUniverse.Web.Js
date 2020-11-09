@@ -1,0 +1,25 @@
+<div [ngClass]="{'readonly': readonly}">
+    <div *ngIf="state=='party' || state=='pd'" class="party-select">
+        <button type="button" class="selected k-button k-small" (click)="onSelectPartyClick()" title="{{ 'question_ess.change_party' | translate}}" i18n-title>{{answer.InfluenceEss.PartyName}}</button>
+    </div>
+    <div *ngIf="state=='party'" class="pd-select">
+        <button type="button" class="empty k-button k-small" (click)="onSelectPdClick()" i18n>{{ 'question_ess.select_pd_rating' | translate}}</button>
+    </div>
+    <div *ngIf="state=='pd'" class="pd-select">
+        <button type="button" class="selected k-button k-small" (click)="onSelectPdClick()" title="{{ 'question_ess.change_pd_rating' | translate}}" i18n-title i18n>{{answer.InfluenceEss.CountedPdRating || ('question_ess.no_pd_rating_selected' | translate)}}</button>
+    </div>
+    <div *ngIf="state=='empty'" class="party-select">
+        <button type="button" class="empty k-button k-small" (click)="onSelectPartyClick()" i18n>{{ 'question_ess.select_party' | translate}}</button>
+    </div>
+    <ng-container *ngIf="state=='readonly'">
+        <div class="party-select">
+            <editor-text [value]="answer.InfluenceEss.PartyName" readonly="true"></editor-text>
+        </div>
+        <div class="pd-select">
+            <editor-text value="{{answer.InfluenceEss.CountedPdRating || ('question_ess.no_pd_rating_selected' | translate)}}" readonly="true" i18n-value></editor-text>
+        </div>
+    </ng-container>
+    <div *ngIf="state!='empty'" class="pd-model">
+            <editor-text value="{{ answer.InfluenceEss.PDRatingModelName }}" readonly="true" i18n-value></editor-text>
+    </div>
+</div>

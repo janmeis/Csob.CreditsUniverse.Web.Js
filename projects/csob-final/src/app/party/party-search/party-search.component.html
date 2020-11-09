@@ -1,0 +1,63 @@
+<form #form="ngForm" (ngSubmit)="onSearch()">
+
+
+    <h1 i18n>{{ 'party_search.search_clients' | translate }}</h1>
+    <div class="icon-button-group">
+        <button type="button" class="icon-button -success" routerLink="/party/detail/new" *ngIf="!!searched && !!hasRightToAddClient" id="newClient">
+            <span class="fa fa-plus"></span>
+            <span i18n>{{ 'party_search.new_party' | translate }}</span>
+        </button>
+    </div>
+
+    <app-party-search-criteria [(criteria)]="criteria" [(searched)]="searched" #partySearchCriteriaComponent></app-party-search-criteria>
+
+    <div class="k-button-group mt-4 mb-5">
+        <button type="submit" class="k-button k-primary" [disabled]="form.invalid || !isAnyCriteria" id="searchBtn">
+            <span i18n>{{ 'party_search.search' | translate }}</span>
+        </button>
+        <button type="reset" class="k-button" (click)="onClear();" id="clearFilterBtn" [disabled]="!isAnythingEntered">
+            <span i18n>{{ 'party_search.clear_filter' | translate }}</span>
+        </button>
+    </div>
+</form>
+
+<section *ngIf="!!searched">
+    <div kendoTooltip #kendoTooltipInstance="kendoTooltip"
+         showOn="none"
+         [tooltipTemplate]="template"
+         filter=".k-grid th, .k-grid td"
+         (mouseover)="showTooltip($event, kendoTooltipInstance)">
+        <kendo-grid [data]="data"
+                    [loading]="progress.loading"
+                    [pageSize]="grid.take"
+                    [skip]="grid.skip"
+                    [sort]="grid.sort"
+                    [sortable]="{allowUnsort: false, mode:  'single'}"
+                    [pageable]="{buttonCount:5, pageSizes:[10, 20, 50, 100]}"
+                    [resizable]="false"
+                    (dataStateChange)="onGridDataStateChange($event)"
+                    (cellClick)="onGridCellClicked($event)"
+                    class="k-grid--clickable">
+            <kendo-grid-column width="80" field="PersonType" title="{{ 'party_search.type' | translate }}" i18n-title>
+                <ng-template kendoGridCellTemplate let-dataItem>
+                    {{dataItem.PersonType | codebookLookup:'EPartyType'}}
+                </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column width="160" field="ClientName" title="{{ 'party_search.client_name1' | translate }}" i18n-title></kendo-grid-column>
+            <kendo-grid-column width="200" field="FullName" title="{{ 'party_search.person_name' | translate }}" i18n-title></kendo-grid-column>
+            <kendo-grid-column width="100" field="IcoZecho" title="{{ 'party_search.id_no' | translate }}" i18n-title></kendo-grid-column>
+            <kendo-grid-column width="110" field="BirthNumberDate" title="{{ 'party_search.birth_no' | translate }}" i18n-title></kendo-grid-column>
+            <kendo-grid-column width="200" field="CreditComponentBranch" title="{{ 'party_search.credit_component_branch' | translate }}" i18n-title></kendo-grid-column>
+            <kendo-grid-column width="110" field="CreditComponent" title="{{ 'party_search.credit_component' | translate }}" i18n-title></kendo-grid-column>
+            <kendo-grid-column width="100" field="Entity" title="{{ 'party_search.entity' | translate }}" i18n-title></kendo-grid-column>
+            <kendo-grid-column width="160" field="LastModification" title="{{ 'party_search.last_change' | translate }}" i18n-title>
+                <ng-template kendoGridCellTemplate let-dataItem>
+                    <div class="w-100 text-right">{{dataItem.LastModification | localDate : 'dateTime'}}</div>
+                </ng-template>
+            </kendo-grid-column>
+        </kendo-grid>
+    </div>
+    <ng-template #template let-anchor>
+        <span>{{ anchor.nativeElement.innerText }}</span>
+    </ng-template>
+</section>

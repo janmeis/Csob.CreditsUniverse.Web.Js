@@ -1,0 +1,64 @@
+<ng-container *ngIf="groups$ | async as groups;else showSpinner">
+    <ng-container *ngFor="let group of groups;let gIdx=index">
+        <section id="group-section">
+            <div class="row">
+                <div class="col-xl-7 col-lg-9 col-md-10">
+                    <h3 kendoTooltip (click)="isDisplayed[gIdx]=!isDisplayed[gIdx]">
+                        <span class="fa" [ngClass]="isDisplayed[gIdx] ? 'fa-caret-down' : 'fa-caret-right'"></span>
+                        <span [title]="group.Description">{{group.Description}}</span>
+                    </h3>
+                </div>
+                <div class="col-xl-5 col-lg-3 col-md-2">
+                    <span *ngIf="group.Value!=null" class="light-treatment" [ngClass]="'color-' + group.Color">{{ group.Value }}</span>
+                </div>
+            </div>
+
+            <div *ngIf="group.Rows.length>0" class="row" [style.display]="isDisplayed[gIdx] ? 'block' : 'none'">
+                <div class="col-md-12">
+                    <kendo-grid *ngIf="getRows(group) as rows"
+                                [data]="rows"
+                                [resizable]="true">
+                        <kendo-grid-column *ngFor="let header of group.Rows[0].Values;let c=index">
+                            <ng-template kendoGridHeaderTemplate>
+                                {{ header }}
+                            </ng-template>
+                            <ng-template kendoGridCellTemplate let-r="rowIndex">
+                                <ng-container *ngIf="rows[r].Values[c] as value">
+                                    <div *ngIf="isNumber(value);else noNumber" class="w-100 text-right">
+                                        <ng-container *ngTemplateOutlet="linkOrValue; context: {$implicit: getNumber(value), link: rows[r].Links[c] }"></ng-container>
+                                    </div>
+                                    <ng-template #noNumber>
+                                        <ng-container *ngIf="isColor(value);else noColor">
+                                            <div class="fa fa-circle" [ngClass]="'color-' + getColor(value)"></div>
+                                        </ng-container>
+                                        <ng-template #noColor>
+                                            <ng-container *ngTemplateOutlet="linkOrValue; context: {$implicit: value, link: rows[r].Links[c] }"></ng-container>
+                                        </ng-template>
+                                    </ng-template>
+                                </ng-container>
+                            </ng-template>
+                        </kendo-grid-column>
+                        <ng-container *ngIf="hasDetails(group)">
+                            <div *kendoGridDetailTemplate="let dataItem">
+                                <app-monitoring-semaphore-group-detail [details]="getDetails(dataItem)"></app-monitoring-semaphore-group-detail>
+                            </div>
+                        </ng-container>
+                    </kendo-grid>
+                </div>
+            </div>
+        </section>
+    </ng-container>
+</ng-container>
+
+<ng-template #linkOrValue let-value let-link="link">
+    <ng-container *ngIf="!!link;else noLink">
+        <a (click)="onLinkClicked(link)">{{ value }}</a>
+    </ng-container>
+    <ng-template #noLink>
+        {{  value }}
+    </ng-template>
+</ng-template>
+
+<ng-template #showSpinner>
+    <app-spinner [visible]="true"></app-spinner>
+</ng-template>

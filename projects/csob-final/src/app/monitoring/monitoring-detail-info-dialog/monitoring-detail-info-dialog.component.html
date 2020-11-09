@@ -1,0 +1,78 @@
+<form #form="ngForm" (ngSubmit)="onSubmit()">
+    <ng-container *ngIf="!!model">
+        <div *ngIf="model.Category==EMonitoringCategory.NegativeInformations && model.Subcategory!=EMonitoringCategory.NegativeInformationSpecific && !model.EwsId" class="row negative-information-row mb-5" >
+            <div class="col-md-2">
+                <editor-text value="{{model.Periode}}" label="{{ 'monitoring_detail_info_dialog.eom' | translate }}" [readonly]="true" i18n-label></editor-text>
+            </div>
+            <div class="col-md-2">
+                <editor-text value="{{model.Value=='true' ? ('monitoring_detail_info_dialog.yes' | translate) : ('monitoring_detail_info_dialog.no' | translate)}}" label="{{ 'monitoring_detail_info_dialog.exist_ri' | translate}}" readonly="true" [ngClass]="{'monitoring-value-red': true}" i18n-label></editor-text>
+            </div>
+            <div *ngIf="model.ShowRelevancy" class="col-md-2" [ngClass]="{'monitoring-value-red': model.StateColor==EColor.Red}">
+                <editor-text value="{{ 'monitoring_detail_info_dialog.' + EColor[model.StateColor] | translate}}" label="{{ 'monitoring_detail_info_dialog.state_color' | translate}}" readonly="true" i18n-label></editor-text>
+            </div>
+            <div *ngIf="model.TotalVisible" class="col-md-2 text-right">
+                <editor-text value="{{model.Total}}" label="{{ 'monitoring_detail_info_dialog.total' | translate }}" [ngClass]="{'monitoring-value-red': true}" [readonly]="true" i18n-label></editor-text>
+            </div>
+            <div *ngIf="model.LastModifiedVisible" class="col-md-4" [ngClass]="{'offset-md-4': model.Subcategory!=EMonitoringCategory.NegativeInformationBlacklist}">
+                <editor-text class="last_modified" value="{{model.LastModified | localDate: 'date'}}" label="{{ 'monitoring_detail_info_dialog.last_modified' | translate}}" readonly="true" i18n-label></editor-text>
+            </div>
+        </div>
+        <div *ngIf="model.Rows?.length>0 || model.InputRows?.length>0 || model.NegativeRows?.length>0" class="row mb-5 mt-2">
+            <div class="col-md-12"
+                    kendoTooltip
+                    #kendoTooltipInstance="kendoTooltip"
+                    showOn="none"
+                    [tooltipTemplate]="template"
+                    (mouseover)="showTooltip($event, kendoTooltipInstance)">
+                <app-contract-terms-financial *ngIf="model.Category==EMonitoringCategory.ContractTermsFinancial"
+                                                [model]="model"
+                                                (detailLinkHandler)="onDetailLinkClicked($event)"></app-contract-terms-financial>
+                <app-contract-terms-nonfinancial *ngIf="model.Category==EMonitoringCategory.ContractTermsNonFinancial"
+                                                [model]="model"></app-contract-terms-nonfinancial>
+                <app-pd-rating *ngIf="model.Category==EMonitoringCategory.PDRating"
+                                                [pdRatingId]="model.PDRatingId"
+                                                [data]="model.NegativeRows"
+                                                (detailLinkHandler)="onDetailLinkClicked($event)"></app-pd-rating>
+                <ng-container *ngIf="model.Category==EMonitoringCategory.NegativeInformations">
+                    <app-negative-information-blacklist *ngIf="model.Subcategory==EMonitoringCategory.NegativeInformationBlacklist"
+                                                    [data]="model.NegativeRows"
+                                                    [filterable]="model.Filterable"></app-negative-information-blacklist>
+                    <app-negative-information-insolvency *ngIf="model.Subcategory==EMonitoringCategory.NegativeInformationInsolvency"
+                                                    [data]="model.NegativeRows"
+                                                    [filterable]="model.Filterable"></app-negative-information-insolvency>
+                    <app-negative-information-execution *ngIf="model.Subcategory==EMonitoringCategory.NegativeInformationExecution"
+                                                    [data]="model.NegativeRows"
+                                                    [filterable]="model.Filterable"></app-negative-information-execution>
+                    <app-negative-information-cru *ngIf="model.Subcategory==EMonitoringCategory.NegativeInformationCRU"
+                                                    [data]="model.NegativeRows"
+                                                    [filterable]="model.Filterable"></app-negative-information-cru>
+                    <app-negative-information-unauthorized-overdraft *ngIf="model.Subcategory==EMonitoringCategory.NegativeInformationUnauthorizedOverdraft"
+                                                    [data]="model.NegativeRows"
+                                                    [filterable]="model.Filterable"></app-negative-information-unauthorized-overdraft>
+                    <app-negative-information-cribis *ngIf="model.Subcategory==EMonitoringCategory.NegativeInformationCRIBIS"
+                                                    [data]="model.NegativeRows"
+                                                    [filterable]="model.Filterable"></app-negative-information-cribis>
+                    <app-negative-information-paymentflow *ngIf="model.Subcategory==EMonitoringCategory.NegativeInformationPaymentFlow"
+                                                    [data]="model.NegativeRows"></app-negative-information-paymentflow>
+                    <app-negative-information-specific *ngIf="model.Subcategory==EMonitoringCategory.NegativeInformationSpecific"
+                                                    [model]="model"></app-negative-information-specific>
+                    <app-negative-information-ews *ngIf="!!model.EwsId"
+                                                    [data]="model.NegativeRows"
+                                                    [comment]="model.Comment"></app-negative-information-ews>
+                </ng-container>
+            </div>
+        </div>
+    </ng-container>
+    <ng-template #template let-anchor>
+        <span>{{ anchor.nativeElement.innerText }}</span>
+    </ng-template>
+
+    <div class="k-button-group mt-4">
+        <button *ngIf="!!model && !model.Readonly && hasRightTo?.Monitoringsave" type="submit" class="k-button k-primary" [disabled]="form.pristine || form.invalid">
+            <span i18n>{{ 'monitoring_detail_info_dialog.save' | translate }}</span>
+        </button>
+        <button type="button" class="k-button" (click)="onClose()">
+            <span i18n>{{ 'monitoring_detail_info_dialog.close' | translate }}</span>
+        </button>
+    </div>
+</form>

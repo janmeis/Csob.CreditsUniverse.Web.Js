@@ -1,0 +1,82 @@
+<div *ngIf="filterable" class="col-md-4">
+  <editor-bool-switch [value]="showInactive" (switchClicked)="showInactiveHandler($event)"
+      title="{{ 'negative_information_unauthorized_overdraft.show_mode' | translate }}"
+      labelOn="{{ 'negative_information_unauthorized_overdraft.also_inactive' | translate }}"
+      labelOff="{{ 'negative_information_unauthorized_overdraft.only_active' | translate }}">
+  </editor-bool-switch>
+</div>
+
+<div kendoTooltip
+     #kendoTooltipInstance="kendoTooltip"
+     showOn="none"
+     [tooltipTemplate]="template"
+     (mouseover)="showTooltip($event, kendoTooltipInstance)"
+     class="row negative-information-unauthorized-overdraft">
+    <div class="col-md-12">
+        <label i18n>{{ 'negative_information_unauthorized_overdraft.negative_information_unauthorized_overdraft' | translate }}</label>
+
+        <kendo-grid *ngIf="gridData"
+                    name="negative-information-unauthorized-overdraft-grid"
+                    [data]="gridData"
+                    [filterable]="false"
+                    [filter]="filter"
+                    [height]="300">
+          <kendo-grid-column field="Validity" title="{{ 'negative_information_unauthorized_overdraft.validity' | translate }}" [width]="100" i18n-title>
+            <ng-template kendoGridCellTemplate let-dataItem>
+                {{ 'negative_information_unauthorized_overdraft.' + dataItem.Validity | translate }}
+            </ng-template>
+          </kendo-grid-column>
+          <kendo-grid-column field="Product" title="{{ 'negative_information_unauthorized_overdraft.product_type' | translate }}" [width]="155" i18n-title>
+              <ng-template kendoGridCellTemplate let-dataItem>
+                {{dataItem.Product}}
+            </ng-template>
+          </kendo-grid-column>
+          <kendo-grid-column field="ProductNumber" title="{{ 'negative_information_unauthorized_overdraft.product_number' | translate }}" [width]="140" i18n-title>
+              <ng-template kendoGridCellTemplate let-dataItem>
+                {{dataItem.ProductNumber}}
+              </ng-template>
+          </kendo-grid-column>
+          <kendo-grid-column field="Amount" title="{{ 'negative_information_unauthorized_overdraft.amount' | translate }}" class="wrap-column text-right" [filterable]="false" i18n-title>
+              <ng-template kendoGridCellTemplate let-dataItem>
+                {{dataItem.Amount | number : '1.2-2'}}
+              </ng-template>
+          </kendo-grid-column>
+          <kendo-grid-column field="MaxAmount" title="{{ 'negative_information_unauthorized_overdraft.max_amount' | translate }}" class="wrap-column text-right" [filterable]="false" i18n-title>
+              <ng-template kendoGridCellTemplate let-dataItem>
+                {{dataItem.MaxAmount | number : '1.2-2'}}
+              </ng-template>
+          </kendo-grid-column>
+          <kendo-grid-column field="Currency" title="{{ 'negative_information_unauthorized_overdraft.currency' | translate }}" [width]="70" i18n-title></kendo-grid-column>
+          <kendo-grid-column field="StartedFrom" title="{{ 'negative_information_unauthorized_overdraft.date_from' | translate }}" [width]="100" i18n-title>
+            <ng-template kendoGridCellTemplate let-dataItem>
+                {{dataItem.StartedFrom | localDate : 'date'}}
+            </ng-template>
+          </kendo-grid-column>
+          <kendo-grid-column field="DaysPastDue" title="{{ 'negative_information_unauthorized_overdraft.days_past_due' | translate }}" class="wrap-column text-right" [filterable]="false" [width]="155" i18n-title>
+            <ng-template kendoGridCellTemplate let-dataItem>
+                {{dataItem.DaysPastDue | number : '1.0-0'}}
+            </ng-template>
+          </kendo-grid-column>
+          <kendo-grid-column field="ModifiedOn" title="{{ 'negative_information_unauthorized_overdraft.modified_on' | translate }}" i18n-title>
+            <ng-template kendoGridCellTemplate let-dataItem>
+                {{dataItem.ModifiedOn | localDate : 'date'}}
+            </ng-template>
+          </kendo-grid-column>
+<!--           <kendo-grid-column field="ValidFrom" title="{{ 'negative_information_unauthorized_overdraft.valid_from' | translate }}" i18n-title>
+            <ng-template kendoGridCellTemplate let-dataItem>
+                {{dataItem.ValidFrom}}
+            </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="ValidTo" title="{{ 'negative_information_unauthorized_overdraft.valid_to' | translate }}" i18n-title>
+              <ng-template kendoGridCellTemplate let-dataItem>
+                  {{dataItem.ValidTo | localDate : 'date'}}
+              </ng-template>
+          </kendo-grid-column> -->
+        </kendo-grid>
+    </div>
+</div>
+
+<ng-template #template let-anchor>
+    <span>{{ anchor.nativeElement.innerText }}</span>
+</ng-template>
+

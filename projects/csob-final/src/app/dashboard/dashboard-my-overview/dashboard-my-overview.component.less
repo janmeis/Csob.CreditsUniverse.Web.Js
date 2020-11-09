@@ -1,0 +1,108 @@
+@import '../../../styles/atoms/_variables.less';
+
+@blue-light: #45ccff;
+@blue: #23bdf9;
+
+.mainboard {
+  margin: 40px auto;
+  background-color: #fff;
+  border-radius: 4px;
+  border: 1px solid #e9e9e9;
+
+  max-width: 1240px;
+}
+
+a {
+  text-decoration: none;
+}
+
+::ng-deep .dashboard-calendar-wrapper {
+  //margin: @spacing-base -@spacing-base @spacing-base;
+  margin-top: @spacing-base;
+}
+
+::ng-deep .calendar-table {
+  width: 100%;
+
+  thead tr th {
+    padding: 8px;
+    text-align: center;
+    font-weight: normal;
+    font-size: 12px;
+  }
+
+  tr>th:last-of-type,
+  tr>td:last-of-type {
+    border-right: 0;
+  }
+
+  th,
+  td {
+    vertical-align: top;
+    width: 500px;
+    border-right: solid 1px #e9e9e9;
+    border-top: solid 1px #e9e9e9;
+    min-width: 120px;
+
+
+    &.notSelectedMonth {
+      opacity: 0.3;
+	}
+
+	&.holiday {
+	  background-color: rgba(242, 6, 250, 0.05);
+	}
+
+    .day {
+      .dow {
+        float: right;
+        padding: 8px;
+	  }
+    }
+  }
+}
+
+
+
+::ng-deep .events {
+  clear: both;
+}
+
+::ng-deep .event {
+  padding: 2px;
+  border-radius: 4px;
+  margin: 4px;
+  padding: 2px 8px;
+  font-size: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  border: 1px solid black;
+
+  &__title {
+    font-weight: 700;
+    white-space: nowrap;
+    padding-right: 4px;
+  }
+
+  &__description {
+
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+
+  &.cancelled {
+    background-color: #d7ecf4;
+  }
+
+  &.doneOk {
+    background-color: #dbfaca;
+  }
+
+  &.doneNOK {
+    background-color: #ffdccc;
+    border-right: 6px solid red;
+  }
+}
+

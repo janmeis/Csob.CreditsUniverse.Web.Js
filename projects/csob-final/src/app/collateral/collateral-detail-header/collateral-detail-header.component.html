@@ -1,0 +1,73 @@
+<header>
+    <h1 i18n>{{ 'collateral_detail_header.page_title' | translate }}</h1>
+</header>
+
+<form *ngIf="model" #form="ngForm" (ngSubmit)="onSave()">
+
+    <div class="icon-button-group">
+        <button type="button" class="icon-button -primary" [routerLink]="['../../overview']">
+            <span class="fa fa-list-ul"></span>
+            <span i18n>{{ 'collateral_detail_header.overview' | translate }}</span>
+        </button>
+
+        <div class="icon-button-group__devider"></div>
+
+        <button type="button" class="icon-button -primary" (click)="showProductCollateralMatrix()">
+            <span class="fa fa-link"></span>
+            <span i18n>{{ 'collateral_detail_header.product_collateral_matrix' | translate}}</span>
+        </button>
+    </div>
+
+    <kendo-tabstrip>
+        <kendo-tabstrip-tab title="{{ 'collateral_detail_header.collateral_detail' | translate}}" selected="true" i18n-title>
+            <ng-template kendoTabContent>
+
+                <section class="panel pt-0">
+                    <div class="row">
+                        <div class="col-md-6 col-lg-4">
+                            <editor-text label="{{ 'collateral_detail_header.collateral_type' | translate }}" [(value)]="model.TypeDescription" [readonly]="readonly" required="true" i18n-label></editor-text>
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+                            <editor-text label="{{ 'collateral_detail_header.collateral_subtype' | translate }}" [(value)]="model.SubTypeDescriptionL" [readonly]="readonly" required="true" i18n-label></editor-text>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 col-lg-2">
+                            <editor-codebook label="{{ 'collateral_detail_header.currency' | translate }}" [(value)]="model.CurrencyId" codebook="Currency" [readonly]="readonly" required="true" i18n-label></editor-codebook>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <editor-text label="{{ 'collateral_detail_header.pledge_value' | translate }}" mode="currency" [(value)]="model.PledgeValueThousands" [readonly]="readonly" required="true" i18n-label></editor-text>
+                        </div>
+                        <div class="col-md-6 col-lg-2">
+                            <editor-text label="{{ 'collateral_detail_header.recovery_rate' | translate }}" mode="currency" [(value)]="model.RecoveryRatePercent" [readonly]="readonly" required="true" i18n-label></editor-text>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <editor-text label="{{ 'collateral_detail_header.collateral_value' | translate }}" mode="currency" [(value)]="model.CollateralValueThousands" [readonly]="readonly" required="true" i18n-label></editor-text>
+                        </div>
+                    </div>
+                </section>
+                <section class="panel">
+
+                    <h3 class="panel-heading">{{ 'collateral_detail_header.due_date_to' | translate}}</h3>
+                    <div class="row">
+                        <div class="col-md-6 col-lg-2">
+                            <editor-bool label="{{ 'collateral_detail_header.to_product' | translate}}" [(value)]="model.ExpirationByProduct" [readonly]="readonly"></editor-bool> <!-- todle nemam -->
+                        </div>
+
+                        <div class="col-md-6 col-lg-3">
+                            <editor-date label="{{ 'collateral_detail_header.expiration_date' | translate }}" [(value)]="model.ExpirationDate" [readonly]="readonly" i18n-label></editor-date>
+                        </div>
+
+                        <div class="col-md-6 col-lg-2">
+                            <editor-codebook [(value)]="model.ExpirationDateUnit" label="{{ 'collateral_detail_header.expiration_date_unit' | translate }}" codebook="ETimeUnit" [readonly]="readonly" i18n-label></editor-codebook>
+                        </div>
+                        <div class="col-md-6 col-lg-2">
+                            <editor-text label="{{ 'collateral_detail_header.expiration_date_quantity' | translate }}" [(value)]="model.ExpirationDateQuantity" mode="number" numdecplaces="6" numfracplaces="0" [readonly]="readonly" i18n-label></editor-text>
+                        </div>
+                    </div>
+                </section>
+            </ng-template>
+        </kendo-tabstrip-tab>
+    </kendo-tabstrip>
+</form>

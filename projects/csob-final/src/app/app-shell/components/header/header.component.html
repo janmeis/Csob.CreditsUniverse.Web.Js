@@ -1,0 +1,40 @@
+<div>
+    <div class="row justify-content-between">
+
+        <div class="col-auto">
+            <ng-container *ngIf="currentParty && !hideParty">
+                <span class="d-block"><span class="fa fa-user pr-2"></span>{{this.currentParty.PartyName}}</span>
+                <div class="form-row">
+                    <div class="col-auto" *ngIf="currentParty.IdentificationNumber">
+                        <span class="f-small f-grey pr-1" i18n>{{ 'header.idno' | translate }}</span>
+                        <span class="f-small">{{currentParty.IdentificationNumber}}</span>
+                    </div>
+                    <div class="col-auto" *ngIf="currentParty.BirthNumber">
+                        <span class="f-small f-grey pr-1" i18n>{{ 'header.birthno' | translate }}</span>
+                        <span class="f-small">{{currentParty.BirthNumber | formatdata:'rc'}}</span>
+                    </div>
+                    <div class="col-auto" *ngIf="currentParty.MainCreditComponent ">
+                        <span class="f-small f-grey pr-1" i18n>{{ 'header.credit_component' | translate }}</span>
+                        <span class="f-small">{{currentParty.MainCreditComponent}}</span>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+
+        <div class="col-auto">
+            <div *ngIf="currentUser">
+                <div class="form-row justify-content-end align-items-center text-right">
+                    <div class="col-auto">
+                        <span class="d-block">
+                            <span kendoTooltip title="{{ currentUser.RolesNames }}">{{currentUser.FirstName}} {{currentUser.Surname}}</span>
+                        </span>
+                        <span class="f-small f-grey" (click)="onOrganizationUnitClicked()"> ({{currentUser.OrganizationalUnit?.Description}} [{{currentUser.OrganizationalUnit?.Code}}])</span>
+                    </div>
+                    <div class="col-auto ml-2" style="width:170px">
+                        <app-language-chooser></app-language-chooser>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

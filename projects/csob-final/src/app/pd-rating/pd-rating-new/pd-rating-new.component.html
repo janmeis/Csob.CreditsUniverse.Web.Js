@@ -1,0 +1,39 @@
+<header>
+    <h1 i18n>{{ 'pd_rating_new.page_title' | translate }}</h1>
+</header>
+
+<fieldset>
+    <section *ngIf="model">
+        <form #form="ngForm" (ngSubmit)="onSave(EStatePDRating.InProcess)">
+            <div class="icon-button-group">
+
+                <button type="button" id="btnOverview" class="icon-button -primary" [routerLink]="['../overview']">
+                    <i class="fa fa-list-ul"></i>
+                    <span i18n>{{ 'pd_rating_new.overview' | translate }}</span>
+                </button>
+
+                <div class="icon-button-group__devider"></div>
+
+                <button type="submit" class="icon-button -primary" [disabled]="form.pristine || form.invalid">
+                    <span class="fa fa-save"></span>
+                    <span i18n>{{ 'pd_rating_new.save' | translate }}</span>
+                </button>
+
+                <button type="button" class="icon-button -primary" [disabled]="form.pristine || form.invalid || model.ApprovedPDRatings[0]?.RatingId!=null" (click)="onSave(EStatePDRating.Finished)">
+                    <span class="fa fa-check"></span>
+                    <span i18n>{{ 'pd_rating_new.complete' | translate }}</span>
+                </button>
+            </div>
+
+            <app-pd-rating-view [(dataSource)]="model"
+                                [form]="form"
+                                resultOnly="true"
+                                mode="new"
+                                [state]="EStatePDRating.InProcess"
+                                [pdRatingCategory]="model.PDRatingCategoryEnum"
+                                [readonly]="false"
+                                [pdRatingCategoryEnumValues]="pdRatingCategoryEnumValues"
+                                (ratingChanged)="ratingChangedHandler($event)"></app-pd-rating-view>
+        </form>
+    </section>
+</fieldset>

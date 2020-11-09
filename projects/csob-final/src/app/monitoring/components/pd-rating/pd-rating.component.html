@@ -1,0 +1,24 @@
+<div class="monitoring-pd-rating">
+    <div class="col-md-12">
+        <kendo-grid *ngIf="rows"
+                    name="monitoring-pd-rating-grid"
+                    [data]="rows"
+                    [height]="450">
+            <kendo-grid-column *ngFor="let header of data[0].Values;let c=index">
+                <ng-template kendoGridHeaderTemplate>
+                    {{ header }}
+                </ng-template>
+                <ng-template kendoGridCellTemplate let-r="rowIndex">
+                    <ng-container *ngIf="c>=2 && c<=4 && !!rows[r].Links[c];else noLink">
+                        <div class="w-100 text-right">
+                            <a (click)="onLinkClicked(rows[r].Links[c])">{{ rows[r].Values[c] }}</a>
+                        </div>
+                    </ng-container>
+                    <ng-template #noLink>
+                        {{  rows[r].Values[c] }}
+                    </ng-template>
+                </ng-template>
+            </kendo-grid-column>
+        </kendo-grid>
+    </div>
+</div>

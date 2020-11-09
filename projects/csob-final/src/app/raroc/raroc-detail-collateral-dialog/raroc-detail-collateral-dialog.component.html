@@ -1,0 +1,63 @@
+<form #form="ngForm">
+    <section class="raroc-detail-wrapper content-wrapper">
+
+        <div class="panel">
+            <div class="row">
+                <div class="col-md-12 col-lg-4">
+                    <editor-text [(value)]="collateral.Title" mode="text" maxlength="150" label="{{ 'raroc_detail_collateral_dialog.name' | translate }}" [readonly]="readonly" [autofocus]="true" i18n-label></editor-text>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <editor-codebook name="collateralType" [(value)]="collateral.CollateralTypeCUId" label="{{ 'raroc_detail_collateral_dialog.type' | translate }}" [codebook]="collateralTypes" (selectionChange)="collateralTypeSelectionChange($event,subType)" [readonly]="readonly" [required]="true" i18n-label></editor-codebook>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <editor-codebook name="collateralSubtype" [(value)]="collateral.CollateralSubTypeCUId" label="{{ 'raroc_detail_collateral_dialog.subtype' | translate }}" [codebook]="collateralSubtypes" (selectionChange)="collateralSubTypeSelectionChange($event)" [readonly]="readonly" [required]="true" #subType i18n-label></editor-codebook>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 col-lg-2">
+                    <editor-codebook [(value)]="collateral.CurrencyId" label="{{ 'raroc_detail_collateral_dialog.currency' | translate }}" codebook="Currency" [readonly]="readonly" i18n-label></editor-codebook>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <editor-text [(value)]="collateral.PledgeValue" mode="currency" numdecplaces="0" numfracplaces="0" label="{{ 'raroc_detail_collateral_dialog.pledge_value' | translate }}" (valueChange)="pledgeValueChange($event)" [readonly]="readonly" [required]="true" i18n-label></editor-text>
+                </div>
+                <div class="col-md-6 col-lg-2">
+                    <editor-text [(value)]="collateral.RecoveryRateStandard" mode="currency" numdecplaces="15" numfracplaces="5" label="{{ 'raroc_detail_collateral_dialog.jh' | translate }}" [readonly]="true" i18n-label></editor-text>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <editor-text [(value)]="collateral.CollateralValue" mode="currency" numdecplaces="15" numfracplaces="5" label="{{ 'raroc_detail_collateral_dialog.belay_value' | translate }}" [readonly]="true" i18n-label></editor-text>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel">
+            <h3>{{ 'raroc_detail_collateral_dialog.due_date' | translate }}</h3>
+            <div class="row">
+
+                <div class="col-md-6 col-lg-2">
+                    <editor-bool [(value)]="collateral.ExpirationByProduct" mode="currency" numdecplaces="15" numfracplaces="5" label="{{ 'raroc_detail_collateral_dialog.by_product' | translate }}" [readonly]="readonly" (valueChange)="ufnValueChange($event)" i18n-label></editor-bool>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <editor-date [(value)]="collateral.DueDate" label="{{ 'raroc_detail_collateral_dialog.date' | translate }}" [readonly]="readonly || collateral.ExpirationByProduct || (collateral.DueDateQuantity && collateral.DueDateUnit)" [disablePast]="true" (validate)="dueDateValidate($event)" (valueChange)="dueDateValueChange($event)" i18n-label></editor-date>
+                </div>
+                <div class="col-md-6 col-lg-2">
+                    <editor-codebook [(value)]="collateral.DueDateUnit" label="{{ 'raroc_detail_collateral_dialog.month_year' | translate }}" [codebook]="monthYear" [readonly]="readonly || collateral.ExpirationByProduct || collateral.DueDate" (validate)="dueDateUnitValidate($event)" i18n-label></editor-codebook>
+                </div>
+                <div class="col-md-6 col-lg-2">
+                    <editor-text [(value)]="collateral.DueDateQuantity" mode="number" numdecplaces="5" numfracplaces="0" label="{{ 'raroc_detail_collateral_dialog.count' | translate }}" [readonly]="readonly|| collateral.ExpirationByProduct || collateral.DueDate" (validate)="dueDateQuantityValidate($event)" i18n-label></editor-text>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="k-button-group">
+                <button *ngIf="!readonly" (click)="onClose(true)" class="k-button" [disabled]="form.pristine || form.invalid" i18n>
+                    {{ 'raroc_detail_collateral_dialog.save' | translate }}
+                </button>
+                <button type="button" class="k-button" (click)="onClose(false)" i18n>
+                    {{ 'raroc_detail_collateral_dialog.close' | translate }}
+                </button>
+            </div>
+        </div>
+    </section>
+</form>

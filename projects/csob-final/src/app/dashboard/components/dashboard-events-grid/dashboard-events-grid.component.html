@@ -1,0 +1,119 @@
+<!-- <ng-container *ngIf="hasData;else noItems"> -->
+    <section *ngIf="data"
+             kendoTooltip
+             #kendoTooltipInstance="kendoTooltip"
+             showOn="none"
+             [tooltipTemplate]="template"
+             (mouseover)="showTooltip($event, kendoTooltipInstance)">
+        <kendo-grid [data]="data"
+                    name="dashboard-events-grid"
+                    [pageSize]="grid.take"
+                    [skip]="grid.skip"
+                    [sort]="grid.sort"
+                    [sortable]="{ allowUnsort: true, mode: 'single' }"
+                    [resizable]="false"
+                    [filterable]="true"
+                    [filter]="grid.filter"
+                    [pageable]="{ buttonCount:5, pageSizes:[10,20,50,100] }"
+                    [rowClass]="getRowClass"
+                    (dataStateChange)="gridUpdateHandler.emit($event)"
+                    (cellClick)="onGridCellClick($event)">
+            <kendo-grid-column width="220" field="ClientName" title="{{ 'dashboard_events_grid.client_name' | translate }}" class="wrap-column" i18n-title>
+                <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+                    <full-text-filter [filter]="filter" [column]="column"></full-text-filter>
+                </ng-template>
+                <ng-template kendoGridCellTemplate let-dataItem let-r="rowIndex">
+                    <span [id]="'clientName_'+r" *ngIf="dataItem.ClientName" [ngClass]="{'client-link': dataItem.CanShowDetail}">{{ dataItem.ClientName }}</span>
+                </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column width="100" field="IcoBirthNumber" title="{{ 'dashboard_events_grid.identification_number' | translate }}" class="wrap-column" i18n-title>
+                <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+                    <full-text-filter [filter]="filter" [column]="column"></full-text-filter>
+                </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column width="140" field="DashboardTypeId" title="{{ 'dashboard_events_grid.dashboard_type' | translate }}" class="wrap-column" i18n-title>
+                <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+                    <drop-down-list-filter [filter]="filter"
+                                           [data]="dashboardTypes"
+                                           [column]="column"
+                                           textField="Text"
+                                           valueField="Value">
+                    </drop-down-list-filter>
+                </ng-template>
+                <ng-template kendoGridCellTemplate let-dataItem>
+                    <span [style.background-color]="getBkgColor(dataItem, dashboardTypes)" class="dashboard-type"></span>
+                    <span [ngClass]="{'client-link': dataItem.CanShowDetail}" >
+                        {{dataItem.DashboardType}}
+                    </span>
+                </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column width="100" field="DashboardReason" title="{{ 'dashboard_events_grid.dashboard_reason' | translate }}" class="wrap-column column" i18n-title>
+                <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+                    <full-text-filter [filter]="filter" [column]="column"></full-text-filter>
+                </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column width="80" field="DashboardState" title="{{ 'dashboard_events_grid.dashboard_state' | translate }}" class="wrap-column" i18n-title>
+                <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+                    <drop-down-list-filter [filter]="filter"
+                                           [data]="dashboardStates"
+                                           [column]="column"
+                                           textField="Text"
+                                           valueField="Value">
+                    </drop-down-list-filter>
+                </ng-template>
+                <ng-template kendoGridCellTemplate let-dataItem>
+                    {{ 'dashboard_events_grid.' + EDashboardState[dataItem.DashboardState] | translate }}
+                </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column width="100" field="FulfilmentRequiredOn" title="{{ 'dashboard_events_grid.fulfilment_required_on' | translate }}" class="wrap-column" i18n-title>
+                <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+                    <date-filter [filter]="filter" [column]="column"></date-filter>
+                </ng-template>
+                <ng-template kendoGridCellTemplate let-dataItem>
+                    <div class="text-right">{{dataItem.FulfilmentRequiredOn | localDate : 'date'}}</div>
+                </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column width="100" field="FulfilmentOn" title="{{ 'dashboard_events_grid.fulfilled_on' | translate }}" class="wrap-column" i18n-title>
+                <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+                    <date-filter [filter]="filter" [column]="column"></date-filter>
+                </ng-template>
+                <ng-template kendoGridCellTemplate let-dataItem>
+                    <div class="text-right">{{dataItem.FulfilmentOn | localDate : 'date'}}</div>
+                </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column width="100" field="FulfilledBy" title="{{ 'dashboard_events_grid.fulfilled_by' | translate }}" class="wrap-column" i18n-title>
+                <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+                    <full-text-filter [filter]="filter" [column]="column"></full-text-filter>
+                </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column width="120" field="Branch" title="{{ 'dashboard_events_grid.branch' | translate }}" class="wrap-column" i18n-title>
+                <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+                    <full-text-filter [filter]="filter" [column]="column"></full-text-filter>
+                </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column width="100" field="MainManager" title="{{ 'dashboard_events_grid.main_manager' | translate }}" class="wrap-column" i18n-title>
+                <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+                    <full-text-filter [filter]="filter" [column]="column"></full-text-filter>
+                </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column width="120" field="Comment" title="{{ 'dashboard_events_grid.comment' | translate }}" class="wrap-column" i18n-title>
+                <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+                    <full-text-filter [filter]="filter" [column]="column"></full-text-filter>
+                </ng-template>
+            </kendo-grid-column>
+            <ng-template kendoGridNoRecordsTemplate>
+                <div class="w-100 text-center">
+                    {{ 'dashboard_events_grid.no_dashboard_items' | translate}}
+                </div>
+            </ng-template>
+        </kendo-grid>
+    </section>
+    <ng-template #template let-anchor>
+        <span>{{ anchor.nativeElement.innerText }}</span>
+    </ng-template>
+<!-- </ng-container>
+
+<ng-template #noItems>
+    <span class="no-dashboard-items" i18n>{{ 'dashboard_events_grid.no_dashboard_items' | translate}}</span>
+</ng-template> -->
+

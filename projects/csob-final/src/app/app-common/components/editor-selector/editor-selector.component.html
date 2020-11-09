@@ -1,0 +1,19 @@
+<div class="form-group">
+    <label [for]="name" class="editor-label" [class.required]="required && !readonly" [class.read-only-child]="readonly">{{label}}</label>
+    <ng-container *ngIf="!readonly">
+        <div class="select-group">
+            <div class="buttons">
+                <button type="button" class="btn-select" (click)="onClick()" [title]="buttonTitle">
+                    <span class="fa fa-search"></span>
+                </button>
+            </div>
+            <input kendoTextBox type="text" [name]="name" [(ngModel)]="text" [readonly]="readonly || !editable" [placeholder]="placeholder" #state="ngModel" />
+        </div>
+        <editor-validations [state]="state" [label]="label || noLabel"></editor-validations>
+    </ng-container>
+    <ng-container *ngIf="readonly">
+        <p class="text-box-readonly k-textbox">
+            <span name="name">{{text}}</span>
+        </p>
+    </ng-container>
+</div>

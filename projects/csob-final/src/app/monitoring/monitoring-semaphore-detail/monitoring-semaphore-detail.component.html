@@ -1,0 +1,75 @@
+<ng-container *ngIf="container$ | async as  container;else showSpinner">
+    <div class="row">
+        <div class="col-md-5">
+            <h1 i18n>{{ 'monitoring_semaphore_detail.page_title' | translate }}</h1>
+        </div>
+        <div class="col-md-2 by-date-of-evaluation">
+            <span>
+                <ng-container *ngIf="cellClick.ByEvaluationDate;else byDate">
+                    <span i18n>{{ 'monitoring_semaphore_detail.by_date_of_evaluation' | translate }}</span>
+                </ng-container>
+                <ng-template #byDate>
+                    <span i18n>{{ 'monitoring_semaphore_detail.by_date' | translate }}</span>
+                </ng-template>
+            </span>
+        </div>
+        <div class="col-md-5 by-date-of-evaluation">
+            {{ container.Description }}
+        </div>
+    </div>
+
+    <div class="icon-button-group">
+        <button class="icon-button -primary"
+                routerLink="../overview"
+                [queryParams]="route.snapshot.queryParams">
+            <span class="fa fa-list-ul"></span>
+            <span i18n>{{ 'monitoring_semaphore_detail.overview' | translate }}</span>
+        </button>
+
+        <div class="icon-button-group__devider"></div>
+
+        <button class="icon-button -primary" (click)="onExport(anchor)">
+            <span class="fa fa-upload"></span>
+            <span i18n>{{ 'monitoring_semaphore_detail.export' | translate }}</span>
+        </button>
+    </div>
+
+    <div class="icon-button-group export-language">
+        <app-export-language [(language)]="selectedLanguage"></app-export-language>
+    </div>
+
+    <section kendoTooltip
+                #kendoTooltipInstance="kendoTooltip"
+                showOn="none"
+                [tooltipTemplate]="template"
+                (mouseover)="showTooltip($event, kendoTooltipInstance)">
+        <ng-container *ngFor="let groupContainer of container.GroupContainers">
+            <div class="row">
+                <div class="col-xl-7 col-lg-9">
+                    <h2 (click)="isDisplayed[groupContainer.Category]=!isDisplayed[groupContainer.Category]">
+                        <span class="fa" [ngClass]="isDisplayed[groupContainer.Category] ? 'fa-caret-down' : 'fa-caret-right'"></span>
+                        <span>{{ groupContainer.Description}}</span>
+                    </h2>
+                </div>
+                <div class="col-xl-5 col-lg-3">
+                    <i class="fa fa-circle fa-2x" [ngClass]="'color-' + groupContainer.Color"></i>
+                </div>
+            </div>
+            <div [style.display]="isDisplayed[groupContainer.Category] ? 'block' : 'none'" class="monitoring-semaphore-group">
+                <app-monitoring-semaphore-group [cellClick]="cellClick"
+                                                [category]="groupContainer.Category"
+                                                [initialDisplay]="isDisplayed[groupContainer.Category]"
+                                                (detailLinkHandler)="onDetailLinkClicked($event)"></app-monitoring-semaphore-group>
+            </div>
+        </ng-container>
+    </section>
+</ng-container>
+<ng-template #template let-anchor>
+    <span>{{ anchor.nativeElement.innerText }}</span>
+</ng-template>
+
+<ng-template #showSpinner>
+    <app-spinner [visible]="true"></app-spinner>
+</ng-template>
+
+<a #anchor></a>

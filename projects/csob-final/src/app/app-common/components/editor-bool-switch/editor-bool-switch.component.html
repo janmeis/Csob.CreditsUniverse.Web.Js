@@ -1,0 +1,22 @@
+<div class="form-group">
+    <h4 *ngIf="hasTitle" class="editor-label">{{ title }}</h4>
+    <ng-container *ngIf="!readonly;else isReadonly">
+        <a class="pr-2 label label-off" (click)="clickHandler(false)">{{ labelOff }}</a>
+        <kendo-switch [name]="name"
+                      [(ngModel)]="value"
+                      (valueChange)="switchClicked.emit(value)"
+                      [onLabel]="' '"
+                      [offLabel]="' '"></kendo-switch>
+        <a class="pl-2 label label-on" (click)="clickHandler(true)">{{ labelOn }}</a>
+    </ng-container>
+    <ng-template #isReadonly>
+        <span class="pr-2 label label-off">{{ labelOff }}</span>
+        <kendo-switch [name]="name"
+                      [(ngModel)]="value"
+                      [onLabel]="' '"
+                      [offLabel]="' '"
+                      readonly="true"
+                      class="readonly"></kendo-switch>
+        <span class="pl-2 label label-on">{{ labelOn }}</span>
+    </ng-template>
+</div>

@@ -1,0 +1,47 @@
+<form #form="ngForm">
+    <div class="row">
+        <div class="col-lg-4">
+            <editor-enum [enumValues]="'EFormat'" [allowedEnumValues]="allowedEnumValues" [(value)]="model.FormatEnum" label="{{ 'financial_new_dialog.format' | translate }}" layout="radio" [required]="true" i18n-label #editorEnum></editor-enum>
+        </div>
+        <div class="col-lg-7">
+            <editor-text [(value)]="model.Title" label="{{ 'financial_new_dialog.title' | translate }}" [autofocus]="true" i18n-label></editor-text>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4">
+            <editor-date label="{{ 'financial_new_dialog.valid_from' | translate }}" [(value)]="validFrom" [required]="true" (valueChange)="onValidFromValueChanged()" i18n-label></editor-date>
+        </div>
+        <div class="col-lg-4">
+            <editor-date label="{{ 'financial_new_dialog.valid_to' | translate }}" [(value)]="validTo" [required]="true" i18n-label></editor-date>
+        </div>
+        <div class="col-lg-3 offset-lg-1">
+            <editor-bool [(value)]="model.Consolidated" label="{{ 'financial_new_dialog.is_consolidated' | translate }}" i18n-label></editor-bool>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3">
+            <editor-enum [enumValues]="'ETypeOfStatement'" [(value)]="model.ReportTypeKey" label="{{ 'financial_new_dialog.reporttype' | translate }}" [required]="true" i18n-label></editor-enum>
+        </div>
+        <div class="col-lg-3">
+            <editor-codebook codebook="Currency" [(value)]="model.CurrencyId" label="{{ 'financial_new_dialog.currency' | translate }}" [required]="true" i18n-label></editor-codebook>
+        </div>
+        <div class="col-lg-3">
+            <editor-codebook codebook="EUnit" [(value)]="model.UnitKey" label="{{ 'financial_new_dialog.unit' | translate }}" i18n-label></editor-codebook>
+        </div>
+        <div class="col-lg-3">
+            <editor-bool [(value)]="model.AuditorOpinion" label="{{ 'financial_new_dialog.auditor_opinion' | translate }}" i18n-label></editor-bool>
+        </div>
+    </div>
+    <div class="form-group validation-summary alert alert-warning" *ngIf="form.valid && errors">
+        {{errors}}
+    </div>
+    <div class="form-group alert alert-warning" *ngIf="fiscalYearInvalid">
+        {{ 'financial_new_dialog.start_date_invalid_fiscal_year_start' | translate}}
+    </div>
+    <div class="k-button-group mt-4">
+        <button class="k-button k-primary" (click)="onSubmit()" [disabled]="!(form.valid && editorEnum.value)">
+            <span i18n>{{ 'financial_new_dialog.save_new' | translate }}</span>
+        </button>
+        <button class="k-button" (click)="onClose()" i18n>{{ 'financial_new_dialog.cancel' | translate }}</button>
+    </div>
+</form>

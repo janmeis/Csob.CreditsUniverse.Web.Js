@@ -1,0 +1,101 @@
+<section *ngIf="data"
+         kendoTooltip
+         #kendoTooltipInstance="kendoTooltip"
+         showOn="none"
+         [tooltipTemplate]="template"
+         filter=".k-grid--clickable th, .k-grid--clickable td"
+         (mouseover)="showTooltip($event, kendoTooltipInstance)">
+    <kendo-grid [data]="data"
+                name="dashboard-client-grid"
+                [pageSize]="grid.take"
+                [skip]="grid.skip"
+                [sort]="grid.sort"
+                [sortable]="{ allowUnsort: true, mode: 'single' }"
+                [resizable]="false"
+                [filterable]="true"
+                [filter]="grid.filter"
+                [pageable]="{ buttonCount:5, pageSizes:[10,20,50,120] }"
+                [rowClass]="getRowClass"
+                (dataStateChange)="gridUpdateHandler.emit($event)"
+                (cellClick)="gridCellClickHandler.emit($event)"
+                class="k-grid--clickable">
+        <kendo-grid-column width="180" field="DashboardTypeId" title="{{ 'dashboard_client_grid.dashboard_type' | translate }}" class="wrap-column" i18n-title>
+            <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+                <drop-down-list-filter [filter]="filter"
+                                       [data]="dashboardTypes"
+                                       [column]="column"
+                                       textField="Text"
+                                       valueField="Value">
+                </drop-down-list-filter>
+            </ng-template>
+            <ng-template kendoGridCellTemplate let-dataItem>
+                <span [style.background-color]="getBkgColor(dataItem, dashboardTypes)" class="dashboard-type"></span>
+                <span>
+                    {{dataItem.DashboardType}}
+                </span>
+            </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column width="120" field="DashboardReason" title="{{ 'dashboard_client_grid.dashboard_reason' | translate }}" class="wrap-column column" i18n-title>
+            <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+                <full-text-filter [filter]="filter" [column]="column"></full-text-filter>
+            </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column width="120" field="DashboardState" title="{{ 'dashboard_client_grid.dashboard_state' | translate }}" class="wrap-column" i18n-title>
+            <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+                <drop-down-list-filter [filter]="filter"
+                                       [data]="dashboardStates"
+                                       [column]="column"
+                                       textField="Text"
+                                       valueField="Value">
+                </drop-down-list-filter>
+            </ng-template>
+            <ng-template kendoGridCellTemplate let-dataItem>
+                {{ 'dashboard_client_grid.' + EDashboardState[dataItem.DashboardState] | translate }}
+            </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column width="120" field="FulfilmentRequiredOn" title="{{ 'dashboard_client_grid.fulfilment_required_on' | translate }}" class="wrap-column" i18n-title>
+            <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+                <date-filter [filter]="filter" [column]="column"></date-filter>
+            </ng-template>
+            <ng-template kendoGridCellTemplate let-dataItem>
+                <div class="text-right">{{dataItem.FulfilmentRequiredOn | localDate : 'date'}}</div>
+            </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column width="120" field="FulfilmentOn" title="{{ 'dashboard_client_grid.fulfilled_on' | translate }}" class="wrap-column" i18n-title>
+            <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+                <date-filter [filter]="filter" [column]="column"></date-filter>
+            </ng-template>
+            <ng-template kendoGridCellTemplate let-dataItem>
+                <div class="text-right">{{dataItem.FulfilmentOn | localDate : 'date'}}</div>
+            </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column width="120" field="FulfilledBy" title="{{ 'dashboard_client_grid.fulfilled_by' | translate }}" class="wrap-column" i18n-title>
+            <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+                <full-text-filter [filter]="filter" [column]="column"></full-text-filter>
+            </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column width="180" field="Branch" title="{{ 'dashboard_client_grid.branch' | translate }}" class="wrap-column" i18n-title>
+            <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+                <full-text-filter [filter]="filter" [column]="column"></full-text-filter>
+            </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column width="120" field="MainManager" title="{{ 'dashboard_client_grid.manager' | translate }}" class="wrap-column" i18n-title>
+            <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+                <full-text-filter [filter]="filter" [column]="column"></full-text-filter>
+            </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="Comment" title="{{ 'dashboard_client_grid.comment' | translate }}" class="wrap-column" i18n-title>
+            <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+                <full-text-filter [filter]="filter" [column]="column"></full-text-filter>
+            </ng-template>
+        </kendo-grid-column>
+        <ng-template kendoGridNoRecordsTemplate>
+            <div class="w-120 text-center">
+                {{ 'dashboard_client_grid.no_dashboard_items' | translate}}
+            </div>
+        </ng-template>
+    </kendo-grid>
+</section>
+<ng-template #template let-anchor>
+    <span>{{ anchor.nativeElement.innerText }}</span>
+</ng-template>

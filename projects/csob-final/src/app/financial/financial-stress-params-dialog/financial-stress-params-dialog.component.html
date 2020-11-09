@@ -1,0 +1,44 @@
+<form #form="ngForm">
+    <div class="flexed-form">
+        <div class="form-row">
+            <editor-enum enumValues="EStressAnalysisVariant" [(value)]="model.Variant" label="{{ 'financial_stress_params_dialog.variant' | translate }}" layout="radio" [required]="true" i18n-label></editor-enum>
+            <editor-text [(value)]="periodCount" (validate)="validatePeriods($event)" label="{{ 'financial_stress_params_dialog.periods_count' | translate }}" [required]="true" i18n-label mode="number"></editor-text>
+            <!--<editor-text [(value)]="model.Title" label="Title" [required]="true" i18n-label></editor-text>-->
+        </div>
+        <div class="form-row">
+            <editor-enum enumValues="EStressAnalysisIndicator" [(value)]="model.Indicator" label="{{ 'financial_stress_params_dialog.indicator' | translate }}" [required]="true" i18n-label></editor-enum>
+            <editor-enum enumValues="EStressAnalysisVariable" [(value)]="model.Variable" label="{{ 'financial_stress_params_dialog.variable' | translate }}" [required]="true" i18n-label></editor-enum>
+        </div>
+
+        <ng-container *ngIf="model.Variant==EStressAnalysisVariant.Basic">
+            <div class="form-row">
+                <div class="col-md-4">
+                    <editor-text [(value)]="goalValue" mode="number" label="{{ 'financial_stress_params_dialog.goal' | translate }}"
+                                 name="goal"
+                                 [required]="true" i18n-label></editor-text>
+                </div>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="model.Variant==EStressAnalysisVariant.Advanced">
+            <div class="form-row">
+                <h5 i18n>{{ 'financial_stress_params_dialog.goal_values' | translate }}</h5>
+            </div>
+            <div class="form-row" *ngFor="let period of periods;let i=index">
+                <div class="col-md-1 offset-1"><label>{{period}}</label></div>
+                <div class="col-md-4">
+                    <editor-text [(value)]="model.Values[i]" mode="number" [required]="true" [noLabel]="period"></editor-text>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+    <div class="form-group validation-summary alert alert-warning" *ngIf="form.valid && errors">
+        {{errors}}
+    </div>
+</form>
+<div class="buttons pull-right">
+    <button type="submit" class="btn btn-success" (click)="onSubmit()" i18n
+            [disabled]="form.invalid">
+        {{ 'financial_stress_params_dialog.compute' | translate }}
+    </button>
+    <button type="button" class="btn btn-default" (click)="onClose()" i18n>{{ 'financial_stress_params_dialog.cancel' | translate }}</button>
+</div>

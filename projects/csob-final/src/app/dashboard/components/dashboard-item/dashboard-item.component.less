@@ -1,0 +1,17 @@
+@import "../../../../styles/atoms/_variables.less";
+
+.events {
+	overflow-y: auto;
+	cursor: pointer;
+	height: 100px;
+	a {
+		text-decoration: none;
+		color: @color-grey-dark;
+		&:hover {
+			color: @color-black;
+		}
+		.event__description span {
+			margin-left: 3px;
+		}
+	}
+}

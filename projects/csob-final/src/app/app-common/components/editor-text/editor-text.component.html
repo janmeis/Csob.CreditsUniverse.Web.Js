@@ -1,0 +1,73 @@
+<div class="form-group">
+    <label [for]="name" class="editor-label" [class.required]="required && !readonly" [class.read-only-child]="readonly" [hidden]="!label">{{label}}</label>
+    <ng-container *ngIf="!readonly">
+        <ng-container *ngIf="mode=='currency' || mode == 'number'">
+            <kendo-numerictextbox [(ngModel)]="value" [name]="name" [required]="required"
+                                  [spinners]="false"
+                                  [step]=0
+                                  [minlength]="minlength" [maxlength]="maxlength" #state="ngModel"
+                                  [placeholder]="placeholder"
+                                  [numberValidator]="mode=='number'"
+                                  [decimals]="numdecplaces"
+                                  [numdecplaces]="numdecplaces"
+                                  [numfracplaces]="numfracplaces"
+                                  [editorValidator]="onValidate"
+                                  [format]="mode=='currency' ? formatOptions : '############'"
+                                  [readonly]="readonly"
+                                  [autoCorrect]="autoCorrect"
+                                  [max]="maxValue"
+                                  [tabindex]="tabIndex"
+                                  #numericInput
+                                  (blur)="blur.emit($event)"
+                                  [ngClass]="{'transparent' : isTransparent}">
+            </kendo-numerictextbox>
+            <editor-validations [state]="state" [editor]="this" [label]="label || noLabel"></editor-validations>
+        </ng-container>
+
+        <ng-container *ngIf="mode == 'text' || mode == 'numberAsText'">
+            <input kendoTextBox [(ngModel)]="value" [name]="name" [required]="required"
+                   [minlength]="minlength" [maxlength]="maxlength" #state="ngModel"
+                   [placeholder]="placeholder"
+                   [numberValidator]="mode == 'numberAsText'"
+                   [numdecplaces]="numdecplaces"
+                   [numfracplaces]="numfracplaces"
+                   [editorValidator]="onValidate"
+                   (blur)="blur.emit($event)"
+                   [ngClass]="{'transparent' : isTransparent}"
+                   [autofocus]="autofocus" />
+            <editor-validations [state]="state" [editor]="this" [label]="label || noLabel"></editor-validations>
+        </ng-container>
+
+        <ng-container *ngIf="!readonly && mode == 'multiline'">
+            <textarea [(ngModel)]="value" [name]="name" [required]="required" [minlength]="minlength" [maxlength]="maxlength" #state="ngModel"></textarea>
+            <editor-validations [state]="state" [editor]="this" [label]="label || noLabel"></editor-validations>
+        </ng-container>
+    </ng-container>
+
+    <ng-container *ngIf="readonly">
+        <div kendoTooltip
+             #kendoTooltipInstance="kendoTooltip"
+             [tooltipTemplate]="template"
+             filter="p"
+             showOn="none"
+             (mouseover)="showTooltip($event, kendoTooltipInstance)"
+             (mouseleave)="hideTooltip(kendoTooltipInstance)">
+            <p class="text-box-readonly k-textbox w-100" [ngClass]="{'transparent' : isTransparent}">
+                <ng-container *ngIf="mode == 'currency'">
+                    <span name="name" class="w-100 text-right">{{value | number: pipeArg()}}</span>
+                </ng-container>
+
+                <ng-container *ngIf="mode == 'number' || mode == 'numberAsText'">
+                    <span name="name" class="w-100 text-right">{{ value }}</span>
+                </ng-container>
+
+                <ng-container *ngIf="mode != 'currency' && mode != 'number' && mode != 'numberAsText'">
+                    <span name="name">{{value}}</span>
+                </ng-container>
+            </p>
+        </div>
+        <ng-template #template let-paragraph>
+            <span>{{ paragraph.nativeElement.innerText }}</span>
+        </ng-template>
+    </ng-container>
+</div>

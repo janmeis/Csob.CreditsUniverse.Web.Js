@@ -1,0 +1,62 @@
+<section>
+    <editor-bool-switch [(value)]="hasNonStandardAccess"
+                        (switchClicked)="isNonStandardHandler()"
+                        labelOn="{{ 'party_credit_file_management_overview.nonstandard' | translate }}"
+                        labelOff="{{ 'party_credit_file_management_overview.standard' | translate }}"
+                        [readonly]="!hasRightTo.CreditFileManagementndachange"></editor-bool-switch>
+    <div class="k-button-group text-right clearfix mb-3">
+        <button type="button" class="k-button k-success-outline" (click)="onAddClicked()" i18n [disabled]="!canAdd" *hasRightTo="hasRightTo?.CreditFileManagementedit">{{ 'party_credit_file_management_overview.add' | translate }}</button>
+        <button type="button" class="k-button k-danger-outline" (click)="onDeleteClicked()" i18n [disabled]="!canDelete" *hasRightTo="hasRightTo?.CreditFileManagementedit">	{{ 'party_credit_file_management_overview.delete' | translate }} </button>
+    </div>
+
+    <div *ngIf="view$"
+            kendoTooltip
+            #kendoTooltipInstance="kendoTooltip"
+            showOn="none"
+            [tooltipTemplate]="template"
+            filter=".k-grid th, .k-grid td"
+            (mouseover)="showTooltip($event, kendoTooltipInstance)">
+        <kendo-grid [data]="view$ | async"
+                    [loading]="view$.loading"
+                    [pageSize]="state.take"
+                    [skip]="state.skip"
+                    [sort]="state.sort"
+                    [sortable]="{allowUnsort: false, mode:  'single'}"
+                    [pageable]="{buttonCount:5, pageSizes:[10,20,50,100]}"
+                    [selectable]="{checkboxOnly:true}"
+                    [kendoGridSelectBy]="managementSelectionKey"
+                    [selectedKeys]="selection"
+                    (selectedKeysChange)="onGridSelectedKeysChange($event)"
+                    (dataStateChange)="onGridDataStateChange($event)"
+                    class="k-grid--clickable">
+            <kendo-grid-checkbox-column width="80" *hasRightTo="hasRightTo?.CreditFileManagementedit"></kendo-grid-checkbox-column>
+            <kendo-grid-column field="CreditEntityId" width="100" title="{{ 'party_credit_file_management_overview.entity' | translate }}" class="wrap-column source-party-column" i18n-title>
+                <ng-template kendoGridCellTemplate let-dataItem>
+                    {{ 'party_credit_file_management_overview.bank' | translate }}
+                </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column field="BranchName" title="{{ 'party_credit_file_management_overview.branch' | translate }}" class="wrap-column source-party-column" i18n-title>
+                <ng-template kendoGridCellTemplate let-dataItem>
+                    <div class="w-100 text-right">{{dataItem.BranchName }}&nbsp;({{dataItem.BranchCode }})</div>
+                </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column field="MainManager" title="{{ 'party_credit_file_management_overview.main_manager' | translate }}" i18n-title></kendo-grid-column>
+            <kendo-grid-column field="CreatedOn" width="160" title="{{ 'party_credit_file_management_overview.valid_from' | translate }}" i18n-title>
+                <ng-template kendoGridCellTemplate let-dataItem>
+                    <div class="w-100 text-right">{{dataItem.CreatedOn | localDate : 'dateTime'}}</div>
+                </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column field="ModifiedBy" title="{{ 'party_credit_file_management_overview.changed_by' | translate }}" i18n-title></kendo-grid-column>
+            <kendo-grid-column>
+                <ng-template kendoGridCellTemplate let-dataItem>
+                    <button type="button" class="k-button" (click)="onManageClick(dataItem.BranchId)" *hasRightTo="hasRightTo?.CreditFileManagementedit">{{ 'party_credit_file_management_overview.manage' | translate }}</button>
+                </ng-template>
+            </kendo-grid-column>
+        </kendo-grid>
+    </div>
+    <ng-template #template let-anchor>
+        <span>{{ anchor.nativeElement.innerText }}</span>
+    </ng-template>
+</section>
+
+<app-spinner [visible]="progress.loading"></app-spinner>

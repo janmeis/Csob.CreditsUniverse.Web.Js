@@ -1,0 +1,73 @@
+<header>
+    <h1 i18n>{{ 'pd_rating_overview.page_title' | translate }}</h1>
+</header>
+<section>
+    <div class="icon-button-group">
+        <button *ngIf="CalculatePdRating?.CanAdd && hasRightTo?.PdRatingnew"
+                class="icon-button -success"
+                routerLink="../new"
+                title="{{ 'pd_rating_overview.add_new_manually' | translate }}"
+                i18n-title>
+            <span class="fa fa-plus"></span>
+            <span i18n>{{ 'pd_rating_overview.add_new' | translate }}</span>
+        </button>
+        <button *ngIf="party?.CanCalculatePdRating && CalculatePdRating?.CanCalculate && hasRightTo?.PdRatingcalculate"
+                class="icon-button -primary"
+                routerLink="../detail"
+                [queryParams]="{ pdRatingModel: party?.PDModelId || 0 }"
+                title="{{ 'pd_rating_overview.add_new_calculation' | translate }}"
+                i18n-title>
+            <span class="fa fa-calculator"></span>
+            <span i18n>{{ 'pd_rating_overview.calculate_new' | translate }}</span>
+        </button>
+    </div>
+    <div *ngIf="view$"
+         kendoTooltip
+         #kendoTooltipInstance="kendoTooltip"
+         showOn="none"
+         [tooltipTemplate]="template"
+         filter=".k-grid--clicable th, .k-grid--clicable td"
+         (mouseover)="showTooltip($event, kendoTooltipInstance)">
+        <kendo-grid [data]="view$ | async"
+                    [loading]="view$.loading"
+                    [pageSize]="grid.take"
+                    [skip]="grid.skip"
+                    [sort]="grid.sort"
+                    [sortable]="{ allowUnsort: true, mode: 'single' }"
+                    [resizable]="false"
+                    [pageable]="{buttonCount:5, pageSizes:[10,20,50,100]}"
+                    (dataStateChange)="onGridUpdate($event)"
+                    (cellClick)="onGridCellClicked($event)"
+                    class="k-grid--clickable">
+            <kendo-grid-column width="140" field="FinValidTo" title="{{ 'pd_rating_overview.fin_valid_to' | translate }}" i18n-title>
+                <ng-template kendoGridCellTemplate let-dataItem>
+                    <div class="w-100 text-right">{{dataItem.FinValidTo | localDate : 'date'}}</div>
+                </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column width="70" field="FinConsolidation" title="{{ 'pd_rating_overview.fin_consolidation' | translate }}" i18n-title>
+                <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+                    <ng-container *ngIf="dataItem.FinConsolidation != null && dataItem.FinConsolidation != undefined">
+                        {{ dataItem.FinConsolidation | booleanLookup }}
+                    </ng-container>
+                </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column width="180" field="PDModel" title="{{ 'pd_rating_overview.pd_model' | translate }}" i18n-title></kendo-grid-column>
+            <kendo-grid-column width="60" field="Rating" title="{{ 'pd_rating_overview.rating' | translate }}" i18n-title></kendo-grid-column>
+            <kendo-grid-column width="120" field="PDCategoryEnum" title="{{ 'pd_rating_overview.category' | translate }}" i18n-title>
+                <ng-template kendoGridCellTemplate let-dataItem>
+                    {{dataItem.PDCategoryEnum | codebookLookup:'EPDRatingCategory'}}
+                </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column width="120" field="State" title="{{ 'pd_rating_overview.state' | translate }}" i18n-title></kendo-grid-column>
+            <kendo-grid-column width="180" field="User" title="{{ 'pd_rating_overview.user' | translate }}" i18n-title></kendo-grid-column>
+            <kendo-grid-column width="160" field="CalculationDate" title="{{ 'pd_rating_overview.calculation_date' | translate }}" i18n-title>
+                <ng-template kendoGridCellTemplate let-dataItem>
+                    <div class="w-100 text-right">{{dataItem.CalculationDate | localDate : 'dateTime'}}</div>
+                </ng-template>
+            </kendo-grid-column>
+        </kendo-grid>
+    </div>
+    <ng-template #template let-anchor>
+        <span>{{ anchor.nativeElement.innerText }}</span>
+    </ng-template>
+</section>

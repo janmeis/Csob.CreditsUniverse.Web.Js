@@ -1,0 +1,29 @@
+<header>
+    <h1 class="mt-4 text-center" i18n>{{ 'convert_currency_dialog.convert_units_and_currency' | translate }}</h1>
+</header>
+
+<form #form="ngForm">
+    <div class="row">
+        <div class="col-12">
+            <editor-codebook label="{{ 'convert_currency_dialog.unit' | translate }}" codebook="Unit" [(value)]="model.UnitKey" required i18n-label></editor-codebook>
+        </div>
+
+        <div class="col-6">
+            <editor-codebook label="{{ 'convert_currency_dialog.currency' | translate }}" codebook="Currency" [(value)]="model.CurrencyId" required  i18n-label></editor-codebook>
+        </div>
+
+        <div class="col-6">
+            <label>
+                <input type="checkbox" [checked]="ownRate" (change)="ownRate = $event.target.checked" />
+                &nbsp;
+                <span i18n>{{ 'convert_currency_dialog.use_own_currency_rate' | translate }}</span>
+            </label>
+            <editor-text [(value)]="model.OwnCurrencyRate" noLabel="{{ 'convert_currency_dialog.custom_rate' | translate }}" mode="currency" numdecplaces="6" numfracplaces="6" [readonly]="!ownRate" i18n-noLabel></editor-text>
+        </div>
+    </div>
+</form>
+
+<div class="k-button-dialog-group">
+    <button type="submit" class="k-button k-primary" (click)="onSubmit()" [disabled]="form && !form.valid" i18n>{{ 'convert_currency_dialog.confirm' | translate }}</button>
+    <button type="button" class="k-button" (click)="close()" i18n>{{ 'convert_currency_dialog.cancel' | translate }}</button>
+</div>

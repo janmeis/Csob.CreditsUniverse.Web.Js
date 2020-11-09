@@ -1,0 +1,15 @@
+<div class="radio">
+    <ng-container *ngFor="let item of criteria.Answers">
+        <label>
+            <input *ngIf="!readonly"
+                   [name]="name" type="radio"
+                   [value]="item.Id"
+                   [(ngModel)]="value"
+                   (change)="updateValue(item.Id)" />
+            <input *ngIf="readonly"
+                   type="radio" [checked]="item.Id==value" disabled />
+            {{item.AnswerText}}
+        </label>
+    </ng-container>
+    <div class="alert error" *ngIf="criteria.Answers.length==0">Empty answers list</div>
+</div>

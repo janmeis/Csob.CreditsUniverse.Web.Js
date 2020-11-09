@@ -1,0 +1,113 @@
+@import "../../../../styles/atoms/_variables.less";
+
+.img(@png) {
+	background-image: url("../../../../assets/images/icons/@{png}");
+	display: inline-block;
+	width: 23px;
+	height: 23px;
+	margin-right: 13px;
+}
+
+.dashboard {
+	.img("dashboard.png");
+}
+
+.search {
+	.img("search.png");
+}
+
+.party-detail {
+	.img("general.png");
+}
+
+.financial-statements {
+	.img("financial-statement.png");
+}
+
+.pdrating {
+	.img("pdrating.png");
+}
+
+.product {
+	.img("product.png");
+}
+
+.collateral {
+	.img("collateral.png");
+}
+
+.raroc {
+	.img("raroc.png");
+}
+
+.contract-terms {
+	.img("terms.png");
+}
+
+.monitoring {
+	.img("monitoring.png");
+}
+
+.admin {
+	.img("administration.png");
+	-webkit-filter: invert(100%); /* Safari/Chrome */
+	filter: invert(100%);
+}
+
+.app-version {
+	position: absolute;
+	bottom: 8px;
+	left: 0;
+	width: 100%;
+	small {
+		font-size: 15px;
+		color: #fff;
+		margin-left: 20px;
+	}
+}
+
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+a {
+	width: 100%;
+	position: relative;
+	display: flex;
+	padding: 12px 20px;
+	color: #fff;
+	text-decoration: none;
+
+	@media screen and (min-width: @breakpoint-lg) {
+		padding: 8px 20px;
+	}
+
+	&:hover,
+	&.active {
+		color: @color-white;
+		background: rgba(0, 0, 0, 0.2);
+	}
+
+	span {
+		position: relative;
+		z-index: 1;
+	}
+
+	span:first-child {
+		margin: 0 auto;
+
+		@media screen and (min-width: @breakpoint-lg) {
+			margin: 0 1rem 0 0;
+		}
+	}
+
+	span:last-child {
+		display: none;
+
+		@media screen and (min-width: @breakpoint-lg) {
+			display: block;
+		}
+	}
+}

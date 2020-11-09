@@ -1,0 +1,15 @@
+<div class="negative-information-paymentflow">
+    <div class="col-md-12">
+        <label i18n>{{ 'negative_information_paymentflow.negative_information_paymentflow' | translate }}</label>
+
+        <kendo-grid *ngIf="gridData"
+                    name="negative-information-paymentflow-grid"
+                    [data]="gridData"
+                    [height]="320">
+                <kendo-grid-column field="SOM" title="{{ 'negative_information_paymentflow.som' | translate }}" i18n-title></kendo-grid-column>
+                <kendo-grid-column field="EOM" title="{{ 'negative_information_paymentflow.xom' | translate }}" i18n-title></kendo-grid-column>
+                <kendo-grid-column field="Ratio" title="{{ 'negative_information_paymentflow.ratio' | translate }}" i18n-title></kendo-grid-column>
+        </kendo-grid>
+    </div>
+</div>
+

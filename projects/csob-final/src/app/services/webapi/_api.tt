@@ -1,0 +1,71 @@
+<#@ template debug="false" hostSpecific="true" language="C#" #>
+<#@ output extension=".ts" #>
+<#@ assembly name="$(SolutionDir)/libs/TypeGen.dll" #>
+<#@ assembly name="$(SolutionDir)/Csob.CreditsUniverse.WebApi/bin/Csob.CreditsUniverse.WebApi.dll" #>
+<#@ assembly name="$(SolutionDir)/Csob.CreditsUniverse.WebApi/bin/Csob.CreditsUniverse.Common.dll" #>
+<#@ assembly name="$(SolutionDir)/Csob.CreditsUniverse.WebApi/bin/Csob.CreditsUniverse.Common.Dto.dll" #>
+<#@ assembly name="$(SolutionDir)/Csob.CreditsUniverse.WebApi/bin/System.Web.Http.dll" #>
+<#@ import namespace="TypeGen" #>
+<#@ import namespace="TypeGen.Generators" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Reflection" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text.RegularExpressions" #>
+<#@ include file="Manager.t4"#>
+<#@ include file="WebApi.t4"#>
+<#
+	var manager = Manager.Create(Host, GenerationEnvironment);
+	var apiBaseType = typeof(Csob.CreditsUniverse.WebApi.Controllers.ApiControllerBase);
+
+	var g = new OutputGenerator();
+	g.GenerateComments = true;
+	var rModule = PrepareReflectionGenerator();
+	rModule.Name = "WebApiModels";
+	DefaultNameResolver.AddModule(rModule);
+
+
+	//generate api service for each controller type
+	var webApiGen = new WebApiControllerGenerator();
+	var controllerTypes = GetControllerTypes(apiBaseType.Assembly);
+
+	var webApiModel = webApiGen.GetControllersModel(controllerTypes);
+	foreach(var controller in webApiModel)
+	{
+		var name = controller.Name.ToLower();
+		if (name.EndsWith("controller"))
+		{
+			name = name.Replace("controller","");
+		}
+		manager.StartNewFile($"{name}-api-service.ts");
+		GenerateControllerService(g, controller);
+	}
+		
+	AddGeneratedType(typeof(Csob.CreditsUniverse.Common.Dto.Enums.ETypeOfStatement));
+	rModule.MakeAllExportable(true);
+
+
+/*
+	// generate interface for each used model type
+	manager.StartNewFile($"webapi-models-interfaces.d.ts");
+	g.GenerateAmbient(rModule);		
+	WriteLine(g.Output);
+	g.Formatter.Output.Clear();
+*/
+
+
+	// generate enums from used model types properties
+	manager.StartNewFile($"webapi-models.ts");
+	GenerateModelsModule(g, rModule);
+
+
+	//generate classes from each model class with initializers
+	manager.StartNewFile($"webapi-models-classes.ts");
+	GenerateClassesModule(g, rModule);
+
+
+
+	manager.Process(true);
+#>
+

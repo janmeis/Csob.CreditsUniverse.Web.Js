@@ -1,0 +1,10 @@
+<kendo-dropdownlist [ngModel]="criteria.SelectedAnswerDto.AnswerChoice"
+                    [data]="criteria.Answers"
+                    [valuePrimitive]="true"
+                    [name]="name"
+                    textField="AnswerText"
+                    valueField="Id"
+                    [disabled]="readonly"
+                    (valueChange)="updateValue($event)"
+                    class="w-100">
+</kendo-dropdownlist>

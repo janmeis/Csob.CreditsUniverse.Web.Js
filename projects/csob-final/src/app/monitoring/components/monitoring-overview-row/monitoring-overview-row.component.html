@@ -1,0 +1,39 @@
+<ng-container [ngSwitch]="dataItem.CategoryId">
+    <ng-container *ngSwitchCase="EMonitoringCategory.NegativeInformations">
+            <div [ngClass]="{'color-red': dataItem.ColumnValues[c].Value=='true',
+                                'text-underline': canClick}">
+                <ng-container *ngTemplateOutlet="boolValue;context:{$implicit:dataItem}"></ng-container>
+            </div>
+    </ng-container>
+    <ng-container *ngSwitchCase="EMonitoringCategory.ContractTermsFinancial">
+        <div [ngClass]="{ 'color-red': !(dataItem.ColumnValues[c].Fulfilled || dataItem.ColumnValues[c].IsEmpty) && !!dataItem.ColumnValues[c].Value,
+                                'text-underline': canClick}">
+            <ng-container *ngTemplateOutlet="numericValue;context:{$implicit:dataItem}"></ng-container>
+        </div>
+    </ng-container>
+    <ng-container *ngSwitchCase="EMonitoringCategory.ContractTermsNonFinancial">
+        <div [ngClass]="{'color-red': dataItem.ColumnValues[c].Value=='true',
+                        'text-underline' : canClick}">
+            <ng-container *ngTemplateOutlet="boolValue;context:{$implicit:dataItem}"></ng-container>
+        </div>
+    </ng-container>
+    <ng-container *ngSwitchDefault>
+        <div *ngIf="isDate(dataItem.ColumnValues[c].Value);else plainValue"
+                class="czech-date"
+                [attr.czech-date]="dataItem.ColumnValues[c].Value">
+            {{ dataItem.ColumnValues[c].Value | czechDateOnly }}
+        </div>
+        <ng-template #plainValue>
+            <div [ngClass]="{'text-underline' : canClick}">
+                <ng-container *ngTemplateOutlet="numericValue;context:{$implicit:dataItem}"></ng-container>
+            </div>
+        </ng-template>
+    </ng-container>
+</ng-container>
+
+<ng-template #boolValue let-value>
+    {{ !value.ColumnValues[c].IsEmpty ? (value.ColumnValues[c].Value=='true' | booleanLookup) : value.ColumnValues[c].Value }}
+</ng-template>
+<ng-template #numericValue let-value>
+    {{ value.ColumnValues[c].Value || '&nbsp;&nbsp;&nbsp;' }}
+</ng-template>

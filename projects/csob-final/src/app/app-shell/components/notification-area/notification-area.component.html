@@ -1,0 +1,13 @@
+<div *ngIf="userNotificationService.messages.length>0">
+    <div *ngFor="let msg of userNotificationService.messages"
+         class="notification ontop"
+         [class.error]="msg.type==ENotificationType.Error"
+         [class.warning]="msg.type==ENotificationType.Warning"
+         [class.info]="msg.type==ENotificationType.Information"
+         [class.success]="msg.type==ENotificationType.Success">
+        <div>
+            <a class="notification__close-btn" title="Close" (click)="removeMessage(msg)"></a>
+            <span [innerHTML]="msg.message | safeHtml"></span>
+        </div>
+    </div>
+</div>

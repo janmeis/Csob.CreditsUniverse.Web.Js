@@ -1,0 +1,66 @@
+@import "../../../../styles/atoms/_variables.less";
+@import "../dropdown-colors/colors.less";
+
+#group-section {
+	.col-xl-7 h3 {
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+	margin-bottom: 12px;
+	h3 {
+		margin-bottom: 5px;
+
+		.fa-caret-down,
+		.fa-caret-right {
+			width: 18px;
+			padding-right: 8px;
+			cursor: pointer;
+		}
+	}
+	.light-treatment {
+		font-weight: 600;
+		font-size: 0.9em;
+		&.color-red {
+			.color-red-mixin();
+		}
+		&.color-white {
+			.color-white-mixin();
+		}
+	}
+
+	::ng-deep .k-grid {
+		border: 1px solid @color-border;
+		tr td {
+			.fa-circle {
+				&.color-white {
+					.color-white-mixin();
+				}
+
+				&.color-green {
+					.color-green-mixin();
+				}
+
+				&.color-red {
+					.color-red-mixin();
+				}
+
+				&.color-orange {
+					.color-orange-mixin();
+				}
+			}
+			a {
+				&.k-icon {
+					margin-left: -56px;
+				}
+				&:not(.k-icon) {
+					color: @color-primary-dark;
+					&:hover {
+						cursor: pointer;
+						text-decoration: underline;
+					}
+				}
+			}
+		}
+	}
+}

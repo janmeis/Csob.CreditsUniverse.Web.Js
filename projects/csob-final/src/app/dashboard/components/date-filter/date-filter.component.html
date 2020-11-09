@@ -1,0 +1,4 @@
+<div class="date-filter">
+    <kendo-dateinput [(value)]="selectedValue"  #dateInput (focus)="openKendoDatePicker()"></kendo-dateinput>
+    <span *ngIf="!!selectedValue && isDate(selectedValue)" class="k-icon k-i-x-circle" (click)="selectedValue=null"></span>
+</div>

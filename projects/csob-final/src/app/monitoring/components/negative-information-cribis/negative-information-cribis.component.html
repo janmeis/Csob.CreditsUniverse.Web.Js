@@ -1,0 +1,38 @@
+<div *ngIf="filterable" class="col-md-4">
+    <editor-bool-switch [value]="showInactive" (switchClicked)="showInactiveHandler($event)"
+        title="{{ 'negative_information_cribis.show_mode' | translate }}"
+        labelOn="{{ 'negative_information_cribis.also_inactive' | translate }}"
+        labelOff="{{ 'negative_information_cribis.only_active' | translate }}">
+    </editor-bool-switch>
+</div>
+
+<div class="row negative-information-cribis">
+    <div class="col-md-12">
+        <label i18n>{{ 'negative_information_cribis.negative_information_cribis' | translate }}</label>
+
+        <kendo-grid *ngIf="gridData"
+                    name="negative-information-cribis-grid"
+                    [data]="gridData"
+                    [filterable]="false"
+                    [filter]="filter"
+                    [height]="320">
+            <kendo-grid-column field="StartedFrom" title="{{ 'negative_information_cribis.started_from' | translate }}" i18n-title>
+                <ng-template kendoGridCellTemplate let-dataItem>
+                    {{dataItem.StartedFrom | localDate : 'date'}}
+                </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column field="RiskEvent" title="{{ 'negative_information_cribis.risk_event' | translate }}" i18n-title></kendo-grid-column>
+            <!-- <kendo-grid-column field="ValidFrom" title="{{ 'negative_information_cribis.valid_from' | translate }}" i18n-title>
+                <ng-template kendoGridCellTemplate let-dataItem>
+                    {{dataItem.ValidFrom | localDate : 'date'}}
+                </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column field="ValidTo" title="{{ 'negative_information_cribis.valid_to' | translate }}" i18n-title>
+                <ng-template kendoGridCellTemplate let-dataItem>
+                    {{dataItem.ValidTo | localDate : 'date'}}
+                </ng-template>
+            </kendo-grid-column> -->
+        </kendo-grid>
+    </div>
+</div>
+

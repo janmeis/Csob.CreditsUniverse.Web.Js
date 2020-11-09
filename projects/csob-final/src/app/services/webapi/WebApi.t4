@@ -1,0 +1,306 @@
+<#+
+
+    string LowercaseFirst(string s) {
+      return s.Substring(0,1).ToLower()+s.Substring(1);
+    }
+
+    private ReflectionGenerator reflectionGenerator;
+
+		private TypescriptModule PrepareReflectionGenerator()
+		{
+			reflectionGenerator = new ReflectionGenerator();
+			//reflectionGenerator.GenerationStrategy.CommentSource = true;
+			reflectionGenerator.NamingStrategy.InterfacePrefix = "I";
+			reflectionGenerator.AddMap(typeof(Csob.CreditsUniverse.Common.Dto.Dto.ServerDate), PrimitiveType.Date);
+			reflectionGenerator.AddMap(typeof(Csob.CreditsUniverse.Common.DateOnly), PrimitiveType.String);
+			//WARN: sync this with refl. generator in GenerateClasses
+			return reflectionGenerator.Module;
+		}
+
+		private List<Type> GetControllerTypes(Assembly assembly)
+		{
+			var controllerTypes = new List<Type>();
+			controllerTypes.Add(typeof(System.Web.Http.ApiController));
+			while(true){
+				var toAdd = assembly.GetTypes()
+										  .Where(t=>!controllerTypes.Contains(t))
+										  .Where(t=>controllerTypes.Contains(t.BaseType))
+										  .ToArray();
+				if (toAdd.Length==0)
+					break;
+				controllerTypes.AddRange(toAdd);
+			}
+			controllerTypes.RemoveAll(t=>t.IsAbstract);
+			return controllerTypes;
+		}
+
+
+    void GenerateControllerService(OutputGenerator gen, TypeGen.Generators.WebApiControllerGenerator.ControllerModel controller)
+    {
+      //! this method is using combination of typescript generator and template generator
+      var service = controller.Name.Replace("Controller","")+"ApiService";
+      WriteLine("import { Injectable } from '@angular/core';");
+	  WriteLine("import { HttpResponse } from '@angular/common/http';");
+      WriteLine("import { Observable } from 'rxjs';");
+      WriteLine("import { ApiBaseService } from '../api-base.service';");
+      WriteLine("import * as WebApiModels from './webapi-models';");
+      if (!String.IsNullOrEmpty(controller.Comment))
+      {
+        WriteLine($"// {controller.Comment}");
+      }
+      WriteLine("@Injectable({ providedIn: 'root' })");
+      Write("export ");
+
+      var proxyType = new TypescriptTypeReference("ApiBaseService");
+      var cls = new ClassType(service);
+      cls.Members.Add(
+        new FunctionMember("constructor", null)
+        {
+          Accessibility = null,
+          Parameters = { new FunctionParameter("api") { Accessibility = AccessibilityEnum.Public, ParameterType = proxyType } },
+        });
+        
+      foreach(var action in controller.Actions)
+      {
+        cls.Members.Add(GenerateAction(action));
+      }
+
+      //use typescript generator and output it
+      gen.Generate(cls);
+  		WriteLine(gen.Output);
+	  	gen.Formatter.Output.Clear();
+    }
+
+
+    private Type gResultType = typeof(Csob.CreditsUniverse.WebApi.Controllers.Result<>);
+
+    private FunctionMember GenerateAction(TypeGen.Generators.WebApiControllerGenerator.ActionModel action)
+    {
+	  var cats = action.Source?.GetCustomAttributes().OfType<System.ComponentModel.CategoryAttribute>().Select(cat=>cat.Category).Where(cat=>cat.StartsWith("TYPEGEN")).ToArray();
+      var apiMethod = action.HttpMethod == "POST" ? "post" : "get";	  
+	  if (cats.Any(x=>x=="TYPEGEN:DOWNLOAD")){
+		  apiMethod = "download";
+	  }
+	  if (cats.Any(x=>x=="TYPEGEN:URL")){
+	      apiMethod="url";
+	  }
+      var regex = new Regex($@"^{apiMethod}", RegexOptions.IgnoreCase);
+      var name = regex.Replace(action.Name, "");
+      name = $"{apiMethod}{name}";
+      var method = new FunctionMember(name, null)
+                    {
+                      Accessibility = AccessibilityEnum.Public,
+                      Comment = $"{action.HttpMethod} {action.UrlTemplate} {action.Name}"
+                    };
+      GenerateMethodParametersSignature(action, method);
+
+
+      //result type
+      if (action.ResultType!=null)
+      {
+        var rType = action.ResultType;
+        if (rType.IsGenericType && rType.GetGenericTypeDefinition()==gResultType)
+        {
+          rType = action.ResultType.GetGenericArguments()[0];
+          apiMethod+="Result";
+        }
+        method.ResultType = new TypescriptTypeReference("Observable")
+                        { GenericParameters = { reflectionGenerator.GenerateFromType(rType) } };
+      }
+      else
+      {
+          method.ResultType = new TypescriptTypeReference("Observable")
+                        { GenericParameters = { PrimitiveType.Any } };;
+      }
+	  if (apiMethod=="download")
+	  {
+          method.ResultType = new TypescriptTypeReference("Observable<HttpResponse<Blob>>");
+	  }
+	  if (apiMethod=="url")
+	  {
+          method.ResultType = PrimitiveType.String;
+	  }
+      //body
+      method.Body = new RawStatements();
+      method.Body.Statements.Add($"return this.api.{apiMethod}(");
+      GenerateUrlParametersValue(action, method);
+      method.Body.Statements.Add(", ");
+      GenerateNamedParametersValue(action, method);
+      var dataParam = action.Parameters.FirstOrDefault(p => p.IsData);
+      if (dataParam != null)
+      {
+          method.Body.Statements.Add(", " + dataParam.Name);
+          if (dataParam.IsData)
+          {
+              method.Body.Statements.Add("/* DATA */");
+          }
+      }
+      method.Body.Statements.Add(");");
+      return method;
+    }
+
+    private void GenerateMethodParametersSignature(
+      TypeGen.Generators.WebApiControllerGenerator.ActionModel action,
+      FunctionMember method
+    )
+      {
+          method.Parameters.AddRange(action.Parameters
+              .Where(p => !p.IsOptional)
+              .Select(p => new FunctionParameter(p.Name)
+              {
+                  ParameterType = reflectionGenerator.GenerateFromType(p.Type),
+                  IsOptional = false
+              }));
+          //consider: 
+          //  if there is only one optional parameter, or all opt. parameters are last (it must be in c# decl), 
+          //  we can generate myMethod(p1,p2,..., po1:string? = null, po2:number? = null)
+          //  but, it is needed then to call it with positional params (TypeScript doesn't know named params)
+          //  xxx.myMethod("asd","qwe",...,null, 42)
+          //compare to: call via optional properties of anonymous object
+          //  xxx.myMethod("asd","qwe",..., { po2: 42} )
+          // BUT, it can be called with any object, because all positional parameters are optional, so any object will match
+          //  xxx.myMethod("asd","qwe",..., "nonsense" )
+          // partially solved:
+          //  positional parameters are unions of non-nullable parameter objects (see code)
+          //  but this approach will still validate only one of parameters, others are than ignored (because at least one matched)
+          if (action.Parameters.Any(p => p.IsOptional))
+          {
+              var optParams = action.Parameters
+                  .Where(p => p.IsOptional)
+                  .Select(p => new RawStatements("{ ", p.Name, ": ", reflectionGenerator.GenerateFromType(p.Type), " }"))
+                  .ToArray();
+              var raw = new RawStatements();
+              foreach (var item in optParams)
+              {
+                  raw.Add(item);
+                  if (item != optParams.Last())
+                  {
+                      raw.Add(" | ");
+                  }
+                  raw.Add(" ");
+              }
+              raw.Add(" = <any>{}");
+              method.Parameters.Add(new FunctionParameter("opt") { ParameterType = new TypescriptTypeReference(raw) });
+          }
+      }
+
+      private void GenerateUrlParametersValue(TypeGen.Generators.WebApiControllerGenerator.ActionModel action, FunctionMember method)
+      {
+          var urlVar = "'" + action.UrlTemplate.TrimEnd('/').ToLower() + "'";
+          foreach (var p in action.Parameters.Where(x => x.IsUrlParam))
+          {
+              var paramName = p.UrlName ?? p.Name;
+              urlVar = urlVar.Replace("{" + paramName + "}", "' + " + p.Name + " + '");
+          }
+          var EMPTYJS = " + ''";
+          while (urlVar.EndsWith(EMPTYJS, StringComparison.InvariantCulture))
+          {
+              urlVar = urlVar.Substring(0, urlVar.Length - EMPTYJS.Length);
+          }
+
+          method.Body.Statements.Add(urlVar);
+      }
+
+      private void GenerateNamedParametersValue(TypeGen.Generators.WebApiControllerGenerator.ActionModel action, FunctionMember method)
+      {
+          var namedParameters = action.Parameters.Where(x => !x.IsUrlParam && !x.IsData).ToArray();
+          if (namedParameters.Length == 0)
+          {
+              method.Body.Statements.Add("{}");
+              return;
+          }
+          var pilist = new List<string>();
+          foreach (var p in namedParameters)
+          {
+              var pinvoke = "'" + (p.UrlName ?? p.Name) + "': ";
+              pinvoke += p.IsOptional ? ("opt['" + p.Name + "']") : p.Name;
+              pilist.Add(pinvoke);
+          }
+          method.Body.Statements.Add("{ ");
+          method.Body.Statements.Add(String.Join(", ", pilist));
+          method.Body.Statements.Add(" }");
+      }
+
+
+
+    void GenerateClassesModule(OutputGenerator g, TypescriptModule rModule)
+    {
+      var clsModule = new TypescriptModule(rModule.Name);
+      var types = ReflectionGeneratorBase.ExtractGeneratedTypes(rModule);
+      var gen2 = new ReflectionGenerator();
+			gen2.AddMap(typeof(Csob.CreditsUniverse.Common.Dto.Dto.ServerDate), PrimitiveType.Date);
+			gen2.AddMap(typeof(Csob.CreditsUniverse.Common.DateOnly), PrimitiveType.String);
+      gen2.GenerationStrategy.TargetModule = clsModule;
+      gen2.GenerationStrategy.GenerateClasses = true;
+      foreach(var en in types.Where(t=>t.IsEnum))
+      {
+        gen2.AddMap(en, new TypescriptTypeReference("WebApiModels."+en.Name));
+      }
+      gen2.GenerateTypes(types);
+
+      var declarations = new List<string>();
+      foreach(var cls in clsModule.Members
+                          .OfType<DeclarationModuleElement>()
+                          .Where(x => x.Declaration != null)
+                          .Select(x => x.Declaration)
+                          .OfType<ClassType>())
+      {
+        foreach(var m in cls.Members.OfType<PropertyMember>())
+        {
+          m.Initialization = new RawStatements("null");
+          if (m.MemberType?.ReferencedType is ArrayType)
+          {
+            m.Initialization = new RawStatements("[]");
+          }
+        }
+        declarations.Add(cls.Name);
+      }
+      //remove enums
+      clsModule.Members.RemoveAll(x=>(x is DeclarationModuleElement m) && m.EnumDeclaration!=null);
+      clsModule.MakeAllExportable(true);
+		  g.GenerateModuleContent(clsModule, null);
+
+      WriteLine("import { NgModule } from '@angular/core';");
+      WriteLine("import * as WebApiModels from './webapi-models';");
+		  WriteLine(g.Output);
+		  g.Formatter.Output.Clear();
+
+      WriteLine("@NgModule({ imports: [], declarations: [");
+      //WriteLine(String.Join(",", declarations));
+      WriteLine("]})");
+      WriteLine("export class WebApiClassesModule { }");
+    }
+
+	void AddGeneratedType(Type t)
+	{
+		reflectionGenerator.GenerateFromType(t);
+	}
+
+    void GenerateModelsModule(OutputGenerator g, TypescriptModule rModule)
+    {
+      WriteLine("import { NgModule } from '@angular/core';");
+      g.GenerateModuleContent(rModule, null);
+
+	  var enums = rModule.Members
+                          .OfType<DeclarationModuleElement>()
+                          .Where(x=>x.EnumDeclaration!=null)
+                          .Select(x=>x.EnumDeclaration)
+						  .ToArray();
+	  var ekeyenum = enums.First(x=>x.Name=="EKeyEnum");
+	  var ekeyenumMembers = ekeyenum.Members;
+	  var missing = enums
+						.Where(x=>x!=ekeyenum)
+						.Where(x=>!ekeyenumMembers.Any(m=>"E"+m.Name==x.Name))
+						.ToArray();
+	  if (missing.Length>0){
+		WriteLine("// Enums not in EKeyEnum:");
+		foreach(var e in missing)
+		  WriteLine("//    "+e.Name);
+	  }
+	  WriteLine(g.Output);
+	  g.Formatter.Output.Clear();
+      WriteLine("@NgModule({ imports: [], declarations: [");
+      WriteLine("]})");
+      WriteLine("export class WebApiModelsModule { }");
+    }
+#>

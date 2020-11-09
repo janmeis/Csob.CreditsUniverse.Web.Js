@@ -1,0 +1,100 @@
+<form #form="ngForm">
+    <div class="row">
+        <div class="col-md-3">
+            <h1 i18n>{{ 'monitoring_overview.page_title' | translate }}</h1>
+        </div>
+        <div class="col-md-3 col-lg-2 col-sm-4">
+            <div class="form-group">
+                <label>{{ 'monitoring_overview.current_client_color' | translate }}</label>
+                <div kendoTooltip
+                     title="{{ 'monitoring_overview.open_semaphore_history' | translate }}"
+                     [ngClass]="'fa fa-circle fa-2x color-' + clientSemaphore?.Color"
+                     (click)="onSemaphoreClick()">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <editor-codebook label="{{ 'monitoring_overview.view' | translate }}" [(value)]="filter.ByToDate" [readonly]="false" [codebook]="byToDateItems" (valueChange)="changePeriod('bytodate')" *hasRightTo="hasRightTo?.Monitoringchangeperiod" i18n-label></editor-codebook>
+        </div>
+        <div class="col-md-2">
+            <editor-codebook label="{{ 'monitoring_overview.period' | translate }}" [(value)]="filter.Granularity" codebook="EFrequencyUnit" (valueChange)="changePeriod('granularity')" [readonly]="filter.ByToDate==0" *hasRightTo="hasRightTo?.Monitoringchangeperiod" i18n-label></editor-codebook>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label>{{ 'monitoring_overview.change_period' | translate }}</label>
+                <div class="change-period-button-group">
+                    <button kendoTooltip
+                            title="{{ 'monitoring_overview.one_period_back' | translate }}"
+                            type="button"
+                            (click)="changePeriodeShift('back')">
+                        <i class="fa fa-chevron-left"></i>
+                    </button>
+                    <button kendoTooltip
+                            title="{{ 'monitoring_overview.one_period_forward' | translate }}"
+                            type="button"
+                            (click)="changePeriodeShift('forward')">
+                        <i class="fa fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<div kendoTooltip
+     #kendoTooltipInstance="kendoTooltip"
+     showOn="none"
+     [tooltipTemplate]="template"
+     (mouseover)="showTooltip($event, kendoTooltipInstance)">
+    <div kendoTooltip
+         filter=".czech-date"
+         [tooltipTemplate]="czechDateTemplate">
+        <kendo-grid id="monitoringGrid"
+                    [data]="gridData"
+                    [resizable]="false"
+                    [filter]="state.filter"
+                    (cellClick)="cellClickHandler($event)"
+                    class="calc-table-sized k-grid--monitoring">
+            <kendo-grid-column width="280">
+                <ng-template kendoGridHeaderTemplate>
+                    <div class="header-semaphore" (click)="headerSortDirectionHandler()">
+                        <span class="fa" [ngClass]="headerSortDirectionClass"></span>
+                        <span class="category-title" i18n>{{ 'monitoring_overview.period' | translate }}</span>
+                    </div>
+                </ng-template>
+                <ng-template kendoGridCellTemplate let-dataItem>
+                    <ng-container *ngIf="dataItem.IsSemaphore;else rowDescription">
+                        <span class="fa fa-lg" [ngClass]="sortDirectionClass[dataItem.CategoryId]"></span>
+                        <span class="category-title">{{dataItem.CategoryTitle}}</span>
+                    </ng-container>
+                    <ng-template #rowDescription>
+                        <span class="row-description">{{ dataItem.RowDescription }}</span>
+                    </ng-template>
+                </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column [style]="{'text-align': 'center'}" [headerStyle]="{'text-align': 'center'}" *ngFor="let column of monitoringColumns;let c=index" title="{{ column.Title }}" width="80">
+                <ng-template kendoGridCellTemplate let-dataItem>
+                    <ng-container *ngIf="dataItem.IsSemaphore;else otherValue">
+                        <div [ngStyle]="{'cursor': hasRightTo?.Monitoringdetail ? 'pointer' : 'auto'}"
+                            [ngClass]="'fa fa-circle color-' + dataItem.ColumnValues[c].Value"></div>
+                    </ng-container>
+                    <ng-template #otherValue>
+                        <app-monitoring-overview-row [dataItem]="dataItem"
+                                                     [c]="c"
+                                                     [canClick]="dataItem.ColumnValues[c].ClickEnabled && hasRightTo?.Monitoringdetail"></app-monitoring-overview-row>
+                    </ng-template>
+                </ng-template>
+            </kendo-grid-column>
+        </kendo-grid>
+    </div>
+</div>
+
+<ng-template #template let-anchor>
+    <span>{{ anchor.nativeElement.innerText }}</span>
+</ng-template>
+
+<ng-template #czechDateTemplate let-anchor>
+    <span>{{ anchor.nativeElement.getAttribute('czech-date') }}</span>
+</ng-template>
+
+<div *ngIf="loading" id="loader"></div>

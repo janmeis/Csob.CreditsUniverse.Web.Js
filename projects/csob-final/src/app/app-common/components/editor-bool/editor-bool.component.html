@@ -1,0 +1,13 @@
+<div class="form-group">
+    <label [for]="name" class="editor-label" *ngIf="label" [class.required]="!readonly" [class.read-only-child]="readonly">{{label}}</label>
+    <ng-container *ngIf="!readonly">
+        <a class="pr-2 label label-off" (click)="value=false" *ngIf="labelOff">{{labelOff}}</a>
+        <kendo-switch [name]="name" [(ngModel)]="value" [onLabel]="' '" [offLabel]="' '"></kendo-switch>
+        <a class="pl-2 label label-on" (click)="value=true" *ngIf="labelOn">{{labelOn}}</a>
+    </ng-container>
+    <ng-container *ngIf="readonly">
+        <span class="pr-2 label label-off" *ngIf="labelOff">{{labelOff}}</span>
+        <kendo-switch [name]="name" [(ngModel)]="value" [onLabel]="' '" [offLabel]="' '" readonly="true" class="readonly"></kendo-switch>
+        <span class="pl-2 label label-on" *ngIf="labelOn">{{labelOn}}</span>
+    </ng-container>
+</div>

@@ -1,0 +1,41 @@
+@import "../components/dropdown-colors/colors.less";
+
+.by-date-of-evaluation {
+	padding-top: 10px;
+}
+
+.export-language {
+	top: 6.5rem;
+	z-index: 9999;
+}
+
+.fa-circle {
+	&.color-white {
+		.color-white-mixin();
+	}
+
+	&.color-green {
+		.color-green-mixin();
+	}
+
+	&.color-red {
+		.color-red-mixin();
+	}
+
+	&.color-orange {
+		.color-orange-mixin();
+	}
+}
+
+h2 {
+	.fa-caret-down,
+	.fa-caret-right {
+		width: 28px;
+		padding-right: 8px;
+		cursor: pointer;
+	}
+}
+
+.monitoring-semaphore-group {
+	padding-left: 10px;
+}

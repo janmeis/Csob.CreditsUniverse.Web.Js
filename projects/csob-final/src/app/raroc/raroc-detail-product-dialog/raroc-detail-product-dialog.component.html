@@ -1,0 +1,103 @@
+<form #form="ngForm">
+    <section>
+
+        <div class="panel">
+            <div class="row">
+                <div class="col-md-12 col-lg-4">
+                    <editor-text [(value)]="product.Title" mode="text" maxlength="150" label="{{ 'raroc_detail_product_dialog.name' | translate }}" [readonly]="readonly" [autofocus]="true" i18n-label></editor-text>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <editor-codebook name="productType" [(value)]="product.ProductTypeCUId" label="{{ 'raroc_detail_product_dialog.type' | translate }}" [codebook]="productTypes" (selectionChange)="productTypeSelectionChange($event,subType)" [readonly]="readonly" required="true" i18n-label></editor-codebook>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <editor-codebook name="productSubtype" [(value)]="product.ProductSubTypeCUId" label="{{ 'raroc_detail_product_dialog.subtype' | translate }}" [codebook]="productSubtypes" (selectionChange)="productSubtypeSelectionChange($event)" [readonly]="readonly" required="true" #subType i18n-label></editor-codebook>
+                </div>
+                <div class="col-md-6 col-lg-2">
+                    <editor-bool label="{{ 'raroc_detail_product_dialog.commited' | translate }}" [(value)]="product.Commited" labelOn="{{ 'raroc_detail_product_dialog.yes' | translate }}" labelOff="{{ 'raroc_detail_product_dialog.no' | translate }}" [readonly]="readonly || ucReadOnly || !product.ProductSubTypeCUId"></editor-bool>
+                    <div *ngIf="commitedChanged && form.pristine" class="alert alert-danger">{{ 'raroc_detail_product_dialog.commited_changed' | translate }}</div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 col-lg-2">
+                    <editor-codebook label="{{ 'raroc_detail_product_dialog.currency' | translate }}" codebook="Currency" [(value)]="product.CurrencyId" [readonly]="readonly" i18n-label></editor-codebook>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <editor-text [(value)]="product.LimitValue" mode="currency" numdecplaces="0" numfracplaces="0" label="{{ 'raroc_detail_product_dialog.amount' | translate }}" [readonly]="readonly" i18n-label></editor-text>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <editor-text [(value)]="product.ExpectedDrawdown" mode="currency" numdecplaces="15" numfracplaces="5" label="{{ 'raroc_detail_product_dialog.expected_drawdown' | translate }}" [readonly]="readonly" (validate)="expectedDrawdownValidate($event)" i18n-label>
+                    </editor-text>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <editor-text [(value)]="product.MarginUsed" mode="currency" numdecplaces="15" numfracplaces="5" label="{{ 'raroc_detail_product_dialog.margin' | translate }}" [readonly]="readonly" i18n-label></editor-text>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="row">
+                <h3 class="col-lg-7">{{ 'raroc_detail_product_dialog.fee' | translate}}</h3>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-lg-2">
+                    <editor-codebook label="{{ 'raroc_detail_product_dialog.currency_fee' | translate }}" codebook="Currency" [(value)]="product.CurrencyId" [readonly]="true" i18n-label></editor-codebook>
+                </div>
+                <div class="col-md-6 col-lg-2">
+                    <editor-text [(value)]="product.FeeFixed" mode="currency" numdecplaces="15" numfracplaces="5" label="{{ 'raroc_detail_product_dialog.in_fee' | translate }}" [readonly]="readonly" i18n-label></editor-text>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <editor-text [(value)]="product.MarginUnused" mode="currency" numdecplaces="15" numfracplaces="5" label="{{ 'raroc_detail_product_dialog.commitment_fee' | translate }}" [readonly]="readonly" i18n-label></editor-text>
+                </div>
+                <div class="col-md-6 col-lg-2">
+                    <editor-text [(value)]="product.FeePeriodicalAmount" mode="currency" numdecplaces="15" numfracplaces="5" label="{{ 'raroc_detail_product_dialog.amount_fee' | translate }}" [readonly]="readonly" i18n-label></editor-text>
+                </div>
+                <div class="col-md-6 col-lg-2">
+                    <editor-codebook label="{{ 'raroc_detail_product_dialog.frequency' | translate }}" [codebook]="frequencyUnits" [(value)]="product.FeeFrequencyKey" [readonly]="readonly" i18n-label> </editor-codebook>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel">
+            <h3>{{ 'raroc_detail_product_dialog.maturity' | translate}}</h3>
+            <div class="row">
+                <div class="col-md-6 col-lg-2">
+                    <editor-bool label="{{ 'raroc_detail_product_dialog.ufn' | translate }}" [(value)]="product.UFN" [readonly]="readonly" (valueChange)="ufnValueChange($event)" i18n-label>
+                    </editor-bool>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <editor-date [(value)]="product.DueDate" label="{{ 'raroc_detail_product_dialog.Date' | translate }}" [readonly]="readonly || product.UFN || (product.DueDateQuantity && product.DueDateUnit)" [disablePast]="true" (validate)="dueDateValidate($event)" (valueChange)="dueDateValueChange($event)" i18n-label>
+                    </editor-date>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <editor-codebook label="{{ 'raroc_detail_product_dialog.month_year' | translate }}" [codebook]="monthYear" [(value)]="product.DueDateUnit" [readonly]="readonly || product.UFN || product.DueDate" (validate)="dueDateUnitValidate($event)" i18n-label>
+                    </editor-codebook>
+                </div>
+                <div class="col-md-6 col-lg-2">
+                    <editor-text [(value)]="product.DueDateQuantity" mode="number" numdecplaces="5" numfracplaces="0" label="{{ 'raroc_detail_product_dialog.count' | translate }}" [readonly]="readonly || product.UFN || product.DueDate" (validate)="dueDateQuantityValidate($event)" i18n-label></editor-text>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel" style="display: none;">
+            <h3>{{ 'raroc_detail_product_dialog.drawdown_period_title' | translate }}</h3>
+            <div class="row">
+                <div class="col-md-6 col-lg-3">
+                    <editor-bool label="{{ 'raroc_detail_product_dialog.drawdown_period' | translate }}" [(value)]="product.UtilizationTo" [readonly]="readonly" i18n-label>
+                    </editor-bool>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="k-button-group">
+                <button *ngIf="!readonly" (click)="onClose(true)" class="k-button" [disabled]="!commitedChanged && (form.pristine || form.invalid)" i18n>
+                    {{ 'raroc_detail_product_dialog.save' | translate }}
+                </button>
+                <button type="button" class="k-button" (click)="onClose(false)" i18n>
+                    {{ 'raroc_detail_product_dialog.close' | translate }}
+                </button>
+            </div>
+        </div>
+    </section>
+</form>

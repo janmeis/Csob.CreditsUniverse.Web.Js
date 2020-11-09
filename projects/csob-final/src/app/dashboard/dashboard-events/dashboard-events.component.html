@@ -1,0 +1,28 @@
+<header>
+    <h1 i18n>{{ 'dashboard_events.page_title' | translate }}</h1>
+</header>
+<div class="icon-button-group">
+    <button type="button"
+            class="icon-button"
+            routerLink="/dashboard">
+        <span class="fa fa-list-ul"></span>
+        <span i18n>{{ 'dashboard_events.back_to_dashboard' | translate }}</span>
+    </button>
+    <div class="icon-button-group__devider"></div>
+
+    <button type="button"
+        class="icon-button"
+            routerLink="../calendar"
+            [queryParams]="{ DashboardTypeId: getDashboardTypeId(grid) }">
+        <span class="fa fa-calendar"></span>
+        <span i18n>{{ 'dashboard_events.calendar' | translate }}</span>
+    </button>
+</div>
+
+<app-dashboard-events-grid *ngIf="(view$ | async) as data"
+                           [data]="data"
+                           [grid]="grid"
+                           [isForUser]="false"
+                           (dashboardTypeHandler)="getDashboardTypeId($event)"
+                           (gridUpdateHandler)="onGridUpdate($event)"
+                           (gridCellClickHandler)="onGridCellClicked($event)"></app-dashboard-events-grid>

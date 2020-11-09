@@ -1,0 +1,30 @@
+<div [class]="'form-group layout-'+layout">
+    <label [for]="name" class="editor-label" [class.required]="required && !readonly" [class.read-only-child]="readonly" [hidden]="!label">{{label}}</label>
+    <ng-container *ngIf="!readonly">
+        <ng-container *ngIf="layout=='combo'">
+            <kendo-dropdownlist [ngModel]="value"
+                                (ngModelChange)="updateValue($event)"
+                                [data]="getFilteredEnumValues()"
+                                [name]="name"
+                                [valuePrimitive]="true"
+                                spellcheck="false"
+                                textField="text"
+                                valueField="value"
+                                [required]="required"
+                                #state="ngModel">
+            </kendo-dropdownlist>
+            <editor-validations [state]="state" [label]="label || noLabel"></editor-validations>
+        </ng-container>
+        <div class="radio" *ngIf="layout=='radio'">
+            <ng-container *ngFor="let item of getFilteredEnumValues()">
+                <input [name]="name" type="radio" [value]="item.value" [checked]="item.value==value" (change)="updateValue(item.value)" [(ngModel)]="value" />
+                {{item.text}}
+            </ng-container>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="readonly">
+        <p class="text-box-readonly k-textbox">
+            <span name="name">{{getText(value)}}</span>
+        </p>
+    </ng-container>
+</div>

@@ -1,0 +1,203 @@
+<div class="row">
+    <div *ngIf="mode=='detail'"
+         class="col-lg-3">
+        <editor-date label="{{ 'pd_rating_view.calculation_date' | translate }}"
+                     [(value)]="dataSource.CalculationDate"
+                     [readonly]="true"
+                     [required]="true"
+                     i18n-label></editor-date>
+    </div>
+    <div class="col-lg-3">
+        <editor-date label="{{ 'pd_rating_view.end_accounting_period' | translate }}"
+                     [(value)]="dataSource.PDDate"
+                     [readonly]="readonly || state==EStatePDRating.Finished || finDataNeeded"
+                     [required]="true"
+                     [disableFuture]="true"
+                     i18n-label></editor-date>
+    </div>
+    <div class="col-lg-2">
+        <editor-bool name="Consolidation"
+                     id="Consolidation"
+                     [(value)]="dataSource.Consolidation"
+                     [readonly]="readonly || state==EStatePDRating.Finished || finDataNeeded"
+                     label="{{ 'pd_rating_view.is_consolidated' | translate }}" i18n-label></editor-bool>
+    </div>
+    <div class="col-lg-4">
+        <editor-codebook label="{{ 'pd_rating_view.pd_model' | translate }}"
+                         [(value)]="dataSource.PDRatingModelId"
+                         codebook="ratingmodel"
+                         [readonly]="true"
+                         [required]="true"
+                         i18n-label></editor-codebook>
+    </div>
+</div>
+
+<div class="oddelovac"></div>
+
+<div class="row">
+    <div class="col-lg-3 ">
+        <editor-codebook label="{{ 'pd_rating_view.counted_pd_rating' | translate }}"
+                         codebook="ratingcode"
+                         [(value)]="dataSource.CountedPdRatingId"
+                         [readonly]="isExternal || state!=EStatePDRating.InProcess || !resultOnly"
+                         [required]="true"
+                         mode="number"
+                         (valueChange)="countedPdRatingChanged($event)"
+                         i18n-label></editor-codebook>
+    </div>
+
+    <div class="col-lg-3">
+        <editor-text label="{{ 'pd_rating_view.percentage_rating' | translate }}"
+                     [(value)]="dataSource.PercentageRating"
+                     [readonly]="isExternal || state!=EStatePDRating.InProcess || !resultOnly"
+                     numdecplaces="2"
+                     numfracplaces="2"
+                     [autoCorrect]="true"
+                     [maxValue]="100"
+                     mode="currency"
+                     i18n-label></editor-text>
+    </div>
+
+    <ng-container *ngIf="!resultOnly && mode == 'detail'">
+        <div class="col-lg-4">
+            <editor-codebook *ngIf="dataSource.MandatoryRatingId"
+                             label="{{ 'pd_rating_view.rating_mandatory' | translate }}"
+                             codebook="ratingcode"
+                             [(value)]="dataSource.MandatoryRatingId"
+                             [readonly]="true"
+                             mode="number"
+                             i18n-label></editor-codebook>
+
+            <editor-text *ngIf="!dataSource.MandatoryRatingId"
+                         [readonly]="true"
+                         label="{{ 'pd_rating_view.rating_mandatory' | translate }}"
+                         mode="number"
+                         [value]="'N/A'"
+                         i18n-label></editor-text>
+        </div>
+        <div class="col-lg-4">
+            <editor-codebook *ngIf="dataSource.OtherRatingId"
+                             label="{{ 'pd_rating_view.rating_other_criteria' | translate }}"
+                             codebook="ratingcode"
+                             [(value)]="dataSource.OtherRatingId"
+                             [readonly]="true"
+                             mode="number"
+                             i18n-label></editor-codebook>
+
+            <editor-text *ngIf="!dataSource.OtherRatingId"
+                         [readonly]="true"
+                         label="{{ 'pd_rating_view.rating_other_criteria' | translate }}"
+                         [value]="'N/A'"
+                         mode="number"
+                         i18n-label></editor-text>
+        </div>
+        <div class="col-lg-4">
+            <editor-codebook *ngIf="dataSource.GroupRatingId"
+                             label="{{ 'pd_rating_view.rating_by_counting_the_influence_of_the_group' | translate }}"
+                             codebook="ratingcode"
+                             [(value)]="dataSource.GroupRatingId"
+                             [readonly]="true"
+                             mode="number"
+                             i18n-label></editor-codebook>
+
+            <editor-text *ngIf="!dataSource.GroupRatingId"
+                         [readonly]="true"
+                         label="{{ 'pd_rating_view.rating_by_counting_the_influence_of_the_group' | translate }}"
+                         [value]="'N/A'"
+                         mode="number"
+                         i18n-label></editor-text>
+        </div>
+    </ng-container>
+</div>
+
+<div class="oddelovac"></div>
+
+<div *ngIf="!resultOnly && mode != 'new'" class="row">
+    <div class="col-lg-4">
+        <editor-codebook label="{{ 'pd_rating_view.suggested_system_rating' | translate }}"
+                         codebook="ratingcode"
+                         [(value)]="dataSource.SuggestedSystemRatingId"
+                         [readonly]="true"
+                         mode="number"
+                         i18n-label></editor-codebook>
+    </div>
+    <div class="col-lg-4">
+        <editor-text label="{{ 'pd_rating_view.suggested_system_percent' | translate }}"
+                     [(value)]="dataSource.SuggestedSystemPercent"
+                     [readonly]="true"
+                     numdecplaces="2"
+                     numfracplaces="2"
+                     [autoCorrect]="true"
+                     [maxValue]="100"
+                     mode="currency"
+                     i18n-label></editor-text>
+    </div>
+</div>
+
+<div class="oddelovac"></div>
+
+<ng-container *ngIf="pdRatingCategory==EPDRatingCategory.Standard" >
+    <app-pd-rating-item-value [(dataSource)]="dataSource.SuggestedPDRating"
+                            mode="suggested"
+                            [parentMode]="mode"
+                            [readonly]="readonly"
+                            [state]="state"
+                            label="{{ 'pd_rating_view.suggested_pd_rating' | translate }}"
+                            [validationValue]="dataSource.ValidationPDRating"
+                            [required]="true"
+                            [ratingcode]="ratingCodeProvider"
+                            [ratingReadonly]="ratingReadonly"></app-pd-rating-item-value>
+
+    <app-pd-rating-item-value [(dataSource)]="dataSource.SuggestedAdvisorPDRating"
+                              mode="suggested_by_advisor"
+                              [parentMode]="mode"
+                              [readonly]="readonly"
+                              [state]="state"
+                              label="{{ 'pd_rating_view.suggested_advisor_pd_rating' | translate }}"
+                              [validationValue]="dataSource.ValidationPDRating"></app-pd-rating-item-value>
+
+    <div>
+        <div class="approved-pdrating" *ngFor="let a of dataSource.ApprovedPDRatings;let i=index">
+            <app-pd-rating-item-value [(dataSource)]="dataSource.ApprovedPDRatings[i]"
+                                        [resultOnly]="resultOnly"
+                                        mode="approved"
+                                        [parentMode]="mode"
+                                        [readonly]="readonly"
+                                        [state]="state"
+                                        label="{{ 'pd_rating_view.approved_pd_rating' | translate }}"
+                                        [validationValue]="dataSource.ValidationPDRating"></app-pd-rating-item-value>
+        </div>
+    </div>
+</ng-container>
+
+<div class="oddelovac"></div>
+
+<div *ngIf="isExternal" class="row">
+    <div class="col-lg-4">
+        <editor-codebook label="{{ 'pd_rating_view.rating' | translate }}"
+                         [codebook]="externalRatingsProvider"
+                         [(value)]="dataSource.ExternalRatingId"
+                         [readonly]="readonly || state!=EStatePDRating.InProcess"
+                         [required]="true"
+                         (valueChange)="ratingValueChanged($event)"
+                         i18n-label></editor-codebook>
+    </div>
+</div>
+
+<div *ngIf="mode == 'new'"
+     class="row">
+    <div class="col-lg-4">
+        <editor-enum [(value)]="dataSource.PDRatingCategoryEnum"
+                     [enumValues]="pdRatingCategoryEnumValues"
+                     [required]="true"
+                     label="{{ 'pd_rating_view.category' | translate }}"
+                     i18n-label></editor-enum>
+    </div>
+</div>
+<div *ngIf="mode == 'new' && isPDCategoryStandard()"
+     class="row">
+    <div class="col-lg-4">
+        <editor-bool name="UseAsMonitoring" id="UseAsMonitoring" [(value)]="dataSource.UseAsMonitoring" labelOff="" labelOn="{{ 'pd_rating_view.useAsMonitoring' | translate}}"></editor-bool>
+
+    </div>
+</div>

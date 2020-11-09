@@ -1,0 +1,27 @@
+<table class="calendar-table table-responsive week-calendar">
+    <thead>
+        <tr>
+            <ng-container *ngFor="let item of week.headers">
+                <th>
+                    <div class="dow">
+                        <a href="#" (click)="onDayClicked(item.date)">{{item.date|date:format}}</a>
+                    </div>
+                    <span>{{item.date|date:'EEEE'}}</span>
+                </th>
+            </ng-container>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td *ngFor="let day of week.days" [class.selectedMonth]="day.selectedMonth" [class.notSelectedMonth]="!day.selectedMonth" [ngClass]="getHolidayClass(day?.date)">
+                <div class="day">
+                    <ng-container *ngIf="day.selectedMonth">
+                        <app-dashboard-item [items]="day.items"
+                                            [dashboardTypes]="dashboardTypes"
+                                            (eventClicked)="eventClicked.emit($event)"></app-dashboard-item>
+                    </ng-container>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>

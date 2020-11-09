@@ -1,0 +1,20 @@
+<form #form="ngForm" (ngSubmit)="onSubmit()">
+  <div class="flexed-form">
+    <div class="form-row" *ngIf="model.FinStatementHeaderIds.length==1">
+        <editor-date [(value)]="model.ValidFrom" label="{{ 'financial_copy_dialog.valid_from' | translate }}" [required]="true" (validate)="onDateValidate($event)" i18n-label></editor-date>
+        <editor-date [(value)]="model.ValidTo" label="{{ 'financial_copy_dialog.valid_to' | translate }}" [required]="true" (validate)="onDateValidate($event)" i18n-label></editor-date>
+    </div>
+    <div class="form-row">
+      <editor-bool [(value)]="model.Consolidation" label="{{ 'financial_copy_dialog.is_consolidated' | translate }}" i18n-label></editor-bool>
+    </div>
+  </div>
+    <div class="form-group validation-summary alert alert-warning" *ngIf="errors.length>0">
+        {{errors}}
+    </div>
+  <div class="k-button-dialog-group">
+    <button class="k-button k-primary" type="submit" [disabled]="form?.invalid || errors.length>0">
+      <span i18n>{{ 'financial_copy_dialog.copy' | translate }}</span>
+    </button>
+    <button class="k-button" (click)="close(null)" i18n>{{ 'financial_copy_dialog.cancel' | translate }}</button>
+  </div>
+</form>

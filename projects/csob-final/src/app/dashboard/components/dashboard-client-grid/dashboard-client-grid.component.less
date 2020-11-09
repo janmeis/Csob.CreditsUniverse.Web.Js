@@ -1,0 +1,56 @@
+@import "../../../../styles/atoms/_variables.less";
+
+.k-grid {
+	height: calc(100vh - 261px);
+}
+
+::ng-deep [name="dashboard-client-grid"] tr {
+	th:first-child,
+	td:first-child {
+		padding-left: 10px;
+	}
+	&[kendoGridFilterRow] td {
+		padding-right: 2px;
+		padding-left: 2px;
+	}
+	td {
+		position: relative;
+
+		.dashboard-type {
+			display: block;
+			border-radius: 2px;
+			width: 12px;
+			height: 18px;
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			left: 12px;
+			+ span {
+				padding-left: 24px;
+				&:hover {
+					cursor: pointer;
+					text-decoration: underline;
+				}
+			}
+		}
+	}
+
+	&.event-status-new,
+	&.event-status-unfulfilled,
+	&.event-status-fulfilled {
+		td:nth-child(3) {
+			font-weight: 400;
+			color: black;
+		}
+	}
+
+	&.event-status-unfulfilled td:nth-child(3) {
+		font-weight: 600;
+		color: red;
+	}
+
+	&.event-status-fulfilled td:nth-child(3) {
+		font-style: italic;
+		color: grey;
+	}
+}

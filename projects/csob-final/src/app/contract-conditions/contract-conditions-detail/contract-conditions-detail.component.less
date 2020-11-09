@@ -1,0 +1,25 @@
+div.row {
+	&.data-nok {
+		::ng-deep div p.k-textbox {
+			background-color: rgba(255, 182, 193, 0.5);
+			border-color: red;
+			color: red;
+
+			&::before {
+				content: "!";
+				font-weight: 900;
+				font-size: 1.2em;
+				color: red;
+				margin-top: -0.1em;
+				margin-left: -0.1em;
+			}
+
+			span {
+				padding-left: 0.5em;
+			}
+		}
+	}
+	.consolidated {
+		padding-top: 30px;
+	}
+}

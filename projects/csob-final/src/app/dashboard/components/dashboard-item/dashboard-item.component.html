@@ -1,0 +1,9 @@
+<div class="events">
+    <a *ngFor="let item of items"
+       class="event"
+       [ngStyle]="getBkgColor(item)"
+       (click)="eventClicked.emit(item)">
+        <div class="event__title">{{item.Name}}</div>
+        <div class="event__description" i18n>{{ 'dashboard_item.number_of_events' | translate }}:<span>{{item.Count}}</span></div>
+    </a>
+</div>

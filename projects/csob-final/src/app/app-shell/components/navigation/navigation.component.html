@@ -1,0 +1,25 @@
+<nav class="mt-5">
+    <ul>
+        <li *ngFor="let navItem of navigation">
+            <a [routerLink]="navItem.link" [title]="navItem.text" (click)="navBarItemClicked(navItem.navBarItemId)" [ngClass]="{'active' : navItem.navBarItemId === selectedNavigationId}">
+                <span role="img" [class]="navItem.css"></span>
+                <span>{{ navItem.text }}</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+
+<div class="app-version">
+    <nav *ngIf="!!adminUrl && hasPermission(EPermissionAreaType.Administration)" class="mt-5">
+        <ul>
+            <li>
+                <a [href]="adminUrl" target="blank" title="{{ 'navigation.admin_link' | translate }}">
+                    <span role="img" class="admin"></span>
+                    <span>{{ 'navigation.admin_link' | translate }}</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <small [title]="versionTitle">{{version}}</small>
+</div>

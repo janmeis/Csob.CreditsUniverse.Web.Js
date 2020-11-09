@@ -1,0 +1,34 @@
+@import "../../../styles/atoms/_variables.less";
+
+.questionary-table {
+    width: 100%;
+
+    tr.section-row {
+        font-weight: bold;
+
+        td {
+            margin-top: 1rem;
+        }
+    }
+
+    tr.odd {
+        td {
+            background-color: @color-secondary;
+        }
+    }
+
+    td {
+        padding: 0.5rem 0;
+        padding-right: 1rem;
+    }
+
+    .question-text {
+        padding-left: 2em;
+        padding-right: 1em;
+    }
+}
+
+hr {
+    border-color: @color-border;
+    margin: 0 -2.5rem 2.5rem;
+}

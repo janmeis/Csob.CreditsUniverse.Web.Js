@@ -1,0 +1,43 @@
+<header>
+	<h1 i18n>{{ 'dashboard_my_overview.page_title' | translate }}</h1>
+</header>
+
+<div class="icon-button-group">
+    <button type="button"
+            class="icon-button"
+            routerLink="/dashboard">
+		<span class="fa fa-list-ul"></span>
+		<span i18n>{{ 'dashboard_my_overview.back_to_dashboard' | translate }}</span>
+	</button>
+
+    <button type="button"
+            class="icon-button -success"
+            (click)="onAddMyEventClick()">
+        <span class="fa fa-plus"></span>
+        <span i18n>{{ 'dashboard_my_overview.add_my_event' | translate }}</span>
+    </button>
+
+	<div class="icon-button-group__devider"></div>
+
+    <button type="button"
+            class="icon-button"
+            routerLink="../events"
+            [queryParams]="{ DashboardTypeId: dashboardTypeId }">
+		<span class="fa fa-table"></span>
+		<span i18n>{{ 'dashboard_my_overview.my_events_grid' | translate }}</span>
+	</button>
+</div>
+
+<app-dashboard-toobar [calendar]="calendar"
+                      [(date)]="date"
+                      [(calendarType)]="calendarType"></app-dashboard-toobar>
+<div class="dashboard-calendar-wrapper">
+    <dashboard-calendar #calendar
+                        [date]="date"
+                        (dateChanged)="onDateChanged($event)"
+                        [dashboardItemRes]="dashboardItemRes"
+                        [calendarType]="calendarType"
+                        [dashboardTypes]="dashboardTypes"
+                        (calendarTypeChanged)="onCalendarTypeChanged($event)"
+                        (eventClicked)="onEventClicked($event)"></dashboard-calendar>
+</div>

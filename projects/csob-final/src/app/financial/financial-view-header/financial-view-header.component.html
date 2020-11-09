@@ -1,0 +1,9 @@
+<td class="tableTitle" [attr.colspan]="hasIdent ? 2 : 1">
+    <div>{{label}}</div>
+</td>
+<td *ngFor="let header of headers"
+    [attr.colspan]="header.left ? 4 : ''"
+    class="tableCell"
+    [class.readonly]="header.readonly">
+    <ng-container *ngTemplateOutlet="header.template, context: { $implicit: header.item, header:header }"></ng-container>
+</td>

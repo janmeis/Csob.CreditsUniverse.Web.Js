@@ -1,0 +1,115 @@
+<header>
+    <h1>Heading 1</h1>
+    <h2>Heading 2</h2>
+    <h3>Heading 3</h3>
+    <h4>Heading 4</h4>
+    <h5>Heading 5</h5>
+</header>
+<section>
+
+    <div class="icon-button-group">
+        <button class="icon-button -success">
+            <span class="fa fa-plus"></span>
+            <span>Přidat produkt</span>
+        </button>
+
+        <button class="icon-button -danger">
+            <span class="fa fa-trash"></span>
+            <span>Odstranit</span>
+        </button>
+
+        <button class="icon-button">
+            <span class="fa fa-save"></span>
+            <span>Uložit</span>
+        </button>
+    </div>
+
+    <!-- DO NOT LOCALIZE THIS FILE ! -->
+    <h3 class="mt-4">Translation test</h3>
+    <div>current locale: {{locale}}</div>
+    <div>lang: {{lang}}</div>
+    <label>Today: {{ today | date }}</label>
+
+    <button type="button" class="k-button k-primary" (click)="onGetTranslation()">Get translation</button>
+    <button type="button" class="k-button" (click)="onNotify()">Notification test</button>
+    <button type="button" class="k-button" (click)="onTestDialog()">Test dialog</button>
+
+    <h3>Dates</h3>
+    <div>
+        <form #form="ngForm">
+            <div class="flexed-form">
+                <span>
+                    test date: {{testDate}}<br />
+                    pick:<br />
+                </span>
+                <div style="width:300px">
+                    <editor-date [(stringValue)]="testDate"></editor-date>
+                </div>
+                <button type="button" class="k-button" (click)="onTestDate()">Convert to date</button>
+                <button type="button" class="k-button" (click)="onTest()">Test send to server</button>
+                <div *ngIf="testDateText">
+                    Result: <pre>{{testDateText}}</pre>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <h3>Pipes</h3>
+    <span>{{ '1234' | formatdata:'rc'}}</span><br />
+    <span>{{ '0102031234' | formatdata:'rc'}}</span>
+
+    <form #form="ngForm" (ngSubmit)="onSubmit()">
+        <div class="flexed-form">
+
+            <pre>
+				status={{form.status}}
+				value={{form.value|json}}
+			</pre>
+            <editor-bool [(value)]="isDirty" label="Is dirty"></editor-bool>
+            <div class="form-col">
+                <editor-text mode="number" [(value)]="number" label="Test number" numdecplaces="4" numfracplaces="3"></editor-text>
+                <editor-text label="Street" [(value)]="model.Street" required="true" placeholder="ex: Strma 42"
+                             (validate)="onStreetValidate($event)"></editor-text>
+                <editor-text label="Toun" [(value)]="model.City" required="true" placeholder="ex: Pardubice"></editor-text>
+                <editor-enum name="personType" label="Typ osoby" [(value)]="model.PersonType" [enumValues]="EPartyType"></editor-enum>
+
+                <div class="form-group">
+                    typ osoby: {{model.PersonType | codebookLookup:"EPartyType"}}
+                </div>
+                <editor-codebook name="kbcid" label="Dial is here" codebook="kbcs" [(value)]="model.KBCId" placeholder="ex: enease"></editor-codebook>
+                <div class="form-group">
+                    codebookLookup: {{model.KBCId | codebookLookup:"kbcs"}}
+                </div>
+                <h4>codebook using provider</h4>
+                <editor-text label="First chars" [(value)]="filterText"></editor-text>
+                <editor-codebook name="kbcid" label="Select filtered item"
+                                 [codebook]="filteredCodebook"
+                                 [(value)]="model.KBCId"></editor-codebook>
+            </div>
+            <div class="form-col">
+                <editor-date label="Creation date" [(value)]="model.datum" required="true" placeholder="ex: 24.12.2018"></editor-date>
+                <editor-bool label="History" [(value)]="model.history" labelOn="" labelOff=""></editor-bool>
+                <editor-bool label="History" [(value)]="model.history" labelOn="On" labelOff="Off"></editor-bool>
+                <editor-bool label="History" [(value)]="model.history" labelOn="Yes" labelOff="No"></editor-bool>
+                <ng-container *ngIf="model.history">
+                    <kendo-calendar [navigation]="false"></kendo-calendar>
+                </ng-container>
+                <!-- <editor-autocomplete label="Currency auto" codebook="currencies" [(value)]="model.currency"></editor-autocomplete> -->
+                <editor-codebook label="Currency" codebook="currencies" [(value)]="model.currencyId"></editor-codebook>
+                <div class="form-group">
+                    currency: {{model.currencyId | codebookLookup:"currencies"}}
+                </div>
+                <div>test {{model.currencyId | codebookLookup:'currencies'}}</div>
+                <input [placeholder]="model.currencyId | codebookLookup:'currencies'" />
+            </div>
+            <editor-text label="Insert XML" [(value)]="model.Xml" required="true"></editor-text>
+            <button type="button" class="btn btn-warning" (click)="sendClientChangeNotificationIvent()">Party changed event test</button>
+        </div>
+    </form>
+    <h2>DATA:</h2>
+    <pre>{{model|json}}</pre>
+    <button type="button" class="btn btn-danger" (click)="onTest()">TEST</button>
+    <button type="button" class="btn btn-danger" (click)="onTest2()">TEST 2</button>
+    <button type="button" class="btn btn-danger" (click)="onTest3()">TEST change url and scroll</button>
+    <h3>Result:</h3>
+</section>

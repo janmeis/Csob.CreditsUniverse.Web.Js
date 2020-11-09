@@ -1,0 +1,23 @@
+<form class="mb-2">
+    <div>
+        <label [for]="languages">{{ 'raroc_export_dialog.language' | translate }}</label>
+        <div name="languages" class="radio">
+            <label *ngFor="let item of languages">
+                <input type="radio" name="languagesOption" [value]="item" [checked]="item == selectedLanguage" [(ngModel)]="selectedLanguage" />
+                {{item.value | uppercase}}
+            </label>
+        </div>
+    </div>
+
+    <a #anchor></a>
+    <div class="alert alert-warning" *ngIf="errMessage">
+        <div>
+            <i class="fa fa-warning"></i>
+            {{errMessage}}
+        </div>
+    </div>
+</form>
+<div class="k-button-dialog-group">
+    <button type="submit" class="k-button k-primary" (click)="onExport(anchor)" [disabled]="progressService.running" i18n>{{ 'raroc_export_dialog.export' | translate }}</button>
+    <button type="button" class="k-button" (click)="close()" [disabled]="progressService.running" i18n>{{ 'raroc_export_dialog.cancel' | translate }}</button>
+</div>

@@ -1,0 +1,60 @@
+<ng-container *ngIf="!!model">
+    <div *ngIf="!!row" class="row">
+        <div class="col-sm-4">
+            <div class="row">
+                <div *ngIf="!!semaphoreSource" class="col">
+                    <dropdown-colors [source]="semaphoreSource"
+                                     [(value)]="row.SemaphoreId"
+                                     label="{{ 'negative_information_specific.semaphore' | translate}}" i18n-label>
+                    </dropdown-colors>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <editor-text [value]="row.Periode" label="{{ 'negative_information_specific.eom' | translate}}" [readonly]="true" i18n-label></editor-text>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <editor-text  [(value)]="row.Comment" label="{{ 'negative_information_specific.comment' | translate}}" [mode]="'multiline'" i18n-label></editor-text>
+        </div>
+    </div>
+
+    <div *ngIf="getDetails(model.NegativeRows) as  negativeValues" class="row negative-information-specific">
+        <div class="col-md-12">
+            <label i18n>{{ 'negative_information_specific.negative_information_specific' | translate }}</label>
+
+            <kendo-grid name="negative-information-specific-grid"
+                        [data]="negativeValues"
+                        [height]="320">
+                <kendo-grid-column title="{{ 'negative_information_specific.semaphore' | translate}}" i18n-title>
+                    <ng-template kendoGridCellTemplate let-dataItem>
+                        <div class="fa fa-circle fa-lg" [ngClass]="'color-' + dataItem[0]"></div>
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column title="{{ 'negative_information_specific.comment' | translate}}" i18n-title>
+                    <ng-template kendoGridCellTemplate let-dataItem>
+                        {{ dataItem[1] }}
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column title="{{ 'negative_information_specific.eom' | translate}}" i18n-title>
+                    <ng-template kendoGridCellTemplate let-dataItem>
+                        {{ dataItem[2] }}
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column title="{{ 'negative_information_specific.author' | translate}}" i18n-title>
+                    <ng-template kendoGridCellTemplate let-dataItem>
+                        {{ dataItem[4] }}
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column title="{{ 'negative_information_specific.value_found_on' | translate}}" i18n-title>
+                    <ng-template kendoGridCellTemplate let-dataItem>
+                        <div class="w-100 text-right">
+                            {{ dataItem[3]}}
+                        </div>
+                    </ng-template>
+                </kendo-grid-column>
+            </kendo-grid>
+        </div>
+    </div>
+</ng-container>

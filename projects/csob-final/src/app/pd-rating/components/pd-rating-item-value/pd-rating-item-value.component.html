@@ -1,0 +1,49 @@
+    <div class="row">
+        <div class="col-lg-3">
+            <editor-codebook [label]="label"
+                             [codebook]="ratingcode"
+                             [(value)]="dataSource.RatingId"
+                             [required]="required"
+                             [readonly]="validationValue==null || readonly || (mode=='suggested' && state!=EStatePDRating.InProcess) || (mode!='suggested' && state!=EStatePDRating.Finished) || ratingReadonly"
+                             (selectionChange)="ratingSelectionChange($event)"
+                             mode="number"></editor-codebook>
+        </div>
+        <div class="col-lg-3">
+            <editor-codebook label="{{ 'pd_rating_item_value.overruling_reason' | translate }}"
+                             codebook="overrulingreason"
+                             [(value)]="dataSource.OverrulingReasonKey"
+                             [readonly]="validationValue==null || readonly || (dataSource.RatingId==null || dataSource.RatingId==validationValue) || (mode=='suggested' && state!=EStatePDRating.InProcess) || (mode!='suggested' && state!=EStatePDRating.Finished)"
+                             [required]="dataSource.RatingId!=null && dataSource.RatingId!=validationValue && (mode!='approved' || (mode=='approved' && parentMode=='detail' && !resultOnly))"
+                             i18n-label></editor-codebook>
+        </div>
+        <div class="col-lg-6">
+            <editor-text label="{{ 'pd_rating_item_value.comment' | translate }}"
+                         [(value)]="dataSource.Comment"
+                         [readonly]="validationValue==null || readonly || dataSource.RatingId==null || (mode=='suggested' && state!=EStatePDRating.InProcess) || (mode!='suggested' && state!=EStatePDRating.Finished)"
+                         [required]="isCommentRequired && mode=='approved'"
+                         mode="multiline"
+                         maxlength="4000"
+                         i18n-label></editor-text>
+        </div>
+    </div>
+
+    <div *ngIf="mode=='approved'" class="row">
+        <div class="col-lg-3">
+            <editor-date label="{{ 'pd_rating_item_value.approval_date' | translate }}"
+                         [(value)]="dataSource.ApprovalDate"
+                         [readonly]="validationValue==null || readonly || dataSource.RatingId==null"
+                         [required]="dataSource.RatingId!=null"
+                         [disableFuture]="true"
+                         i18n-label></editor-date>
+        </div>
+
+        <div class="col-lg-3">
+            <editor-enum label="{{ 'pd_rating_item_value.approval_level' | translate }}"
+                         enumValues="EApprovalLevel"
+                         [(value)]="dataSource.ApprovalLevel"
+                         [readonly]="validationValue==null || readonly || dataSource.RatingId==null"
+                         [required]="dataSource.RatingId!=null"
+                         i18n-label></editor-enum>
+        </div>
+    </div>
+

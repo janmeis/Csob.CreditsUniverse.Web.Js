@@ -1,0 +1,211 @@
+<header>
+    <h1 i18n>{{ 'pd_rating_detail.page_title' | translate }}</h1>
+</header>
+
+<form #form="ngForm" (ngSubmit)="onSave()">
+    <section *ngIf="model">
+        <div class="icon-button-group">
+            <button type="button"
+                    id="btnOverview"
+                    class="icon-button -primary"
+                    (click)="onOverviewClick()"
+                    *hasRightTo="hasRightTo?.PdRatingshowlist">
+                <i class="fa fa-list-ul"></i>
+                <span i18n>{{ 'pd_rating_detail.overview' | translate }}</span>
+            </button>
+
+            <div class="icon-button-group__devider"></div>
+
+            <button type="button"
+                    class="icon-button -primary"
+                    [disabled]="form.pristine || form.invalid || stateFinished || progress.isVisible"
+                    (click)="onSave()"
+                    *hasRightTo="hasRightTo?.PdRatingsave">
+                <span class="fa fa-save"></span>
+                <span i18n>{{ 'pd_rating_detail.save' | translate }}</span>
+            </button>
+            <button *ngIf="canChangeFinData && hasRightTo?.PdRatingchangefinancialdata"
+                    type="button"
+                    class="icon-button -primary"
+                    (click)="onChangeFinData()">
+                <span class="fa fa-database"></span>
+                <span i18n>{{ 'pd_rating_detail.change_financial_data' | translate }}</span>
+            </button>
+            <button *ngIf="canCalculate && hasRightTo?.PdRatingcalculate"
+                    type="button"
+                    class="icon-button -primary"
+                    [disabled]="stateFinished || progress?.loading"
+                    (click)="onCalculate()">
+                <span class="fa fa-calculator"></span>
+                <span i18n>{{ 'pd_rating_detail.calculate' | translate }}</span>
+            </button>
+            <button type="button"
+                    class="icon-button -primary"
+                    [disabled]="!canCopy"
+                    (click)="onCopy()"
+                    title="{{ 'pd_rating_detail.copy' | translate }}"
+                    *hasRightTo="hasRightTo?.PdRatingcopy">
+                <span class="fa fa-copy"></span>
+                <span i18n>{{ 'pd_rating_detail.copy' | translate }}</span>
+            </button>
+            <button type="button"
+                    class="icon-button -primary"
+                    [disabled]="form.invalid || !canComplete || (model.PDRatingResultTab && (form.dirty || isFinDataChanged))"
+                    (click)="onComplete()"
+                    *hasRightTo="hasRightTo?.PdRatingcomplete">
+                <span class="fa fa-check"></span>
+                <span i18n>{{ 'pd_rating_detail.complete' | translate }}</span>
+            </button>
+            <button type="button"
+                    class="icon-button -primary"
+                    (click)="onExport()"
+                    [hidden]="!canExport"
+                    [disabled]="form.invalid || form.dirty"
+                    *hasRightTo="hasRightTo?.PdRatingexport">
+                <span class="fa fa-upload"></span>
+                <span i18n>{{ 'pd_rating_detail.export' | translate }}</span>
+            </button>
+            <button type="button"
+                    class="icon-button -primary"
+                    [disabled]="form.invalid || !model.PDRatingResultTab?.ApprovedPDRatings[0]?.RatingId"
+                    [hidden]="model.StateEnum==EStatePDRating.Approved"
+                    (click)="onApprobate()"
+                    *hasRightTo="hasRightTo?.PdRatingapprobate">
+                <span class="fa fa-thumbs-up"></span>
+                <span i18n>{{ 'pd_rating_detail.approbate' | translate }}</span>
+            </button>
+            <button *ngIf="model.StateEnum==EStatePDRating.Approved && selectedTab.Type==TabType.Result && hasRightTo?.PdRatingapprobate"
+                    type="button"
+                    class="icon-button -primary"
+                    [disabled]="form.invalid || !!pdRatingApproved && form.pristine"
+                    (click)="onAdditionalApprobate('additional_approbate')">
+                <span class="fa" [ngClass]="!pdRatingApproved ? 'fa-thumbs-o-up' : 'fa-thumbs-up'"></span>
+                <span i18n>{{ 'pd_rating_detail.' + (!pdRatingApproved ? 'additional_approbate' : 'approbate') | translate }}</span>
+            </button>
+            <button *ngIf="isFromMonitoring"
+                    type="button"
+                    class="icon-button -primary"
+                    (click)="onToMonitoringClick()">
+                <span class="fa fa-bar-chart"></span>
+                <span i18n>{{ 'pd_rating_detail.monitoring-overview' | translate }}</span>
+            </button>
+        </div>
+
+        <fieldset [disabled]="hasRightTo &&  !hasRightTo.PdRatingsave">
+
+            <div class="row">
+                <div class="col">
+                    <editor-date [(value)]="model.LastChangeDate" [readonly]="true" label="{{ 'pd_rating_detail.last_changed' | translate }}" i18n-label></editor-date>
+                </div>
+                <div class="col">
+                    <editor-text [value]="model.State" readonly="true" label="{{ 'pd_rating_detail.state' | translate }}" i18n-label></editor-text>
+                </div>
+                <div class="col">
+                    <editor-enum [enumValues]="pdRatingCategoryEnumValues" [value]="model.PDRatingCategoryEnum" (valueChange)="categoryValueChange($event)" layout="combo" [readonly]="stateFinished || model.IsLocked || (hasRightTo && !hasRightTo.PdRatingsave)" [required]="true" label="{{ 'pd_rating_detail.category' | translate }}" i18n-label></editor-enum>
+                </div>
+            </div>
+
+            <div class="row h-auto">
+                <div class="col-8"></div>
+                <ng-container *ngIf="isPDCategoryStandard()">
+                    <div class="col">
+                        <editor-bool name="UseAsMonitoring" id="UseAsMonitoring" [(value)]="model.UseAsMonitoring" [readonly]="stateFinished || model.IsLocked || (hasRightTo && !hasRightTo.PdRatingsave)" labelOff="" labelOn="{{ 'pd_rating_detail.useAsMonitoring' | translate}}"></editor-bool>
+                    </div>
+                </ng-container>
+            </div>
+
+            <kendo-tabstrip (tabSelect)="onTabSelect($event)">
+                <kendo-tabstrip-tab *ngFor="let tab of tabs" [title]="tab.Label" [selected]="selectedTab == tab">
+                </kendo-tabstrip-tab>
+            </kendo-tabstrip>
+
+            <ng-container *ngIf="selectedTab">
+                <div *ngIf="selectedTab.Type == TabType.FinancialData">
+                    <ng-container *ngIf="model.FinDataNeeded">
+                        <div *ngIf="!model.SelectedFinancialStatementId">
+                            <p i18n>{{ 'pd_rating_detail.no_financial_data_were_selected' | translate }}</p>
+                            <button type="button" class="k-button" (click)="onChangeFinData()" i18n>{{ 'pd_rating_detail.select' | translate }}</button>
+                        </div>
+                        <div *ngIf="finModel">
+
+                            <div *ngIf="finSelectedTab?.ShowCollapsed">
+                                <editor-bool name="showCollapsed" id="showCollapsed" [value]="!exportOptions.IsCollapsed" (click)="onShowColapsedClicked()" labelOff="{{ 'pd_rating_detail.collapsed' | translate}}" labelOn="{{ 'pd_rating_detail.full' | translate}}"></editor-bool>
+                            </div>
+
+                            <kendo-tabstrip (tabSelect)="onFinTabSelect($event)" class="k-tabstrip--inner">
+                                <kendo-tabstrip-tab *ngFor="let tab of finModel.Tabs" [title]="tab.Label" [selected]="finSelectedTab == tab">
+                                </kendo-tabstrip-tab>
+                            </kendo-tabstrip>
+                            <app-financial-view #financialViewComponent [dataSource]="finModel" [selectedTab]="finSelectedTab" [(isCollapsed)]="exportOptions.IsCollapsed" [(isHeaderCollapsed)]="exportOptions.IsHeaderCollapsed" class="pd-financial"></app-financial-view>
+                        </div>
+                    </ng-container>
+                </div>
+                <div *ngIf="selectedTab.Type === TabType.MandatoryCriteria || selectedTab.Type === TabType.NonFinancialCriteria ||  selectedTab.Type === TabType.OtherCriteria || selectedTab.Type === TabType.InfluenceESS">
+                    <table class="questionary-table">
+                        <tbody>
+                            <ng-container *ngFor="let section of selectedTab.Content.Sections">
+                                <tr class="section-row" *ngIf="section.SectionText">
+                                    <td colspan="99">
+                                        <multiline-text value="{{section.SectionText}}"></multiline-text>
+                                    </td>
+                                </tr>
+                                <ng-container *ngFor="let criteria of section.Criterions; let i=index">
+                                    <tr *ngIf="createIfNotExists(criteria)" [class.odd]="i%2">
+                                        <td class="ess-radio w-50" *ngIf="i==0 && selectedTab.Type===TabType.InfluenceESS;else non_first_ess">
+                                            <div class="radio">
+                                                <label>
+                                                    <input [name]="getName(section, criteria)" type="radio" [value]="section.Id" [checked]="section.Criterions[0].SelectedAnswerDto.BoolChoice" (change)="onEssSectionClicked(section)" [disabled]="!selectedTab.Content.Editable || model.IsLocked" />
+                                                    {{criteria.Question}}
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <ng-template #non_first_ess>
+                                            <ng-container *ngIf="(selectedTab.Type!=TabType.InfluenceESS) || (selectedEssSection==section.Id)">
+                                                <td class="question-text">
+                                                    <label-ess *ngIf="criteria.AnswerType==EAnswerType.Ess;else noEss" [answer]="criteria.SelectedAnswerDto" [readonly]="!selectedTab.Content.Editable || model.IsLocked"></label-ess>
+                                                    <ng-template #noEss>
+                                                        <multiline-text value="{{criteria.Question}}"></multiline-text>
+                                                    </ng-template>
+                                                </td>
+                                                <td [ngSwitch]="criteria.AnswerType" [class.editable]="selectedTab.Content.Editable">
+                                                    <question-bool *ngSwitchCase="EAnswerType.Boolean" [name]="getName(section, criteria)" [criteria]="criteria" [(value)]="criteria.SelectedAnswerDto.BoolChoice" (valueChange)="onValueChanged()" [readonly]="!selectedTab.Content.Editable || model.IsLocked || !hasRightTo.PdRatingsave"></question-bool>
+                                                    <question-number *ngSwitchCase="EAnswerType.Number" [name]="getName(section, criteria)" [criteria]="criteria" (valueChange)="onValueChanged()" [readonly]="!selectedTab.Content.Editable || model.IsLocked"></question-number>
+                                                    <question-combo *ngSwitchCase="EAnswerType.StringFromList" [name]="getName(section, criteria)" [criteria]="criteria" [(value)]="criteria.SelectedAnswerDto.AnswerChoice" (valueChange)="onValueChanged()" [readonly]="!selectedTab.Content.Editable || model.IsLocked || (hasRightTo && !hasRightTo.PdRatingsave)"></question-combo>
+                                                    <question-ess *ngSwitchCase="EAnswerType.Ess" [name]="getName(section, criteria)" [answer]="criteria.SelectedAnswerDto" (valueChange)="onValueChanged()" [readonly]="!selectedTab.Content.Editable || model.IsLocked"></question-ess>
+                                                    <question-ess-country *ngSwitchCase="EAnswerType.EssCountry" [name]="getName(section, criteria)" [criteria]="criteria" [(value)]="criteria.SelectedAnswerDto.CountryChoice" (valueChange)="onValueChanged()" [readonly]="!selectedTab.Content.Editable || model.IsLocked || (hasRightTo && !hasRightTo.PdRatingsave)"></question-ess-country>
+                                                    <div *ngSwitchDefault i18n>{{ 'pd_rating_detail.unknown_type_of_answer_x' | translate:EAnswerType[criteria.AnswerType] }}</div>
+                                                </td>
+                                            </ng-container>
+                                        </ng-template>
+                                    </tr>
+                                </ng-container>
+                            </ng-container>
+                        </tbody>
+                    </table>
+                </div>
+                <div *ngIf="selectedTab.Type === TabType.Result && !!selectedTab">
+                    <app-pd-rating-view [(dataSource)]="selectedTab.Content"
+                                        [form]="form"
+                                        [resultOnly]="!model.Tabs || model.Tabs.length==0"
+                                        mode="detail"
+                                        [state]="model.StateEnum"
+                                        [finDataNeeded]="model.FinDataNeeded"
+                                        [pdRatingCategory]="model.PDRatingCategoryEnum"
+                                        [readonly]="model.StateEnum==EStatePDRating.Approved || model.IsLocked || (hasRightTo && !hasRightTo.PdRatingsave)"></app-pd-rating-view>
+                    <ng-container *ngIf="!!pdRatingApproved">
+                        <hr>
+                        <app-pd-rating-item-value [dataSource]="pdRatingApproved.ApprovedDto"
+                                                  mode="approved"
+                                                  parentMode="detail"
+                                                  [readonly]="false"
+                                                  [isCommentRequired]="true"
+                                                  [state]="EStatePDRating.Finished"
+                                                  label="{{ 'pd_rating_view.approved_pd_rating' | translate }}"
+                                                  [validationValue]="selectedTab.Content.ValidationPDRating"></app-pd-rating-item-value>
+                    </ng-container>
+                    <div id='additional_approbate'></div>
+                </div>
+            </ng-container>
+        </fieldset>
+    </section>
+</form>

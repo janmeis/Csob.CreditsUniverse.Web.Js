@@ -1,0 +1,37 @@
+<h1 class="main-title">{{ 'party_general_detail.general' | translate}}</h1>
+
+<kendo-tabstrip #kendoTabStripInstance="kendoTabStrip">
+    <kendo-tabstrip-tab title="{{ 'party_general_detail.basic_info' | translate}}" [disabled]="!isCreditInfoFormValid" i18n-title>
+        <ng-template kendoTabContent>
+            <section class="content-wrapper">
+                <fieldset>
+                    <app-party-detail></app-party-detail>
+                </fieldset>
+            </section>
+        </ng-template>
+    </kendo-tabstrip-tab>
+    <kendo-tabstrip-tab title="{{ 'party_general_detail.credit' | translate}}" i18n-title>
+        <ng-template kendoTabContent>
+                <app-party-credit-info-detail-new (formValidChange)="onCreditInfoFormValidChanged($event)"></app-party-credit-info-detail-new>
+        </ng-template>
+    </kendo-tabstrip-tab>
+    <kendo-tabstrip-tab title="{{ 'party_general_detail.links' | translate}}" *hasRightTo="hasRightTo?.PartyLinksdetail" [disabled]="!isCreditInfoFormValid" i18n-title>
+        <ng-template kendoTabContent>
+            <section class="content-wrapper">
+                <fieldset>
+                    <app-party-links-overview *ngIf="overviewVisible"></app-party-links-overview>
+                    <app-party-links-detail *ngIf="!overviewVisible"></app-party-links-detail>
+                </fieldset>
+            </section>
+        </ng-template>
+    </kendo-tabstrip-tab>
+    <kendo-tabstrip-tab title="{{ 'party_general_detail.cfmanagement' | translate}}" [disabled]="!isCreditInfoFormValid" i18n-title>
+        <ng-template kendoTabContent>
+            <section class="content-wrapper">
+                <fieldset>
+                    <app-party-credit-file-management-overview></app-party-credit-file-management-overview>
+                </fieldset>
+            </section>
+        </ng-template>
+    </kendo-tabstrip-tab>
+</kendo-tabstrip>

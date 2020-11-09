@@ -1,0 +1,18 @@
+@import "../../../../styles/atoms/_variables.less";
+
+.monitoring-pd-rating {
+	margin-top: 24px;
+	padding: 0 12px;
+
+	.k-grid {
+		border: 1px solid @color-border;
+	}
+
+	a:not([href]):not([class]) {
+		color: @color-primary-dark !important;
+		&:hover {
+			cursor: pointer !important;
+			text-decoration: underline !important;
+		}
+	}
+}

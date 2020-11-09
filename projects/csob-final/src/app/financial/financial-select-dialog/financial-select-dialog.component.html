@@ -1,0 +1,74 @@
+<section>
+    <editor-bool-switch *ngIf="data && mode=='compare'"
+                        [(value)]="showFull"
+                        (switchClicked)="showFullHandler()"
+                        labelOn="{{ 'financial_select_dialog.full' | translate }}"
+                        labelOff="{{ 'financial_select_dialog.summary' | translate }}"></editor-bool-switch>
+    <div *ngIf="data"
+         kendoTooltip
+         #kendoTooltipInstance="kendoTooltip"
+         showOn="none"
+         [tooltipTemplate]="template"
+         filter=".k-grid th, .k-grid td"
+         (mouseover)="showTooltip($event, kendoTooltipInstance)"
+         class="formWindow">
+        <kendo-grid [data]="data"
+                    [sort]="grid.sort"
+                    [sortable]="true"
+                    [scrollable]="gridScrollable"
+                    [height]="gridHeight"
+                    (dataStateChange)="onGridUpdate($event)"
+                    [selectable]="selectable"
+                    (selectedKeysChange)="onGridSelectedKeysChange($event)"
+                    [kendoGridSelectBy]="'Id'"
+                    [selectedKeys]="selection"
+                    class="k-grid--finoverview">
+            <kendo-grid-checkbox-column *ngIf="mode!='pd-rating'" width="70px">
+                <ng-template kendoGridCellTemplate let-idx="rowIndex" let-dataItem>
+                    <input class="k-checkbox" [disabled]="isCheckBoxReadOnly(dataItem.Id)" [kendoGridSelectionCheckbox]="idx" [hidden]="!dataItem.selectable" [id]="'chb-'+idx" [name]="'chb-'+idx" type="checkbox" />
+                    <label class="k-checkbox-label" [for]="'chb-'+idx" [hidden]="!dataItem.selectable"></label>
+                </ng-template>
+            </kendo-grid-checkbox-column>
+            <kendo-grid-column width="120" title="{{ 'financial_select_dialog.validto' | translate }}" i18n-title>
+                <ng-template kendoGridCellTemplate let-dataItem>
+                    <div class="w-100 text-right">{{ dataItem.ValidTo | localDate: 'date' }}</div>
+                </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column width="60" field="NumberOfMonths" title="{{ 'financial_select_dialog.number_of_months' | translate }}" format='{0:d}' i18n-title></kendo-grid-column>
+            <kendo-grid-column width="160" field="StatementType" title="{{ 'financial_select_dialog.statement_type' | translate }}" i18n-title></kendo-grid-column>
+            <kendo-grid-column width="160" field="Title" title="{{ 'financial_select_dialog.title' | translate }}" i18n-title></kendo-grid-column>
+            <kendo-grid-column width="160" field="Format" title="{{ 'financial_select_dialog.format' | translate }}" i18n-title>
+                <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+                    <div>{{dataItem.FormatEnum | codebookLookup:'EFormat'}}</div>
+                </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column width="160" field="State" title="{{ 'financial_select_dialog.state' | translate }}" i18n-title></kendo-grid-column>
+            <kendo-grid-column width="80" field="Consolidated" title="{{ 'financial_select_dialog.consolidated' | translate }}" i18n-title>
+                <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+                    {{dataItem.Consolidated | booleanLookup }}
+                </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column width="150" field="LastModification" title="{{ 'financial_select_dialog.save_date' | translate }}" i18n-title>
+                <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+                    <div class="w-100 text-right">{{ dataItem.LastModification | localDate: 'dateTime' }}</div>
+                </ng-template>
+            </kendo-grid-column>
+        </kendo-grid>
+        <div class="mt-4">
+
+            <div class="k-button-group float-left">
+                <button class="k-button k-primary" [disabled]="!canSelect" (click)="onChooseSelectedStatements()" i18n>{{ 'financial_select_dialog.select' | translate }}</button>
+                <button class="k-button" (click)="onClose()" i18n>{{ 'financial_select_dialog.cancel' | translate }}</button>
+            </div>
+
+            <div class="float-right">
+                <button class="k-button" (click)="onLoadMore()" i18n *ngIf="canMore">{{ 'financial_select_dialog.load_more_x_of_total_x_items' | translate:grid.take:data.total }}</button>
+                <button (click)="onLoadAll()" i18n *ngIf="canMore" class="k-button">{{ 'financial_select_dialog.load_all_of_total_x_items' | translate:data.total }}</button>
+            </div>
+        </div>
+    </div>
+    <div #gridEnd></div>
+</section>
+<ng-template #template let-anchor>
+    <span>{{ anchor.nativeElement.innerText }}</span>
+</ng-template>

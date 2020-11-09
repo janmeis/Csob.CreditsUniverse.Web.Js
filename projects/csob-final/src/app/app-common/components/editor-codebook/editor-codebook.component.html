@@ -1,0 +1,48 @@
+<div class="form-group" [ngClass]="{'combo-text-right' : mode=='number'}">
+    <label [for]="name" class="editor-label" [class.required]="required && !readonly" [class.read-only-child]="readonly" [hidden]="!label">{{label}}</label>
+    <ng-container *ngIf="!readonly">
+        <kendo-combobox [data]="items"
+                        [(ngModel)]="value"
+                        [name]="name"
+                        [textField]="'Text'"
+                        [valueField]="'Value'"
+                        [valuePrimitive]="true"
+                        [placeholder]="placeholder"
+                        [allowCustom]="false"
+                        [suggest]="true"
+                        [filterable]="true"
+                        (filterChange)="filterChange($event)"
+                        [itemDisabled]="itemDisabled"
+                        [editorValidator]="onValidate"
+                        [required]="required"
+                        spellcheck="false"
+                        (selectionChange)="comboSelectionChange($event)"
+                        #state="ngModel"
+                        #comboBoxComponent>
+            <ng-template kendoComboBoxItemTemplate let-dataItem>
+                <div *ngIf="dataItem" class="combo-template" [ngClass]="{'text-right w-100' : mode=='number'}">{{ dataItem.Text }}</div>
+            </ng-template>
+            <ng-template kendoComboBoxFooterTemplate>
+                <div *ngIf="footerTemplate" class="footer-template">{{footerTemplate}}</div>
+            </ng-template>
+            <ng-template kendoDropDownListNoDataTemplate>
+                <span class="nodata" i18n>{{ 'editor_codebook.no_data_found' | translate }}</span>
+            </ng-template>
+        </kendo-combobox>
+        <editor-validations [state]="state" [label]="label || noLabel"></editor-validations>
+    </ng-container>
+    <ng-container *ngIf="readonly">
+        <p kendoTooltip
+           #kendoTooltipInstance="kendoTooltip"
+           showOn="none"
+           [tooltipTemplate]="template"
+           filter="span"
+           (mouseover)="showTooltip($event, kendoTooltipInstance)"
+           class="text-box-readonly k-textbox">
+            <span *ngIf="codebookLookup(value) | async as codebookValue" name="name" title="{{ codebookValue }}">{{ codebookValue }}</span>
+        </p>
+        <ng-template #template let-anchor>
+            <span>{{ anchor.nativeElement.innerText }}</span>
+        </ng-template>
+    </ng-container>
+</div>

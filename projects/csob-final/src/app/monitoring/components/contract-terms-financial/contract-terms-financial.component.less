@@ -1,0 +1,57 @@
+@import "../../../../styles/atoms/_variables.less";
+
+.contract-terms-financial {
+	margin-top: 24px;
+	padding: 0 12px;
+	label {
+		margin-left: -35px;
+	}
+	.not-fulfilled-mixin() {
+		background-color: rgba(255, 182, 193, 0.5);
+		color: red;
+		font-weight: bold;
+		border: 0.05em solid red;
+		a {
+			color: red;
+		}
+	}
+
+	[name="contract-terms-financial-grid"] {
+		::ng-deep &.k-grid {
+			border: 1px solid @color-border;
+			tr {
+				& > th,
+				& > td {
+					padding: 10px 7px;
+				}
+				&.not-fulfilled td {
+					a {
+						color: @color-primary-dark;
+					}
+					&:nth-child(4),
+					&:nth-child(5),
+					&:nth-child(6) {
+						.not-fulfilled-mixin();
+					}
+				}
+				&.not-fulfilled-spec td {
+					a {
+						color: @color-primary-dark;
+					}
+					&:nth-child(2),
+					&:nth-child(3),
+					&:nth-child(4) {
+						.not-fulfilled-mixin();
+					}
+				}
+				&:not(.not-fulfilled) td a {
+					color: @color-primary-dark;
+				}
+				td a:hover {
+					text-decoration: underline;
+					cursor: pointer;
+				}
+			}
+		}
+	}
+}

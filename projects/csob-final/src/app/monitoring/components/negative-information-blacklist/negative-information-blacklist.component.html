@@ -1,0 +1,51 @@
+<div *ngIf="filterable" class="col-md-4">
+    <editor-bool-switch [value]="showInactive" (switchClicked)="showInactiveHandler($event)"
+        title="{{ 'negative_information_blacklist.show_mode' | translate }}"
+        labelOn="{{ 'negative_information_blacklist.also_inactive' | translate }}"
+        labelOff="{{ 'negative_information_blacklist.only_active' | translate }}">
+    </editor-bool-switch>
+</div>
+
+<div class="row negative-information-blacklist">
+    <div class="col-md-12">
+        <label i18n>{{ 'negative_information_blacklist.negative_information_blacklist' | translate }}</label>
+
+        <kendo-grid *ngIf="gridData"
+                    name="negative-information-blacklist-grid"
+                    [data]="gridData"
+                    [filterable]="false"
+                    [filter]="filter"
+                    [height]="320">
+            <kendo-grid-column field="Validity" title="{{ 'negative_information_blacklist.validity' | translate }}" width="250" i18n-title>
+                <ng-template kendoGridCellTemplate let-dataItem>
+                    {{ 'negative_information_blacklist.' + dataItem.Active | translate}}
+                </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column field="ValidFrom" title="{{ 'negative_information_blacklist.date_from' | translate }}" i18n-title>
+                <ng-template kendoGridCellTemplate let-dataItem>
+                    {{dataItem.ValidFrom | localDate : 'date'}}
+                </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column width="450" field="Reason" title="{{ 'negative_information_blacklist.reason' | translate }}" i18n-title>
+                <ng-template kendoGridCellTemplate let-dataItem>
+                    {{dataItem.Values[1]}}
+                </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column field="StateColor" title="{{ 'negative_information_blacklist.state_color' | translate }}" i18n-title>
+                <ng-template kendoGridCellTemplate let-dataItem>
+                    {{ 'negative_information_blacklist.' + EColor[dataItem.StateColor] | translate}}
+                </ng-template>
+            </kendo-grid-column>
+<!--             <kendo-grid-column field="ValidityFrom" title="{{ 'negative_information_blacklist.valid_from' | translate }}" i18n-title>
+                <ng-template kendoGridCellTemplate let-dataItem>
+                    {{dataItem.Values[3]}}
+                </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column field="ValidTo" title="{{ 'negative_information_blacklist.valid_to' | translate }}" i18n-title>
+                <ng-template kendoGridCellTemplate let-dataItem>
+                    {{dataItem.Values[4]}}
+                </ng-template>
+            </kendo-grid-column> -->
+        </kendo-grid>
+    </div>
+</div>

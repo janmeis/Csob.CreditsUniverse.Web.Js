@@ -1,0 +1,129 @@
+<header>
+    <h1 i18n>{{ 'contract_conditions_detail.page_title' | translate }}</h1>
+</header>
+
+<form #form="ngForm" (ngSubmit)="onSave()">
+    <ng-container *ngIf="model">
+        <div class="icon-button-group">
+            <button type="button"
+                    class="icon-button -primary -overview"
+                    [routerLink]="['../../overview']"
+                    *hasRightTo="hasRightTo?.Conditionsshowlist">
+                <span class="fa fa-list-ul"></span>
+                <span i18n>{{ 'contract_conditions_detail.overview' | translate }}</span>
+            </button>
+
+            <ng-container *ngIf="hasConditions">
+                <div class="icon-button-group__devider"></div>
+
+                <button *ngIf="model.Active && readonly && hasRightTo?.Conditionsedit"
+                        type="button"
+                        class="icon-button"
+                        (click)="onEdit()">
+                    <span class="fa fa-pencil"></span>
+                    <span i18n>{{ 'contract_conditions_detail.edit' | translate }}</span>
+                </button>
+
+                <button *ngIf="!readonly && hasRightTo?.Conditionssave"
+                        type="submit"
+                        class="icon-button"
+                        [disabled]="form.pristine ||  progress.running">
+                    <span class="fa fa-save"></span>
+                    <span i18n>{{ 'contract_conditions_detail.save' | translate }}</span>
+                </button>
+            </ng-container>
+
+            <ng-container *ngIf="model.Readonly && !model.ValidTo && hasRightTo?.Conditionsdelete">
+                <button type="button"
+                        class="icon-button -danger"
+                        (click)="onDelete()">
+                    <span class="fa fa-trash"></span>
+                    <span i18n>{{ 'contract_conditions_detail.delete' | translate }}</span>
+                </button>
+            </ng-container>
+
+            <button *ngIf="isFromMonitoring"
+                    type="button"
+                    class="icon-button -primary"
+                    (click)="onToMonitoringClick()">
+                <span class="fa fa-bar-chart"></span>
+                <span i18n>{{ 'contract_conditions_detail.monitoring-overview' | translate }}</span>
+            </button>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <product-multiselect [creditFileId]="creditFileId"
+                                     [(values)]="model.ProductIds"
+                                     [readonly]="readonly"></product-multiselect>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4 consolidated">
+                <editor-bool-switch [(value)]="model.Consolidated"
+                                    (switchClicked)="form.form.markAsDirty()"
+                                    [readonly]="readonly || id!='new'"
+                                    (valueChange)="consolidatedChange($event)"
+                                    labelOn="{{ 'contract_conditions_detail.consolidated' | translate }}"
+                                    labelOff="{{ 'contract_conditions_detail.not_consolidated' | translate }}"></editor-bool-switch>
+            </div>
+        </div>
+        <div class="row"></div>
+        <div class="row">
+            <div class="col-lg-4">
+                <editor-codebook [codebook]="contractConditions" [(value)]="model.FinancialCovenantId" [readonly]="readonly || id!='new'" required="true" (valueChange)="contractConditionsValueChange($event)" label="{{ 'contract_conditions_detail.contract_condition' | translate }}" i18n-label></editor-codebook>
+            </div>
+            <div class="col-lg-4">
+                <editor-enum [(value)]="model.Recurrence" enumValues="ERecurrenceType" [readonly]="readonly || id!='new'" required="true" (valueChange)="recurrenceValueChange($event)" label="{{ 'contract_conditions_detail.reccurence' | translate }}" i18n-label></editor-enum>
+            </div>
+            <div class="col-lg-4">
+                <editor-enum *ngIf="model.Recurrence==ERecurrenceType.Repeatedly" [(value)]="model.FrequencyUnit" [readonly]="readonly" required="true" enumValues="EFrequencyUnit" (valueChange)="frequencyValueChange($event)" label="{{ 'contract_conditions_detail.frequency' | translate }}" i18n-label></editor-enum>
+            </div>
+        </div>
+        <div class="row">
+            <div *ngIf="isCustom" class="col-lg-4">
+                <editor-text [(value)]="model.CustomCode" label="{{ 'contract_conditions_detail.code' | translate }}" [readonly]="readonly" required="true" mode="text" i18n-label></editor-text>
+            </div>
+        </div>
+        <div class="row">
+            <div *ngIf="isRecurrent" class="col-lg-4">
+                <editor-date [(value)]="model.EvaluationDateFrom"
+                             [readonly]="model.Readonly || !isRecurrent"
+                             [disablePast]="false"
+                             (valueChange)="nextEvaluationDateChange($event)"
+                             (validate)="nextEvaluationDateValidate($event)"
+                             label="{{ 'contract_conditions_detail.valid_from' | translate }}" i18n-label></editor-date>
+            </div>
+        </div>
+
+        <div class="row"></div>
+        <div *ngFor="let e of model.EvaluationRules;let i=index" class="row">
+            <div class="col-lg-4">
+                <editor-date [(value)]="e.NextEvaluationDate"
+                             [readonly]="readonly || id!='new' || model.Recurrence==ERecurrenceType.Repeatedly || e.Readonly"
+                             required="true"
+                             [disablePast]="false"
+                             label="{{ 'contract_conditions_detail.evaluated_to' | translate }}"
+                             (validate)="nextEvaluationDateValidate($event)"
+                             i18n-label></editor-date>
+            </div>
+            <div class="col-lg-3">
+                <editor-enum [(value)]="e.OperatorKey" enumValues="EFinancialConditionOperator" [readonly]="readonly || e.Readonly" required="true" label="{{ 'contract_conditions_detail.operator' | translate }}" i18n-label></editor-enum>
+            </div>
+            <div class="col-lg-4">
+                <editor-text [(value)]="e.RequiredFinancialValue" mode="currency" [readonly]="readonly || e.Readonly" required="true" label="{{ 'contract_conditions_detail.required_financial_value' | translate }}" (validate)="onRequiredFinancialValueValidate($event)"  i18n-label>
+                </editor-text>
+            </div>
+            <button *ngIf="i==0 && model.EvaluationRules.length > 1 && !(readonly || e.Readonly) && canShowValueDown" class="col-lg-1 icon-button" type="button" (click)="financialValueDownClick()">
+                <span class="fa fa-level-down"></span>
+            </button>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <editor-text [(value)]="model.Description" label="{{ 'contract_conditions_detail.comment' | translate }}" [readonly]="readonly" mode="multiline" i18n-label></editor-text>
+            </div>
+        </div>
+    </ng-container>
+</form>

@@ -1,0 +1,98 @@
+@import "../../../styles/atoms/_variables.less";
+
+.panelHeader, .panelDetails {
+    .panel-body {
+        overflow-x: scroll;
+        // overriding .row margins
+        .row {
+            margin-left: 0;
+            margin-right: 0;
+        }
+        // set cells in one line for horizontal scrolling
+        .tableRow {
+            border-bottom: 1px solid @color-input-label;
+
+            &:last-child {
+                border-bottom: 1px solid transparent;
+            }
+        }
+        // first column of grid (titles)
+        .tableTitle {
+            padding: 0;
+            width: 300px;
+
+            div {
+                color: @color-GRAY40;
+                font-weight: 200;
+                padding: 5px;
+                text-align: left;
+            }
+        }
+        // the rest columns of grid (data)
+        .tableCell {
+            width: 200px;
+            padding: 3px 10px 1px 10px;
+            border-left: 1px solid @color-input-border;
+
+            div, input {
+                padding: 5px;
+            }
+
+            .text-box-readonly.k-textbox {
+                padding-right: 5%;
+            }
+        }
+
+        .tableCell, .tableTitle {
+            margin: 0px;
+            padding: 0px;
+            text-align: right;
+            padding-right: 10px;
+
+            div {
+                height: 100%;
+            }
+        }
+    }
+}
+
+// collapse panel titles
+.panel-heading {
+    h4 {
+        color: @color-BLUE2;
+        margin: 0px;
+        font-size: 21px;
+        font-weight: 700;
+        padding: 20px 0px 0px 0px;
+    }
+
+    a {
+        text-decoration: none;
+        color: @color-BLUE2;
+    }
+
+    i {
+        font-size: 20px;
+        font-weight: bold;
+        cursor: pointer;
+        margin-left: 5px;
+    }
+}
+
+.panel-group {
+    height: calc(100vh - 205px);
+    width: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+section.container {
+    .row {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+}
+
+.financial-switch-wrapper {
+    height: 48px;
+}

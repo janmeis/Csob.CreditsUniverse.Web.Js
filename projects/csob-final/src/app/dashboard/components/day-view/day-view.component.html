@@ -1,0 +1,9 @@
+<div class="day-wrapper" [ngClass]="getHolidayClass(day?.date)">
+    <h2 class="mb-4">{{day.date | date:format}}</h2>
+                <app-dashboard-item [items]="day.items"
+                                    [dashboardTypes]="dashboardTypes"
+                                    (eventClicked)="eventClicked.emit($event)"></app-dashboard-item>
+    <div *ngIf="day.items.length==0" i18n>
+        {{ 'day_view.no_events_for_this_day' | translate}}
+    </div>
+</div>

@@ -1,0 +1,20 @@
+<div class="row">
+    <div class="col-md-6 col-lg-4">
+        <editor-codebook codebook="Country" [(value)]="address.CountryId" label="{{ 'party_detail_address.country' | translate }}" [readonly]="readonly" [required]="required" i18n-label></editor-codebook>
+    </div>
+    <div class="col-md-6 col-lg-4">
+        <editor-text [(value)]="address.Village" label="{{ 'party_detail_address.village' | translate }}" maxlength="50" [readonly]="readonly" [required]="isAddressRequired" (valueChange)="addressValueChange($event)" i18n-label></editor-text>
+    </div>
+    <div class="col-md-6 col-lg-4">
+        <editor-text [(value)]="address.Zip" label="{{ 'party_detail_address.zip' | translate }}" maxlength="50" [readonly]="readonly" [required]="isAddressRequired" (valueChange)="addressValueChange($event)" i18n-label></editor-text>
+    </div>
+    <div class="col-md-6 col-lg-4">
+        <editor-text [(value)]="address.Street" label="{{ 'party_detail_address.street' | translate }}" maxlength="50" [readonly]="readonly" [required]="isAddressRequired" (valueChange)="addressValueChange($event)" i18n-label></editor-text>
+    </div>
+    <div class="col-md-6 col-lg-4">
+        <editor-text [(value)]="address.DescriptiveNumber" label="{{ 'party_detail_address.descriptive_number' | translate }}" maxlength="50" [readonly]="readonly" [required]="isAddressRequired" (valueChange)="addressValueChange($event)" i18n-label></editor-text>
+    </div>
+    <!--<div class="col-md-6 col-lg-4">
+      <editor-text [(value)]="address.OrientationNumber" label="{{ 'party_detail_address.orientation_number' | translate }}" maxlength="50" [readonly]="readonly" i18n-label></editor-text>
+    </div>-->
+</div>

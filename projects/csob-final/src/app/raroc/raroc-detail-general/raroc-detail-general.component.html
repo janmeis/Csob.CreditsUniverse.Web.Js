@@ -1,0 +1,241 @@
+<form #form="ngForm">
+    <editor-text label="{{ 'raroc_detail_general.state' | translate }}"
+                 [value]="raroc.StateDescription"
+                 readonly="true"
+                 class="d-none"></editor-text>
+
+    <div class="panel">
+        <h3>{{ 'raroc_detail_general.general' | translate }}</h3>
+        <div class="row">
+            <div class="col-md-6 col-lg-5">
+                <editor-text [(value)]="raroc.Title"
+                             mode="text"
+                             maxlength="150"
+                             label="{{ 'raroc_detail_general.title' | translate }}"
+                             [readonly]="readonly"
+                             [autofocus]="true"
+                             i18n-label></editor-text>
+            </div>
+            <div class="col-md-6 col-lg-2">
+                <editor-codebook label="{{ 'raroc_detail_general.currency_calculation' | translate }}"
+                                 codebook="CurrencyCzEur"
+                                 [(value)]="raroc.CurrencyId"
+                                 [readonly]="readonly"
+                                 i18n-label>
+                </editor-codebook>
+            </div>
+            <div class="col-md-6 col-lg-4">
+            </div>
+        </div>
+    </div>
+    <div class="panel">
+        <h3>{{ 'raroc_detail_general.credit_info' | translate }}</h3>
+        <div class="row">
+            <div class="col-md-6 col-lg-4">
+                <editor-codebook label="{{ 'raroc_detail_general.pd_model' | translate }}"
+                                 codebook="RatingModel"
+                                 [(value)]="raroc.PDRatingModelId"
+                                 [readonly]="readonly"
+                                 (selectionChange)="pdRatingModelSelectionChange($event,lgdModel)"
+                                 [required]="true"
+                                 i18n-label></editor-codebook>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <editor-codebook label="{{ 'raroc_detail_general.lgd_model' | translate }}"
+                                 [codebook]="lgdModels"
+                                 [(value)]="raroc.LGDModelId"
+                                 [readonly]="readonly || !raroc.PDRatingModelId"
+                                 (selectionChange)="lgdModelSelectionChange($event)"
+                                 [required]="true"
+                                 #lgdModel
+                                 i18n-label></editor-codebook>
+            </div>
+            <div class="col-md-6 col-lg-2">
+                <editor-codebook *ngIf="!raroc.PDRatingId && !isExternal"
+                                 label="{{ 'raroc_detail_general.pd_rating' | translate }}"
+                                 codebook="ratingcode"
+                                 [(value)]="raroc.RatingId"
+                                 [readonly]="readonly"
+                                 i18n-label></editor-codebook>
+                <editor-codebook *ngIf="!raroc.PDRatingId && isExternal"
+                                 label="{{ 'raroc_detail_general.pd_rating' | translate }}"
+                                 [codebook]="externalRatings"
+                                 [(value)]="raroc.ExternalRatingId"
+                                 [readonly]="readonly"
+                                 i18n-label></editor-codebook>
+                <editor-text *ngIf="raroc.PDRatingId"
+                             mode="text"
+                             label="{{ 'raroc_detail_general.pd_rating' | translate }}"
+                             [(value)]="selectedPdRating.RatingForRaroc"
+                             [readonly]="true"
+                             i18n-label></editor-text>
+            </div>
+        </div>
+        <div class="row">
+            <div *ngIf="isSPVType"
+                 class="col-md-6 col-lg-4">
+                <editor-bool label="{{ 'raroc_detail_general.multiplicator' | translate }}"
+                             [(value)]="raroc.Multiplicator"
+                             [readonly]="readonly"
+                             i18n-label></editor-bool>
+            </div>
+            <div *ngIf="isProjectType"
+                 class="col-md-6 col-lg-4">
+                <editor-codebook label="{{ 'raroc_detail_general.project_type' | translate }}"
+                                 [codebook]="projectTypes"
+                                 [(value)]="raroc.ProjType"
+                                 [readonly]="readonly"
+                                 i18n-label></editor-codebook>
+            </div>
+
+            <!-- placeholdery kvuli layoutu (tlacitka vpravo) -->
+            <div *ngIf="isSPVType && !isProjectType || isSPVType && isProjectType || !isSPVType && isProjectType"
+                 class="col-md-6 col-lg-4">
+            </div>
+            <div *ngIf="!isSPVType && !isProjectType"
+                 class="col-md-12 col-lg-8">
+            </div>
+
+            <div class="col-md-4">
+                <button type="button"
+                        class="k-button"
+                        (click)="onSelectPdRatingClick()"
+                        [disabled]="raroc?.State==EStateRaroc.Finished"
+                        *hasRightTo="hasRightTo?.Rarocselectpdrating" i18n>
+                        {{ 'raroc_detail_general.select_pd_rating' | translate }}
+                    </button>
+
+                    <button *ngIf="raroc.PDRatingId && hasRightTo?.Rarocremoveselectedpdrating"
+                    type="button"
+                    class="k-button"
+                    (click)="onRemoveSelectedPdRatingClick()"
+                    [disabled]="raroc?.State==EStateRaroc.Finished" i18n>
+                    {{ 'raroc_detail_general.remove_selected_pd_rating' | translate }}
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="panel">
+        <h3>{{ 'raroc_detail_general.financial_information' | translate }}</h3>
+        <div class="row">
+            <div class="col-md-6 col-lg-2">
+                <editor-codebook label="{{ 'raroc_detail_general.currency' | translate }}"
+                                 codebook="Currency"
+                                 [(value)]="raroc.CurrencyFinancialId"
+                                 [readonly]="readonly"
+                                 i18n-label>
+                </editor-codebook>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <editor-text [(value)]="raroc.CompanyTurnover"
+                             mode="currency"
+                             numdecplaces="15"
+                             numfracplaces="5"
+                             label="{{ 'raroc_detail_general.total_turnover' | translate }}"
+                             [readonly]="readonly"
+                             i18n-label></editor-text>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <editor-text [(value)]="raroc.TotalAssets"
+                             mode="currency"
+                             numdecplaces="15"
+                             numfracplaces="5"
+                             label="{{ 'raroc_detail_general.total_assets' | translate }}"
+                             [readonly]="readonly"
+                             i18n-label>
+                </editor-text>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-lg-2">
+                <editor-codebook label="{{ 'raroc_detail_general.currency' | translate }}"
+                                 codebook="Currency"
+                                 [(value)]="raroc.CurrencyConsolidatedId"
+                                 [readonly]="readonly"
+                                 i18n-label>
+                </editor-codebook>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <editor-text [(value)]="raroc.ConsolidatedTurnoverEss"
+                             mode="currency"
+                             numdecplaces="15"
+                             numfracplaces="5"
+                             label="{{ 'raroc_detail_general.consolidation_turnover' | translate }}"
+                             [readonly]="readonly"
+                             i18n-label>
+                </editor-text>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <editor-text [(value)]="raroc.ConsolidatedAssetsEss"
+                             mode="currency"
+                             numdecplaces="15"
+                             numfracplaces="5"
+                             label="{{ 'raroc_detail_general.consolidation_assets' | translate }}"
+                             [readonly]="readonly"
+                             i18n-label>
+                </editor-text>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel">
+        <h3>{{ 'raroc_detail_general.noncredit_info' | translate }}</h3>
+        <div class="row">
+            <div class="col-md-6 col-lg-2">
+                <editor-codebook label="{{ 'raroc_detail_general.currency' | translate }}"
+                                 codebook="Currency"
+                                 [(value)]="raroc.CurrencyNonFinancialId"
+                                 [readonly]="readonly"
+                                 i18n-label></editor-codebook>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <editor-text [value]="totalIncome"
+                             mode="currency"
+                             numdecplaces="15"
+                             numfracplaces="5"
+                             label="{{ 'raroc_detail_general.total_nc_income' | translate }}"
+                             [readonly]="true"
+                             i18n-label></editor-text>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-lg-3">
+                <editor-text [(value)]="raroc.DepositIncome"
+                             mode="currency"
+                             numdecplaces="15"
+                             numfracplaces="5"
+                             label="{{ 'raroc_detail_general.deposit_income' | translate }}"
+                             [readonly]="readonly"
+                             i18n-label></editor-text>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <editor-text [(value)]="raroc.PaymentIncome"
+                             mode="currency"
+                             numdecplaces="15"
+                             numfracplaces="5"
+                             label="{{ 'raroc_detail_general.payment_income' | translate }}"
+                             [readonly]="readonly"
+                             i18n-label></editor-text>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <editor-text [(value)]="raroc.FXIncome"
+                             mode="currency"
+                             numdecplaces="15"
+                             numfracplaces="5"
+                             label="{{ 'raroc_detail_general.fx_income' | translate }}"
+                             [readonly]="readonly"
+                             i18n-label></editor-text>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <editor-text [(value)]="raroc.OtherIncome"
+                             mode="currency"
+                             numdecplaces="15"
+                             numfracplaces="5"
+                             label="{{ 'raroc_detail_general.other_income' | translate }}"
+                             [readonly]="readonly"
+                             i18n-label></editor-text>
+            </div>
+        </div>
+    </div>
+</form>

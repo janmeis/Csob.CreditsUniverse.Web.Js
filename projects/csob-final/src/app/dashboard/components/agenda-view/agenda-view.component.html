@@ -1,0 +1,16 @@
+<table>
+    <tbody>
+        <tr *ngFor="let day of days">
+            <td class="day">
+                <strong>{{day.date | date:'d'}}</strong>
+                <em>{{day.date | date:'EEEE'}}</em>
+                <span>{{day.date | date:'MMM yyyy'}}</span>
+            </td>
+            <td>
+                <app-dashboard-item [items]="day.items"
+                                    [dashboardTypes]="dashboardTypes"
+                                    (eventClicked)="eventClicked.emit($event)"></app-dashboard-item>
+            </td>
+        </tr>
+    </tbody>
+</table>

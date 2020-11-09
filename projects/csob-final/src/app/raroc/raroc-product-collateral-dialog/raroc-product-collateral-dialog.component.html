@@ -1,0 +1,58 @@
+<div class="container">
+    <form *ngIf="matrix" #form="ngForm">
+        <div class="row">
+            <kendo-grid name="gridMatrix" *ngIf="matrix.Rows?.length > 0 && matrix.Cells?.length > 0" [data]="matrix.Rows" [loading]="progress.loading" class="k-grid--dialog" [style.width]="gridWidth">
+                <kendo-grid-column [locked]="true" width="310">
+                    <ng-template kendoGridHeaderTemplate>
+                        <div class="header-legend">
+                            <span>{{ 'raroc_product_collateral_dialog.product_type' | translate }} / {{ 'raroc_product_collateral_dialog.collateral_type' | translate }}</span>
+                            <span>{{ 'raroc_product_collateral_dialog.product_title' | translate }} / {{ 'raroc_product_collateral_dialog.collateral_title' | translate }}</span>
+                            <span>{{ 'raroc_product_collateral_dialog.product_currency_value' | translate }} / {{ 'raroc_product_collateral_dialog.collateral_currency_value' | translate }}</span>
+                        </div>
+                    </ng-template>
+                    <ng-template kendoGridCellTemplate let-dataItem>
+                        <div kendoTooltip>
+                            <p [title]="dataItem.ProdTypeDes">{{ dataItem.ProdTypeDes | truncate:52 }}</p>
+                            <span [title]="dataItem.Title">{{ dataItem.Title ? (dataItem.Title | truncate:52) : '-' }}</span>
+                            <span>{{ dataItem.CurrencyId | codebookLookup:'currency' }}&nbsp;&nbsp;{{ dataItem.Value | number:'1.0-0'}}</span>
+                        </div>
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column *ngFor="let column of matrix.Cells;let col=index" width="200" name="aaa+col">
+                    <ng-template kendoGridHeaderTemplate>
+                        <div kendoTooltip>
+                            <p [title]="column.CollTypeDes">{{ column.CollTypeDes }}</p>
+                            <span [title]="column.Title">{{ column.Title ? (column.Title | truncate:30) : '-' }}</span>
+                            <span>{{ column.CurrencyId | codebookLookup:'currency' }}&nbsp;&nbsp;{{ column.Value | number:'1.0-0'}}</span>
+                        </div>
+                    </ng-template>
+                    <ng-template kendoGridCellTemplate let-row="rowIndex">
+                        <ng-container *ngIf="matrix.Items[row][col];else noItem">
+                            <ng-container *ngIf="matrix.Items[row][col].ReadOnly || readonly;else checkbox">
+                                <span *ngIf="matrix.Items[row][col].Proposal" class="fa fa-check"></span>
+                            </ng-container>
+                            <ng-template #checkbox>
+                                <div class="text-center">
+                                    <input type="checkbox" class="k-checkbox" [(ngModel)]="matrix.Items[row][col].Proposal"  [name]="'proposal-'+row+'-'+col" />
+                                    <label for="proposal-'+row+'-'+col" class="k-checkbox-label"  (click)="onCheckChange(row, col)"></label>
+                                </div>
+                            </ng-template>
+                        </ng-container>
+                        <ng-template #noItem>-</ng-template>
+                    </ng-template>
+                </kendo-grid-column>
+            </kendo-grid>
+        </div>
+
+        <div class="row">
+            <div class="k-button-group">
+                <button *ngIf="!readonly" type="button" (click)="onClose(true)" [disabled]="!form.dirty"  class="k-button" i18n>
+                    {{ 'raroc_product_collateral_dialog.save' | translate }}
+                </button>
+                <button type="button" class="k-button" (click)="onClose(false)" i18n>
+                    {{ 'raroc_product_collateral_dialog.close' | translate }}
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

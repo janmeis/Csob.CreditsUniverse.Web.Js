@@ -1,0 +1,30 @@
+::ng-deep tr.data-nok > td,
+::ng-deep tr.data-ko > td {
+    background-color: rgba(255, 182, 193, 0.5);
+    border-color: red;
+    border-width: .05em;
+
+    > span {
+        padding-left: 0;
+
+        &::before {
+            content: "!";
+            font-weight: 900;
+            font-size: 1.2em;
+            color: red;
+            margin-right: .2em
+        }
+    }
+}
+
+::ng-deep tr.data-nok > td {
+    background-color: rgba(255, 255, 224, 0.5);
+    border-color: darkorange;
+
+    > span::before {
+        color: darkorange;
+    }
+}
+
+::ng-deep tr.data-ok > td {
+}

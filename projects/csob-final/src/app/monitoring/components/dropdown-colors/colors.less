@@ -1,0 +1,22 @@
+@import "../../../../styles/atoms/_variables.less";
+
+.text-shadow-mixin(@color) {
+	text-shadow: -1px 0 @color, 0 1px @color, 1px 0 @color, 0 -1px @color;
+}
+
+.color-white-mixin() {
+	color: #f1f1f1;
+	.text-shadow-mixin(black);
+}
+.color-green-mixin() {
+	color: #00a800;
+}
+.color-red-mixin() {
+	color: red;
+}
+.color-orange-mixin() {
+	color: orange;
+}
+.color-black-mixin() {
+	color: black;
+}

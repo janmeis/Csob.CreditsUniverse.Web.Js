@@ -1,0 +1,54 @@
+
+<ng-container *ngIf="!!model">
+    <div *ngIf="model.InputRows.length > 0" class="row">
+        <div class="col-sm-4">
+            <div class="row">
+                <div class="col">
+                    <editor-codebook [codebook]="monthProvider"
+                                     [(value)]="inputIndex"
+                                     [readonly]="readonly"
+                                     label="{{ 'contract_terms_nonfinancial.month' | translate }}" i18n-label></editor-codebook>
+                </div>
+            </div>
+            <div class="row">
+                <div *ngIf="!!semaphoreSource" class="col">
+                    <dropdown-colors [source]="semaphoreSource"
+                                     [(value)]="model.InputRows[inputIndex].SemaphoreId"
+                                     label="{{ 'contract_terms_nonfinancial.semaphore' | translate}}"
+                                     i18n-label></dropdown-colors>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <editor-text label="{{ 'contract_terms_nonfinancial.comment' | translate }}" [(value)]="model.InputRows[inputIndex].Comment" [mode]="'multiline'" i18n-label></editor-text>
+        </div>
+    </div>
+        <div class="row contract-terms-nonfinancial">
+            <div class="col-md-12">
+                <label i18n>{{ 'contract_terms_nonfinancial.contract_terms_nonfinancial' | translate }}</label>
+                <kendo-grid *ngIf="!!model.Rows"
+                            name="contract-terms-nonfinancial-grid"
+                            [data]="model.Rows"
+                            [height]="250">
+                <kendo-grid-column title="{{ 'contract_terms_nonfinancial.semaphore' | translate}}" i18n-title>
+                    <ng-template kendoGridCellTemplate let-dataItem>
+                        <div class="fa fa-circle fa-lg" [ngClass]="'color-' + dataItem.RowValue"></div>
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column field="Comment"  title="{{ 'contract_terms_nonfinancial.comment' | translate }}" i18n-title></kendo-grid-column>
+                <kendo-grid-column field="EOM" title="{{ 'contract_terms_nonfinancial.end_of_month' | translate }}" i18n-title>
+                    <ng-template kendoGridCellTemplate let-dataItem>
+                        {{ dataItem.EOM | date:'MM/yyyy' }}
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column field="User" title="{{ 'contract_terms_nonfinancial.author' | translate }}" i18n-title></kendo-grid-column>
+                <kendo-grid-column field="ValueFoundOn" title="{{ 'contract_terms_nonfinancial.value_found_on' | translate }}" i18n-title>
+                    <ng-template kendoGridCellTemplate let-dataItem>
+                        {{ dataItem.ValueFoundOn | localDate:'dateTime' }}
+                    </ng-template>
+                </kendo-grid-column>
+            </kendo-grid>
+        </div>
+    </div>
+</ng-container>
+

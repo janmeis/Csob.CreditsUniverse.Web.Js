@@ -1,0 +1,149 @@
+<header>
+    <h1 i18n>{{ 'product_detail_header.page_title' | translate }}</h1>
+</header>
+
+<form *ngIf="model" #form="ngForm" (ngSubmit)="onSave()">
+
+    <div class="icon-button-group">
+        <button type="button" class="icon-button -primary -overview" [routerLink]="['../../overview']">
+            <span class="fa fa-list-ul"></span>
+            <span i18n>{{ 'product_detail_header.overview' | translate }}</span>
+        </button>
+
+        <div class="icon-button-group__devider"></div>
+
+        <button type="button" class="icon-button -primary" (click)="showProductCollateralMatrix()">
+            <span class="fa fa-link"></span>
+            <span i18n>{{ 'product_detail_header.product_collateral_matrix' | translate}}</span>
+        </button>
+    </div>
+
+    <kendo-tabstrip>
+        <kendo-tabstrip-tab title="{{ 'product_detail_header.product_detail' | translate}}" selected="true" i18n-title>
+            <ng-template kendoTabContent>
+
+                <section class="panel pt-0">
+                    <div class="row">
+                        <div class="col-md-6 col-lg-3">
+                            <editor-text [(value)]="model.TypeDescription" label="{{ 'product_detail_header.product_type' | translate }}" [readonly]="readonly" required="true" i18n-label></editor-text>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <editor-text [(value)]="model.SubtypeDescriptionL" label="{{ 'product_detail_header.product_subtype' | translate }}" [readonly]="readonly" required="true" i18n-label></editor-text>
+                        </div>
+                        <div class="col-md-6 col-lg-2">
+                            <editor-text [(value)]="model.C_U" label="{{ 'product_detail_header.c_u' | translate }}" [readonly]="readonly" i18n-label></editor-text>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <editor-text [(value)]="model.CreditAccount" mode="number" label="{{ 'product_detail_header.creadit_account' | translate }}" [readonly]="readonly" i18n-label></editor-text>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 col-lg-2">
+                            <editor-codebook [(value)]="model.CurrencyLimitId" label="{{ 'product_detail_header.currency_limit' | translate }}" codebook="Currency" [readonly]="readonly" required="true" i18n-label></editor-codebook>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <editor-text [(value)]="model.CurrentDrawdownThousands" mode="currency" label="{{ 'product_detail_header.current_drawdown' | translate }}" [readonly]="readonly" i18n-label></editor-text>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <editor-text [(value)]="model.LimitValueThousands" mode="currency" label="{{ 'product_detail_header.limit_value' | translate }}" [readonly]="readonly" i18n-label></editor-text>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <editor-date [(value)]="model.DrawdownTo" label="{{ 'product_detail_header.drawdown_to' | translate }}" [readonly]="readonly" i18n-label></editor-date>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="panel">
+                    <h3 class="panel-heading" i18n>{{ 'product_detail_header.detail_subtitle_due' | translate}}</h3>
+                    <div class="row">
+                        <div class="col-md-6 col-lg-2">
+                            <editor-bool [(value)]="model.UFN" label="{{ 'product_detail_header.ufn' | translate }}" [readonly]="readonly" i18n-label></editor-bool>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <editor-date [(value)]="model.DueDate" label="{{ 'product_detail_header.due_date' | translate }}" [readonly]="readonly" i18n-label></editor-date>
+                        </div>
+                        <div class="col-md-6 col-lg-2">
+                            <editor-codebook [(value)]="model.DueDateUnit" label="{{ 'product_detail_header.due_date_unit' | translate }}" [codebook]="timeUnits" [readonly]="readonly" [allowZeros]="true" i18n-label></editor-codebook>
+                        </div>
+                        <div class="col-md-6 col-lg-2">
+                            <editor-text [(value)]="model.DueDateQuantity" label="{{ 'product_detail_header.due_date_quantity' | translate }}" mode="number" numdecplaces="6" numfracplaces="0" [readonly]="readonly" i18n-label></editor-text>
+                        </div>
+                    </div>
+                </section>
+            </ng-template>
+        </kendo-tabstrip-tab>
+
+        <kendo-tabstrip-tab *ngIf="interest.Id && interest.Id > 0 || model.Fees && model.Fees.length > 0 || !readonly" title="{{ 'product_detail_header.price' | translate}}" i18n-title>
+            <ng-template kendoTabContent>
+                <section *ngIf="interest.Id && interest.Id > 0  || !readonly" class="panel">
+                    <h3 class="panel-heading" i18n>{{ 'product_detail_header.interests' | translate }}</h3>
+                    <div class="row">
+                        <div class="col-md-6 col-lg-3">
+                            <editor-codebook [(value)]="interest.RateType" label="{{ 'product_detail_header.ext_int_type' | translate }}" [codebook]="rateTypes" [readonly]="readonly" i18n-label></editor-codebook>
+                        </div>
+                        <ng-container *ngIf="isFloat;else notIsFloat">
+                            <div class="col-md-6 col-lg-4">
+                                <editor-codebook [(value)]="interest.RevaluationFrequencyUnit" [codebook]="timeUnits" label="{{ 'product_detail_header.revaluation_frequency' | translate }}" [readonly]="true" i18n-label></editor-codebook>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <editor-codebook [(value)]="interest.ReferenceRateKey" label="{{ 'product_detail_header.reference_rate' | translate }}" [codebook]="referenceRates" [readonly]="readonly" i18n-label></editor-codebook>
+                            </div>
+                            <!-- <div class="col-md-6 col-lg-4">
+                                <editor-text [(value)]="interest.FTP" label="{{ 'product_detail_header.ftp' | translate }}" mode="currency" [readonly]="true" i18n-label></editor-text>
+                            </div> -->
+                            <div class="col-md-6 col-lg-4">
+                                <editor-text [(value)]="interest.MC" label="{{ 'product_detail_header.mc' | translate }}" mode="currency" required="true" [readonly]="readonly" i18n-label></editor-text>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <editor-text [(value)]="interest.MarginSD" label="{{ 'product_detail_header.sd_margin' | translate }}" mode="currency" [readonly]="true" i18n-label></editor-text>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <editor-text [(value)]="interest.ExternalRate" label="{{ 'product_detail_header.current_external_rate' | translate }}" mode="currency" [readonly]="true" i18n-label></editor-text>
+                            </div>
+                        </ng-container>
+                        <ng-template #notIsFloat>
+                            <!-- <div class="col-md-6 col-lg-2">
+                              <editor-text [(value)]="interest.FTP" label="{{ 'product_detail_header.ftp' | translate }}" mode="currency" [readonly]="true" i18n-label></editor-text>
+                            </div> -->
+                            <!-- <div class="col-md-6 col-lg-2"> -->
+                            <div class="col-md-6 col-lg-3">
+                                <editor-text [(value)]="interest.MC" label="{{ 'product_detail_header.mc' | translate }}" mode="currency" required="true" [readonly]="readonly" i18n-label></editor-text>
+                            </div>
+                            <div class="col-md-6 col-lg-3">
+                                <editor-text [(value)]="interest.MarginSD" label="{{ 'product_detail_header.sd_margin' | translate }}" mode="currency" [readonly]="true" i18n-label></editor-text>
+                            </div>
+                            <!-- <div class="col-md-6 col-lg-2"> -->
+                            <div class="col-md-6 col-lg-3">
+                                <editor-text [(value)]="interest.ExternalRate" label="{{ 'product_detail_header.current_external_rate' | translate }}" mode="currency" [readonly]="true" i18n-label></editor-text>
+                            </div>
+                        </ng-template>
+                    </div>
+                </section>
+
+                <section class="panel">
+                    <h3 class="panel-heading" i18n>{{ 'product_detail_header.fees' | translate }}</h3>
+                    <ng-container *ngFor="let item of model.Fees">
+                        <div class="row">
+                            <div class="col-md-6 col-lg-3">
+                                <editor-codebook [(value)]="item.FeeClassKey" codebook="feeClass" label="{{ 'product_detail_header.fee_class_key' | translate }}" [readonly]="readonly" required="true" i18n-label></editor-codebook>
+                            </div>
+                            <div class="col-md-6 col-lg-2">
+                                <editor-codebook [(value)]="item.CurrencyId" codebook="Currency" label="{{ 'product_detail_header.currency' | translate }}" [readonly]="readonly" i18n-label></editor-codebook>
+                            </div>
+                            <div class="col-md-6 col-lg-2">
+                                <editor-codebook [(value)]="item.FeeUnitKey" codebook="feeUnit" label="{{ 'product_detail_header.fee_unit' | translate }}" [readonly]="readonly" i18n-label></editor-codebook>
+                            </div>
+                            <div class="col-md-6 col-lg-3">
+                                <editor-text [(value)]="item.AmountThousands" label="{{ 'product_detail_header.amount' | translate }}" mode="currency" numdecplaces="15" numfracplaces="3" [readonly]="readonly" required="true" i18n-label></editor-text>
+                            </div>
+                            <div class="col-md-6 col-lg-2">
+                                <editor-codebook [(value)]="item.Frequency" [codebook]="timeUnits" label="{{ 'product_detail_header.frequency' | translate }}" [readonly]="readonly" i18n-label></editor-codebook>
+                            </div>
+                        </div>
+                    </ng-container>
+                </section>
+            </ng-template>
+        </kendo-tabstrip-tab>
+    </kendo-tabstrip>
+</form>

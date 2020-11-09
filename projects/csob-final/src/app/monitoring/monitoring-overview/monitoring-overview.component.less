@@ -1,0 +1,121 @@
+@import "../components/dropdown-colors/colors.less";
+@import "../../app.component.less";
+@import "../../../styles/atoms/_variables.less";
+
+kendo-buttongroup {
+	margin-left: 25px;
+}
+
+.category-title {
+	font-weight: 700;
+	padding-left: 5px;
+}
+
+.header-semaphore {
+	position: relative;
+	.fa {
+		position: absolute;
+		color: #000000;
+		font-size: 20px;
+	}
+	.category-title {
+		margin-left: 24px;
+		font-weight: 400;
+	}
+}
+
+.row-description {
+	padding-left: 25px;
+}
+
+.nomargin {
+	height: 40px;
+	margin: 0 15px;
+}
+
+.fa-circle {
+	cursor: pointer;
+
+	&.fa-2x {
+		padding-left: 20%;
+	}
+
+	&.color-white {
+		.color-white-mixin();
+	}
+
+	&.color-green {
+		.color-green-mixin();
+		.text-shadow-mixin(.color-green-mixin()[color]);
+	}
+
+	&.color-red {
+		.color-red-mixin();
+		.text-shadow-mixin(.color-red-mixin()[color]);
+	}
+
+	&.color-orange {
+		.color-orange-mixin();
+		.text-shadow-mixin(.color-orange-mixin()[color]);
+	}
+}
+
+.fa-caret-down,
+.fa-caret-right {
+	padding-left: 7px;
+	padding-right: 3px;
+	cursor: pointer;
+}
+
+.header-semaphore {
+	margin-left: -13px;
+}
+
+#loader {
+	background-color: fade(@color-c2, 50);
+}
+
+.color-red {
+	.color-red-mixin();
+}
+
+.text-underline {
+	text-decoration: none;
+	&:hover {
+		cursor: pointer;
+		text-decoration: underline;
+	}
+}
+
+.k-grid th:last-child,
+.k-grid td:last-child,
+.k-grid-header .k-header:last-child {
+	padding-right: 10px;
+}
+
+.change-period-button-group {
+	button {
+		margin: 0;
+		padding: 0 0.3rem;
+		border: 0;
+		cursor: pointer;
+		background: none;
+		&:focus {
+			outline: 0;
+		}
+		.fa {
+			display: block;
+			width: 24px;
+			height: 42px;
+			line-height: 42px;
+			padding: 0;
+			font-size: 1.2rem;
+			margin: 0 auto;
+			color: rgb(153, 153, 153);
+		}
+	}
+}
+
+.czech-date {
+	font-size: 13px;
+}

@@ -1,0 +1,27 @@
+<header>
+    <h1 i18n>{{ 'dashboard_branches.page_title' | translate }}</h1>
+</header>
+
+<div class="event-buttons">
+    <ng-container *ngIf="checkDashboardItems();else noItems" >
+        <div class="event-button" *ngFor="let item of dashboardItems">
+            <span *ngIf="getBkgColor(item, dashboardTypes) as bkgColor" [style.background-color]="bkgColor" class="dashboard-type"></span>
+            <span class="event-button__label"
+                    (click)="onEventClicked(item)">
+                <span>{{item.Name}}</span>
+            </span>
+            <span class="event-button__count">({{item.Count}})</span>
+        </div>
+    </ng-container>
+    <ng-template #noItems>
+        <span class="no-dashboard-items" i18n>{{ 'dashboard_branches.no_dashboard_items' | translate}}</span>
+    </ng-template>
+
+    <div class="event-button my-events">
+        <span class="event-button__label"
+              routerLink="../../my-events">
+            <span>{{ 'dashboard_branches.my_events' | translate }}</span>
+        </span>
+    </div>
+</div>
+

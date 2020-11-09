@@ -1,0 +1,55 @@
+@import "../../../styles/atoms/_variables.less";
+
+.event-buttons {
+	display: flex;
+
+	.no-dashboard-items {
+		margin-top: 10px;
+	}
+}
+
+.event-button {
+	position: relative;
+	padding: 0.75rem 1.5rem;
+	margin-right: 1rem;
+	border-radius: @button-border-radius;
+	border: 1px solid @color-border;
+	cursor: pointer;
+
+	* {
+		outline: 0;
+		box-shadow: none;
+	}
+
+	&:hover {
+		border-color: @color-form-border;
+		border-width: 1px;
+	}
+
+	&.my-events {
+		margin-left: 52px;
+	}
+
+	.dashboard-type {
+		display: block;
+		border-radius: 2px;
+		width: 12px;
+		height: 18px;
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		left: 14px;
+		+ span {
+			padding-left: 14px;
+		}
+	}
+
+	&__label {
+		font-weight: 700;
+		padding-right: 8px;
+	}
+
+	&__count {
+		font-weight: 400;
+	}
+}

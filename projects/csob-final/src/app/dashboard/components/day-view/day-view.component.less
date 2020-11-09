@@ -1,0 +1,18 @@
+@import "../../../../styles/atoms/_variables.less";
+
+app-dashboard-item {
+	::ng-deep .events {
+		max-width: 400px;
+		.event {
+			margin-left: 0;
+		}
+	}
+}
+
+.day-wrapper {
+	border-top: 1px solid @color-border;
+	border-bottom: 1px solid @color-border;
+	&.holiday {
+		background-color: rgba(242, 6, 250, 0.05);
+	}
+}

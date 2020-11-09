@@ -1,0 +1,68 @@
+<form #form="ngForm" (ngSubmit)="onSave()">
+    <fieldset *ngIf="model" [disabled]="readonly">
+        <div class="k-button-group text-right">
+            <button *ngIf="!readonly" type="submit" class="k-button k-primary" [disabled]="!(form.valid && form.dirty) || !hasEditRights">
+                <span i18n>{{ 'party_credit_info_detail_new.save' | translate }}</span>
+            </button>
+        </div>
+
+            <section class="panel">
+                <h3 class="panel-heading" i18n>{{ 'party_credit_info_detail_new.credit_info' | translate }}</h3>
+                <div class="row">
+                    <div class="col-md-6 col-lg-4">
+                        <editor-codebook name="PDRatingModelId" [(value)]="model.CreditInfoData.PDModelId" [codebook]="pdRatingModels" label="{{ 'party_credit_info_detail_new.pd_model' | translate }}" [readonly]="readonly" [required]="true" (selectionChange)="pdRatingModelSelectionChange($event,lgdModel)" [autoSelectSingleItem]="false" i18n-label></editor-codebook>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <editor-codebook name="LGDModelId" [(value)]="model.CreditInfoData.LGDModelId" [codebook]="lgdModels" label="{{ 'party_credit_info_detail_new.lgd_model' | translate }}" [readonly]="readonly || !model.CreditInfoData.PDModelId" [required]="true" #lgdModel i18n-label></editor-codebook>
+                    </div>
+                    <div class="col-md-3 col-lg-2">
+                        <editor-text name="PdRatingApproved" [(value)]="model.CreditInfoData.PdRatingApproved" label="{{ 'party_credit_info_detail_new.approved_pd_rating' | translate }}" [readonly]="true" mode="numberAsText" i18n-label></editor-text>
+                    </div>
+                    <div class="col-md-3 col-lg-2">
+                        <editor-date name="NextReviewDate" [(value)]="model.CreditInfoData.NextReviewDate" label="{{ 'party_credit_info_detail_new.next_review_date' | translate }}" [readonly]="true" i18n-label></editor-date>
+                    </div>
+
+                    <div class="col-md-3 col-lg-2">
+                        <editor-codebook name="FiscalYearBegin" [(value)]="model.CreditInfoData.FiscalYearStartingMonth" [codebook]="fiscalYearBegins"  [readonly]="readonly" label="{{ 'party_credit_info_detail_new.fiscal_year_begin' | translate }}" i18n-label></editor-codebook>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4">
+                        <editor-codebook name="NACE" [(value)]="model.CreditInfoData.NACEId" codebook="NACE" label="{{ 'party_credit_info_detail_new.nace' | translate }}" [readonly]="readonly" [required]="isNACERequired" [autoSelectSingleItem]="false" i18n-label></editor-codebook>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4">
+                        <editor-codebook name="CREDACId" [(value)]="model.CreditInfoData.CREDACId" codebook="KBC" label="{{ 'party_credit_info_detail_new.credac' | translate }}" [readonly]="true" i18n-label></editor-codebook>
+                    </div>
+                    <div class="col-md-3 col-lg-2">
+                        <editor-bool name="StockExchange" [(value)]="model.CreditInfoData.StockExchange" label="{{ 'party_credit_info_detail_new.stock_exchange' | translate }}" [readonly]="readonly" i18n-label></editor-bool>
+                    </div>
+                </div>
+            </section>
+
+            <section class="panel">
+                <h3 class="panel-heading" i18n>{{ 'party_credit_info_detail_new.financial_info' | translate }}</h3>
+                <div class="row">
+                    <div class="col-md-6 col-lg-2">
+                        <editor-codebook name="CurrencyId" [(value)]="model.CreditInfoFinancial.CurrencyId" codebook="currency" label="{{ 'party_credit_info_detail_new.currency' | translate }}" [readonly]="true" i18n-label></editor-codebook>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <editor-text name="TotalTurnover" [(value)]="model.CreditInfoFinancial.TotalTurnover" mode="currency" label="{{ 'party_credit_info_detail_new.total_client_turnover' | translate }}" [readonly]="true" i18n-label></editor-text>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <editor-text name="TotalAssets" [(value)]="model.CreditInfoFinancial.TotalAssets" mode="currency" label="{{ 'party_credit_info_detail_new.total_assets' | translate }}" [readonly]="true" i18n-label></editor-text>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-lg-2">
+                        <editor-codebook name="ConsolidatedCurrencyId" [(value)]="model.CreditInfoFinancial.ConsolidatedCurrencyId" codebook="currency" label="{{ 'party_credit_info_detail_new.currency' | translate }}" [readonly]="true" i18n-label></editor-codebook>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <editor-text name="ConsolidatedTurnover" [(value)]="model.CreditInfoFinancial.ConsolidatedTurnover" mode="currency" label="{{ 'party_credit_info_detail_new.consolidated_turnover' | translate }}" [readonly]="true" i18n-label></editor-text>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <editor-text name="ConsolidatedAssets" [(value)]="model.CreditInfoFinancial.ConsolidatedAssets" mode="currency" label="{{ 'party_credit_info_detail_new.consolidated_assets' | translate }}" [readonly]="true" i18n-label></editor-text>
+                    </div>
+                </div>
+            </section>
+        </fieldset>
+</form>

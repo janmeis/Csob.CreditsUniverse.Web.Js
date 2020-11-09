@@ -1,0 +1,55 @@
+<form *ngIf="detail" #form="ngForm" (ngSubmit)="onSave()">
+    <editor-text label="{{ 'party_credit_file_manage_dialog.branch' | translate }}" [value]="detail.BranchName" [readonly]="true" i18n-label></editor-text>
+
+    <section class="branch-users">
+        <kendo-grid [data]="detail.Users"
+                    [loading]="progress.loading">
+            <kendo-grid-column field="FirstName" title="{{ 'party_credit_file_manage_dialog.user_name' | translate}}" width="250" i18n-title>
+                <ng-template kendoGridCellTemplate let-dataItem>
+                    {{ dataItem.FirstName + ' ' + dataItem.Surname }}
+                </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-checkbox-column title="{{ 'party_credit_file_manage_dialog.manager' | translate}}"  width="125">
+                <ng-template kendoGridCellTemplate let-idx="rowIndex" let-dataItem>
+                    <input type="checkbox"
+                           class="k-checkbox"
+                           [checked]="dataItem.IsManager"
+                           (change)="isMainManagerCheck(dataItem, $event.target.checked)"
+                           [id]="'chb1-'+idx"
+                           [name]="'chb1-'+idx" />
+                    <label class="k-checkbox-label" [for]="'chb1-'+idx"></label>
+                </ng-template>
+            </kendo-grid-checkbox-column>
+            <kendo-grid-checkbox-column title="{{ 'party_credit_file_manage_dialog.main_manager' | translate}}"  width="125">
+                <ng-template kendoGridCellTemplate let-idx="rowIndex" let-dataItem>
+                    <input type="checkbox"
+                           class="k-checkbox"
+                           [checked]="dataItem.IsMainManager"
+                           (change)="isManagerCheck(dataItem, $event.target.checked)"
+                           [disabled]="hasMainManager(dataItem)"
+                           [id]="'chb2-'+idx"
+                           [name]="'chb2-'+idx" />
+                    <label class="k-checkbox-label" [for]="'chb2-'+idx"></label>
+                </ng-template>
+            </kendo-grid-checkbox-column>
+        </kendo-grid>
+    </section>
+
+    <div class="alert alert-danger">
+        <ng-container *ngIf="form.invalid">
+            <div *ngIf="errors['hasUniqueMainManager']" i18n>
+                {{ 'party_credit_file_manage_dialog.last_mainmanager_delete' | translate}}
+            </div>
+            <div *ngIf="errors['isMainManagerSet']" i18n>
+                {{ 'party_credit_file_manage_dialog.mainmanager_needed' | translate}}
+            </div>
+        </ng-container>
+    </div>
+
+    <div class="k-button-dialog-group">
+        <button type="submit" class="k-button k-primary" [disabled]="form.invalid || form.pristine">
+            <span i18n>{{ 'party_credit_file_manage_dialog.save' | translate }}</span>
+        </button>
+        <button type="button" class="k-button" (click)="onCancelClick()" i18n>{{ 'party_credit_file_manage_dialog.cancel' | translate }}</button>
+    </div>
+</form>

@@ -1,0 +1,264 @@
+
+<div #divToScroll class="content-wrapper content-wrapper--fv-detail">
+    <table class="fin-table table-with-editors">
+        <thead>
+            <tr class="panel-heading">
+                <td [attr.colspan]="hasIdent() ? 2 : 1">
+
+                    <h3 class="panel-title float-left" i18n>{{ 'financial_view.header' | translate }}</h3>
+                    <a (click)="isHeaderCollapsed=!isHeaderCollapsed" class="fa-caret-link">
+                        <i [class]="'fa fa-caret-' + (isHeaderCollapsed ? 'right' : 'down') + ' fa-1x'" aria-hidden="true"></i>
+                    </a>
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr fin-view-header [dataSource]="dataSource" label="{{ 'financial_view.doclink' | translate }}" i18n-label [hasIdent]="hasIdent()" valign="top">
+                <ng-template #headerReadonly let-item>
+                    <div *ngIf="item.ImportFiles && item.ImportFiles.length >0">
+                        <div *ngFor="let file of item.ImportFiles">
+                            <a  [routerLink]="" (click)="GetJskDoc(file.Id, anchor)" kendoTooltip title="{{file.FileName}}">{{file.FileName}}</a>
+                        </div>
+                    </div>
+                </ng-template>
+                <a #anchor></a>
+            </tr>
+
+            <tr fin-view-header [dataSource]="dataSource" label="{{ 'financial_view.validfrom' | translate }}" i18n-label [ngbCollapse]="isHeaderCollapsed" [hasIdent]="hasIdent()">
+                <ng-template #headerReadonly let-item>
+                    <div class="w-100 text-right">{{ item.ValidFrom | localDate: 'date' }}</div>
+                </ng-template>
+                <ng-template #headerEditor let-item>
+                    <editor-date noLabel="{{ 'financial_view.validfrom' | translate }}" required [value]="item.ValidFrom" (valueChange)="validFrom_changed(item, $event)"></editor-date>
+                </ng-template>
+            </tr>
+
+            <tr fin-view-header [dataSource]="dataSource" [readonly]="getIsDateReadonly" label="{{ 'financial_view.validto' | translate }}" i18n-label [hasIdent]="hasIdent()">
+                <ng-template #headerReadonly let-item>
+                    <div class="w-100 text-right">{{item.ValidTo | localDate: 'date'}}</div>
+                </ng-template>
+                <ng-template #headerEditor let-item>
+                    <editor-date [(value)]="item.ValidTo"></editor-date>
+                </ng-template>
+            </tr>
+            <tr fin-view-header [dataSource]="dataSource" label="{{ 'financial_view.numberofmonths' | translate }}" i18n-label [hasIdent]="hasIdent()">
+                <ng-template #headerReadonly let-item>
+                    <div class="w-100 text-right">{{item.NumberOfMonths}}</div>
+                </ng-template>
+            </tr>
+
+            <tr fin-view-header [dataSource]="dataSource" label="{{ 'financial_view.format' | translate }}" i18n-label [ngbCollapse]="isHeaderCollapsed" [hasIdent]="hasIdent()">
+                <ng-template #headerReadonly let-item>
+                    <div>{{item.FormatEnum | codebookLookup:'EFormat'}}</div>
+                </ng-template>
+            </tr>
+            <tr fin-view-header [dataSource]="dataSource" label="{{ 'financial_view.state' | translate }}" i18n-label [hasIdent]="hasIdent()">
+                <ng-template #headerReadonly let-item>
+                    <div>{{item.StateEnum | codebookLookup:'EStateFinData'}}</div>
+                </ng-template>
+            </tr>
+            <tr fin-view-header [dataSource]="dataSource" [readonly]="getIsReportTypeReadonly" label="{{ 'financial_view.reporttype' | translate }}" i18n-label [hasIdent]="hasIdent()">
+                <ng-template #headerReadonly let-item>
+                    <div>{{item.ReportTypeKey | codebookLookup:'ETypeOfStatement'}} {{ item.HeaderVersion }}</div>
+                </ng-template>
+                <ng-template #headerEditor let-item>
+                    <div class="row">
+                        <div class="col-8">
+                            <editor-codebook [(value)]="item.ReportTypeKey" codebook="ETypeOfStatement"  (selectionChange)="item.HeaderVersion = null" (validate)="comboRequiredValidate('reporttype', $event)" noLabel="{{ 'financial_view.reporttype' | translate }}"></editor-codebook>
+                        </div>
+                        <div class="col-4" >
+                            <editor-text *ngIf="item.HeaderVersion" mode="currency" [(value)]="item.HeaderVersion" readonly="true"></editor-text>
+                        </div>
+                    </div>
+                </ng-template>
+            </tr>
+            <tr fin-view-header [dataSource]="dataSource" [forceEditable]="true" label="{{ 'financial_view.title' | translate }}" i18n-label [ngbCollapse]="isHeaderCollapsed" [hasIdent]="hasIdent()">
+                <ng-template #headerReadonly let-item>
+                    <div>{{item.Title}}</div>
+                </ng-template>
+                <ng-template #headerEditor let-item>
+                    <editor-text [(value)]="item.Title" maxlength="300" noLabel="{{ 'financial_view.title' | translate }}"></editor-text>
+                </ng-template>
+            </tr>
+            <tr *ngIf="anyConvertedExists()" fin-view-header [dataSource]="dataSource" label="{{ 'financial_view.original_title' | translate }}" i18n-label [ngbCollapse]="isHeaderCollapsed" [hasIdent]="hasIdent()">
+                <ng-template #headerReadonly let-item>
+                    <div *ngIf="item && item.StateEnum && (item.StateEnum == EStateFinData.ConvertedCompleted || item.StateEnum == EStateFinData.ConvertedNew)">{{item.OriginalStatementTitle}}</div>
+                </ng-template>
+            </tr>
+            <tr fin-view-header [dataSource]="dataSource" label="{{ 'financial_view.currency' | translate }}" i18n-label [ngbCollapse]="isHeaderCollapsed" [hasIdent]="hasIdent()">
+                <ng-template #headerReadonly let-item>
+
+                    <span *ngIf="item.OriginalCurrencyId !=0">
+                        {{ item.OriginalCurrencyId | codebookLookup:'Currency' }}
+                    </span>
+                    <span *ngIf="item.OriginalCurrencyId == 0 && item.CurrencyId !=0">
+                        {{item.CurrencyId | codebookLookup:'Currency'}}
+                    </span>
+
+                </ng-template>
+                <ng-template #headerEditor let-item>
+                    <editor-codebook [(value)]="item.CurrencyId" codebook="Currency" (validate)="comboRequiredValidate('currency', $event)" noLabel="{{ 'financial_view.currency' | translate }}"></editor-codebook>
+                </ng-template>
+            </tr>
+            <tr fin-view-header [dataSource]="dataSource" label="{{ 'financial_view.units' | translate }}" i18n-label [ngbCollapse]="isHeaderCollapsed" [hasIdent]="hasIdent()">
+                <ng-template #headerReadonly let-item>
+                    <div>{{item.UnitKey | codebookLookup:'EUnitAbbrevation'}}</div>
+                </ng-template>
+                <ng-template #headerEditor let-item>
+                    <editor-codebook [(value)]="item.UnitKey" codebook="EUnit" (validate)="comboRequiredValidate('units', $event)" noLabel="{{ 'financial_view.units' | translate }}" i18n-noLabel></editor-codebook>
+                </ng-template>
+            </tr>
+            <tr fin-view-header [dataSource]="dataSource" label="{{ 'financial_view.consolidated' | translate }}" i18n-label [ngbCollapse]="isHeaderCollapsed" [hasIdent]="hasIdent()">
+                <ng-template #headerReadonly let-item>
+                    <div>{{item.Consolidated | booleanLookup}}</div>
+                </ng-template>
+            </tr>
+            <tr fin-view-header [dataSource]="dataSource" label="{{ 'financial_view.auditoropinion' | translate }}" i18n-label [ngbCollapse]="isHeaderCollapsed" [hasIdent]="hasIdent()">
+                <ng-template #headerReadonly let-item>
+                    <div>{{item.AuditorOpinion | booleanLookup}}</div>
+                </ng-template>
+                <ng-template #headerEditor let-item>
+                    <editor-bool [(value)]="item.AuditorOpinion"></editor-bool>
+                </ng-template>
+            </tr>
+
+            <ng-container *ngIf="selectedTab">
+                <tr class="panel-heading">
+
+                    <ng-container *ngFor="let header of dataSource.ReadonlyHeaders; let headerIndex = index">
+                        <td *ngIf="headerIndex == 0" [attr.colspan]="getHeaderColspan()">
+                            <!-- placeholder column for IDENT	 -->
+                        </td>
+                        <td [attr.colspan]="getColspan1(header?.Expanded, selectedTab.DisplayPercent, true)" class="unit-header" (click)="onToggleHeader(header)">
+                            <span *ngIf="header.CurrencyId">
+                                {{header.CurrencyId | codebookLookup:'Currency'}}
+                                ({{header.UnitKey | codebookLookup:'EUnitAbbrevation'}})
+                            </span>
+                            <span *ngIf="!header.CurrencyId">
+                                {{ conversion.CurrencyId | codebookLookup:'Currency' }}
+                                ({{ header.UnitKey | codebookLookup:'EUnitAbbrevation' }})
+                            </span>
+                            <span class="fa fa-caret-right pl-2" *ngIf="!header?.Expanded"></span>
+                            <span class="fa fa-caret-left pl-2" *ngIf="header?.Expanded"></span>
+                        </td>
+                        <td [hidden]="!selectedTab.DisplayPercent" class="unit-header" [attr.colspan]="getRatioColspan(header?.Expanded)">
+                            {{ 'financial_view.ratioPerc_header' | translate }}
+                        </td>
+                        <td [hidden]="!header?.Expanded" class="small-header" i18n>
+                            {{ 'financial_view.difference_header' | translate }}
+                        </td>
+                        <td [hidden]="!header?.Expanded" class="small-header" i18n>
+                            {{ 'financial_view.differencePerc_header' | translate}}
+                        </td>
+                    </ng-container>
+                    <ng-container *ngFor="let header of dataSource.EditableHeaders; let headerIndex = index">
+                        <td *ngIf="headerIndex == 0 && dataSource.ReadonlyHeaders?.length == 0" [attr.colspan]="getHeaderColspan()">
+                            <!-- placeholder column for IDENT	 -->
+                        </td>
+                        <td class="unit-header">
+                            <span *ngIf="header.CurrencyId">
+                                {{header.CurrencyId | codebookLookup:'Currency'}}
+                                ({{header.UnitKey | codebookLookup:'EUnitAbbrevation'}})
+                            </span>
+                            <span *ngIf="!header.CurrencyId" i18n>
+                                {{ 'financial_view.unit_header' | translate }}
+                            </span>
+                        </td>
+                    </ng-container>
+                </tr>
+                <ng-container>
+                </ng-container>
+                <ng-container *ngFor="let row of selectedTab.Rows; index as rowIndex">
+                    <tr [class]="'tableRow ' + getRowClass(row)" [hidden]="selectedTab && selectedTab.ShowCollapsed && isCollapsed && !row.DefaultShow">
+                        <td class="tableIdent" *ngIf="hasIdent()">
+                            {{row.RowIdent}}
+                        </td>
+                        <td class="tableTitle">
+                            <div *ngIf="row.Label">{{ row.Label }}</div>
+                            <div *ngIf="!row.Label">
+                                <!-- placeholder, aby byla dodrzena velikost radku stejna, jako u beznych radku -->
+                                <editor-text [readonly]="true" class="emptyCellPlaceholder">
+                                </editor-text>
+                            </div>
+                        </td>
+                        <ng-container *ngFor="let leftItem of row.ReadonlyItems;index as i">
+                            <td class="tableCell left-cell tableColorCell" [attr.colspan]="isEditableOutput(leftItem.HeaderId) ? '' : getColspan1(dataSource.ReadonlyHeaders[i]?.Expanded, selectedTab.DisplayPercent)" [class.has-comment]="leftItem.Comment" [title]="leftItem.Comment||''" [class.is-title]="row.IsTitle">
+                                <div class="comment" [hidden]="!leftItem.Comment"></div>
+                                <div class="comment-buttons" [class.has-comment]="leftItem.Comment" #commentButtons title="{{ 'financial_view.edit_comment' | translate }}" i18n-title>
+                                    <a class="fa fa-comment icon-edit" (click)="editCommentClicked(leftItem, row, false)"></a>
+                                </div>
+
+                                <ng-container *ngIf="!row.IsTitle">
+                                    <div *ngIf="isFormattingEnabled()">
+                                        {{ leftItem.Value != null ? (leftItem.Value | number:'1.0-0') : ''  }}
+                                    </div>
+                                    <div *ngIf="!isFormattingEnabled()">
+                                        <!-- output záložka - jiné formátování -->
+                                        <ng-container *ngIf="isRatiosTab()">
+                                            {{ leftItem.Value != null ? (leftItem.Value | number:'1.1-1') : 'N/A'}}
+                                        </ng-container>
+
+                                        <ng-container *ngIf="!isRatiosTab()">
+                                            {{ leftItem.Value != null ? (leftItem.Value | number:'1.0-0') : 'N/A'}}
+                                        </ng-container>
+
+                                    </div>
+                                </ng-container>
+                            </td>
+
+                            <!-- sloupce s poměrem a proc. a abs. rozdílem se nezobrazují pro output záložky v editačním režimu -->
+
+                            <td *ngIf="!isEditableOutput(leftItem.HeaderId)" [hidden]="!selectedTab.DisplayPercent" class="tableCell left-cell tableColorCell" [attr.colspan]="getRatioColspan(dataSource.ReadonlyHeaders[i]?.Expanded)" [class.is-title]="row.IsTitle">
+                                <div *ngIf="!row.IsTitle">
+                                    {{ (leftItem.Ratio != null ? leftItem.Ratio : '') | number:'1.1-1' }}
+                                </div>
+                            </td>
+                            <td *ngIf="!isEditableOutput(leftItem.HeaderId)" [hidden]="!dataSource.ReadonlyHeaders[i]?.Expanded" class="tableColorCell readonly" [class.is-title]="row.IsTitle">
+                                <ng-container *ngIf="!row.IsTitle">
+                                    <span *ngIf="isFormattingEnabled()">
+                                        {{ leftItem.Difference ? (leftItem.Difference | number:'1.0-0') : '' }}
+                                    </span>
+                                    <span *ngIf="!isFormattingEnabled()">
+                                        <!-- output záložka - jiné formátování -->
+                                        {{ leftItem.Difference ? (leftItem.Difference | number:'1.1-1') : 'N/A' }}
+                                    </span>
+                                </ng-container>
+                            </td>
+                            <td *ngIf="!isEditableOutput(leftItem.HeaderId)" [hidden]="!dataSource.ReadonlyHeaders[i]?.Expanded" class="tableColorCell readonly" [class.is-title]="row.IsTitle">
+                                <ng-container *ngIf="!row.IsTitle">
+                                    <span *ngIf="isFormattingEnabled()">
+                                        {{ leftItem.DifferencePerc ? (leftItem.DifferencePerc | number:'1.1-1') : '' }}
+                                    </span>
+                                    <span *ngIf="!isFormattingEnabled()">
+                                        <!-- output záložka - jiné formátování -->
+                                        {{ leftItem.DifferencePerc ? (leftItem.DifferencePerc | number:'1.1-1') : 'N/A' }}
+                                    </span>
+                                </ng-container>
+                            </td>
+                        </ng-container>
+                        <td *ngFor="let rightItem of row.EditableItems; index as colIndex" class="tableCell right-cell tableColorCell" [class.has-comment]="rightItem.Comment" [title]="rightItem.Comment||''" [class.is-title]="row.IsTitle">
+
+                            <div class="comment" [hidden]="!rightItem.Comment"></div>
+                            <div class="comment-buttons" [class.has-comment]="rightItem.Comment" #commentButtons title="{{ 'financial_view.edit_comment' | translate }}" i18n-title>
+                                <a class="fa fa-comment icon-edit" (click)="editCommentClicked(rightItem, row, true)"></a>
+                            </div>
+                            <editor-text *ngIf="!row.IsTitle"
+                                         [required]="!row.AllowNull"
+                                         [(value)]="rightItem.Value"
+                                         [isTransparent]="!row.IsTitle"
+                                         [readonly]="getIsDataItemReadonly(rightItem)"
+                                         mode="currency"
+                                         numdecplaces="11"
+                                         numfracplaces="4"
+                                         (validate)="numberValidate(row.AllowNegative, row.Label, $event)"
+                                         noLabel="{{ row.Label }}"
+                                         class="keep-comment-opened tableColorCell"
+                                         [tabIndex]="getIsDataItemReadonly(rightItem) ? null : ((colIndex + 1) * 1000 + rowIndex)">
+                            </editor-text>
+                        </td>
+                    </tr>
+                </ng-container>
+            </ng-container>
+        </tbody>
+    </table>
+</div>

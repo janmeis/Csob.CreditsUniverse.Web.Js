@@ -1,0 +1,22 @@
+<div class="form-group">
+    <label [class.read-only-child]="readonly">{{label}}</label>
+    <ng-container *ngIf="!readonly;else isReadonly">
+        <kendo-dropdownlist [data]="source"
+                            [textField]="'Text'"
+                            [valueField]="'Value'"
+                            [valuePrimitive]="true"
+                            [(value)]="value">
+            <ng-template kendoDropDownListValueTemplate
+                         kendoDropDownListItemTemplate let-dataItem>
+                <ng-container *ngIf="dataItem?.Value > 0">
+                    <div [ngClass]="'fa fa-circle color-' + dataItem?.Text"></div>
+                </ng-container>
+            </ng-template>
+        </kendo-dropdownlist>
+    </ng-container>
+    <ng-template #isReadonly>
+        <p class="text-box-readonly k-textbox">
+            <span [ngClass]="'fa my-auto fa-circle color-' + selectedValue"></span>
+        </p>
+    </ng-template>
+</div>

@@ -1,0 +1,35 @@
+@import "../../../monitoring/components/dropdown-colors/colors.less";
+
+.semaphores {
+	.k-textbox {
+		padding: 0;
+		border: 0;
+		.fa-circle {
+			cursor: pointer;
+			&:not(:last-child) {
+			margin-right: 15px;
+			}
+			&.color-white {
+				.color-white-mixin();
+			}
+
+			&.color-green {
+				.color-green-mixin();
+			}
+
+			&.color-red {
+				.color-red-mixin();
+			}
+
+			&.color-orange {
+				.color-orange-mixin();
+			}
+		}
+		&.text-box-readonly {
+			width: 53%;
+			.fa-circle {
+				cursor: text;
+			}
+		}
+	}
+}

@@ -1,0 +1,101 @@
+<header>
+    <h1>{{getHeaderText()}}</h1>
+</header>
+
+<form #form="ngForm" (ngSubmit)="onSave()">
+        <div class="icon-button-group">
+            <button type="button"
+                    class="icon-button -primary -overview"
+                    [routerLink]="['../../overview']"
+                    [disabled]="progress.running"
+                    *hasRightTo="hasRightTo?.Rarocshowlist">
+                <span class="fa fa-list-ul"></span>
+                <span i18n>{{ 'raroc_detail.overview' | translate }}</span>
+            </button>
+
+            <ng-container *ngIf="!readonly">
+                <div class="icon-button-group__devider"></div>
+
+                <button type="button"
+                        class="icon-button"
+                        (click)="onCalculate()"
+                        [disabled]="form?.dirty || rarocId=='new' || mainRaroc?.HasResult || !mainRaroc?.HasProducts || !(rarocValidation?.ValidProducts && rarocValidation?.ValidCollaterals) || progress.running"
+                        *hasRightTo="hasRightTo?.Raroccalculate">
+                    <span class="fa fa-calculator"></span>
+                    <span i18n>{{ 'raroc_detail.calculate' | translate }}</span>
+                </button>
+                <button *ngIf="viewMode==EViewMode.DetailView && hasRightTo?.Rarocsave"
+                        type="submit"
+                        class="icon-button"
+                        [disabled]="form?.pristine || progress.running">
+                    <span class="fa fa-save"></span>
+                    <span i18n>{{ 'raroc_detail.save' | translate }}</span>
+                </button>
+
+                <button type="button"
+                        class="icon-button"
+                        (click)="onFinish()"
+                        [disabled]="form?.dirty || !mainRaroc?.HasResult || raroc?.State==EStateRaroc.Finished || progress.running"
+                        *hasRightTo="hasRightTo?.Rarocfinish">
+                    <span class="fa fa-check"></span>
+                    <span i18n>{{ 'raroc_detail.finish' | translate }}</span>
+                </button>
+            </ng-container>
+        </div>
+
+        <kendo-tabstrip #kendoTabStripInstance="kendoTabStrip">
+            <kendo-tabstrip-tab title="{{ 'raroc_detail.general' | translate }}" selected="true" i18n-title>
+                <ng-template kendoTabContent>
+                    <section class="content-wrapper content-wrapper--raroc-detail">
+                        <fieldset [disabled]="!hasRightTo?.Rarocsave">
+                            <app-raroc-detail-general *ngIf="mainRaroc"
+                                                    [raroc]="raroc"
+                                                    [readonly]="readonly"
+                                                    (rarocValidationChanged)="onRarocValidationChanged($event)"
+                                                    (formChanged)="onRarocDetailGeneralFormChanged($event)"></app-raroc-detail-general>
+                        </fieldset>
+                    </section>
+                </ng-template>
+            </kendo-tabstrip-tab>
+
+            <kendo-tabstrip-tab title="{{ 'raroc_detail.product_overview' | translate }}" i18n-title>
+                <ng-template kendoTabContent>
+                    <section class="content-wrapper content-wrapper--raroc-detail">
+                        <fieldset [disabled]="!hasRightTo?.Rarocsave">
+                            <app-raroc-detail-product *ngIf="mainRaroc"
+                                                    [rarocId]="rarocId"
+                                                    [lgdModelId]="raroc.LGDModelId"
+                                                    [readonly]="readonly"
+                                                    (rarocValidationChanged)="onRarocValidationChanged($event)"
+                                                    (productChanged)="onProductChanged($event)"></app-raroc-detail-product>
+                        </fieldset>
+                    </section>
+                </ng-template>
+            </kendo-tabstrip-tab>
+
+            <kendo-tabstrip-tab title="{{ 'raroc_detail.collateral_overview' | translate }}" i18n-title>
+                <ng-template kendoTabContent>
+                    <section class="content-wrapper content-wrapper--raroc-detail">
+                        <fieldset [disabled]="!hasRightTo?.Rarocsave">
+                            <app-raroc-detail-collateral *ngIf="mainRaroc"
+                                                        [rarocId]="rarocId"
+                                                        [lgdModelId]="raroc.LGDModelId"
+                                                        [readonly]="readonly"
+                                                        (rarocValidationChanged)="onRarocValidationChanged($event)"
+                                                        (collateralChanged)="onCollateralChanged($event)"></app-raroc-detail-collateral>
+                            </fieldset>
+                    </section>
+                </ng-template>
+            </kendo-tabstrip-tab>
+            <kendo-tabstrip-tab *ngIf="form.pristine && mainRaroc?.HasResult" title="{{ 'raroc_detail.raroc_output' | translate }}" i18n-title>
+                <ng-template kendoTabContent>
+                    <section class="content-wrapper content-wrapper--raroc-detail">
+                        <app-raroc-detail-result *ngIf="mainRaroc"
+                                                 [rarocId]="rarocId"
+                                                 [raroc]="raroc"></app-raroc-detail-result>
+                    </section>
+                </ng-template>
+            </kendo-tabstrip-tab>
+        </kendo-tabstrip>
+
+</form>

@@ -1,0 +1,55 @@
+<h1>{{ 'financial_data_import_dialog.import_choose' | translate }}</h1>
+<div class="container">
+
+    <form #form="ngForm" (ngSubmit)="onSave(form)">
+        <div class="form-group row">
+            <div class="col-md-4 offset-md-4">
+                <input type="radio" id="1" name="radio" class="k-radio" [value]="true" [checked]="isLocal == true" (change)="updateIsLocal(true)" />
+                <label class="k-radio-label" for="1">{{ 'financial_data_import_dialog.FromLocal' | translate }}</label>
+            </div>
+            <div class="col-md-4">
+                <input type="radio" id="2" name="radio" class="k-radio" [value]="false" [checked]="isLocal == false" (change)="updateIsLocal(false)" />
+                <!-- (change)="updateValue(this)"  -->
+                <label class="k-radio-label" for="2">{{ 'financial_data_import_dialog.FromJsk' | translate }}</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div *ngFor="let item of model" class="form-group row">
+                <div class="col-md-4">
+                    <label [attr.disabled]="!isTabEnabled(item)" [innerHTML]="item.Name | safeHtml"></label>
+                    <span [attr.disabled]="!isTabEnabled(item)">{{item.Comment}}</span>
+                </div>
+                <div class="col-md-4">
+                    <!-- lokalni upload -->
+                    <div class="file-pick">
+                        <button *ngIf="item.FileItem!=null" type="button" (click)="removeFile(item, fileSelector)">
+                            <span class="fa fa-times"></span>
+                        </button>
+                        <input #fileSelector type="file" ng2FileSelect [uploader]="uploader" [disabled]="!isLocal || !isTabEnabled(item)" (change)="onUploadFileChange(item)" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <!-- upload JSK -->
+                    <editor-codebook *ngIf="jskCodebookItems" [autoSelectSingleItem]="false" [(value)]="item.IdJskFile" [codebook]="jskFiles" [readonly]="isLocal || !isTabEnabled(item)" (change)="onUploadFileChange(item)" i18n-noLabel noLabel="{{ 'financial_data_import_dialog.jsk_file' | translate }}"></editor-codebook>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-3">
+                <button type="submit" class="app-btn-success k-button" [disabled]="!canUpload">
+                    <span class="fa fa-save"></span>
+                    <span i18n>{{ 'financial_data_import_dialog.upload' | translate }}</span>
+                </button>
+            </div>
+
+            <div class="col-md-3">
+                <button type="button" class="app-btn-default k-button" (click)="onCancel()">
+                    <span i18n>{{ 'financial_data_import_dialog.close' | translate }}</span>
+                </button>
+            </div>
+        </div>
+    </form>
+    <a #anchor></a>
+</div>

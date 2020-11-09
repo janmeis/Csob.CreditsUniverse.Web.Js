@@ -1,0 +1,13 @@
+<section>
+    <textarea [value]="text" (input)="onValueChange($event.target.value)" [readonly]="!editable"></textarea>
+    <div class="k-button-dialog-group">
+        <button *ngIf="editable" type="button" class="k-button k-primary"
+                (click)="onSubmit()" i18n>
+            {{ 'financial_comment_dialog.ok' | translate }}
+        </button>
+        <button type="button" class="k-button"
+                (click)="onCancel()" i18n>
+            {{ 'financial_comment_dialog.cancel' | translate }}
+        </button>
+    </div>
+</section>

@@ -1,0 +1,38 @@
+@import "../components/dropdown-colors/colors.less";
+@import "../../../styles/atoms/_variables.less";
+
+.row {
+	.fa-circle {
+		&.color-white {
+			.color-white-mixin();
+		}
+		&.color-green {
+			.color-green-mixin();
+		}
+		&.color-red {
+			.color-red-mixin();
+		}
+		&.color-orange {
+			.color-orange-mixin();
+		}
+	}
+	&:not(.semaphore-history) {
+		margin-left: -23px;
+		.form-group {
+			text-align: center;
+			i {
+				padding-left: 5px;
+			}
+		}
+	}
+	&.semaphore-history {
+		margin-top: 24px;
+		padding: 0 24px;
+		label {
+			margin-left: -30px;
+		}
+		.k-grid {
+			border: 1px solid @color-border;
+		}
+	}
+}

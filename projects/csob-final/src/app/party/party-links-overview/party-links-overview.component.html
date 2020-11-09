@@ -1,0 +1,47 @@
+<section>
+    <div class="k-button-group text-right mb-4-5">
+        <span class="caret"></span>
+        <button type="button" class="k-button k-success" (click)="onAddClicked()" i18n>{{ 'party_links_overview.add' | translate }}</button>
+        <button type="button" class="k-button" (click)="onEditClicked()"
+                [disabled]="!canEdit" i18n>
+            {{ 'party_links_overview.edit' | translate }}
+        </button>
+        <button type="button" class="k-button" (click)="onDeleteClicked()"
+                [disabled]="!canDelete" i18n>
+            {{ 'party_links_overview.delete' | translate }}
+        </button>
+        <button type="button" class="k-button" (click)="onCribisClicked()" [disabled]="!canCribis" i18n>{{ 'party_links_overview.cribis' | translate }}</button>
+    </div>
+    <kendo-grid [data]="data"
+                [sort]="grid.sort"
+                [sortable]="true"
+                [scrollable]="'none'"
+                [filter]="true"
+                (dataStateChange)="onGridDataStateChange($event)"
+                (cellClick)="onGridCellClicked($event.dataItem, $event.columnIndex)"
+                (selectionChange)="onGridSelectionChange($event)"
+                [selectable]="{checkboxOnly:true}"
+                [kendoGridSelectBy]="'Id'"
+                [rowClass]="getRowClass"
+                [selectedKeys]="selection">
+        <kendo-grid-checkbox-column width="30">
+            <ng-template kendoGridHeaderTemplate let-column let-columnIndex="columnIndex">
+                <input class="k-checkbox" type="checkbox" title="{{ 'party_links_overview.select_all' | translate }}" i18n-title [checked]="selectAll" (change)="onSelectAll()"
+                       id="selectAll" />
+                <label class="k-checkbox-label" for="selectAll"></label>
+            </ng-template>
+        </kendo-grid-checkbox-column>
+        <kendo-grid-column field="SourcePartyName" title="{{ 'party_links_overview.source' | translate }}" class="wrap-column source-party-column" i18n-title></kendo-grid-column>
+        <kendo-grid-column field="TargetPartyName" title="{{ 'party_links_overview.target' | translate }}" class="target-party-column" i18n-title></kendo-grid-column>
+        <kendo-grid-column field="EssRelationTypeId" title="{{ 'party_links_overview.type' | translate }}" i18n-title>
+            <ng-template kendoGridCellTemplate let-dataItem>
+                {{dataItem.EssRelationTypeId | codebookLookup:'EssRelationType'}}
+            </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="PercentOwnership" title="{{ 'party_links_overview.percent' | translate }}" i18n-title></kendo-grid-column>
+        <kendo-grid-column field="ValidFrom" title="{{ 'party_links_overview.valid_from' | translate }}" format='{0:d}' i18n-title></kendo-grid-column>
+        <kendo-grid-column field="ValidTo" title="{{ 'party_links_overview.valid_to' | translate }}" format='{0:d}' i18n-title></kendo-grid-column>
+        <!--<kendo-grid-column field="ModifiedOn" title="{{ 'party_links_overview.last_change' | translate }}" format='{0:g}' i18n-title></kendo-grid-column>-->
+        <kendo-grid-column field="ModifiedBy" title="{{ 'party_links_overview.changed_by' | translate }}" i18n-title></kendo-grid-column>
+    </kendo-grid>
+</section>

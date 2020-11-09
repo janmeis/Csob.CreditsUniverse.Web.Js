@@ -1,0 +1,13 @@
+<div [ngClass]="{'readonly': readonly}">
+    <div class="party-select">
+        <span i18n>{{ 'label_ess.influencer' | translate}}</span>
+    </div>
+    <ng-container *ngIf="state!='empty'">
+        <div class="pd-select">
+            <span i18n>{{ 'label_ess.pd_rating' | translate}}</span>
+        </div>
+        <div class="pd-model">
+            <span i18n>{{ 'label_ess.pd_model' | translate}}</span>
+        </div>
+    </ng-container>
+</div>

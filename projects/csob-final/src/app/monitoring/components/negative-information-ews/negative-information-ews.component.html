@@ -1,0 +1,44 @@
+<header>
+    <div class="text-center">({{ comment }})</div>
+</header>
+<div *ngIf="!!rows" class="negative-information-ews">
+    <div class="row">
+        <div class="col-md-4">
+            <label  i18n>{{ 'negative_information_ews.negative_information_ews' | translate }}</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <kendo-grid name="negative-information-ews-grid"
+                        [data]="rows"
+                        [height]="320">
+                <kendo-grid-column title="{{ 'negative_information_ews.value_found_on' | translate}}" i18n-title>
+                    <ng-template kendoGridCellTemplate let-dataItem>
+                        <div class="w-100 text-right">
+                            {{ dataItem.valueFoundOn }}
+                        </div>
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column title="{{ 'negative_information_ews.value' | translate}}" i18n-title>
+                    <ng-template kendoGridCellTemplate let-dataItem>
+                        <div class="w-100 text-right">
+                            {{ dataItem.value | number:'1.2-2'}}
+                        </div>
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column title="{{ 'negative_information_ews.valid_to' | translate}}" i18n-title>
+                    <ng-template kendoGridCellTemplate let-dataItem>
+                        <div class="w-100 text-right">
+                            {{ dataItem.validTo }}
+                        </div>
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column title="{{ 'negative_information_ews.financial_type' | translate}}" i18n-title>
+                    <ng-template kendoGridCellTemplate let-dataItem>
+                        {{ dataItem.financialType }}
+                    </ng-template>
+                </kendo-grid-column>
+            </kendo-grid>
+        </div>
+    </div>
+</div>

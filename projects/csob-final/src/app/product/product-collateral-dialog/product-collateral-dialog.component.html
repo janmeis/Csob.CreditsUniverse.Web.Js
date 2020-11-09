@@ -1,0 +1,59 @@
+<div class="container">
+    <form *ngIf="matrix" #form="ngForm" (ngSubmit)="onSave()">
+        <div class="row">
+            <kendo-grid *ngIf="matrix.CollateralProductRows.length > 0"
+                        [data]="matrix.CollateralProductRows"
+                        [loading]="progress.loading"
+                        [resizable]="false"
+                        [style.width]="gridWidth"
+                        class="k-grid--dialog">
+                <kendo-grid-column width="350" [locked]="true">
+                    <ng-template kendoGridHeaderTemplate>
+                        <div class="header-legend">
+                            <div>{{ 'product_collateral_dialog.product_type' | translate}} / {{ 'product_collateral_dialog.collateral_type' | translate}}</div>
+                            <div>{{ 'product_collateral_dialog.product_subtype' | translate}} / {{ 'product_collateral_dialog.collateral_subtype' | translate}}</div>
+                            <div>{{ 'product_collateral_dialog.product_limit_value' | translate}}  / {{ 'product_collateral_dialog.pledge_value' | translate}}</div>
+                        </div>
+                    </ng-template>
+                    <ng-template kendoGridCellTemplate let-dataItem>
+                        <div class="matrix-title">
+                            <div>{{dataItem.LineNo}} {{dataItem.ProductTypeCU?.Description}}</div>
+                            <div>{{dataItem.ProductSubTypeCU?.Description}}</div>
+                            <div>{{ dataItem.CurrencyId | codebookLookup:'currency' }}&nbsp;&nbsp;{{dataItem.LimitValueThousands | number:'1.0-0' }}</div>
+                        </div>
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column *ngFor="let column of matrix.CollateralColumns; let c=index" width="200">
+                    <ng-template kendoGridHeaderTemplate>
+                        <div class="matrix-title">
+                            <div>{{column.CollateralTypeCU?.Description}}</div>
+                            <div>{{column.CollateralSubTypeCU?.Description}}</div>
+                            <div>{{ column.CurrencyId | codebookLookup:'currency' }}&nbsp;&nbsp;{{column.PledgeValue / 1000 | number:'1.0-0'}}</div>
+                        </div>
+                    </ng-template>
+                    <ng-template kendoGridCellTemplate #checkbox let-idx="rowIndex" let-dataItem>
+                        <ng-container *ngIf="column.Readonly || readonly || getCheckedCurrent(idx,c);else checkbox">
+                            <span *ngIf="getCheckedCurrent(idx,c) || getCheckedProposal(idx,c)" class="fa fa-check"></span>
+                        </ng-container>
+
+                        <ng-template #checkbox>
+                            <input [checked]="getCheckedProposal(idx,c)" type="checkbox" [name]="'proposal-c-'+idx" [id]="'proposal-c-'+idx" (click)="switchValueChange($event,idx,c)" />
+                        </ng-template>
+                    </ng-template>
+                </kendo-grid-column>
+            </kendo-grid>
+        </div>
+
+        <div class="row">
+            <div class="validation-summary " *ngIf="errMessage" [innerHTML]="errMessage"></div>
+            <div class="k-button-group">
+                <button *ngIf="matrix.CollateralProductRows.length > 0 && !readonly" type="submit" class="k-button" [disabled]="!changed" i18n>
+                    {{ 'product_collateral_dialog.save' | translate }}
+                </button>
+                <button type="button" class="k-button" (click)="onClose()" i18n>
+                    {{ 'product_collateral_dialog.close' | translate }}
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,194 @@
+@import "../../../styles/atoms/_variables.less";
+
+.collapse-switch {
+    float: right;
+}
+
+.color(@c, @bg) {
+    &.color-@{c} td {
+        background-color: @bg;
+    }
+}
+
+.indent(@i) {
+    &.indent-@{i} td.tableTitle div {
+        padding-left: (@i)*10px
+    }
+}
+// B12 means bold, size~12
+.font(@size,@weight) {
+    @name: if(((@weight)=b),B,N);
+
+    &.font-@{name}@{size} td.tableTitle > div {
+        font-weight: if(((@weight)=b),bold,normal);
+        //font-size: 100%+((@size)-8)*10%;
+        font-size: 100%;
+    }
+}
+
+.fin-table {
+    width: 100%;
+    box-sizing: border-box;
+    margin-right: -10px;
+    // data-driven style of headers: color-n indent-n font-n
+    tr {
+        .color(1, transparent);
+        .color(2, #5ebdf9);
+        .color(3, #a9d7fc);
+        .color(4, #d6edff);
+        .indent(1);
+        .indent(2);
+        .indent(3);
+        .indent(4);
+        .indent(5);
+        .indent(10);
+        .indent(15);
+        .indent(20);
+        .font(12, b);
+        .font(11, b);
+        .font(10, b);
+        .font(9, b);
+        .font(8, b);
+        .font(12, n);
+        .font(11, n);
+        .font(10, n);
+        .font(9, n);
+        .font(8, n);
+    }
+
+    .panel-heading td {
+        vertical-align: middle;
+    }
+
+    .panel-title {
+        //margin-bottom: 0;
+    }
+
+    .panel-title-link {
+    }
+
+    .fa-caret-link {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: 16px;
+        height: 16px;
+        cursor: pointer;
+        margin-left: 8px;
+    }
+
+    .fa-caret {
+    }
+
+    thead td {
+        border-left: 0;
+        border-top: 0;
+        border-right: 0;
+    }
+
+    tbody td:first-child {
+        border-left: 0;
+    }
+
+    tr:not(.panel-heading):nth-child(odd) {
+        background: fade(@color-secondary,50%);
+    }
+
+    td {
+        position: relative;
+        padding: 4px 8px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        border-top: 1px solid @color-border;
+        border-bottom: 1px solid @color-border;
+        border-left: 1px solid @color-border;
+
+        * {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        &:hover .comment-buttons {
+            opacity: 0.6;
+        }
+    }
+
+    .tableIdent {
+        min-width: 60px;
+        max-width: 60px;
+    }
+
+    .tableTitle {
+        // max-width: 100vw - 340px(margins) - (other cols)
+        min-width: 300px;
+        max-width: 300px;
+    }
+
+    .tableCell:not(.tableColorCell) {
+        min-width: 200px;
+        max-width: 200px;
+    }
+
+    .tableColorCell {
+        text-align: right;
+    }
+
+    .form-group {
+        margin: 0;
+    }
+
+    .comment-buttons {
+        position: absolute;
+        left: 12px;
+        top: 50%;
+        width: 36px;
+        height: 36px;
+        z-index: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transform: translateY(-50%);
+        cursor: pointer;
+        color: @color-primary;
+        opacity: 0;
+
+        &.has-comment {
+            opacity: 0.6;
+        }
+
+        &:hover {
+            opacity: 1 !important;
+        }
+    }
+
+    .text-box-readonly {
+        background: transparent;
+        border-color: transparent;
+    }
+
+    .font-B8,
+    .font-B9,
+    .font-B10,
+    .font-B11,
+    .font-B12 {
+        font-weight: 700;
+    }
+
+    .color-2,
+    .color-3,
+    .color-4 {
+        .k-numeric-wrap {
+            border: 0;
+        }
+
+        .k-numeric-wrap .k-input {
+            background-color: rgba(#fff,0.2);
+        }
+    }
+
+    .emptyCellPlaceholder {
+        visibility: hidden;
+    }
+}

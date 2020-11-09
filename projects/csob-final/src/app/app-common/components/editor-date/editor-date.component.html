@@ -1,0 +1,22 @@
+<div class="form-group">
+    <label [for]="name" class="editor-label" [class.required]="required && !readonly" [class.read-only-child]="readonly" [hidden]="!label">{{label}}</label>
+    <ng-container *ngIf="!readonly">
+        <kendo-dateinput [(ngModel)]="value"
+                         [name]="name"
+                         [format]="format"
+                         [placeholder]="placeholder"
+                         [required]="required"
+                         [editorValidator]="onValidate"
+                         [min]="min"
+                         [max]="max"
+                         #state="ngModel"
+                         [ngModelOptions]="{updateOn: updateOnBlur ? 'blur' : 'change' }"
+                         #dateInput></kendo-dateinput>
+        <editor-validations [state]="state" [label]="label || noLabel"></editor-validations>
+    </ng-container>
+    <ng-container *ngIf="readonly">
+        <p class="text-box-readonly k-textbox">
+            <span name="name" class="w-100 text-right">{{value | localDate: 'date'}}</span>
+        </p>
+    </ng-container>
+</div>

@@ -1,0 +1,118 @@
+@import "../../../styles/atoms/_variables.less";
+
+.place-for-state {
+    height: 18px;
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 100%;
+}
+
+.right-fixed-state {
+    position: absolute;
+    top: 0px;
+    right: 10px;
+    width: 150px;
+
+    .form-column {
+        width: 50%;
+        float: left;
+    }
+}
+
+section > .row {
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+section {
+    form {
+        margin-top: 10px;
+
+        .panel-group {
+            height: calc(100vh - 255px);
+        }
+
+        table {
+            width: 100%;
+
+            td, th {
+                padding: 10px 20px;
+            }
+        }
+    }
+
+    &.popups {
+        padding-bottom: 0px;
+    }
+
+    .loading {
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        width: 100vw;
+        height: 100vh;
+        display: none;
+
+        &.isBusy {
+            display: block;
+        }
+
+        .k-i-loading {
+            font-size: 64px;
+            font-weight: 100;
+            position: absolute;
+            top: calc(70vh - 16px);
+            left: calc(50vw - 16px);
+        }
+    }
+}
+
+@kendo-dialog-max-dimension: 95%;
+
+kendo-dialog {
+    max-height: @kendo-dialog-max-dimension;
+    max-width: @kendo-dialog-max-dimension;
+}
+
+kendo-pdf-export {
+    .header {
+        font-weight: 600;
+        margin-bottom: 30px;
+
+        .clientName {
+            font-size: xx-large;
+            margin-left: 10px;
+        }
+    }
+
+    table {
+        margin-left: 0;
+        margin-right: 0;
+        width: 95%;
+        font-size: smaller;
+
+        td {
+            text-align: right;
+            margin-bottom: 2px;
+            width: 8%;
+            background-color: white;
+
+            &.label {
+                width: 12%;
+                font-weight: 600;
+                margin-right: 5px;
+                background-color: @color-main-bg;
+            }
+        }
+    }
+
+    .gridheader {
+        font-weight: 600;
+        margin-top: 50px;
+
+        .title {
+            font-size: xx-large;
+            margin-left: 10px;
+        }
+    }
+}

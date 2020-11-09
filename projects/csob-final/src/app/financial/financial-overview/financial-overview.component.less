@@ -1,0 +1,23 @@
+@import "../../../styles/atoms/_variables.less";
+
+
+/* used for grid table body height */
+.icon-button:disabled {
+    display: none;
+}
+
+/* set from code, when fin statement is converted
+	::ng-deep must be used because of kendo
+*/
+::ng-deep tr.fin-data-converted>td {
+    background-color: #A9D7FC !important;  // css variables nefuguji v IE 11, proto hardcoded :(
+	//background-color: var(--converted-backcolor) !important;
+}
+
+/* set from code, when fin statement is converted
+	::ng-deep must be used because of kendo
+*/
+::ng-deep tr.fin-data-internal-csob>td {
+    background-color: #D3D3D3 !important; // css variables nefuguji v IE 11, proto hardcoded :(
+	//background-color: var(--international-backcolor) !important;
+}

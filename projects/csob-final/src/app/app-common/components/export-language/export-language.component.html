@@ -1,0 +1,9 @@
+<div>
+    <label [for]="languages" class="editor-label" i18n>{{ 'export_language.language' | translate }}</label>
+    <div name="languages" class="radio">
+        <label *ngFor="let item of languages">
+            <input type="radio" name="languagesOption" [value]="item" [checked]="item == language" [(ngModel)]="language" />
+            {{item.value | uppercase}}
+        </label>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+<section>
+    <kendo-grid [data]="view | async"
+                [loading]="view.loading"
+                [pageSize]="grid.take"
+                [skip]="grid.skip"
+                [sort]="grid.sort"
+                [sortable]="true"
+                [pageable]="{buttonCount:5, pageSizes:[10, 20, 50, 100]}"
+                (dataStateChange)="onGridUpdate($event)"
+                [selectable]="true"
+                (selectionChange)="onGridSelectionChange($event)">
+        <kendo-grid-column width="140" field="FinValidTo" title="{{ 'pd_rating_select_dialog.fin_valid_to' | translate }}" format='{0:d}' i18n-title>
+            <ng-template kendoGridCellTemplate let-dataItem>
+                <div name="name" class="w-100 text-right">{{ dataItem.FinValidTo | localDate : 'date' }}</div>
+            </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column width="80" field="FinConsolidation" title="{{ 'pd_rating_select_dialog.fin_consolidation' | translate }}" i18n-title>
+            <ng-template kendoGridCellTemplate let-dataItem>
+                <ng-container *ngIf="dataItem.FinConsolidation != null && dataItem.FinConsolidation != undefined">
+                    {{ dataItem.FinConsolidation | booleanLookup }}
+                </ng-container>
+            </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column width="180" field="PDModel" title="{{ 'pd_rating_select_dialog.pd_model' | translate }}" i18n-title></kendo-grid-column>
+        <kendo-grid-column width="80" field="Rating" title="{{ 'pd_rating_select_dialog.rating' | translate }}" i18n-title></kendo-grid-column>
+        <kendo-grid-column width="100" field="PDCategoryEnum" title="{{ 'pd_rating_select_dialog.category' | translate }}" i18n-title>
+            <ng-template kendoGridCellTemplate let-dataItem>
+                {{dataItem.PDCategoryEnum | codebookLookup:'EPDRatingCategory'}}
+            </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column width="80" field="State" title="{{ 'pd_rating_select_dialog.state' | translate }}" i18n-title></kendo-grid-column>
+        <kendo-grid-column width="100" field="User" title="{{ 'pd_rating_select_dialog.user' | translate }}" i18n-title></kendo-grid-column>
+        <kendo-grid-column width="140" field="CalculationDate" title="{{ 'pd_rating_select_dialog.calculation_date' | translate }}" i18n-title>
+            <ng-template kendoGridCellTemplate let-dataItem>
+                <div name="name" class="w-100 text-right">{{ dataItem.CalculationDate | localDate : 'dateTime' }}</div>
+            </ng-template>
+        </kendo-grid-column>
+    </kendo-grid>
+
+    <div class="k-button-dialog-group mt-4">
+        <button type="button" class="k-button k-primary" [disabled]="!selected" (click)="onSelect()" i18n>{{ 'pd_rating_select_dialog.select' | translate }}</button>
+        <button type="button" class="k-button" (click)="onClose()" i18n>{{ 'pd_rating_select_dialog.cancel' | translate }}</button>
+    </div>
+</section>

@@ -1,0 +1,91 @@
+<header>
+    <h2 i18n>{{ 'financial_detail.page_title' | translate }}</h2>
+</header>
+
+<fieldset [disabled]="isUpdating">
+    <section *ngIf="finModel">
+        <div class="icon-button-group">
+
+            <button id="btnOverview" class="icon-button -primary" [routerLink]="['../overview']" [queryParams]="{oldselection: leftIds.concat(rightIds).join(',')}">
+                <span class="fa fa-list-ul"></span>
+                <span i18n>{{ 'financial_detail.overview' | translate }}</span>
+            </button>
+
+            <div class="icon-button-group__devider"></div>
+
+            <button class="icon-button -primary" (click)="onSave(true, true)" [hidden]="!canSave" [disabled]="editForm.pristine || editForm.invalid || isUpdating || isComputing">
+                <span class="fa fa-save"></span>
+                <span i18n>{{ 'financial_detail.save' | translate }}</span>
+            </button>
+            <button class="icon-button -primary" (click)="onRecalculate()" [hidden]="!canRecalculate" [disabled]="editForm.invalid || isComputing" *hasRightTo="hasRightTo?.Statementrecalculate">
+                <span class="fa fa-exchange"></span>
+                <span i18n>{{ 'financial_detail.recalculate' | translate }}</span>
+            </button>
+            <button class="icon-button -primary" (click)="onConvert()" [hidden]="!canConvert" [disabled]="editForm.invalid || progress.running || isComputing" *hasRightTo="hasRightTo?.Statementconvert">
+                <span class="fa fa-exchange"></span>
+                <span i18n>{{ 'financial_detail.convert' | translate }}</span>
+            </button>
+            <button class="icon-button -primary" (click)="onSelectStatements()" [hidden]="!canChangePeriod"  [disabled]="editForm.invalid || isComputing">
+                <span class="fa fa-calendar"></span>
+                <span i18n>{{ 'financial_detail.changeperiod' | translate }}</span>
+            </button>
+            <button class="icon-button -primary" (click)="onComplete()" [hidden]="!canComplete" [disabled]="editForm.invalid || finModel.IsLocked || progress.running || isCompleteRunning || isComputing">
+                <span class="fa fa-check"> 	</span>
+                <span i18n>{{ 'financial_detail.complete' | translate }}</span>
+            </button>
+            <button class="icon-button -primary" (click)="onExport()" [hidden]="!canExport" [disabled]="progress.running || isComputing" *hasRightTo="hasRightTo?.Statementexport">
+                <span class="fa fa-upload"></span>
+                <span i18n>{{ 'financial_detail.export' | translate }}</span>
+            </button>
+            <button class="icon-button -primary" (click)="onAddModel()" [hidden]="!canAddModel" *hasRightTo="hasRightTo?.Statementaddmodel">
+                <span class="fa fa-plus"></span>
+                <span i18n>{{ 'financial_detail.add_model' | translate }}</span>
+            </button>
+            <button class="icon-button -primary" [hidden]="!canImportFinData" (click)="onImportClicked()" [disabled]="progress.running">
+                <span class="fa fa-download"></span>
+                <span i18n>{{ 'financial_detail.import' | translate}}</span>
+            </button>
+
+            <button *ngIf="isFromMonitoring"
+                    type="button"
+                    class="icon-button -primary"
+                    (click)="onToMonitoringClick()">
+                <span class="fa fa-bar-chart"></span>
+                <span i18n>{{ 'financial_detail.monitoring-overview' | translate }}</span>
+            </button>
+        </div>
+
+        <form #editForm="ngForm">
+            <div class="financial-switch-wrapper">
+                <fieldset [disabled]="!hasRightTo?.Statementedit">
+                    <div *ngIf="selectedTab?.ShowCollapsed">
+                        <editor-bool name="showCollapsed"
+                                     id="showCollapsed"
+                                     [value]="!exportOptions.IsCollapsed"
+                                     (click)="onShowColapsedClicked()"
+                                     labelOff="{{ 'financial_detail.collapsed' | translate}}"
+                                     labelOn="{{ 'financial_detail.full' | translate}}"></editor-bool>
+                    </div>
+                </fieldset>
+            </div>
+            <kendo-tabstrip #tabstrip keepTabContent="true" [animate]="true" (tabSelect)="onTabSelect($event)">
+                <kendo-tabstrip-tab *ngFor="let tab of finModel.Tabs" [title]="tab.Label" [selected]="selectedTab == tab">
+                </kendo-tabstrip-tab>
+            </kendo-tabstrip>
+            <div>
+
+                    <app-financial-view #financialViewComponent
+                                        [dataSource]="finModel"
+                                        [isLeasing]="!partyHeader?.Cuid"
+                                        [conversion]="conversion"
+                                        (formChanged)="onFormChanged()"
+                                        (specialHeaderChanged)="onSpecialHeaderChanged($event)"
+                                        (commentEdit)="onCommentEdit($event)"
+                                        [selectedTab]="selectedTab"
+                                        [(isCollapsed)]="exportOptions.IsCollapsed"
+                                        [(isHeaderCollapsed)]="exportOptions.IsHeaderCollapsed"></app-financial-view>
+
+            </div>
+        </form>
+    </section>
+</fieldset>

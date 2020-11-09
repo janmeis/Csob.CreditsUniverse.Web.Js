@@ -1,0 +1,17 @@
+<section *ngIf="model">
+    <form #form="ngForm" (ngSubmit)="onSave()">
+        <editor-codebook name="orgId" [(value)]="model.BranchId" [codebook]="codebook_name" label="{{ 'party_credit_file_management_dialog.org' | translate }}" [required]="isRequired" [autoSelectSingleItem]="false" [autofocus]="true" (valueChange)="isRequired=true" i18n-label></editor-codebook>
+        <div class="pull-right" style="margin-bottom:10px">
+            <editor-bool-switch [(value)]="showAll" (switchClicked)="showAllChanged()"
+                            labelOn="{{ 'party_credit_file_management_dialog.showall' | translate }}" labelOff="{{ 'party_credit_file_management_dialog.only_common' | translate }}"></editor-bool-switch>
+        </div>
+        <br style="clear:both;float:none" />
+
+        <div class="k-button-dialog-group">
+            <button type="submit" class="k-button k-primary" [disabled]="!model.BranchId">
+                <span i18n>{{ 'party_credit_file_management_dialog.save' | translate }}</span>
+            </button>
+            <button type="button" class="k-button" (click)="close(false)" i18n>{{ 'party_credit_file_management_dialog.cancel' | translate }}</button>
+        </div>
+    </form>
+</section>

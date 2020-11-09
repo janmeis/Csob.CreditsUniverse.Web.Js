@@ -1,0 +1,30 @@
+
+<section *ngIf="!searched || (searched && (isPo || !(isFo || isPo)))" class="panel">
+    <h3 i18n>{{ 'party_search_criteria.po_fop' | translate }}</h3>
+    <div class="row">
+        <div class="col-md-6 col-lg-4">
+            <editor-text [(value)]="criteria.ClientName" id="clientName" label="{{ 'party_search_criteria.client_name' | translate }}" [minlength]="minSearchChars" maxlength="40" [readonly]="isFo" [autofocus]="true" i18n-label></editor-text>
+        </div>
+        <div class="col-md-6 col-lg-4">
+            <editor-text [(value)]="criteria.IdentificationNumber" id="identificationNumber"  label="{{ 'party_search_criteria.identification_number' | translate }}" [readonly]="isFo" [minlength]="minSearchChars" maxlength="10" (validate)="onIdentificationNumberValidate($event)" (blur)="onIdentificationNumberChange($event)" i18n-label></editor-text>
+        </div>
+    </div>
+</section>
+
+<section *ngIf="!searched || (searched && (isFo || !(isFo || isPo)))" class="panel">
+    <h3 i18n>{{ 'party_search_criteria.fo' | translate }}</h3>
+    <div class="row">
+        <div class="col-md-6 col-lg-3">
+            <editor-text [(value)]="criteria.Surname"  label="{{ 'party_search_criteria.surname' | translate }}" id="surname" [readonly]="isPo" [minlength]="minSearchChars" maxlength="40" (validate)="onSurnameValidate($event)" i18n-label></editor-text>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <editor-text [(value)]="criteria.FirstName"  label="{{ 'party_search_criteria.name' | translate }}" id="firstName" [readonly]="isPo" [minlength]="minSearchChars" maxlength="40" (validate)="onFirstNameValidate($event)" i18n-label></editor-text>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <editor-text [(value)]="criteria.BirthNumber"  label="{{ 'party_search_criteria.birth_number' | translate }}" id="birthNumber" [readonly]="isPo" (validate)="onBirthNumberValidate($event)" i18n-label></editor-text>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <editor-date [(value)]="criteria.BirthDate"  label="{{ 'party_search_criteria.birth_date' | translate }}" id="birthDate" [readonly]="isPo" (validate)="onBirthDateValidate($event)" i18n-label></editor-date>
+        </div>
+    </div>
+</section>

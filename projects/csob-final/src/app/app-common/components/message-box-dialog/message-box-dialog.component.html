@@ -1,0 +1,8 @@
+<div *ngIf="message">{{ message }}</div>
+<div *ngIf="messageHTML" [innerHTML]="messageHTML | safeHtml"></div>
+
+<div class="k-button-dialog-group">
+    <div *ngFor="let item of buttons">
+        <button type="button" [class]="item.css" (click)="onCloseClick(item.result);">{{ item.title }}</button>
+    </div>
+</div>

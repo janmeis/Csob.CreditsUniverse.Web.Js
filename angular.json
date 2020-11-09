@@ -52,7 +52,7 @@
               "projects/csob-final/src/assets"
             ],
             "styles": [
-              "projects/csob-final/src/styles.less"
+              "projects/csob-final/src/styles/styles.less"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
@@ -108,6 +108,9 @@
               "browserTarget": "csob-final:build:production"
             }
           }
+        },
+        "es5": {
+          "browserTarget": "csob-final:build:es5"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",

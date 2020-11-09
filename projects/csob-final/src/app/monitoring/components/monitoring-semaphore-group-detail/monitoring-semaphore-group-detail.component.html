@@ -1,0 +1,12 @@
+<kendo-grid *ngIf="details.slice(1,details.length) as rows"
+            [data]="rows"
+            [resizable]="true">
+    <kendo-grid-column *ngFor="let header of details[0];let c=index">
+        <ng-template kendoGridHeaderTemplate>
+            {{ header }}
+        </ng-template>
+        <ng-template kendoGridCellTemplate let-r="rowIndex">
+            {{ rows[r][c] }}
+        </ng-template>
+    </kendo-grid-column>
+</kendo-grid>

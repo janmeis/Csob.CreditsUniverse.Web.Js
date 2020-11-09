@@ -1,0 +1,15 @@
+<kendo-dropdownlist [data]="languages"
+                    textField="text"
+                    valueField="value"
+                    valuePrimitive="true"
+                    [(ngModel)]="currentLanguage"
+                    (valueChange)="onLanguageChanged($event)">
+    <ng-template kendoDropDownListValueTemplate let-dataItem>
+        <ng-container *ngIf="dataItem">
+            <div [class]="dataItem.css" role="img"></div>{{dataItem.text}}
+        </ng-container>
+    </ng-template>
+    <ng-template kendoDropDownListItemTemplate let-dataItem>
+        <div [class]="dataItem.css" role="img"></div>{{dataItem.text}}
+    </ng-template>
+</kendo-dropdownlist>

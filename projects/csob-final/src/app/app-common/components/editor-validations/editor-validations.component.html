@@ -1,0 +1,17 @@
+<div *ngIf="state.invalid && (state.dirty || state.touched)"
+     class="alert alert-danger">
+    <ng-container *ngIf="state.errors.editorValidator">
+        <div *ngFor="let err of state.errors.editorValidator">
+            {{err}}
+        </div>
+    </ng-container>
+    <div *ngIf="state.errors.required" i18n>{{ 'editor_validations.field_x_is_required' | translate:label }}</div>
+    <div *ngIf="state.errors.positiveValue" i18n>{{ 'editor_validations.x_must_be_positive_number' | translate:label }}</div>
+    <div *ngIf="state.errors.minlength" i18n>{{ 'editor_validations.enter_at_least_x_characters' | translate:editor.minlength }}</div>
+    <div *ngIf="state.errors.maxlength" i18n>{{ 'editor_validations.enter_no_more_than_x_characters' | translate:editor.maxlength }}</div>
+    <div *ngIf="state.errors.number" i18n>{{ 'editor_validations.field_x_must_be_an_number' | translate:label }}</div>
+    <div *ngIf="state.errors.numberDec && state.errors.numberDec.numberInt" i18n>{{ 'editor_validations.field_x_should_have_maximum_x_integer_places' | translate:label:state.errors.numberDec.numberInt }}</div>
+    <div *ngIf="state.errors.numberDec && state.errors.numberDec.numberFrac" i18n>{{ 'editor_validations.field_x_should_have_maximum_x_decimal_places' | translate:label:state.errors.numberDec.numberFrac }}</div>
+    <div *ngIf="state.errors.minError" i18n>{{ 'editor_validations.field_x_no_past_date' | translate:label }}</div>
+    <div *ngIf="state.errors.maxError" i18n>{{ 'editor_validations.field_x_no_future_date' | translate:label }}</div>
+</div>

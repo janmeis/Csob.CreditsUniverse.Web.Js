@@ -1,0 +1,65 @@
+<div *ngIf="filterable" class="col-md-4">
+    <editor-bool-switch [value]="showInactive" (switchClicked)="showInactiveHandler($event)"
+        title="{{ 'negative_information_execution.show_mode' | translate }}"
+        labelOn="{{ 'negative_information_execution.also_inactive' | translate }}"
+        labelOff="{{ 'negative_information_execution.only_active' | translate }}">
+    </editor-bool-switch>
+</div>
+
+<div class="row negative-information-execution">
+    <div class="col-md-12">
+        <!-- <label i18n>{{ 'negative_information_execution.negative_information_execution' | translate }}</label> -->
+
+        <kendo-grid *ngIf="gridData"
+                    name="negative-information-execution-grid"
+                    [data]="gridData"
+                    [filterable]="false"
+                    [filter]="filter"
+                    [height]="320">
+            <kendo-grid-column field="Validity" title="{{ 'negative_information_execution.validity' | translate }}" width="250" i18n-title>
+                <ng-template kendoGridCellTemplate let-dataItem>
+                    {{ 'negative_information_execution.' + dataItem.Status | translate}}
+                </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column field="Currency" title="{{ 'negative_information_execution.currency' | translate }}" i18n-title></kendo-grid-column>
+            <kendo-grid-column field="AmountTotal" title="{{ 'negative_information_execution.amount_total' | translate }}" class="wrap-column text-right" i18n-title>
+                <ng-template kendoGridCellTemplate let-dataItem>
+                    {{dataItem.AmountTotal | number : '1.2-2'}}
+                </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column field="AmountPaid" title="{{ 'negative_information_execution.amount_paid' | translate }}" class="wrap-column text-right" i18n-title>
+                <ng-template kendoGridCellTemplate let-dataItem>
+                    {{dataItem.AmountPaid | number : '1.2-2'}}
+                </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column field="Role" title="{{ 'negative_information_execution.role' | translate }}" i18n-title>
+                <ng-template kendoGridCellTemplate let-dataItem>
+                    {{dataItem.Role}}
+                </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column field="LastModified" title="{{ 'negative_information_execution.date_modified' | translate }}" i18n-title>
+                <ng-template kendoGridCellTemplate let-dataItem>
+                    {{dataItem.DateModified | localDate : 'date'}}
+                </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column field="Source" title="{{ 'negative_information_execution.source' | translate }}" i18n-title>
+                <ng-template kendoGridCellTemplate let-dataItem>
+                    {{dataItem.Source}}
+                </ng-template>
+            </kendo-grid-column>
+<!--             <kendo-grid-column field="ValidFrom" title="{{ 'negative_information_execution.valid_from' | translate }}" i18n-title>
+                <ng-template kendoGridCellTemplate let-dataItem>
+                    {{dataItem.ValidFrom | localDate : 'date'}}
+                </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column field="ValidTo" title="{{ 'negative_information_execution.valid_to' | translate }}" i18n-title>
+                <ng-template kendoGridCellTemplate let-dataItem>
+                        <div class="w-100 text-right">
+                            {{ dataItem.ValidTo | localDate: "date"}}
+                        </div>
+                </ng-template>
+            </kendo-grid-column> -->
+        </kendo-grid>
+    </div>
+</div>
+

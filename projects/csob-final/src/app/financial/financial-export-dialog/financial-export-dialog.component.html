@@ -1,0 +1,9 @@
+<form class="mb-2" (ngSubmit)="onExport(anchor)">
+    <editor-enum [enumValues]="exportOptionEnumValues" [(value)]="exportOptions.Format" label="{{ 'financial_export_dialog.format' | translate }}" layout="radio" i18n-label></editor-enum>
+    <editor-enum [enumValues]="languageEnumValues" [(value)]="exportOptions.Culture" label="{{ 'financial_export_dialog.language' | translate }}" layout="radio" i18n-label></editor-enum>
+    <a #anchor></a>
+    <div class="k-button-dialog-group">
+        <button type="submit" class="k-button k-primary" i18n>{{ 'financial_export_dialog.export' | translate }}</button>
+        <button type="button" class="k-button" (click)="close(false)" i18n>{{ 'financial_export_dialog.cancel' | translate }}</button>
+    </div>
+</form>

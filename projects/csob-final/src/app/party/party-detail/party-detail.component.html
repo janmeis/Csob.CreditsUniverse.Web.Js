@@ -1,0 +1,78 @@
+<form *ngIf="partyDetail" #form="ngForm" (ngSubmit)="onSave()">
+
+    <div class="k-button-group text-right">
+
+        <button type="submit" class="k-button k-primary" [disabled]="!(form.valid && form.dirty)">
+            <span i18n>{{ 'party_detail.save' | translate }}</span>
+        </button>
+
+        <button type="button" *ngIf="!partyDetail.IsManagerCreditFile && id!='new'" class="k-button" (click)="onTakeCreditFile()" [disabled]="false">
+            <span i18n>{{ 'party_detail.take_credit_file' | translate }}</span>
+        </button>
+    </div>
+
+    <fieldset [disabled]="isReadOnly">
+        <section class="panel" *ngIf="id == 'new' || isPo">
+            <h3 class="panel-heading">{{ headingText }}</h3>
+            <div class="row">
+                <div class="col-md-6 col-lg-4">
+
+                    <editor-text name="ClientName" [(value)]="partyDetail.ClientName" [minlength]="minSearchChars" maxlength="150" label="{{ 'party_detail.client_name' | translate }}" [readonly]="isReadOnly" [required]="isPo" (valueChange)="clientNameValueChange($event)" [autofocus]="true" i18n-label></editor-text>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <editor-text name="IdentificationNumber" [(value)]="partyDetail.IdentificationNumber" maxlength="10" label="{{ 'party_detail.identification_number' | translate }}" [readonly]="isReadOnly || readonlyIdentificationNumber" i18n-label></editor-text>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <editor-text name="Zecho" [(value)]="partyDetail.Zecho" label="{{ 'party_detail.zecho' | translate }}" maxlength="30" [readonly]="isReadOnly || readonlyZecho" i18n-label></editor-text>
+                </div>
+            </div>
+
+            <app-party-detail-address *ngIf="partyDetail.AddressPo && (id == 'new' || isPo)" [(address)]="partyDetail.AddressPo" [readonly]="isReadOnly || !isPo" [required]="isPo"></app-party-detail-address>
+        </section>
+
+        <section class="panel" *ngIf="id == 'new' || isFo">
+            <h3 class="panel-heading" i18n>{{ 'party_detail.fo_identification' | translate }}</h3>
+            <div class="row">
+                <div class="col-md-6 col-lg-3">
+                    <editor-text name="Surname" [(value)]="partyDetail.Surname" [minlength]="minSearchChars" maxlength="40" label="{{ 'party_detail.surname' | translate }}" [readonly]="isReadOnly" [required]="isFo" (valueChange)="surnameValueChange($event)" i18n-label></editor-text>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <editor-text name="FirstName" [(value)]="partyDetail.FirstName" [minlength]="minSearchChars" maxlength="40" label="{{ 'party_detail.first_name' | translate }}" [readonly]="isReadOnly" [required]="isFo" (valueChange)="firstNameValueChange($event)" i18n-label></editor-text>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <editor-text name="BirthNumber" [(value)]="partyDetail.BirthNumber" mode="text" maxlength="20" label="{{ 'party_detail.birth_number' | translate }}" [readonly]="isReadOnly || readonlyBirthNumber" (valueChange)="birthNumberValueChange($event)" (validate)="onBirthNumberValidate($event)" i18n-label></editor-text>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <editor-date name="BirthDate" [(value)]="partyDetail.BirthDate" label="{{ 'party_detail.birth_date' | translate }}" [readonly]="isReadOnly" [required]="isFo" [disableFuture]="true" (validate)="birthDateValidate($event)" i18n-label></editor-date>
+                </div>
+            </div>
+
+            <app-party-detail-address *ngIf="partyDetail.AddressFo && (id == 'new' || isFo)" [(address)]="partyDetail.AddressFo" [readonly]="isReadOnly || !isFo" [required]="isFo"></app-party-detail-address>
+        </section>
+
+        <section *ngIf="id != 'new'" class="panel">
+            <h3 class="panel-heading" i18n>{{ 'party_detail.client_identifier' | translate }}</h3>
+            <kendo-grid [data]="partyDetail.PartyIdentifiers" [scrollable]="'none'" class="blabla">
+                <kendo-grid-column field="System" title="{{ 'party_detail.system' | translate }}" i18n-title></kendo-grid-column>
+                <kendo-grid-column field="Code" title="{{ 'party_detail.oponent' | translate }}" i18n-title></kendo-grid-column>
+            </kendo-grid>
+        </section>
+
+        <section class="panel">
+            <div class="row">
+                <div class="col-md-6 col-lg-3">
+                    <editor-date [(value)]="partyDetail.CreatedOn" label="{{ 'party_detail.created_on' | translate }}" [readonly]="true" i18n-label></editor-date>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <editor-text [(value)]="partyDetail.CreatedBy" label="{{ 'party_detail.created_by' | translate }}" [readonly]="true" i18n-label></editor-text>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <editor-date [(value)]="partyDetail.ModifiedOn" label="{{ 'party_detail.modified_on' | translate }}" [readonly]="true" i18n-label></editor-date>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <editor-text [(value)]="partyDetail.ModifiedBy" label="{{ 'party_detail.modified_by' | translate }}" [readonly]="true" i18n-label></editor-text>
+                </div>
+            </div>
+        </section>
+    </fieldset>
+</form>

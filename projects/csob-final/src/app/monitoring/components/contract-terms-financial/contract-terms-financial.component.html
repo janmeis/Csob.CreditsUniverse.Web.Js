@@ -1,0 +1,105 @@
+
+<ng-container *ngIf="model.InputRows.length>0">
+    <div class="row">
+        <div class="col">
+            <editor-codebook [codebook]="monthProvider"
+                                [(value)]="inputIndex"
+                                [readonly]="readonly"
+                                label="{{ 'contract_terms_financial.month' | translate }}" i18n-label></editor-codebook>
+        </div>
+        <div  class="col">
+            <editor-text [(value)]="model.InputRows[inputIndex].Description" [readonly]="true" label="{{ 'contract_terms_financial.product' | translate }}" i18n-label></editor-text>
+        </div>
+        <div class="col">
+            <editor-text [(value)]="model.InputRows[inputIndex].RequiredValue" [readonly]="true" label="{{ 'contract_terms_financial.required_value' | translate }}" mode="number" i18n-label></editor-text>
+        </div>
+        <div class="col">
+            <editor-text [(value)]="model.InputRows[inputIndex].FinancialValue" label="{{ 'contract_terms_financial.real_value' | translate }}" mode="currency" (validate)="onFinancialValueValidate($event)" i18n-label></editor-text>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <editor-text label="{{ 'contract_terms_financial.comment' | translate }}" [(value)]="model.InputRows[inputIndex].Comment" i18n-label></editor-text>
+        </div>
+    </div>
+</ng-container>
+
+
+<div class="row contract-terms-financial">
+    <div class="col-md-12">
+        <label i18n>{{ 'contract_terms_financial.contract_terms_financial' | translate }}</label>
+
+        <kendo-grid name="contract-terms-financial-grid"
+                    [data]="model.Rows"
+                    [height]="model.InputRows.length>0 ? '250' : '450'">
+            <ng-container *ngIf="!model.IsCustom">
+                <kendo-grid-column field="ValueFoundOn" title="{{ 'contract_terms_financial.value_found_on' | translate }}" i18n-title>
+                    <ng-template kendoGridCellTemplate let-dataItem>
+                        {{ dataItem.ValueFoundOn | localDate:'dateTime' }}
+                    </ng-template>
+                </kendo-grid-column>
+            </ng-container>
+
+            <kendo-grid-column field="RequiredValue" title="{{ 'contract_terms_financial.required_value' | translate }}" i18n-title>
+                <ng-template kendoGridCellTemplate let-dataItem>
+                    <div class="w-100 text-right">
+                        <ng-container *ngIf="!!dataItem.ConditionLink && dataItem.ConditionLink.length>0;else noConditionLink">
+                            <a (click)="onLinkClicked(dataItem.ConditionLink)" [title]="dataItem.ConditionLink">{{ dataItem.RequiredValue }}</a>
+                        </ng-container>
+                        <ng-template #noConditionLink>
+                            {{ dataItem.RequiredValue }}
+                        </ng-template>
+                    </div>
+                </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column field="FinancialValue" title="{{ 'contract_terms_financial.real_value' | translate }}" i18n-title>
+                <ng-template kendoGridCellTemplate let-dataItem>
+                    <div class="w-80 text-right">
+                        {{ dataItem.RowValue }}
+                    </div>
+                </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column field="Difference"  title="{{ 'contract_terms_financial.difference' | translate }}" i18n-title>
+                <ng-template kendoGridCellTemplate let-dataItem>
+                <div class="w-80 text-right">
+                    {{ dataItem.Diff }}
+                </div>
+                </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column field="FulfillmentPercentage" title="{{ 'contract_terms_financial.fulfillment_percentage' | translate }}" i18n-title>
+                <ng-template kendoGridCellTemplate let-dataItem>
+                    <div class="w-80 text-right">
+                        {{ dataItem.FulfillmentPercentage | number:'1.0-0' }}
+                    </div>
+                </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column field="EOM" title="{{ 'contract_terms_financial.end_of_month' | translate }}" i18n-title>
+                <ng-template kendoGridCellTemplate let-dataItem>
+                    <ng-container *ngIf="!!dataItem.FinancialLink && dataItem.FinancialLink.length>0;else noFinancialLink">
+                        <a (click)="onLinkClicked(dataItem.FinancialLink)" [title]="dataItem.FinancialLink">{{ dataItem.EOM | date:'MM/yyyy' }}</a>
+                    </ng-container>
+                    <ng-template #noFinancialLink>
+                        {{ dataItem.EOM | date:'MM/yyyy' }}
+                    </ng-template>
+                </ng-template>
+            </kendo-grid-column>
+            <ng-container *ngIf="!model.IsCustom && !model.CommentEnabled">
+                <kendo-grid-column field="FinStatementType" title="{{ 'contract_terms_financial.financial_type' | translate }}" i18n-title></kendo-grid-column>
+            </ng-container>
+
+            <ng-container *ngIf="model.CommentEnabled">
+                <kendo-grid-column field="ValueFoundOn" title="{{ 'contract_terms_financial.date_and_time' | translate }}" i18n-title>
+                    <ng-template kendoGridCellTemplate let-dataItem>
+                        {{ dataItem.ValueFoundOn | localDate:'dateTime' }}
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column field="User" title="{{ 'contract_terms_financial.author' | translate }}" i18n-title></kendo-grid-column>
+                <kendo-grid-column field="Comment"  title="{{ 'contract_terms_financial.comment' | translate }}" i18n-title></kendo-grid-column>
+            </ng-container>
+
+            <!-- <kendo-grid-column *ngIf="!model.IsCustom" field="Description" title="{{ 'contract_terms_financial.product' | translate }}" i18n-title></kendo-grid-column> -->
+            <kendo-grid-column field="Description" title="{{ 'contract_terms_financial.product' | translate }}" i18n-title></kendo-grid-column>
+        </kendo-grid>
+    </div>
+</div>
+

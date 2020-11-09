@@ -1,0 +1,11 @@
+<!-- <input kendoTextBox (keyup)="onChange($event)" /> -->
+<span class="k-textbox k-grid-search k-display-flex">
+    <input autocomplete="off" placeholder="{{ 'full_text_filter.search' | translate }}" title="{{ 'full_text_filter.search' | translate }}" [(ngModel)]="model" (keyup)="onKeyUp()" class="k-input" i18n-placeholder i18n-title />
+    <span class="k-input-icon">
+        <!-- <span *ngIf="!model || model.length==0;else cancelIcon" class="k-icon k-i-search"></span>
+        <ng-template #cancelIcon>
+            <span class="k-icon k-i-x-circle" (click)="model=null;onKeyUp()"></span>
+        </ng-template> -->
+        <span *ngIf="!!model && model.length>0" class="k-icon k-i-x-circle" (click)="model=null;onKeyUp()"></span>
+    </span>
+</span>
