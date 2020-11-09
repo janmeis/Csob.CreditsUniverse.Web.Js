@@ -1,0 +1,62 @@
+.notification {
+	position: fixed;
+	z-index: 20;
+	top: 0;
+	right: 0;
+	width: calc(100% - (@leftpanelwidth));
+	padding: 1rem 0;
+	color: @color-black;
+	text-align: center;
+	background-color: fade(@color-white, 100%);
+
+	@media screen and (min-width: @breakpoint-lg) {
+		width: calc(100% - (@leftpanelwidth-big));
+	}
+
+	&.info {
+		background-color: fade(@info, 100%);
+		color: @color-white;
+	}
+
+	&.warning {
+		background-color: fade(@warning, 100%);
+		color: @color-black;
+	}
+
+	&.error {
+		background-color: fade(@error, 100%);
+		color: @color-white;
+	}
+
+	&.success {
+		background-color: fade(@success, 100%);
+		color: @color-white;
+	}
+}
+
+.notification__close-btn {
+  position: absolute;
+  display: block;
+  top: 0;
+  right: 0;
+
+  width: 48px;
+  height: 48px;
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-size: 16px;
+  background-position: 50% 50%;
+  background-image: url('../../assets/images/icons/close-icon.png');
+}
+
+.errorPane {
+	position: fixed;
+	right: 0;
+	width: calc(100% - (@leftpanelwidth));
+	padding: 1rem 0;
+
+	@media screen and (min-width: @breakpoint-lg) {
+	  width: calc(100% - (@leftpanelwidth-big));
+	}
+}
+

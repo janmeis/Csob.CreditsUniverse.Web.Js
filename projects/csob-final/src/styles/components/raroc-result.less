@@ -1,0 +1,60 @@
+.raroc-result {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -0.5rem;
+}
+
+.raroc-result__cell {
+  background: @color-secondary;
+  border-radius: @border-radius;
+  margin: 0.5rem;
+  padding: 0.75rem 1.25rem;
+
+  label {
+    font-size: 0.85rem;
+    white-space: normal;
+  }
+
+  span {
+    font-size: 1.5rem;
+  }
+}
+
+
+.raroc-result {
+
+}
+
+.raroc-table__wrapper {
+  overflow-x: auto;
+  margin: 0 -@spacing-base;
+}
+
+.raroc-table {
+  width: 100%;
+  border-top: 1px solid @color-border;
+  tr {
+
+  }
+
+  th,td {
+    white-space: nowrap;
+    padding: 0.25rem 0.75rem;
+    border-bottom: 1px solid @color-border;
+    &:first-child {
+      padding-left: @spacing-base;
+    }
+    &:last-child {
+      padding-right: @spacing-base;
+    }
+    &:nth-child(2n+1) {
+      background: fade(@color-secondary, 80%);
+    }
+  }
+
+  .label {
+    color: @color-grey-dark;
+    font-size: 0.85rem;
+  }
+
+}

@@ -1,0 +1,218 @@
+.k-grid {
+    margin: 0 -(@spacing-base);
+    border: 0;
+}
+
+.k-grid--clickable {
+    tr:not(.k-grouping-row) td {
+        cursor: pointer;
+    }
+}
+
+.k-grid-header {
+    color: #757575;
+    font-size: 12px;
+    background-color: @color-white;
+
+    .k-header {
+        border-top: 0;
+        border-color: @color-border;
+    }
+
+    .k-icon {
+        position: absolute;
+        right: 4px;
+    }
+}
+
+//.k-grid-header .k-header:first-child,
+.k-grid th:first-child,
+.k-grid td:first-child {
+    padding-left: @spacing-base;
+}
+
+//.k-grid-header .k-header:last-child,
+.k-grid th:last-child,
+.k-grid td:last-child {
+    //padding-right: @spacing-base;
+    border-right: 0;
+}
+
+.k-grid td,
+.k-grid .k-grid-content,
+.k-grid .k-grid-header-locked,
+.k-grid .k-grid-content-locked {
+    border-color: @color-border;
+}
+
+.k-grid th,
+.k-grid td {
+    white-space: nowrap;
+    padding: 10px 16px 10px 10px;
+}
+
+.k-grid tr:last-child td {
+    border-bottom: 1px solid @color-border;
+}
+
+.k-grid th.k-state-selected,
+.k-grid td.k-state-selected,
+.k-grid tr.k-state-selected>td {
+    background-color: fade(@color-primary, 10%);
+}
+
+.k-grid:not(.k-grid--no-stripe) .k-alt {
+    background-color: fade(@color-secondary, 50%);
+}
+
+.k-grid tbody tr:hover,
+.k-grid tbody tr.k-state-hover {
+    background-color: @color-secondary;
+}
+
+.k-grid-pager {
+    border-color: @color-border;
+    border: 0;
+    background-color: @color-white;
+    padding: @spacing-base @spacing-base 0;
+}
+
+.scrolllable-grid-mixin() {
+	.k-grid-content {
+			overflow-y: auto;
+			overflow-x: auto;
+	}
+
+	.k-grid-header-wrap,
+	.k-grid-header {
+			padding: 0 !important;
+			border-right: 0;
+	}
+
+	.k-grouping-header {
+			display: none;
+	}
+}
+
+.k-grid {
+	&:not(.k-grid--finoverview) {
+		&:not([name="dashboard-events-grid"]) {
+			&:not([name="dashboard-client-grid"]) {
+				&:not([name="semaphore-history-grid"]) {
+					&:not([name="contract-terms-financial-grid"]) {
+						&:not([name="contract-terms-nonfinancial-grid"]) {
+							&:not([name="negative-information-blacklist-grid"]) {
+								&:not([name="negative-information-paymentflow-grid"]) {
+									&:not([name="negative-information-specific-grid"]) {
+										&:not([name="negative-information-unauthorized-overdraft-grid"]) {
+											&:not([name="negative-information-insolvency-grid"]) {
+												&:not([name="negative-information-cru-grid"]) {
+													&:not([name="negative-information-cribis-grid"]) {
+														&:not([name="negative-information-execution-grid"]) {
+															&:not([name="monitoring-pd-rating-grid"]) {
+																&:not([name="dash-monitoring-incidents-grid"]) {
+																	&:not([name="negative-information-ews-grid"]) {
+																		.scrolllable-grid-mixin();
+																	}
+																}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+.k-group-cell {
+    background: transparent;
+}
+
+.k-grid .k-grouping-row .k-group-cell,
+.k-grid .k-grouping-row+tr .k-group-cell {
+    border-top-width: 1px;
+}
+
+.k-grid .k-grouping-row td {
+    padding-top: 18px;
+    padding-bottom: 18px;
+    background: @color-white;
+}
+
+.k-grid--dialog {
+    //margin-top: calc(-@spacing-base - 1px);
+    margin-bottom: @spacing-base;
+    max-height: 60vh;
+    border-bottom: 1px solid @color-border;
+
+    @media screen and (min-height: 1025px) {
+        max-height: 70vh;
+    }
+
+    .k-grid-header .k-header:first-child,
+    .k-grid-header .k-header:last-child,
+    td:first-child,
+    td:last-child {
+        padding: 0.75rem 1.25rem;
+    }
+
+    tr:last-child td {
+        border-bottom: 0;
+    }
+
+    .k-header {
+        font-size: 1rem;
+        color: #000;
+    }
+
+    p {
+        color: @color-black;
+        font-size: 1rem;
+        line-height: 1;
+        margin: 0;
+        margin-bottom: 0.25rem;
+    }
+
+    span {
+        display: block;
+        color: @color-grey-dark;
+        font-size: 0.85rem;
+    }
+
+
+    .header-legend {
+        span {
+            display: block;
+        }
+    }
+}
+
+.k-grid--monitoring th:last-child,
+.k-grid--monitoring td:last-child,
+.k-grid--monitoring .k-grid-header .k-header:last-child {
+    padding-right: 10px;
+}
+
+kendo-grid td.column-align-right {
+    text-align: right;
+}
+
+.k-grid--monitoring-dialog {
+	margin: -5px 5px 28px 3px;
+
+	th, td {
+        padding: 5px 10px 5px 5px;
+
+        &:first-child {
+            padding-left: 5px;
+        }
+	}
+}

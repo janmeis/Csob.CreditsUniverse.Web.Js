@@ -1,0 +1,148 @@
+//do not use this colors directly in your components
+//use it in your .less via @import
+@color-c1: #23bdf9;
+@color-c2: #fff;
+@color-c3: #f9f9fe;
+@color-c4: #828282;
+@color-c5: #2d2d2d;
+@color-c6: #dadada;
+
+//this colors can be used, but it is better to derive some less variable with naming the usage
+@color-menu-bg: @color-c1;
+@color-menu-fg: @color-c2;
+@color-main-bg: @color-c3;
+@color-main-border: @color-c6;
+
+@color-input-label: @color-c4;
+@color-input-text: @color-c5;
+//@color-input-text-focused:@color-c7;
+@color-input-border: @color-c6;
+//@color-input-border-focused:@color-c8;
+
+//from graphic manual:
+@color-BLUE: #003466; // Tlačítka
+@color-CYAN: #0099cd; // Notifikace (informace), tlačítka (hover effect)
+@color-BLUE2: #001426; //  Pozadí postranní lišty (1. úroveň)
+@color-CYAN2: #7a8a99; // Ikony a text postranní lišty (1. úroveň)
+@color-GREEN: #32b614; //  Notifikace (potvrzení, úspěšná operace), zvýrazněná tlačítka (nap. Uložit apod.)
+@color-YELLOW: #ffcc00; // Notifikace (upozornění)
+@color-ORANGE: #ff6000; // Notifikace (chyba)
+@color-RED: #ff5353; // Chybová hláška
+@color-GRAY20: #333333; // Text (tmavší)
+@color-GRAY40: #656565; // Text (světlejší)
+@color-GRAY90: #e6e6e6; // Pozadí
+
+//from QUB - graphic
+@color-ORANGE-QUB: #f29500;
+@color-LightORANGE-QUB: #fccf87;
+@color-SHADOW-GRAY: #c8c8c8;
+@color-SELECTED-STATE: #e6e6e6;
+@color-qub-blue: #00aef1;
+@color-qub-lightblue: #39c7fe;
+@color-qub-green: #00b426;
+@color-qub-lightgreen: #61de7b;
+
+/* alternative row bg */
+@color-row-secondary: rgba(97, 222, 123, 0.43);
+
+@Z-APPHEADER: 200;
+@Z-KENDOWINDOW: 10003;
+@Z-NOTIFICATIONS: 11000;
+
+// kendo colors generaor
+
+@accent: #009bd8;
+@secondary: #f1f9fc;
+@info: #009bd8;
+@success: #1ca641;
+@warning: #ffc107;
+@error: #e5223c;
+@body-bg: #ffffff;
+@body-color: #000000;
+@component-bg: #ffffff;
+@component-color: #000000;
+@card-cap-bg: #f1f9fc;
+@card-cap-color: #000000;
+@series-a: #0275d8;
+@series-b: #5bc0de;
+@series-c: #5cb85c;
+@series-d: #f0ad4e;
+@series-e: #e67d4a;
+@series-f: #d9534f;
+
+/* TS redesign variables */
+
+// primary color shades
+@color1: #009BD8;
+@color2: #007CAD;
+
+// secondary color shades
+@color3: #f4f9fb;
+@color4: #EFF3F5;
+
+// success color shades
+@color5: #1CA641;
+@color6: #178735;
+
+// error color shades
+@color7: #E5223C;
+@color8: #CC1E35;
+
+@color-white: #ffffff;
+@color-black: #000000;
+
+@color-grey-dark: #727272;
+@color-border: #e9e9e9;
+@color-form-border: #cccccc;
+
+@color-tabs-border: #93d5ee;
+@color-tabs-inner: #fafcfc;
+
+// custom color links
+
+@color-primary: @color1;
+@color-primary-dark: @color2;
+
+@color-secondary: @color3;
+@color-secondary-dark: @color4;
+
+@color-success: @color5;
+@color-success-dark: @color6;
+
+@color-danger: @color7;
+@color-danger-dark: @color8;
+
+@border-radius: 4px;
+@button-border-radius: 999px;
+
+@spacing-base: 36px;
+
+@leftpanelwidth: 84px;
+@leftpanelwidth-big: 220px;
+
+@breakpoint-sm: 540px;
+@breakpoint-md: 768px;
+@breakpoint-lg: 1024px;
+@breakpoint-xl: 1360px;
+
+
+// JVah: podbarveni mezinarodnich a konvertovanych FV na prehledu, jelikoz je barva pozadi nacitana z DB, pouziva se  CSS property a
+// pokud jsem ji pouzil primo ve stylech komponenty, nefungovalo, proto tady. Jde jen o deklaraci promenne, jeji hodnota se prebije
+// hodnotou z DB
+body {
+	--international-backcolor: blue;
+  }
+
+
+  body {
+	--converted-backcolor: red;
+  }
+
+
+
+
+//   body {
+// 	--international-backcolor: #f4d5bf;
+// 	--converted-backcolor: lightblue;
+//   }
+

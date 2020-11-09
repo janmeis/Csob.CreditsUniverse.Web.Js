@@ -1,0 +1,250 @@
+/* *****************************  Kendo buttons ************************************ */
+
+.k-button-dialog-group {
+    display: flex;
+    justify-content: center;
+    margin-top: @spacing-base;
+
+    .k-button {
+        margin: 0 0.7rem;
+    }
+}
+
+.k-button-group {
+    display: block !important;
+    margin: 0 -1rem;
+
+    .k-button {
+        border-radius: @button-border-radius !important;
+        margin: 0 1rem;
+    }
+}
+
+.k-button {
+    background-color: @color-white;
+    border-radius: @button-border-radius;
+    font-weight: 700;
+    padding: 0.65rem 2rem;
+    margin: 0;
+    border: 2px solid @color-primary;
+    color: @color-primary-dark;
+
+    &:focus {
+        box-shadow: 0 0 10px 0 fade(@color-primary,50%);
+    }
+
+    &:hover {
+        background-color: @color-white;
+        border-color: @color-primary-dark;
+        color: @color-primary-dark;
+    }
+
+    &.k-small {
+        padding: 0.5rem 1rem 0.4rem;
+        font-size: 0.75rem;
+    }
+
+    &.k-no-border {
+        border-color: transparent;
+
+        &:focus {
+            box-shadow: 0 0 10px 0 fade(@color-primary,50%);
+        }
+    }
+
+    &.k-in-grid {
+        border-color: transparent;
+        padding: 0.25rem 1rem;
+        position: absolute;
+        right: @spacing-base;
+        top: 0.85rem;
+        color: @color-primary;
+
+        &:hover {
+            color: @color-primary-dark;
+        }
+    }
+
+    &.k-primary {
+        background-color: @color-primary;
+        border-color: @color-primary;
+        color: @color-white;
+
+        &:hover {
+            background-color: @color-primary-dark;
+            border-color: @color-primary-dark;
+        }
+
+        &:focus {
+            box-shadow: 0 0 10px 0 fade(@color-primary,50%);
+        }
+    }
+
+    &.k-success {
+        background-color: @color-success;
+        border-color: @color-success;
+        color: @color-white;
+
+        &:hover {
+            background-color: @color-success-dark;
+            border-color: @color-success-dark;
+        }
+
+        &:focus {
+            box-shadow: 0 0 10px fade(@color-success,50%);
+        }
+    }
+
+    &.k-success-outline {
+        background-color: @color-white;
+        color: @color-success-dark;
+        border-color: @color-success;
+
+        &:hover {
+            background-color: @color-white;
+            border-color: @color-success-dark;
+        }
+
+        &:focus {
+            box-shadow: 0 0 10px fade(@color-success,50%);
+        }
+    }
+
+    &.k-danger {
+        background-color: @color-danger;
+        border-color: @color-danger;
+        color: @color-white;
+
+        &:hover {
+            background-color: @color-danger-dark;
+            border-color: @color-danger-dark;
+        }
+
+        &:focus {
+            box-shadow: 0 0 10px fade(@color-danger,50%);
+        }
+    }
+
+    &.k-danger-outline {
+        background-color: @color-white;
+        border-color: @color-danger;
+        color: @color-danger-dark;
+
+        &:hover {
+            background-color: @color-white;
+            border-color: @color-danger-dark;
+        }
+
+        &:focus {
+            box-shadow: 0 0 10px fade(@color-danger,50%);
+        }
+    }
+}
+
+.k-button[disabled],
+[disabled] .k-button {
+    opacity: 0.3;
+}
+
+/* *****************************  Icon buttons ************************************ */
+
+.icon-button-group {
+    display: flex;
+    align-items: center;
+    margin-top: -2rem;
+    margin-bottom: 1rem;
+
+    @media screen and (min-width: @breakpoint-lg) {
+        position: absolute;
+        right: @spacing-base;
+        top: 1rem;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    &__devider {
+        width: 1px;
+        height: 40px;
+        vertical-align: middle;
+        margin: 0 1.5rem;
+        background: @color-border;
+    }
+}
+
+.icon-button {
+    margin: 0;
+    padding: 0.5rem;
+    border: 0;
+    cursor: pointer;
+    background: none;
+
+    &:disabled {
+        opacity: 0.3;
+        pointer-events: none;
+    }
+
+    .fa {
+        display: block;
+        width: 48px;
+        height: 48px;
+        line-height: 48px;
+        padding: 0;
+        font-size: 2rem;
+        margin: 0 auto;
+        border-radius: 4px;
+        color: @color-primary;
+    }
+
+    span:not(.fa) {
+        font-style: italic;
+        font-size: 0.85rem;
+        color: @color-primary-dark;
+        font-weight: 700;
+        display: block;
+        margin-top: -4px;
+    }
+
+    &:hover {
+        background: @color-secondary;
+    }
+
+    &.-primary {
+        .fa {
+            color: @color-primary;
+        }
+
+        span:not(.fa) {
+            color: @color-primary-dark;
+        }
+    }
+
+    &.-success {
+        .fa {
+            color: @color-success;
+        }
+
+        span:not(.fa) {
+            color: @color-success-dark;
+        }
+    }
+
+    &.-danger {
+        .fa {
+            color: @color-danger;
+        }
+
+        span:not(.fa) {
+            color: @color-danger-dark;
+        }
+    }
+
+    &.-secondary {
+        .fa {
+            color: @series-d;
+        }
+
+        span:not(.fa) {
+            color: @series-e;
+        }
+    }
+}
