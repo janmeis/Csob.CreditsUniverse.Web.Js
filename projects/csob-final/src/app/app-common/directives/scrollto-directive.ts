@@ -1,5 +1,5 @@
-import { Directive, ElementRef, AfterViewInit, Input, OnChanges, SimpleChanges } from "@angular/core";
-import { LogFactoryService, ILogger } from "../../services/log-factory.service";
+import { AfterViewInit, Directive, ElementRef, Input, OnChanges, SimpleChanges } from "@angular/core";
+import { ILogger, LogFactoryService } from 'projects/services/src/public-api';
 
 @Directive({ selector: '[scrollTo]' })
 export class ScrollToDirective implements AfterViewInit, OnChanges {

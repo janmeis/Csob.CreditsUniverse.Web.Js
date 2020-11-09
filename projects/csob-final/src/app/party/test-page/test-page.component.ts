@@ -4,14 +4,13 @@ import { Component, Inject, Injector, LOCALE_ID, OnInit } from '@angular/core';
 import { ICodebookProvider } from '../../app-common/components/editor-codebook/editor-codebook.component';
 import { MessageBoxDialogComponent } from '../../app-common/components/message-box-dialog/message-box-dialog.component';
 import { EditorValidation } from '../../app-common/directives/editor-validator.directive';
-import { CanComponentDeactivate } from '../../services/app-navigation-guard.service';
-import { CodebookItem } from '../../services/codebooks.service';
-import { CurrentLangService } from '../../services/current-lang-service';
-import { TranslationService } from '../../services/translation-service';
-import { UrlHelperService } from '../../services/url-helper.service';
-import { ENotificationType, UserNotificationService } from '../../services/user-notification.service';
-import { TestApiService } from '../../services/webapi/test-api-service';
-import { EPartyType, ITestData } from '../../services/webapi/webapi-models';
+import { CanComponentDeactivate, CurrentLangService } from 'projects/services/src/public-api';
+import { CodebookItem } from 'projects/services/src/public-api';
+import { TranslationService } from 'projects/services/src/public-api';
+import { UrlHelperService } from 'projects/services/src/public-api';
+import { ENotificationType, UserNotificationService } from 'projects/services/src/public-api';
+import { TestApiService } from 'projects/services/src/public-api';
+import { EPartyType, ITestData } from 'projects/services/src/public-api';
 import { toDateOnlyString, fromDateOnlyString } from '../../app-common/dates';
 
 class TestModel {

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Language, Languages } from '../../models/language';
+import { Language, Languages } from 'projects/services/src/public-api';
 
 @Component({
     selector: 'app-export-language',

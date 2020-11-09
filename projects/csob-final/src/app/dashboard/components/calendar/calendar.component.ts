@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import * as dates from '@progress/kendo-date-math';
-import { CurrentLangService } from '../../../services/current-lang-service';
-import { ECalendarType, IDashboardItemDto, IDashboardItemResDto } from '../../../services/webapi/webapi-models';
+import { CurrentLangService, ECalendarType, IDashboardItemDto, IDashboardItemResDto } from 'projects/services/src/public-api';
 import { IDashboardType } from '../../dashboard-events/dashboard-events.service';
 
 @Component({

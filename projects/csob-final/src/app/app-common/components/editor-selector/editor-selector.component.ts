@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Injector, Input, OnChanges, Optional, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { ControlContainer, NgForm, NgModelGroup } from '@angular/forms';
 
-import { TranslationService } from '../../../services/translation-service';
+import { TranslationService } from 'projects/services/src/public-api';
 import { EditorValidate, EditorValidation } from '../../directives/editor-validator.directive';
 import { uniqueId } from '../../uniqueId';
 //import { isPromise } from '@angular/compiler/src/util';

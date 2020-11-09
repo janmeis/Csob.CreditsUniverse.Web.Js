@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { CodebookItem } from '../../services/webapi/webapi-models-classes';
-import { CodebooksService } from '../../services/codebooks.service';
-import { ILogger, LogFactoryService } from '../../services/log-factory.service';
+import { CodebookItem } from 'projects/services/src/public-api';
+import { CodebooksService } from 'projects/services/src/public-api';
+import { ILogger, LogFactoryService } from 'projects/services/src/public-api';
 
 /*
  * returns text value from codebook

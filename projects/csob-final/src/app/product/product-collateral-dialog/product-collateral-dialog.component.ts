@@ -1,14 +1,11 @@
 import { Component, ComponentRef, EventEmitter, Injector, Input, OnInit } from '@angular/core';
 import { DialogComponent } from '@progress/kendo-angular-dialog';
+import { AppDialog, AppDialogContainerService } from 'projects/app-common/src/public-api';
+import { ICollateralDto, ICollateralProductMatrixDto, ICollateralProductMatrixRowDto, ProductApiService, TranslationService, UserProgressService } from 'projects/services/src/public-api';
 import { Observable } from 'rxjs';
 import { first, map, tap } from 'rxjs/operators';
-
 import { MessageBoxDialogComponent } from '../../app-common/components/message-box-dialog/message-box-dialog.component';
-import { AppDialog, AppDialogContainerService } from '../../app-common/services/app-dialog-container.service';
-import { TranslationService } from '../../services/translation-service';
-import { UserProgressService } from '../../services/user-progress.service';
-import { ProductApiService } from '../../services/webapi/product-api-service';
-import { ICollateralDto, ICollateralProductMatrixDto, ICollateralProductMatrixRowDto } from '../../services/webapi/webapi-models';
+
 
 @Component({
     selector: 'app-product-collateral-dialog',

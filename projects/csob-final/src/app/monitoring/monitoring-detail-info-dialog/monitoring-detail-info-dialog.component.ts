@@ -2,18 +2,13 @@ import { Component, ComponentRef, EventEmitter, Injector, OnInit, ViewChild } fr
 import { NgForm } from '@angular/forms';
 import { DialogComponent } from '@progress/kendo-angular-dialog';
 import { TooltipDirective } from '@progress/kendo-angular-tooltip';
+import { AppDialog, AppDialogContainerService } from 'projects/app-common/src/public-api';
+import { EColor, EMonitoringCategory, IMonitoringCellClickDto, IMonitoringCellEditDto, IPartyHeaderDto, MonitoringApiService, SecurityService, SelectedPartyService, TranslationService, UserProgressService } from 'projects/services/src/public-api';
 import { Observable, of } from 'rxjs';
 import { first, map, mergeMap, tap } from 'rxjs/operators';
 import { fixToNumber, fixToString, showTooltip } from '../../app-common/common-functions';
 import { MessageBoxDialogComponent } from '../../app-common/components/message-box-dialog/message-box-dialog.component';
 import { BasePermissionsComponent } from '../../app-shell/basePermissionsComponent';
-import { SecurityService } from '../../services/security.service';
-import { SelectedPartyService } from '../../services/selected-party.service';
-import { TranslationService } from '../../services/translation-service';
-import { UserProgressService } from '../../services/user-progress.service';
-import { MonitoringApiService } from '../../services/webapi/monitoring-api-service';
-import { EColor, EMonitoringCategory, IMonitoringCellClickDto, IMonitoringCellEditDto, IPartyHeaderDto } from '../../services/webapi/webapi-models';
-import { AppDialog, AppDialogContainerService } from './../../app-common/services/app-dialog-container.service';
 
 @Component({
     selector: 'app-monitoring-detail-info-dialog',

@@ -1,13 +1,13 @@
-import { IFinConversionOptions, EFinDataTabOrder } from './../../services/webapi/webapi-models';
+import { IFinConversionOptions, EFinDataTabOrder } from 'projects/services/src/public-api';
 import { Component, EventEmitter, Injector, Input, Output, ViewEncapsulation, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormArray, FormGroup } from '@angular/forms';
 import { EditorValidation } from '../../app-common/directives/editor-validator.directive';
 import { getDecimalPlaces, getPrecision, tryParseNumber } from '../../app-common/numbers';
-import { TranslationService } from '../../services/translation-service';
-import { FinancialApiService } from '../../services/webapi/financial-api-service';
-import { EFont, EStateFinData, ETypeOfStatement, IFinStatDataDto, IFinStatHeaderDto, IFinStatItemDto, IFinStatRowDto, IFinStatTabDto } from '../../services/webapi/webapi-models';
-import { UserNotificationService } from '../../services/user-notification.service';
-import { UserProgressService } from '../../services/user-progress.service';
+import { TranslationService } from 'projects/services/src/public-api';
+import { FinancialApiService } from 'projects/services/src/public-api';
+import { EFont, EStateFinData, ETypeOfStatement, IFinStatDataDto, IFinStatHeaderDto, IFinStatItemDto, IFinStatRowDto, IFinStatTabDto } from 'projects/services/src/public-api';
+import { UserNotificationService } from 'projects/services/src/public-api';
+import { UserProgressService } from 'projects/services/src/public-api';
 import { UserBlobService } from '../../app-common/services/user-blob-service';
 
 function validateDecimal(

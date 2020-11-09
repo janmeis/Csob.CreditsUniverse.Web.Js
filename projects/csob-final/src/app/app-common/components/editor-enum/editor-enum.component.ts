@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, Optional, Output, SimpleChanges, ViewContainerRef } from '@angular/core';
 import { ControlContainer, NgForm, NgModelGroup } from '@angular/forms';
-import { CodebooksService } from '../../../services/codebooks.service';
+import { CodebooksService } from 'projects/services/src/public-api';
 import { EditorValidate, EditorValidation } from '../../directives/editor-validator.directive';
 import { uniqueId } from '../../uniqueId';
 

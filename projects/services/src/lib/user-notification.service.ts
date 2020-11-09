@@ -1,5 +1,4 @@
 import { Injectable, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
-import { Arrays } from '../app-common/arrays';
 
 export enum ENotificationType {
     Information,

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DialogGuard } from '../services/app-navigation-guard.service';
-import { EPermissionAreaType } from '../services/webapi/webapi-models';
+import { DialogGuard } from 'projects/services/src/public-api';
+import { EPermissionAreaType } from 'projects/services/src/public-api';
 import { DashboardBranchesComponent } from './dashboard-branches/dashboard-branches.component';
 import { DashboardClientComponent } from './dashboard-client/dashboard-client.component';
 import { DashboardEventsComponent } from './dashboard-events/dashboard-events.component';

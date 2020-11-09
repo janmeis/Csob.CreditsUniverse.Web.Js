@@ -1,22 +1,15 @@
 import { AfterViewInit, Component, Injector, Input, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { DataStateChangeEvent, SelectionEvent } from '@progress/kendo-angular-grid';
+import { TooltipDirective } from '@progress/kendo-angular-tooltip';
 import { SortDescriptor, State } from '@progress/kendo-data-query';
+import { AppDialogContainerService } from 'projects/app-common/src/public-api';
+import { ENotificationType, IPartyHeaderDto, IPDRatingOverviewReqDto, ISearchClientReqDto, ISearchClientResDto, NotificationMessageOptions, PartyApiService, PdRatingApiService, TranslationService, UserNotificationService } from 'projects/services/src/public-api';
 import { first, flatMap, map, tap } from 'rxjs/operators';
-
-import { PartyApiService } from '../../services/webapi/party-api-service';
 import { SelectDialogBase } from '../../app-common/components/SelectDialogBase';
 import { setGridToCriteria } from '../../app-common/models/GridBaseDto';
-import { AppDialogContainerService } from '../../app-common/services/app-dialog-container.service';
-import { TranslationService } from '../../services/translation-service';
-import { ENotificationType, NotificationMessageOptions } from '../../services/user-notification.service';
-import { PdRatingApiService } from '../../services/webapi/pdrating-api-service';
-import { IPartyHeaderDto, IPDRatingOverviewReqDto, ISearchClientReqDto, ISearchClientResDto } from '../../services/webapi/webapi-models';
-import { UserNotificationService } from './../../services/user-notification.service';
 import { PartySearchCriteriaComponent } from './../party-search-criteria/party-search-criteria.component';
 import { PartySearchDialogService } from './party-search-dialog.service';
-import { showTooltip } from '../../app-common/common-functions';
-import { TooltipDirective } from '@progress/kendo-angular-tooltip';
 
 type DialogMode = 'pdrating' | 'partylink';
 

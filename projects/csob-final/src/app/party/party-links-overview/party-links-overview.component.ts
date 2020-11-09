@@ -1,18 +1,18 @@
 import { Component, OnInit, Injector } from '@angular/core';
 import { SelectionEvent, RowClassArgs } from '@progress/kendo-angular-grid';
 import { State } from '@progress/kendo-data-query';
-import { PartyLinksApiService } from '../../services/webapi/partylinks-api-service';
+import { PartyLinksApiService } from 'projects/services/src/public-api';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UserProgressService } from '../../services/user-progress.service';
-import { IGridResult, IPartyLinkDto, ISearchPartyLinkReqDto } from '../../services/webapi/webapi-models';
+import { UserProgressService } from 'projects/services/src/public-api';
+import { IGridResult, IPartyLinkDto, ISearchPartyLinkReqDto } from 'projects/services/src/public-api';
 import { Arrays } from '../../app-common/arrays';
 import { MessageBoxDialogComponent } from '../../app-common/components/message-box-dialog/message-box-dialog.component';
-import { TranslationService } from '../../services/translation-service';
-import { SearchPartyLinkReqDto } from '../../services/webapi/webapi-models-classes';
+import { TranslationService } from 'projects/services/src/public-api';
+import { SearchPartyLinkReqDto } from 'projects/services/src/public-api';
 import { setGridToCriteria } from '../../app-common/models/GridBaseDto';
 import { uniqueId } from '../../app-common/uniqueId';
 import { Title } from '@angular/platform-browser';
-import { SelectedPartyService } from '../../services/selected-party.service';
+import { SelectedPartyService } from 'projects/services/src/public-api';
 import { map } from 'rxjs/operators';
 
 @Component({

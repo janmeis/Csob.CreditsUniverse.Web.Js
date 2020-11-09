@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CanDeactivateGuard, DialogGuard, AuthGuard } from '../services/app-navigation-guard.service';
+import { CanDeactivateGuard, DialogGuard, AuthGuard } from 'projects/services/src/public-api';
 import { ProductDetailHeaderComponent } from './product-detail-header/product-detail-header.component';
 import { ProductOverviewComponent } from './product-overview/product-overview.component';
-import { EPermissionAreaType } from '../services/webapi/webapi-models';
+import { EPermissionAreaType } from 'projects/services/src/public-api';
 
 const routes: Routes = [
     {

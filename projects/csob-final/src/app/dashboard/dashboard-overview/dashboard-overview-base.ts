@@ -5,11 +5,11 @@ import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { fromDateOnlyString, toDateOnlyString } from '../../app-common/dates';
 import { BasePermissionsComponent } from '../../app-shell/basePermissionsComponent';
-import { SecurityService } from '../../services/security.service';
-import { TranslationService } from '../../services/translation-service';
-import { UrlHelperService } from '../../services/url-helper.service';
-import { UserProgressService } from '../../services/user-progress.service';
-import { ECalendarType, EDashboardTypeId, IDashboardItemResDto } from '../../services/webapi/webapi-models';
+import { SecurityService } from 'projects/services/src/public-api';
+import { TranslationService } from 'projects/services/src/public-api';
+import { UrlHelperService } from 'projects/services/src/public-api';
+import { UserProgressService } from 'projects/services/src/public-api';
+import { ECalendarType, EDashboardTypeId, IDashboardItemResDto } from 'projects/services/src/public-api';
 import { DashboardEventsService, IDashboardType } from '../dashboard-events/dashboard-events.service';
 
 export abstract class DashboardOverviewBase extends BasePermissionsComponent {

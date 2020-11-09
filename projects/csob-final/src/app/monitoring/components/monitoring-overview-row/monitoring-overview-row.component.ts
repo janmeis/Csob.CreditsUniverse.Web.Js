@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { EMonitoringCategory, IMonitoringDetailRowDto } from '../../../services/webapi/webapi-models';
+import { EMonitoringCategory, IMonitoringDetailRowDto } from 'projects/services/src/public-api';
 
 @Component({
     selector: 'app-monitoring-overview-row',

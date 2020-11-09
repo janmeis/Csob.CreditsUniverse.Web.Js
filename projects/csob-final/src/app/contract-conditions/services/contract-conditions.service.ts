@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { shareReplay } from 'rxjs/operators';
-import { ContractConditionsApiService } from '../../services/webapi/contractconditions-api-service';
-import { IProductInfoDto } from '../../services/webapi/webapi-models';
+import { ContractConditionsApiService } from 'projects/services/src/public-api';
+import { IProductInfoDto } from 'projects/services/src/public-api';
 
 @Injectable()
 export class ContractConditionsService {

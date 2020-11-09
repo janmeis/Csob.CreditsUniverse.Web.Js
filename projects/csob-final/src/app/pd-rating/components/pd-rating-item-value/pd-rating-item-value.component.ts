@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ICodebookProvider } from '../../../app-common/components/editor-codebook/editor-codebook.component';
-import { EStatePDRating, IPDRatingItemValueDto } from '../../../services/webapi/webapi-models';
+import { EStatePDRating, IPDRatingItemValueDto } from 'projects/services/src/public-api';
 
 @Component({
     selector: 'app-pd-rating-item-value',

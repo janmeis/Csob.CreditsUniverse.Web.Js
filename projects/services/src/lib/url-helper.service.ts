@@ -2,7 +2,7 @@ import { Location } from '@angular/common';
 import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ParamMap } from '@angular/router';
-import { toDateOnlyString } from '../app-common/dates';
+import { toDateOnlyString } from 'projects/app-common/src/public-api';
 import { convertToDate } from './json-interceptor';
 
 @Injectable({

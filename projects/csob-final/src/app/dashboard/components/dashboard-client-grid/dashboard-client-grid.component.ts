@@ -1,7 +1,7 @@
 import { Component, Injector, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TranslationService } from '../../../services/translation-service';
-import { UserProgressService } from '../../../services/user-progress.service';
+import { TranslationService } from 'projects/services/src/public-api';
+import { UserProgressService } from 'projects/services/src/public-api';
 import { DashboardEventsService } from '../../dashboard-events/dashboard-events.service';
 import { DashboardEventsGridBase } from '../dashboard-events-grid/dashboard-events-grid-base';
 

@@ -1,6 +1,5 @@
-import { ImportFileDto } from './../../services/webapi/webapi-models-classes';
-import { Component, OnInit, Input, TemplateRef, ContentChild } from '@angular/core';
-import { IFinStatDataDto, IFinStatHeaderDto, EStateFinData } from '../../services/webapi/webapi-models';
+import { Component, ContentChild, Input, OnInit, TemplateRef } from '@angular/core';
+import { EStateFinData, IFinStatDataDto, IFinStatHeaderDto, ImportFileDto } from 'projects/services/src/public-api';
 import { FinancialDomainService } from '../services/financial-domain.service';
 
 interface HeaderModel {

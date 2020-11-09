@@ -2,21 +2,14 @@ import { TitleCasePipe } from '@angular/common';
 import { Component, EventEmitter, Injector, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { AppDialog, AppDialogContainerService } from 'projects/app-common/src/public-api';
+import { ApiBaseService } from 'projects/services/src/lib/api-base.service';
+import { CodebookItem, DashboardApiService, EColor, EDashboardState, EDashboardTypeId, EKeyEnum, ICodebookItem, IDashboardEventDto, IDashMonIncidentDto, IMonitoringClientSemaphoreDto, PartyApiService, SecurityService, TranslationService, UserNotificationService, UserProgressService } from 'projects/services/src/public-api';
 import { of } from 'rxjs';
 import { map, mergeMap, tap } from 'rxjs/operators';
 import { EditorCodeBookComponent, GetStaticCodebookProvider, ICodebookProvider } from '../../app-common/components/editor-codebook/editor-codebook.component';
 import { MessageBoxDialogComponent } from '../../app-common/components/message-box-dialog/message-box-dialog.component';
-import { AppDialog, AppDialogContainerService } from '../../app-common/services/app-dialog-container.service';
 import { GridEnumService } from '../../app-common/services/grid-enum.service';
-import { ApiBaseService } from '../../services/api-base.service';
-import { SecurityService } from '../../services/security.service';
-import { TranslationService } from '../../services/translation-service';
-import { UserNotificationService } from '../../services/user-notification.service';
-import { UserProgressService } from '../../services/user-progress.service';
-import { DashboardApiService } from '../../services/webapi/dashboard-api-service';
-import { PartyApiService } from '../../services/webapi/party-api-service';
-import { EColor, EDashboardState, EDashboardTypeId, EKeyEnum, ICodebookItem, IDashboardEventDto, IDashMonIncidentDto, IMonitoringClientSemaphoreDto } from '../../services/webapi/webapi-models';
-import { CodebookItem } from '../../services/webapi/webapi-models-classes';
 
 @UntilDestroy()
 @Component({

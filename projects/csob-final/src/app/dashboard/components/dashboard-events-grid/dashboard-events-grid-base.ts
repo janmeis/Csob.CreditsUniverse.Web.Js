@@ -4,9 +4,9 @@ import { CellClickEvent, DataStateChangeEvent, RowClassArgs } from '@progress/ke
 import { TooltipDirective } from '@progress/kendo-angular-tooltip';
 import { DataResult, FilterDescriptor, State } from '@progress/kendo-data-query';
 import { showTooltip } from '../../../app-common/common-functions';
-import { TranslationService } from '../../../services/translation-service';
-import { UserProgressService } from '../../../services/user-progress.service';
-import { EDashboardState, ICodebookItem, IDashboardEventDto } from '../../../services/webapi/webapi-models';
+import { TranslationService } from 'projects/services/src/public-api';
+import { UserProgressService } from 'projects/services/src/public-api';
+import { EDashboardState, ICodebookItem, IDashboardEventDto } from 'projects/services/src/public-api';
 import { DashboardEventsService, IDashboardType } from '../../dashboard-events/dashboard-events.service';
 
 @Directive()

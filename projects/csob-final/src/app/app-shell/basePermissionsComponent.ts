@@ -1,7 +1,6 @@
+import { ApiBaseService } from 'projects/services/src/lib/api-base.service';
+import { IPartyHeaderDto, SecurityService } from 'projects/services/src/public-api';
 import { IComponentWithPermissionState, PartyPermissionState } from '../app-common/services/permission-service';
-import { ApiBaseService } from '../services/api-base.service';
-import { SecurityService } from '../services/security.service';
-import { IPartyHeaderDto } from '../services/webapi/webapi-models';
 
 // do not use this, use PermissionService
 export abstract class BasePermissionsComponent implements IComponentWithPermissionState {

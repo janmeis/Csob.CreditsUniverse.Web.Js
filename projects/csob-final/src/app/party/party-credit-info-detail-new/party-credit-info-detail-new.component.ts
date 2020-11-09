@@ -1,24 +1,16 @@
-import { AfterViewInit, Component, EventEmitter, Injector, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Injector, OnInit, Output, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { Observable, of, Subscription } from 'rxjs';
-import { first, flatMap, mergeMap, tap } from 'rxjs/operators';
+import { CanComponentDeactivate, CodebookApiService, ECreditInfoType, EPermissionType, ICodebookItem, ICreditInfoContainerDto, ILGDModelCodebookItem, IPDRatingModelDto, PartyApiService, SelectedPartyService, SharedCacheService, TranslationService, UserProgressService } from 'projects/services/src/public-api';
+import { Observable, of } from 'rxjs';
+import { first, mergeMap, tap } from 'rxjs/operators';
 import { EditorCodeBookComponent, GetEmptyCodebookProvider, GetStaticCodebookProvider, ICodebookProvider } from '../../app-common/components/editor-codebook/editor-codebook.component';
 import { SelectFn } from '../../app-common/components/editor-selector/editor-selector.component';
 import { MessageBoxDialogComponent } from '../../app-common/components/message-box-dialog/message-box-dialog.component';
-import { PartyPermissionState } from '../../app-common/services/permission-service';
-import { CanComponentDeactivate } from '../../services/app-navigation-guard.service';
-import { SelectedPartyService } from '../../services/selected-party.service';
-import { TranslationService } from '../../services/translation-service';
-import { UserProgressService } from '../../services/user-progress.service';
-import { CodebookApiService } from '../../services/webapi/codebook-api-service';
-import { PartyApiService } from '../../services/webapi/party-api-service';
-import { ECreditInfoType, ICodebookItem, ICreditInfoContainerDto, ILGDModelCodebookItem, IPDRatingModelDto } from '../../services/webapi/webapi-models';
 import { CalendarService } from '../../app-common/services/calendar.service';
-import { SharedCacheService } from '../../services/shared-cache.service';
+import { PartyPermissionState } from '../../app-common/services/permission-service';
 import { SelectorKbcDialogComponent } from '../components/selector-kbc-dialog/selector-kbc-dialog.component';
-import { EPermissionType } from './../../services/webapi/webapi-models';
 
 @UntilDestroy()
 @Component({

@@ -1,10 +1,10 @@
 import { Injectable, Injector } from '@angular/core';
 import { ICodebookProvider2, EditorCodeBookComponent } from '../../app-common/components/editor-codebook/editor-codebook.component';
-import { ICodebookItem, ISearchClientInCuReqDto } from '../../services/webapi/webapi-models';
-import { PartyApiService } from '../../services/webapi/party-api-service';
-import { SearchClientInCuReqDto } from '../../services/webapi/webapi-models-classes';
+import { ICodebookItem, ISearchClientInCuReqDto } from 'projects/services/src/public-api';
+import { PartyApiService } from 'projects/services/src/public-api';
+import { SearchClientInCuReqDto } from 'projects/services/src/public-api';
 import { of } from 'rxjs';
-import { TranslationService } from '../../services/translation-service';
+import { TranslationService } from 'projects/services/src/public-api';
 import { Arrays } from '../../app-common/arrays';
 
 function getName(item: { FullName: string, ClientName: string }) {

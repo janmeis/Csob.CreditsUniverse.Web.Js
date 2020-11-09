@@ -4,10 +4,10 @@ import { Observable, of } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 
 import { ICodebookProvider } from '../../app-common/components/editor-codebook/editor-codebook.component';
-import { CodebooksService } from '../../services/codebooks.service';
-import { CodebookApiService } from '../../services/webapi/codebook-api-service';
-import { RarocApiService } from '../../services/webapi/raroc-api-service';
-import { ECodetable, ICodebookItem, ICollateralSubTypeCUDto, ICollateralTypeCUDto, IRarocCollateralDto, IRarocCollateralsDto, IRarocCollateralValueDto } from '../../services/webapi/webapi-models';
+import { CodebooksService } from 'projects/services/src/public-api';
+import { CodebookApiService } from 'projects/services/src/public-api';
+import { RarocApiService } from 'projects/services/src/public-api';
+import { ECodetable, ICodebookItem, ICollateralSubTypeCUDto, ICollateralTypeCUDto, IRarocCollateralDto, IRarocCollateralsDto, IRarocCollateralValueDto } from 'projects/services/src/public-api';
 import { RarocProductCollateralService } from '../raroc-detail-product-dialog/raroc-product-collateral.service';
 
 @Injectable()

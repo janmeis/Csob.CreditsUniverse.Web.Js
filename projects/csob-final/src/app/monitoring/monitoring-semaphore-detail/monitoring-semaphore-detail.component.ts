@@ -1,14 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { TooltipDirective } from '@progress/kendo-angular-tooltip';
+import { EMonitoringCategory, IMonitoringCellClickDto, IMonitoringContainerDto, IMonitoringGroupContainerDto, Language, Languages, MonitoringApiService, UserProgressService } from 'projects/services/src/public-api';
 import { Observable } from 'rxjs';
 import { shareReplay, tap } from 'rxjs/operators';
 import { getUrlAndQuery, showTooltip } from '../../app-common/common-functions';
-import { Language, Languages } from '../../app-common/models/language';
 import { UserBlobService } from '../../app-common/services/user-blob-service';
-import { UserProgressService } from '../../services/user-progress.service';
-import { MonitoringApiService } from '../../services/webapi/monitoring-api-service';
-import { EMonitoringCategory, IMonitoringCellClickDto, IMonitoringContainerDto, IMonitoringGroupContainerDto } from '../../services/webapi/webapi-models';
 
 @Component({
     selector: 'app-monitoring-semaphore-detail',

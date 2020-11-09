@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard, CanDeactivateGuard, DialogGuard } from '../services/app-navigation-guard.service';
-import { EPermissionAreaType } from '../services/webapi/webapi-models';
+import { AuthGuard, CanDeactivateGuard, DialogGuard, EPermissionAreaType } from 'projects/services/src/public-api';
 import { PDRatingDetailComponent } from './pd-rating-detail/pd-rating-detail.component';
 import { PDRatingNewComponent } from './pd-rating-new/pd-rating-new.component';
 import { PDRatingOverviewComponent } from './pd-rating-overview/pd-rating-overview.component';

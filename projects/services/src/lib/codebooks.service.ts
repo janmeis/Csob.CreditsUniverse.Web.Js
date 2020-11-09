@@ -1,17 +1,13 @@
 import { Injectable } from '@angular/core';
-import { Observable, of, isObservable, Subject } from 'rxjs';
-import { map, shareReplay } from 'rxjs/operators';
-import { EKeyEnum, ECodetable, ICodebookItem } from './webapi/webapi-models';
-import { AppConfig } from '../app-config';
-import { CodebookApiService } from './webapi/codebook-api-service';
+import { Observable, Subject } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { AppConfig } from './app-config';
 import { ILogger, LogFactoryService } from './log-factory.service';
 import { SharedCacheService } from './shared-cache.service';
+import { CodebookApiService } from './webapi/codebook-api-service';
+import { ECodetable, EKeyEnum } from './webapi/webapi-models';
+import { CodebookItem } from './webapi/webapi-models-classes';
 
-export interface CodebookItem {
-    Value: number;
-    Text: string;
-    Order?: number;
-}
 
 @Injectable({
     providedIn: 'root'

@@ -2,11 +2,11 @@ import { Location } from '@angular/common';
 import { Component, Injector, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
-import { SecurityService } from '../../services/security.service';
-import { SelectedPartyService } from '../../services/selected-party.service';
-import { TranslationService } from '../../services/translation-service';
-import { UrlHelperService } from '../../services/url-helper.service';
-import { UserNotificationService } from '../../services/user-notification.service';
+import { SecurityService } from 'projects/services/src/public-api';
+import { SelectedPartyService } from 'projects/services/src/public-api';
+import { TranslationService } from 'projects/services/src/public-api';
+import { UrlHelperService } from 'projects/services/src/public-api';
+import { UserNotificationService } from 'projects/services/src/public-api';
 import { DashboardEventsBase } from './dashboard-events-base';
 import { DashboardEventsService } from './dashboard-events.service';
 

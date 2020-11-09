@@ -3,11 +3,11 @@ import { DataStateChangeEvent } from '@progress/kendo-angular-grid';
 import { Subscription } from 'rxjs';
 import { SelectDialogBase } from '../../../app-common/components/SelectDialogBase';
 import { setGridToCriteria } from '../../../app-common/models/GridBaseDto';
-import { AppDialogContainerService } from '../../../app-common/services/app-dialog-container.service';
-import { TranslationService } from '../../../services/translation-service';
-import { PartyApiService } from '../../../services/webapi/party-api-service';
-import { IPDRatingOverviewReqDto, IPDRatingOverviewResDto } from '../../../services/webapi/webapi-models';
+import { TranslationService } from 'projects/services/src/public-api';
+import { PartyApiService } from 'projects/services/src/public-api';
+import { IPDRatingOverviewReqDto, IPDRatingOverviewResDto } from 'projects/services/src/public-api';
 import { PdRatingSelectDialogService } from './pd-rating-select-dialog.service';
+import { AppDialogContainerService } from 'projects/app-common/src/public-api';
 
 
 @Component({

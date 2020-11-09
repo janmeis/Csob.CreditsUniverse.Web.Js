@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { TooltipDirective } from '@progress/kendo-angular-tooltip';
 import { CompositeFilterDescriptor, filterBy, FilterDescriptor } from '@progress/kendo-data-query';
 import { fixToNumber, showTooltip } from '../../../app-common/common-functions';
-import { EColor, IMonitoringRowDto } from '../../../services/webapi/webapi-models';
+import { EColor, IMonitoringRowDto } from 'projects/services/src/public-api';
 
 interface IUnauthorizedOverdraftRow {
   Validity: boolean;

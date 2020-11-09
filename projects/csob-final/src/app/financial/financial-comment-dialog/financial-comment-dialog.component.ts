@@ -1,8 +1,6 @@
-import { Component, OnInit, Input, EventEmitter, Injector } from '@angular/core';
-import { IFinStatDataDto, IFinStatItemDto, IFinStatRowDto } from '../../services/webapi/webapi-models';
-import { AppDialog, AppDialogContainerService } from '../../app-common/services/app-dialog-container.service';
-import { TranslationService } from '../../services/translation-service';
-import { Subject } from 'rxjs';
+import { Component, EventEmitter, Injector, Input, OnInit } from '@angular/core';
+import { AppDialog, AppDialogContainerService } from 'projects/app-common/src/public-api';
+import { IFinStatItemDto, IFinStatRowDto, TranslationService } from 'projects/services/src/public-api';
 
 @Component({
     selector: 'app-financial-comment-dialog',

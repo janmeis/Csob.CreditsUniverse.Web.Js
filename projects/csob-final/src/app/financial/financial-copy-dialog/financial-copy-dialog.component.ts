@@ -1,11 +1,8 @@
 import { Component, EventEmitter, Injector, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { AppDialog, AppDialogContainerService } from 'projects/app-common/src/public-api';
+import { FinancialApiService, IFVCopyDto, TranslationService, UserProgressService } from 'projects/services/src/public-api';
 import { EditorValidation } from '../../app-common/directives/editor-validator.directive';
-import { AppDialog, AppDialogContainerService } from '../../app-common/services/app-dialog-container.service';
-import { TranslationService } from '../../services/translation-service';
-import { UserProgressService } from '../../services/user-progress.service';
-import { FinancialApiService } from '../../services/webapi/financial-api-service';
-import { IFVCopyDto } from '../../services/webapi/webapi-models';
 
 @Component({
     selector: 'app-financial-copy-dialog',

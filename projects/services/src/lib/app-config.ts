@@ -1,5 +1,5 @@
-import { ECodetable, EKeyEnum } from './services/webapi/webapi-models';
 import { Injectable } from '@angular/core';
+import { ECodetable, EKeyEnum } from './webapi/webapi-models';
 
 declare interface DeploymentConfig {
     apiEndPoint: string;

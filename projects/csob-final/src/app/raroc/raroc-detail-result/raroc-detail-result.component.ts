@@ -5,11 +5,11 @@ import { flatMap, tap } from 'rxjs/operators';
 
 import { showTooltip } from '../../app-common/common-functions';
 import { BasePermissionsComponent } from '../../app-shell/basePermissionsComponent';
-import { SecurityService } from '../../services/security.service';
-import { SelectedPartyService } from '../../services/selected-party.service';
-import { UserProgressService } from '../../services/user-progress.service';
-import { TranslationService } from '../../services/translation-service';
-import { IPartyHeaderDto, IRarocDto, IRarocOutputContainerDto, IRarocOutputDto } from '../../services/webapi/webapi-models';
+import { SecurityService } from 'projects/services/src/public-api';
+import { SelectedPartyService } from 'projects/services/src/public-api';
+import { UserProgressService } from 'projects/services/src/public-api';
+import { TranslationService } from 'projects/services/src/public-api';
+import { IPartyHeaderDto, IRarocDto, IRarocOutputContainerDto, IRarocOutputDto } from 'projects/services/src/public-api';
 import { RarocExportDialogComponent } from '../raroc-export-dialog/raroc-export-dialog.component';
 import { RarocDetailResultService } from './raroc-detail-result.service';
 

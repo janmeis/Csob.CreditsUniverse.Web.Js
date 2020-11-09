@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CanDeactivateGuard, DialogGuard } from '../services/app-navigation-guard.service';
-import { EPermissionAreaType } from '../services/webapi/webapi-models';
+import { CanDeactivateGuard, DialogGuard } from 'projects/services/src/public-api';
+import { EPermissionAreaType } from 'projects/services/src/public-api';
 import { PartyDetailComponent } from './party-detail/party-detail.component';
 import { PartyGeneralDetailComponent } from './party-general-detail/party-general-detail.component';
 import { PartySearchComponent } from './party-search/party-search.component';

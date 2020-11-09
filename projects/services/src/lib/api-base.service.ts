@@ -1,13 +1,13 @@
-import { Injectable, Injector } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { AppConfig } from '../app-config';
-import { UserNotificationService, ENotificationType } from './user-notification.service';
+import { Injectable } from '@angular/core';
 import { Observable, ObservableInput } from 'rxjs';
-import { UrlHelperService } from './url-helper.service';
-import { ESeverity, ResultStatus, Result } from '../app-common/models/Result';
-import { ILogger, LogFactoryService } from './log-factory.service';
+import { catchError, map, tap } from 'rxjs/operators';
+import { AppConfig } from './app-config';
 import { CurrentLangService } from './current-lang-service';
-import { tap, map, catchError } from 'rxjs/operators';
+import { ILogger, LogFactoryService } from './log-factory.service';
+import { ESeverity, Result, ResultStatus } from './models/Result';
+import { UrlHelperService } from './url-helper.service';
+import { ENotificationType, UserNotificationService } from './user-notification.service';
 
 @Injectable({
     providedIn: 'root'

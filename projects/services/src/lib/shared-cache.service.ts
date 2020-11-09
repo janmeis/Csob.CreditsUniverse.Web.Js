@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import * as dates from '@progress/kendo-date-math';
+import { getToday } from 'projects/app-common/src/public-api';
 import { Observable, Subject } from 'rxjs';
 import { shareReplay } from 'rxjs/operators';
-import { getToday } from '../app-common/dates';
 import { ILogger, LogFactoryService } from './log-factory.service';
 
 @Injectable({

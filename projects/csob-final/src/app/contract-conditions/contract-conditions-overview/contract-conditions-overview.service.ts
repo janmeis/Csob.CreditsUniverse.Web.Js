@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
-import { ContractConditionsApiService } from '../../services/webapi/contractconditions-api-service';
-import { IContractConditionFilterDto, IContractConditionViewDto, IGridResult } from '../../services/webapi/webapi-models';
+import { ContractConditionsApiService } from 'projects/services/src/public-api';
+import { IContractConditionFilterDto, IContractConditionViewDto, IGridResult } from 'projects/services/src/public-api';
 
 @Injectable({
     providedIn: 'root'

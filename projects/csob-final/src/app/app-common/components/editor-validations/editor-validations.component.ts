@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Injector } from '@angular/core';
-import { TranslationService } from '../../../services/translation-service';
+import { TranslationService } from 'projects/services/src/public-api';
 
 @Component({
     selector:  'editor-validations',

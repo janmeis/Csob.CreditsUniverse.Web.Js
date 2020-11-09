@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MonitoringOverviewComponent } from './monitoring-overview/monitoring-overview.component';
-import { DialogGuard, AuthGuard, CanDeactivateGuard } from '../services/app-navigation-guard.service';
-import { EPermissionAreaType } from '../services/webapi/webapi-models';
+import { DialogGuard, AuthGuard, CanDeactivateGuard } from 'projects/services/src/public-api';
+import { EPermissionAreaType } from 'projects/services/src/public-api';
 import { MonitoringSemaphoreDetailComponent } from './monitoring-semaphore-detail/monitoring-semaphore-detail.component';
 
 const routes: Routes = [

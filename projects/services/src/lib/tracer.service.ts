@@ -1,5 +1,5 @@
 import { Injectable, Injector } from '@angular/core';
-import { AppConfig } from '../app-config';
+import { AppConfig } from './app-config';
 import { ILogListener, ILogListenerFactory, LogType } from './log-factory.service';
 import { UserApiService } from './webapi/user-api-service';
 import { ETraceLevel, ITraceDto } from './webapi/webapi-models';

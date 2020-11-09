@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { GridDataResult } from '@progress/kendo-angular-grid';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { ISearchClientReqDto } from '../../services/webapi/webapi-models';
-import { PartyApiService } from '../../services/webapi/party-api-service';
+import { ISearchClientReqDto } from 'projects/services/src/public-api';
+import { PartyApiService } from 'projects/services/src/public-api';
 
 @Injectable({
     providedIn: 'root'

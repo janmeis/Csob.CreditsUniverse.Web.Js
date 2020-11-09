@@ -1,17 +1,11 @@
-import { UserNotificationService } from '../../services/user-notification.service';
 import { Component, EventEmitter, Injector, OnInit } from '@angular/core';
+import { AppDialog, AppDialogContainerService } from 'projects/app-common/src/public-api';
+import { EExportFormat, FinancialApiService, FinStatDataDto, IExportOptions, IFinConversionOptions, IFinStatDataDto, IFinStatRatiosDataDto, Languages, TranslationService, UserNotificationService, UserProgressService } from 'projects/services/src/public-api';
+import { Observable, of } from 'rxjs';
 import { mergeMap, tap } from 'rxjs/operators';
 import { EnumValue } from '../../app-common/components/editor-enum/editor-enum.component';
-import { AppDialog, AppDialogContainerService } from '../../app-common/services/app-dialog-container.service';
-import { TranslationService } from '../../services/translation-service';
-import { UserProgressService } from '../../services/user-progress.service';
-import { FinancialApiService } from '../../services/webapi/financial-api-service';
-import { EExportFormat, IExportOptions, IFinConversionOptions, IFinStatDataDto, IFinStatRatiosDataDto } from '../../services/webapi/webapi-models';
-import { FinancialDetailUtils } from '../financial-detail/financial-detail-utils';
-import { FinStatDataDto } from './../../services/webapi/webapi-models-classes';
-import { Observable, of } from 'rxjs';
 import { UserBlobService } from '../../app-common/services/user-blob-service';
-import { Languages } from '../../app-common/models/language';
+import { FinancialDetailUtils } from '../financial-detail/financial-detail-utils';
 
 @Component({
   // tslint:disable-next-line: component-selector

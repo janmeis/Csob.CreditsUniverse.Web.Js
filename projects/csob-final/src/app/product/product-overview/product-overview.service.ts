@@ -1,8 +1,8 @@
-import { IProductViewDto } from './../../services/webapi/webapi-models';
+import { IProductViewDto } from 'projects/services/src/public-api';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { DataResult, process, State } from '@progress/kendo-data-query';
-import { ProductApiService } from '../../services/webapi/product-api-service';
+import { ProductApiService } from 'projects/services/src/public-api';
 import { map, tap } from 'rxjs/operators';
 
 @Injectable()

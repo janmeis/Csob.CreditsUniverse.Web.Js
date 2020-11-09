@@ -1,10 +1,7 @@
-import { CurrentLangService } from '../../services/current-lang-service';
-import { LocalDatePipe } from './../../app-common/pipes/local-date.pipe';
-import { IFinStatOverviewResDto } from './../../services/webapi/webapi-models';
 import { Injectable } from '@angular/core';
-import { EFormat, EStateFinData, IFinStatHeaderDto, ETypeOfStatement } from '../../services/webapi/webapi-models';
+import { CurrentLangService, EFormat, EStateFinData, ETypeOfStatement, IFinStatHeaderDto, IFinStatOverviewResDto, ILogger, LogFactoryService } from 'projects/services/src/public-api';
 import { Arrays } from '../../app-common/arrays';
-import { LogFactoryService, ILogger } from '../../services/log-factory.service';
+import { LocalDatePipe } from './../../app-common/pipes/local-date.pipe';
 
 interface FinSimple {
     Id?: number;

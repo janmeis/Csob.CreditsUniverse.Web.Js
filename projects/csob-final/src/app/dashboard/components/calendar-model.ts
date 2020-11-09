@@ -1,4 +1,4 @@
-import { IDashboardItemDto } from "../../services/webapi/webapi-models";
+import { IDashboardItemDto } from 'projects/services/src/public-api';
 
 export class DayView {
     public events: CalendarEvent[] = [];

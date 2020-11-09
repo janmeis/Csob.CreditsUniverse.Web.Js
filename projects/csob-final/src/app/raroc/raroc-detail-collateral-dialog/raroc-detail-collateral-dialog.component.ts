@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Injector, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { AppDialog, AppDialogContainerService } from 'projects/app-common/src/public-api';
+import { ETimeUnit, EValidationType, ICodebookItem, IRarocCollateralValueDto, TranslationService, UserNotificationService, UserProgressService } from 'projects/services/src/public-api';
 import { of, timer } from 'rxjs';
 import { first, map } from 'rxjs/operators';
 import { markControlsDirty } from '../../app-common/common-functions';
@@ -7,11 +9,6 @@ import { EditorCodeBookComponent, GetStaticCodebookProvider, ICodebookProvider }
 import { MessageBoxDialogComponent } from '../../app-common/components/message-box-dialog/message-box-dialog.component';
 import { getToday } from '../../app-common/dates';
 import { EditorValidation } from '../../app-common/directives/editor-validator.directive';
-import { AppDialog, AppDialogContainerService } from '../../app-common/services/app-dialog-container.service';
-import { TranslationService } from '../../services/translation-service';
-import { UserNotificationService } from '../../services/user-notification.service';
-import { UserProgressService } from '../../services/user-progress.service';
-import { ETimeUnit, EValidationType, ICodebookItem, IRarocCollateralValueDto } from '../../services/webapi/webapi-models';
 import { RarocDetailCollateralService } from '../raroc-detail-collateral/raroc-detail-collateral.service';
 import { RarocDetailService } from '../raroc-detail/raroc-detail.service';
 import { IsValid } from '../raroc-overview/raroc-overview.component';

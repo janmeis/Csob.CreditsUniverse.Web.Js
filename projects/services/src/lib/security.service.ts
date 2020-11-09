@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { ApiBaseService } from './api-base.service';
-import { Observable, Subject, ObservableInput } from 'rxjs';
-import { IWebUserDto, IOperationModelDto } from './webapi/webapi-models';
+import { Observable } from 'rxjs';
 import { UserApiService } from './webapi/user-api-service';
+import { IOperationModelDto, IWebUserDto } from './webapi/webapi-models';
 
 @Injectable({
     providedIn: 'root'

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Injector, Input, Output } from '@angular/core';
-import { TranslationService } from '../../services/translation-service';
-import { IPartyAddressDto } from '../../services/webapi/webapi-models';
+import { TranslationService } from 'projects/services/src/public-api';
+import { IPartyAddressDto } from 'projects/services/src/public-api';
 
 @Component({
     selector: 'app-party-detail-address',

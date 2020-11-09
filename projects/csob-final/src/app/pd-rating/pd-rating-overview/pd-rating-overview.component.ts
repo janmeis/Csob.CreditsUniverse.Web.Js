@@ -9,14 +9,14 @@ import { flatMap, tap } from 'rxjs/operators';
 
 import { showTooltip } from '../../app-common/common-functions';
 import { BasePermissionsComponent } from '../../app-shell/basePermissionsComponent';
-import { SecurityService } from '../../services/security.service';
-import { SelectedPartyService } from '../../services/selected-party.service';
-import { TranslationService } from '../../services/translation-service';
-import { ENotificationType, UserNotificationService } from '../../services/user-notification.service';
-import { UserProgressService } from '../../services/user-progress.service';
-import { CodebookApiService } from '../../services/webapi/codebook-api-service';
+import { SecurityService } from 'projects/services/src/public-api';
+import { SelectedPartyService } from 'projects/services/src/public-api';
+import { TranslationService } from 'projects/services/src/public-api';
+import { ENotificationType, UserNotificationService } from 'projects/services/src/public-api';
+import { UserProgressService } from 'projects/services/src/public-api';
+import { CodebookApiService } from 'projects/services/src/public-api';
 import { PdCriteria } from '../models/pd-overview';
-import { ICalculatePDRatingModelDto, IPartyHeaderDto, IPDRatingOverviewResDto } from './../../services/webapi/webapi-models';
+import { ICalculatePDRatingModelDto, IPartyHeaderDto, IPDRatingOverviewResDto } from 'projects/services/src/public-api';
 import { PdRatingOverviewService } from './pd-rating-overview.service';
 
 @Component({

@@ -7,16 +7,16 @@ import { first, map, mergeMap, tap } from 'rxjs/operators';
 import { EnumValue } from '../../app-common/components/editor-enum/editor-enum.component';
 import { MessageBoxDialogComponent } from '../../app-common/components/message-box-dialog/message-box-dialog.component';
 import { BasePermissionsComponent } from '../../app-shell/basePermissionsComponent';
-import { CanComponentDeactivate } from '../../services/app-navigation-guard.service';
-import { CodebooksService } from '../../services/codebooks.service';
-import { SecurityService } from '../../services/security.service';
-import { FinancialApiService } from '../../services/webapi/financial-api-service';
-import { SelectedPartyService } from '../../services/selected-party.service';
-import { TranslationService } from '../../services/translation-service';
-import { UserNotificationService } from '../../services/user-notification.service';
-import { UserProgressService } from '../../services/user-progress.service';
-import { PdRatingApiService } from '../../services/webapi/pdrating-api-service';
-import { EPDRatingCategory, EStatePDRating, IPDRatingNewDto } from '../../services/webapi/webapi-models';
+import { CanComponentDeactivate } from 'projects/services/src/public-api';
+import { CodebooksService } from 'projects/services/src/public-api';
+import { SecurityService } from 'projects/services/src/public-api';
+import { FinancialApiService } from 'projects/services/src/public-api';
+import { SelectedPartyService } from 'projects/services/src/public-api';
+import { TranslationService } from 'projects/services/src/public-api';
+import { UserNotificationService } from 'projects/services/src/public-api';
+import { UserProgressService } from 'projects/services/src/public-api';
+import { PdRatingApiService } from 'projects/services/src/public-api';
+import { EPDRatingCategory, EStatePDRating, IPDRatingNewDto } from 'projects/services/src/public-api';
 
 
 @Component({

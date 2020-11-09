@@ -5,15 +5,15 @@ import { Observable, of, Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 import { BasePermissionsComponent } from '../../app-shell/basePermissionsComponent';
-import { CanComponentDeactivate } from '../../services/app-navigation-guard.service';
-import { SecurityService } from '../../services/security.service';
-import { SelectedPartyService } from '../../services/selected-party.service';
-import { TranslationService } from '../../services/translation-service';
-import { UserProgressService } from '../../services/user-progress.service';
-import { PartyApiService } from '../../services/webapi/party-api-service';
+import { CanComponentDeactivate } from 'projects/services/src/public-api';
+import { SecurityService } from 'projects/services/src/public-api';
+import { SelectedPartyService } from 'projects/services/src/public-api';
+import { TranslationService } from 'projects/services/src/public-api';
+import { UserProgressService } from 'projects/services/src/public-api';
+import { PartyApiService } from 'projects/services/src/public-api';
 import { PartyCreditInfoDetailNewComponent } from '../party-credit-info-detail-new/party-credit-info-detail-new.component';
 import { PartyDetailComponent } from '../party-detail/party-detail.component';
-import { EPermissionType } from '../../services/webapi/webapi-models';
+import { EPermissionType } from 'projects/services/src/public-api';
 
 @Component({
     selector: 'app-party-general-detail',

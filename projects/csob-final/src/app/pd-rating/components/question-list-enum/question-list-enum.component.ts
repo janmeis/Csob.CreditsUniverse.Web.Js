@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, Optional } from '@angular/core';
-import { IPDRatingCritDto } from '../../../services/webapi/webapi-models';
+import { IPDRatingCritDto } from 'projects/services/src/public-api';
 import { uniqueId } from '../../../app-common/uniqueId';
 
 @Component({

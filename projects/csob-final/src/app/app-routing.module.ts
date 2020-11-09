@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { PageNotFoundComponent } from './app-shell/components/page-not-found/page-not-found.component';
-import { CanDeactivateGuard, DialogGuard } from './services/app-navigation-guard.service';
+import { CanDeactivateGuard, DialogGuard } from 'projects/services/src/public-api';
 
 const routes: Routes = [
     {

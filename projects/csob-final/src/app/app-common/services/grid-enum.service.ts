@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as RxJsOperators from 'rxjs/operators';
-import { CodebooksService } from '../../services/codebooks.service';
-import { EKeyEnum } from '../../services/webapi/webapi-models';
+import { CodebooksService } from 'projects/services/src/public-api';
+import { EKeyEnum } from 'projects/services/src/public-api';
 import { ICodebookProvider } from '../components/editor-codebook/editor-codebook.component';
 
 @Injectable({

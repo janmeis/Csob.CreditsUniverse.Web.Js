@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard, CanDeactivateGuard, DialogGuard } from '../services/app-navigation-guard.service';
-import { EPermissionAreaType } from '../services/webapi/webapi-models';
+import { AuthGuard, CanDeactivateGuard, DialogGuard } from 'projects/services/src/public-api';
+import { EPermissionAreaType } from 'projects/services/src/public-api';
 import { ContractConditionsDetailComponent } from './contract-conditions-detail/contract-conditions-detail.component';
 import { ContractConditionsOverviewComponent } from './contract-conditions-overview/contract-conditions-overview.component';
 

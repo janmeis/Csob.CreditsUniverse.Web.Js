@@ -1,7 +1,7 @@
 import { BasePermissionsComponent } from '../../app-shell/basePermissionsComponent';
 import { Injectable, ViewContainerRef } from '@angular/core';
-import { ILogger, LogFactoryService } from '../../services/log-factory.service';
-import { IPartyHeaderDto, EPermissionType } from '../../services/webapi/webapi-models';
+import { ILogger, LogFactoryService } from 'projects/services/src/public-api';
+import { IPartyHeaderDto, EPermissionType } from 'projects/services/src/public-api';
 
 interface IPermissionData {
     // Permissions: string[]

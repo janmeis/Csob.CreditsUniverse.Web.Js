@@ -4,12 +4,12 @@ import { of } from 'rxjs';
 import { map, mergeMap, tap } from 'rxjs/operators';
 import { GetStaticCodebookProvider, ICodebookProvider } from '../../../app-common/components/editor-codebook/editor-codebook.component';
 import { EnumValue } from '../../../app-common/components/editor-enum/editor-enum.component';
-import { CodebooksService } from '../../../services/codebooks.service';
-import { SecurityService } from '../../../services/security.service';
-import { UserProgressService } from '../../../services/user-progress.service';
-import { CodebookApiService } from '../../../services/webapi/codebook-api-service';
-import { EPDRatingCategory, EStatePDRating, ICodebookItem, IExternalCodebookItem, IPDRatingResultTabDto, IRatingCodebookItem } from '../../../services/webapi/webapi-models';
-import { PDRatingItemValueDto } from '../../../services/webapi/webapi-models-classes';
+import { CodebooksService } from 'projects/services/src/public-api';
+import { SecurityService } from 'projects/services/src/public-api';
+import { UserProgressService } from 'projects/services/src/public-api';
+import { CodebookApiService } from 'projects/services/src/public-api';
+import { EPDRatingCategory, EStatePDRating, ICodebookItem, IExternalCodebookItem, IPDRatingResultTabDto, IRatingCodebookItem } from 'projects/services/src/public-api';
+import { PDRatingItemValueDto } from 'projects/services/src/public-api';
 
 
 @Component({

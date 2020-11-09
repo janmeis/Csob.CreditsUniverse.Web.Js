@@ -1,10 +1,7 @@
-import { Component, OnInit, Injector, EventEmitter } from '@angular/core';
-import { AppDialog, AppDialogContainerService } from '../../../app-common/services/app-dialog-container.service';
-import { TranslationService } from '../../../services/translation-service';
-import { CodebookApiService } from '../../../services/webapi/codebook-api-service';
-import { ECodetable, ICodebookItem, IHierarchyCodeBookItem } from '../../../services/webapi/webapi-models';
-import { UserProgressService } from '../../../services/user-progress.service';
-import { Observable, of, Subject } from 'rxjs';
+import { Component, EventEmitter, Injector, OnInit } from '@angular/core';
+import { AppDialog, AppDialogContainerService } from 'projects/app-common/src/public-api';
+import { CodebookApiService, ICodebookItem, IHierarchyCodeBookItem, TranslationService, UserProgressService } from 'projects/services/src/public-api';
+import { Observable, of } from 'rxjs';
 
 interface Item {
     uid?: string

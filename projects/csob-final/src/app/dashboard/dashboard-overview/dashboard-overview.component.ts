@@ -5,11 +5,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { mergeMap, tap } from 'rxjs/operators';
 import { toDateOnlyString } from '../../app-common/dates';
 import { IPageRouterActivated } from '../../app.component';
-import { SecurityService } from '../../services/security.service';
-import { TranslationService } from '../../services/translation-service';
-import { UrlHelperService } from '../../services/url-helper.service';
-import { UserProgressService } from '../../services/user-progress.service';
-import { IDashboardItemDto } from '../../services/webapi/webapi-models';
+import { SecurityService } from 'projects/services/src/public-api';
+import { TranslationService } from 'projects/services/src/public-api';
+import { UrlHelperService } from 'projects/services/src/public-api';
+import { UserProgressService } from 'projects/services/src/public-api';
+import { IDashboardItemDto } from 'projects/services/src/public-api';
 import { DashboardEventsService } from '../dashboard-events/dashboard-events.service';
 import { DashboardOverviewBase } from './dashboard-overview-base';
 

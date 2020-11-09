@@ -1,9 +1,6 @@
 import { Component, EventEmitter, Injector, Input, OnInit } from '@angular/core';
-import { AppDialog, AppDialogContainerService } from '../../../app-common/services/app-dialog-container.service';
-import { CurrentLangService } from '../../../services/current-lang-service';
-import { SecurityService } from '../../../services/security.service';
-import { OperationModelDto } from '../../../services/webapi/webapi-models-classes';
-import { TranslationService } from './../../../services/translation-service';
+import { AppDialog, AppDialogContainerService } from 'projects/app-common/src/public-api';
+import { CurrentLangService, OperationModelDto, SecurityService, TranslationService } from 'projects/services/src/public-api';
 
 
 @Component({

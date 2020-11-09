@@ -1,5 +1,5 @@
-import { Directive, TemplateRef, ViewContainerRef, Input } from '@angular/core';
-import { EPermissionType } from '../../services/webapi/webapi-models';
+import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
+import { EPermissionType } from 'projects/services/src/public-api';
 import { PermissionService } from '../services/permission-service';
 
 @Directive({ selector: '[ifPermitted]' })

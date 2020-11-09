@@ -47,9 +47,9 @@ import { TranslatePipe } from './pipes/translate-pipe';
 import { TruncatePipe } from './pipes/truncate.pipe';
 
 //services
-import { GridEnumService } from './services/grid-enum.service';
 import { UserBlobService } from './services/user-blob-service';
 import { IfPermittedDirective } from './directives/if-permitted-directive';
+import { GridEnumService } from './services/grid-enum.service';
 import { PermissionService } from './services/permission-service';
 
 @NgModule({

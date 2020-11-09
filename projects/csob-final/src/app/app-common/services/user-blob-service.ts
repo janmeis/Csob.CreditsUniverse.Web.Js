@@ -1,9 +1,7 @@
-import { Injectable } from "@angular/core";
-import { HttpResponse } from "@angular/common/http";
-import { Observable } from "rxjs";
-import { UserProgressService } from "../../services/user-progress.service";
-import { LogFactoryService, ILogger } from "../../services/log-factory.service";
-import { UserNotificationService } from "../../services/user-notification.service";
+import { Injectable } from '@angular/core';
+import { HttpResponse } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { ILogger, UserProgressService, UserNotificationService, LogFactoryService } from 'projects/services/src/public-api';
 
 @Injectable({
     providedIn: 'root',

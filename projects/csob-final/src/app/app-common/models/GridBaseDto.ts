@@ -1,5 +1,5 @@
 import { State, SortDescriptor } from '@progress/kendo-data-query';
-import { IGridBaseDto } from '../../services/webapi/webapi-models';
+import { IGridBaseDto } from 'projects/services/src/public-api';
 import { ParamMap } from '@angular/router';
 /*
 declare interface GridBaseDto

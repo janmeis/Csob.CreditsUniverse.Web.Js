@@ -1,6 +1,6 @@
 import { Component, OnInit, OnChanges, SimpleChanges, Injector } from '@angular/core';
-import { UserNotificationService, ENotificationType, NotificationMessageOptions, NotificationMessage } from '../../../services/user-notification.service';
-import { TranslationService } from '../../../services/translation-service';
+import { UserNotificationService, ENotificationType, NotificationMessageOptions, NotificationMessage } from 'projects/services/src/public-api';
+import { TranslationService } from 'projects/services/src/public-api';
 import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 

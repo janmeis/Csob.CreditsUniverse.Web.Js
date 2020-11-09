@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { IPDRSelectedAnswerDto } from '../../../services/webapi/webapi-models';
+import { IPDRSelectedAnswerDto } from 'projects/services/src/public-api';
 import { State } from '../question-ess/question-ess.component';
 
 

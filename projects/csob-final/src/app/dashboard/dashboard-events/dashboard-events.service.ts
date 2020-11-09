@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { DataResult, process, State } from '@progress/kendo-data-query';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
-import { UserProgressService } from '../../services/user-progress.service';
-import { DashboardApiService } from '../../services/webapi/dashboard-api-service';
-import { IDashboardEventDto, IDashboardItemDto, IDashboardItemResDto, ECalendarType, IDashboardSearchDto } from '../../services/webapi/webapi-models';
-import { CodebookApiService } from '../../services/webapi/codebook-api-service';
+import { UserProgressService } from 'projects/services/src/public-api';
+import { DashboardApiService } from 'projects/services/src/public-api';
+import { IDashboardEventDto, IDashboardItemDto, IDashboardItemResDto, ECalendarType, IDashboardSearchDto } from 'projects/services/src/public-api';
+import { CodebookApiService } from 'projects/services/src/public-api';
 
 export interface IDashboardType {
     Value: number;

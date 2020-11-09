@@ -1,18 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRouteSnapshot, CanActivate, CanActivateChild, CanDeactivate, Route, Router, RouterStateSnapshot, Routes } from '@angular/router';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { UntilDestroy } from '@ngneat/until-destroy';
+import { Arrays } from 'projects/app-common/src/lib/arrays';
+import { AppDialogContainerService, hasPermission } from 'projects/app-common/src/public-api';
 import { from, isObservable, Observable } from 'rxjs';
 import { isPromise } from 'rxjs/internal-compatibility';
-import { catchError, map, mergeMap, tap } from 'rxjs/operators';
-import { Arrays } from '../app-common/arrays';
-import { hasPermission } from '../app-common/common-functions';
-import { AppDialogContainerService } from '../app-common/services/app-dialog-container.service';
+import { map, mergeMap, tap } from 'rxjs/operators';
 import { ILogger, LogFactoryService } from './log-factory.service';
 import { SecurityService } from './security.service';
 import { SelectedPartyService } from './selected-party.service';
 import { UserProgressService } from './user-progress.service';
-import { EPermissionAreaType, IPartyHeaderDto, IWebUserDto } from './webapi/webapi-models';
+import { EPermissionAreaType, IPartyHeaderDto } from './webapi/webapi-models';
 
 export function AddGuards(routes: Routes): Routes {
     var result = addGuardsRec(routes);

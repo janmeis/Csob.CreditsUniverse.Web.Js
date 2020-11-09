@@ -6,19 +6,19 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CellClickEvent, DataStateChangeEvent, GridDataResult } from '@progress/kendo-angular-grid';
 import { TooltipDirective } from '@progress/kendo-angular-tooltip';
 import { SortDescriptor, State } from '@progress/kendo-data-query';
-import { SecurityService } from '../../services/security.service';
+import { SecurityService } from 'projects/services/src/public-api';
 import { setCriteriaToGrid, setGridToCriteria } from '../../app-common/models/GridBaseDto';
-import { SelectedPartyService } from '../../services/selected-party.service';
-import { TranslationService } from '../../services/translation-service';
-import { UrlHelperService } from '../../services/url-helper.service';
-import { UserNotificationService } from '../../services/user-notification.service';
-import { UserProgressService } from '../../services/user-progress.service';
-import { PartyApiService } from '../../services/webapi/party-api-service';
-import { IPartyDetailDto, ISearchClientReqDto, ISearchClientResDto } from '../../services/webapi/webapi-models';
-import { SearchClientReqDto } from '../../services/webapi/webapi-models-classes';
+import { SelectedPartyService } from 'projects/services/src/public-api';
+import { TranslationService } from 'projects/services/src/public-api';
+import { UrlHelperService } from 'projects/services/src/public-api';
+import { UserNotificationService } from 'projects/services/src/public-api';
+import { UserProgressService } from 'projects/services/src/public-api';
+import { PartyApiService } from 'projects/services/src/public-api';
+import { IPartyDetailDto, ISearchClientReqDto, ISearchClientResDto } from 'projects/services/src/public-api';
+import { SearchClientReqDto } from 'projects/services/src/public-api';
 import { normalizeIdentificationNumber } from '../party-search-criteria/identification-number-normalization';
 import { PartySearchCriteriaComponent } from '../party-search-criteria/party-search-criteria.component';
-import { ENotificationType, NotificationMessageOptions } from './../../services/user-notification.service';
+import { ENotificationType, NotificationMessageOptions } from 'projects/services/src/public-api';
 
 @Component({
     selector: 'app-party-search',

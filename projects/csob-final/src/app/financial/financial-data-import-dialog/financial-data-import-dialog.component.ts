@@ -3,19 +3,11 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { FileItem, FileUploader, Headers } from 'ng2-file-upload';
+import { CurrentLangService, EUpdateRowsResult, FinancialApiService, ICodebookItem, IImportFileRowDto, ILogger, ImportFinancialStatementResultDto, LogFactoryService, SelectedPartyService, TranslationService, UserNotificationService, UserProgressService } from 'projects/services/src/public-api';
 import { mergeMap, tap } from 'rxjs/operators';
-import { CurrentLangService } from '../../services/current-lang-service';
-import { ILogger, LogFactoryService } from '../../services/log-factory.service';
 import { ICodebookProvider } from '../../app-common/components/editor-codebook/editor-codebook.component';
 import { MessageBoxDialogComponent } from '../../app-common/components/message-box-dialog/message-box-dialog.component';
-import { SelectedPartyService } from '../../services/selected-party.service';
-import { TranslationService } from '../../services/translation-service';
-import { UserNotificationService } from '../../services/user-notification.service';
-import { UserProgressService } from '../../services/user-progress.service';
-import { FinancialApiService } from '../../services/webapi/financial-api-service';
-import { EUpdateRowsResult, ICodebookItem, IImportFileRowDto } from '../../services/webapi/webapi-models';
 import { FinancialDetailUtils } from '../financial-detail/financial-detail-utils';
-import { ImportFinancialStatementResultDto } from './../../services/webapi/webapi-models-classes';
 
 @UntilDestroy()
 @Component({

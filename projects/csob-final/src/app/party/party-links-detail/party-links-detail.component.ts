@@ -1,21 +1,14 @@
 import { Component, Injector, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CanComponentDeactivate, IPartyLinkDto, PartyApiService, PartyLinkDto, PartyLinksApiService, TranslationService, UserNotificationService, UserProgressService } from 'projects/services/src/public-api';
 import { Observable, of } from 'rxjs';
 import { first, map, mergeMap, tap } from 'rxjs/operators';
-import { PartyApiService } from '../../services/webapi/party-api-service';
-import { PartyLinkDto } from '../../services/webapi/webapi-models-classes';
 import { MessageBoxDialogComponent } from '../../app-common/components/message-box-dialog/message-box-dialog.component';
 import { EditorValidation } from '../../app-common/directives/editor-validator.directive';
-import { CanComponentDeactivate } from './../../services/app-navigation-guard.service';
-import { TranslationService } from '../../services/translation-service';
-import { UserNotificationService } from '../../services/user-notification.service';
-import { UserProgressService } from '../../services/user-progress.service';
-import { PartyLinksApiService } from '../../services/webapi/partylinks-api-service';
-import { IPartyLinkDto } from '../../services/webapi/webapi-models';
 import { PartySearchDialogComponent } from '../party-search-dialog/party-search-dialog.component';
 import { PartyCodebookService } from '../services/party-codebook.service';
-import { Title } from '@angular/platform-browser';
 
 type TParty = 'source' | 'target';
 

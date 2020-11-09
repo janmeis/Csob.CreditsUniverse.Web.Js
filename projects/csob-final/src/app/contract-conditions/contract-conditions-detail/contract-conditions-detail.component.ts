@@ -10,15 +10,15 @@ import { GetStaticCodebookProvider, ICodebookProvider } from '../../app-common/c
 import { MessageBoxDialogComponent } from '../../app-common/components/message-box-dialog/message-box-dialog.component';
 import { EditorValidation } from '../../app-common/directives/editor-validator.directive';
 import { BasePermissionsComponent } from '../../app-shell/basePermissionsComponent';
-import { CanComponentDeactivate } from '../../services/app-navigation-guard.service';
-import { CodebooksService } from '../../services/codebooks.service';
-import { SecurityService } from '../../services/security.service';
-import { SelectedPartyService } from '../../services/selected-party.service';
-import { TranslationService } from '../../services/translation-service';
-import { UserNotificationService } from '../../services/user-notification.service';
-import { UserProgressService } from '../../services/user-progress.service';
-import { ContractConditionsApiService } from '../../services/webapi/contractconditions-api-service';
-import { ECodetable, EFinancialConditionOperator, EFrequencyUnit, ERecurrenceType, ICodebookItem, IContractConditionDto, IContractConditionEditDto, IContractConditionRuleEditDto, IFinancialCovenantDto, IPartyHeaderDto } from '../../services/webapi/webapi-models';
+import { CanComponentDeactivate } from 'projects/services/src/public-api';
+import { CodebooksService } from 'projects/services/src/public-api';
+import { SecurityService } from 'projects/services/src/public-api';
+import { SelectedPartyService } from 'projects/services/src/public-api';
+import { TranslationService } from 'projects/services/src/public-api';
+import { UserNotificationService } from 'projects/services/src/public-api';
+import { UserProgressService } from 'projects/services/src/public-api';
+import { ContractConditionsApiService } from 'projects/services/src/public-api';
+import { ECodetable, EFinancialConditionOperator, EFrequencyUnit, ERecurrenceType, ICodebookItem, IContractConditionDto, IContractConditionEditDto, IContractConditionRuleEditDto, IFinancialCovenantDto, IPartyHeaderDto } from 'projects/services/src/public-api';
 import { ContractConditionsService } from '../services/contract-conditions.service';
 
 @UntilDestroy()

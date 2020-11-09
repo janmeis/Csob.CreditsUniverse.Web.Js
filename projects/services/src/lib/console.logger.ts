@@ -1,5 +1,5 @@
 import { ILogListenerFactory, ILogListener, LogType } from "./log-factory.service";
-import { AppConfig } from "../app-config";
+import { AppConfig } from "./app-config";
 import { Injectable } from "@angular/core";
 
 @Injectable({

@@ -13,16 +13,16 @@ import { AppCommonModule } from './app-common/app-common.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppShellModule } from './app-shell/app-shell.module';
 import { AppComponent } from './app.component';
-import { JsonInterceptor } from './services/json-interceptor';
+import { JsonInterceptor } from 'projects/services/src/public-api';
 
 /* locales */
 import '@progress/kendo-angular-intl/locales/cs/all';
 import { IntlModule } from '@progress/kendo-angular-intl';
 
 import localeCs from '@angular/common/locales/cs';
-import { CurrentLangService } from './services/current-lang-service';
-import { TranslationKendoService } from './services/translation-kendo-service';
-import { TranslationService } from './services/translation-service';
+import { CurrentLangService } from 'projects/services/src/public-api';
+import { TranslationKendoService } from 'projects/services/src/public-api';
+import { TranslationService } from 'projects/services/src/public-api';
 
 registerLocaleData(localeCs);
 

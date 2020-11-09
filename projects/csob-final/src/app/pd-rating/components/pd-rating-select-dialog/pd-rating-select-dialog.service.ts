@@ -3,8 +3,8 @@ import { GridDataResult } from '@progress/kendo-angular-grid';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
-import { IPDRatingOverviewReqDto } from '../../../services/webapi/webapi-models';
-import { PdRatingApiService } from '../../../services/webapi/pdrating-api-service';
+import { IPDRatingOverviewReqDto } from 'projects/services/src/public-api';
+import { PdRatingApiService } from 'projects/services/src/public-api';
 
 @Injectable({
     providedIn: 'root'

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Injector, Input, Optional, Output, ViewContainerRef } from '@angular/core';
 import { ControlContainer, NgForm, NgModelGroup } from '@angular/forms';
-import { TranslationService } from '../../../services/translation-service';
+import { TranslationService } from 'projects/services/src/public-api';
 import { uniqueId } from '../../uniqueId';
 
 

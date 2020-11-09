@@ -5,11 +5,11 @@ import { CellClickEvent, DataStateChangeEvent } from '@progress/kendo-angular-gr
 import { CompositeFilterDescriptor, FilterDescriptor, State } from '@progress/kendo-data-query';
 import { fromDateOnlyString, toDateOnlyString } from '../../app-common/dates';
 import { BasePermissionsComponent } from '../../app-shell/basePermissionsComponent';
-import { SecurityService } from '../../services/security.service';
-import { TranslationService } from '../../services/translation-service';
-import { UrlHelperService } from '../../services/url-helper.service';
-import { UserNotificationService } from '../../services/user-notification.service';
-import { EDashboardState, IDashboardEventDto } from '../../services/webapi/webapi-models';
+import { SecurityService } from 'projects/services/src/public-api';
+import { TranslationService } from 'projects/services/src/public-api';
+import { UrlHelperService } from 'projects/services/src/public-api';
+import { UserNotificationService } from 'projects/services/src/public-api';
+import { EDashboardState, IDashboardEventDto } from 'projects/services/src/public-api';
 import { DashboardDetailDialogComponent } from '../dashboard-detail-dialog/dashboard-detail-dialog.component';
 import { DashboardEventsService } from './dashboard-events.service';
 

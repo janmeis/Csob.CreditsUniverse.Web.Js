@@ -19,6 +19,10 @@
       "services": [
         "dist/services/services",
         "dist/services"
+      ],
+      "app-common": [
+        "dist/app-common/app-common",
+        "dist/app-common"
       ]
     }
   },

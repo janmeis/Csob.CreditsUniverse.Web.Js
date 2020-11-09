@@ -1,11 +1,10 @@
 import { Component, EventEmitter, Input, Optional, Output } from '@angular/core';
 import { ControlContainer, NgForm, NgModelGroup } from '@angular/forms';
+import { IProductInfoDto, TranslationService } from 'projects/services/src/public-api';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { EditorValidate, EditorValidation } from '../../../app-common/directives/editor-validator.directive';
 import { uniqueId } from '../../../app-common/uniqueId';
-import { TranslationService } from '../../../services/translation-service';
-import { IProductInfoDto } from '../../../services/webapi/webapi-models';
 import { ContractConditionsService } from '../../services/contract-conditions.service';
 
 @Component({

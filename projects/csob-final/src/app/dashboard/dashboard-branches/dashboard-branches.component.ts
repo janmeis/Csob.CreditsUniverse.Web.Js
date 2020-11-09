@@ -3,10 +3,10 @@ import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { mergeMap, tap } from 'rxjs/operators';
 import { toDateOnlyString } from '../../app-common/dates';
-import { SelectedPartyService } from '../../services/selected-party.service';
-import { TranslationService } from '../../services/translation-service';
-import { UserProgressService } from '../../services/user-progress.service';
-import { IDashboardItemDto } from '../../services/webapi/webapi-models';
+import { SelectedPartyService } from 'projects/services/src/public-api';
+import { TranslationService } from 'projects/services/src/public-api';
+import { UserProgressService } from 'projects/services/src/public-api';
+import { IDashboardItemDto } from 'projects/services/src/public-api';
 import { DashboardEventsService, IDashboardType } from '../dashboard-events/dashboard-events.service';
 
 @Component({

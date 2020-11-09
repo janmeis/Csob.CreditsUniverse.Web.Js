@@ -1,17 +1,10 @@
-import { of, Observable } from 'rxjs';
 import { Component, EventEmitter, Injector, OnInit, ViewChild } from '@angular/core';
-import { CodebooksService } from '../../services/codebooks.service';
-
-import { AppDialog, AppDialogContainerService } from '../../app-common/services/app-dialog-container.service';
-import { TranslationService } from '../../services/translation-service';
-import { UrlHelperService } from '../../services/url-helper.service';
-import { UserProgressService } from '../../services/user-progress.service';
-import { FinancialApiService } from '../../services/webapi/financial-api-service';
-import { EFormat, EUnit, IFinStatHeaderDto, ECodetable } from '../../services/webapi/webapi-models';
 import { NgForm } from '@angular/forms';
-import { SelectedPartyService } from '../../services/selected-party.service';
-import { FinancialDomainService } from '../services/financial-domain.service';
+import { AppDialog, AppDialogContainerService } from 'projects/app-common/src/public-api';
+import { CodebooksService, ECodetable, EFormat, EUnit, FinancialApiService, IFinStatHeaderDto, SelectedPartyService, TranslationService, UrlHelperService, UserProgressService } from 'projects/services/src/public-api';
+import { Observable, of } from 'rxjs';
 import { MessageBoxDialogComponent } from '../../app-common/components/message-box-dialog/message-box-dialog.component';
+import { FinancialDomainService } from '../services/financial-domain.service';
 
 @Component({
     selector: 'app-financial-new-dialog',

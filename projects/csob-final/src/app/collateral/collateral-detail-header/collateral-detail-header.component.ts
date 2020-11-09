@@ -1,19 +1,12 @@
-import { IPartyHeaderDto } from './../../services/webapi/webapi-models';
 import { Component, Injector, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
-import { tap, mergeMap, flatMap } from 'rxjs/operators';
-import { ICodebookProvider, GetStaticCodebookProvider } from '../../app-common/components/editor-codebook/editor-codebook.component';
-import { GridEnumService } from '../../app-common/services/grid-enum.service';
-import { SelectedPartyService } from '../../services/selected-party.service';
-import { TranslationService } from '../../services/translation-service';
-import { UserNotificationService } from '../../services/user-notification.service';
-import { UserProgressService } from '../../services/user-progress.service';
-import { CollateralApiService } from '../../services/webapi/collateral-api-service';
-import { ETimeUnit, ICollateralSubTypeCUDto, ICollateralViewDto, ICodebookItem } from '../../services/webapi/webapi-models';
+import { CollateralApiService, ICodebookItem, ICollateralSubTypeCUDto, ICollateralViewDto, IPartyHeaderDto, PartyApiService, SelectedPartyService, TranslationService, UserNotificationService, UserProgressService } from 'projects/services/src/public-api';
 import { Observable, of } from 'rxjs';
+import { flatMap, mergeMap, tap } from 'rxjs/operators';
+import { GetStaticCodebookProvider, ICodebookProvider } from '../../app-common/components/editor-codebook/editor-codebook.component';
+import { GridEnumService } from '../../app-common/services/grid-enum.service';
 import { ProductCollateralDialogComponent } from '../../product/product-collateral-dialog/product-collateral-dialog.component';
-import { PartyApiService } from '../../services/webapi/party-api-service';
 
 @Component({
     selector: 'app-collateral-detail-header',

@@ -3,15 +3,10 @@ import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CellClickEvent, RowClassArgs } from '@progress/kendo-angular-grid';
 import { TooltipDirective } from '@progress/kendo-angular-tooltip';
+import { EFrequencyUnit, IContractConditionFilterDto, IContractConditionViewDto, IProductInfoDto, SecurityService, SelectedPartyService, TranslationService, UserProgressService } from 'projects/services/src/public-api';
 import { mergeMap, tap } from 'rxjs/operators';
-import { showTooltip } from '../../app-common/common-functions';
+import { hideTooltip, showTooltip } from '../../app-common/common-functions';
 import { BasePermissionsComponent } from '../../app-shell/basePermissionsComponent';
-import { SecurityService } from '../../services/security.service';
-import { SelectedPartyService } from '../../services/selected-party.service';
-import { TranslationService } from '../../services/translation-service';
-import { UserProgressService } from '../../services/user-progress.service';
-import { EFrequencyUnit, IContractConditionFilterDto, IContractConditionViewDto, IProductInfoDto } from '../../services/webapi/webapi-models';
-import { hideTooltip } from '../../app-common/common-functions';
 import { ContractConditionsService } from '../services/contract-conditions.service';
 import { ContractConditionsOverviewService } from './contract-conditions-overview.service';
 

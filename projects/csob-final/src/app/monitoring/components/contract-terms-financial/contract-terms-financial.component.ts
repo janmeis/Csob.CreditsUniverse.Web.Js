@@ -5,8 +5,8 @@ import { RowClassArgs } from '@progress/kendo-angular-grid';
 import { fixToNumber } from '../../../app-common/common-functions';
 import { GetStaticCodebookProvider, ICodebookProvider } from '../../../app-common/components/editor-codebook/editor-codebook.component';
 import { EditorValidation } from '../../../app-common/directives/editor-validator.directive';
-import { TranslationService } from '../../../services/translation-service';
-import { EMonitoringCategory, ICodebookItem, IMonitoringCellEditDto, IMonitoringCellEditRowDto } from '../../../services/webapi/webapi-models';
+import { TranslationService } from 'projects/services/src/public-api';
+import { EMonitoringCategory, ICodebookItem, IMonitoringCellEditDto, IMonitoringCellEditRowDto } from 'projects/services/src/public-api';
 import { getLinkClicked } from '../../monitoring-overview/monitoring-overview-utils';
 
 @Component({

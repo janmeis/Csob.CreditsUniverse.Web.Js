@@ -2,25 +2,15 @@ import { Component, Injector, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AppConfig, CanComponentDeactivate, CodebookApiService, EPartyType, EPermissionType, ILogger, IPartyDetailDto, LogFactoryService, PartyApiService, SecurityService, SelectedPartyService, TranslationService, UserNotificationService, UserProgressService } from 'projects/services/src/public-api';
 import { Observable, of } from 'rxjs';
 import { first, map, mergeMap, tap } from 'rxjs/operators';
-import { AppConfig } from '../../app-config';
 import { MessageBoxDialogComponent } from '../../app-common/components/message-box-dialog/message-box-dialog.component';
 import { fromDateOnlyString } from '../../app-common/dates';
 import { EditorValidation } from '../../app-common/directives/editor-validator.directive';
 import { PartyPermissionState } from '../../app-common/services/permission-service';
 import { BasePermissionsComponent } from '../../app-shell/basePermissionsComponent';
-import { ILogger, LogFactoryService } from '../../services/log-factory.service';
-import { SecurityService } from '../../services/security.service';
-import { SelectedPartyService } from '../../services/selected-party.service';
-import { TranslationService } from '../../services/translation-service';
-import { UserNotificationService } from '../../services/user-notification.service';
-import { UserProgressService } from '../../services/user-progress.service';
-import { PartyApiService } from '../../services/webapi/party-api-service';
-import { EPartyType, EPermissionType, IPartyDetailDto } from '../../services/webapi/webapi-models';
 import { getDateFromBirthNumber } from '../validation/birthNumberValidator';
-import { CanComponentDeactivate } from './../../services/app-navigation-guard.service';
-import { CodebookApiService } from './../../services/webapi/codebook-api-service';
 import { isBirthNumberValid, isIdentificationNumberValid, matchBirthNumberAndDate } from './party-detail-validations';
 
 

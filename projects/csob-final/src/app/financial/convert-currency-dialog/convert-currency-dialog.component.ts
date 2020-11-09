@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Injector, ViewChild, OnInit } from '@angular/core';
-import { AppDialog } from '../../app-common/services/app-dialog-container.service';
-import { TranslationService } from '../../services/translation-service';
-import { IFinConversionOptions } from '../../services/webapi/webapi-models';
+import { TranslationService } from 'projects/services/src/public-api';
+import { IFinConversionOptions } from 'projects/services/src/public-api';
 import { NgForm } from '@angular/forms';
+import { AppDialog } from 'projects/app-common/src/public-api';
 
 @Component({
     selector: 'convert-currency-dialog',

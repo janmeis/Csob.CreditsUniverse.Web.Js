@@ -1,8 +1,7 @@
 import { AfterViewInit, Component, EventEmitter, Input, OnChanges, OnInit, Optional, Output, SimpleChanges, ViewChild, ViewContainerRef } from '@angular/core';
 import { ControlContainer, NgForm, NgModel, NgModelGroup } from '@angular/forms';
 import { DateInputComponent } from '@progress/kendo-angular-dateinputs';
-import { CurrentLangService } from '../../../services/current-lang-service';
-import { TranslationService } from '../../../services/translation-service';
+import { CurrentLangService, TranslationService } from 'projects/services/src/public-api';
 import { fromDateOnlyString, getToday, toDateOnlyString } from '../../dates';
 import { EditorValidate, EditorValidation, IValidableEditor } from '../../directives/editor-validator.directive';
 import { CalendarService } from '../../services/calendar.service';

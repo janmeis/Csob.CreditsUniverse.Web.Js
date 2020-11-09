@@ -3,7 +3,7 @@ import { ControlContainer, NgForm, NgModelGroup } from '@angular/forms';
 import { NumericTextBoxComponent } from '@progress/kendo-angular-inputs';
 import { NumberFormatOptions } from '@progress/kendo-angular-intl';
 import { TooltipDirective } from '@progress/kendo-angular-tooltip';
-import { TranslationService } from '../../../services/translation-service';
+import { TranslationService } from 'projects/services/src/public-api';
 import { hideTooltip, showTooltip } from '../../common-functions';
 import { EditorValidate, EditorValidation, IValidableEditor } from '../../directives/editor-validator.directive';
 import { uniqueId } from '../../uniqueId';

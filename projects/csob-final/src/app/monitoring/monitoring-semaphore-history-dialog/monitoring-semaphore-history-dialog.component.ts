@@ -4,13 +4,13 @@ import { TooltipDirective } from '@progress/kendo-angular-tooltip';
 import { CompositeFilterDescriptor } from '@progress/kendo-data-query';
 import { tap } from 'rxjs/operators';
 import { showTooltip } from '../../app-common/common-functions';
-import { AppDialog, AppDialogContainerService } from '../../app-common/services/app-dialog-container.service';
 import { BasePermissionsComponent } from '../../app-shell/basePermissionsComponent';
-import { SecurityService } from '../../services/security.service';
-import { TranslationService } from '../../services/translation-service';
-import { UserProgressService } from '../../services/user-progress.service';
-import { MonitoringApiService } from '../../services/webapi/monitoring-api-service';
-import { IMonitoringClientSemaphoreDto } from '../../services/webapi/webapi-models';
+import { SecurityService } from 'projects/services/src/public-api';
+import { TranslationService } from 'projects/services/src/public-api';
+import { UserProgressService } from 'projects/services/src/public-api';
+import { MonitoringApiService } from 'projects/services/src/public-api';
+import { IMonitoringClientSemaphoreDto } from 'projects/services/src/public-api';
+import { AppDialog, AppDialogContainerService } from 'projects/app-common/src/public-api';
 
 
 @Component({

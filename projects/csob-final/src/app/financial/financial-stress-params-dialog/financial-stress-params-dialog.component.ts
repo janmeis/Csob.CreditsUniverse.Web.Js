@@ -1,10 +1,6 @@
-import { Component, OnInit, EventEmitter, Injector } from '@angular/core';
-import { AppDialog, AppDialogContainerService } from '../../app-common/services/app-dialog-container.service';
-import { IStressAnalysisDto, EStressAnalysisVariant, IFinStatDataDto } from '../../services/webapi/webapi-models';
-import { FinancialApiService } from '../../services/webapi/financial-api-service';
-import { UserProgressService } from '../../services/user-progress.service';
-import { StressAnalysisDto } from '../../services/webapi/webapi-models-classes';
-import { TranslationService } from '../../services/translation-service';
+import { Component, EventEmitter, Injector, OnInit } from '@angular/core';
+import { AppDialog, AppDialogContainerService } from 'projects/app-common/src/public-api';
+import { EStressAnalysisVariant, FinancialApiService, IFinStatDataDto, IStressAnalysisDto, StressAnalysisDto, TranslationService, UserProgressService } from 'projects/services/src/public-api';
 import { EditorValidation } from '../../app-common/directives/editor-validator.directive';
 
 function ensureArrayLength<T>(data: T[], count: number, newItemFactory: (index: number) => T): T[] {

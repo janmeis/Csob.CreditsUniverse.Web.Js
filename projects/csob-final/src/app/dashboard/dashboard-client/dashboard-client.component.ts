@@ -3,17 +3,17 @@ import { Component, Injector, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { tap } from 'rxjs/operators';
-import { SecurityService } from '../../services/security.service';
-import { SelectedPartyService } from '../../services/selected-party.service';
-import { TranslationService } from '../../services/translation-service';
-import { UrlHelperService } from '../../services/url-helper.service';
-import { UserNotificationService } from '../../services/user-notification.service';
-import { UserProgressService } from '../../services/user-progress.service';
-import { PartyApiService } from '../../services/webapi/party-api-service';
+import { SecurityService } from 'projects/services/src/public-api';
+import { SelectedPartyService } from 'projects/services/src/public-api';
+import { TranslationService } from 'projects/services/src/public-api';
+import { UrlHelperService } from 'projects/services/src/public-api';
+import { UserNotificationService } from 'projects/services/src/public-api';
+import { UserProgressService } from 'projects/services/src/public-api';
+import { PartyApiService } from 'projects/services/src/public-api';
 import { DashboardEventsBase } from '../dashboard-events/dashboard-events-base';
 import { DashboardEventsService } from '../dashboard-events/dashboard-events.service';
 import { DashboardDetailDialogComponent } from '../dashboard-detail-dialog/dashboard-detail-dialog.component';
-import { EDashboardState, IDashboardEventDto } from '../../services/webapi/webapi-models';
+import { EDashboardState, IDashboardEventDto } from 'projects/services/src/public-api';
 
 @Component({
     selector: 'app-dashboard-client',

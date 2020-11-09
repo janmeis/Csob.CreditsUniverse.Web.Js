@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { RarocApiService } from '../../services/webapi/raroc-api-service';
+import { RarocApiService } from 'projects/services/src/public-api';
 import { Observable } from 'rxjs';
-import { IRarocOutputContainerDto } from '../../services/webapi/webapi-models';
+import { IRarocOutputContainerDto } from 'projects/services/src/public-api';
 
 @Injectable()
 export class RarocDetailResultService {

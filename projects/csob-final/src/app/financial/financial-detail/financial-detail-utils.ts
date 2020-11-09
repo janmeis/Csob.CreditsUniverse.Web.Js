@@ -1,6 +1,6 @@
-import { FinStatTabDto } from './../../services/webapi/webapi-models-classes';
+import { FinStatTabDto } from 'projects/services/src/public-api';
 import { Arrays } from '../../app-common/arrays';
-import { IFinStatTabDto, IFinStatDataDto, IFinStatRatiosDataDto, EUpdateRowsResult } from '../../services/webapi/webapi-models';
+import { IFinStatTabDto, IFinStatDataDto, IFinStatRatiosDataDto, EUpdateRowsResult } from 'projects/services/src/public-api';
 
 export class FinancialDetailUtils {
     // klíč pro identifikaci příznaku v localStorage, že proběhl import a má dojít k přenačtení dat

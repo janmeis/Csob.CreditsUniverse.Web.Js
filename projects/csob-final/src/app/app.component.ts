@@ -1,24 +1,27 @@
-import { ChangeDetectorRef, Component, HostListener, Injector, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
-import { Router, ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
-import { AppDialogContainerService } from './app-common/services/app-dialog-container.service';
-import { AppNavigationGuardService } from './services/app-navigation-guard.service';
-import { BrowserInfoService } from './services/browser-info-service';
-import { ILogger, LogFactoryService } from './services/log-factory.service';
-import { SecurityService } from './services/security.service';
-import { TranslationCacheService } from './services/translation-cache-service';
-import { UserNotificationService } from './services/user-notification.service';
-import { UserProgressService } from './services/user-progress.service';
-import { EnvironmentEnum, IAppVersionInfo, IWebUserDto } from './services/webapi/webapi-models';
-import { TracerService, TraceErrorLogListenerFactory } from './services/tracer.service';
-import * as AppVersion from './app-version';
-import { ConsoleListenerFactory } from './services/console.logger';
+import { ChangeDetectorRef, Component, Injector, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import '@progress/kendo-ui';
-import { UserApiService } from './services/webapi/user-api-service';
-import { ApiBaseService } from './services/api-base.service';
+import { AppDialogContainerService } from 'projects/app-common/src/public-api';
+import { ApiBaseService } from 'projects/services/src/lib/api-base.service';
+import {
+  BrowserInfoService,
+  ConsoleListenerFactory,
+  EnvironmentEnum,
+  IAppVersionInfo,
+  ILogger,
+  IWebUserDto,
+  LogFactoryService,
+  SecurityService,
+  TraceErrorLogListenerFactory,
+  TracerService,
+  TranslationCacheService,
+  TranslationService,
+  UserApiService,
+  UserNotificationService,
+  UserProgressService
+} from 'projects/services/src/public-api';
 import { tap } from 'rxjs/operators';
-import { TranslationService } from './services/translation-service';
-import { version } from 'core-js';
-import { selectedIndices } from '@progress/kendo-angular-dropdowns/dist/es2015/util';
+import * as AppVersion from './app-version';
 
 //import popper from 'popper.js';
 

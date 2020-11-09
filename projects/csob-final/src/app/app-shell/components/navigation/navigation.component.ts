@@ -1,20 +1,12 @@
 import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { Event, NavigationCancel, NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { ApiBaseService } from 'projects/services/src/lib/api-base.service';
+import { AppConfig, EPermissionAreaType, IAppVersionInfo, ILogger, IPartyHeaderDto, IWebUserDto, LogFactoryService, SecurityService, SelectedPartyService, TracerService, TranslationService, UserProgressService } from 'projects/services/src/public-api';
 import { tap } from 'rxjs/operators';
 import { Arrays } from '../../../app-common/arrays';
 import { hasPermission } from '../../../app-common/common-functions';
-import { AppConfig } from '../../../app-config';
 import * as AppVersion from '../../../app-version';
-import { ApiBaseService } from '../../../services/api-base.service';
-import { ILogger, LogFactoryService } from '../../../services/log-factory.service';
-import { SecurityService } from '../../../services/security.service';
-import { SelectedPartyService } from '../../../services/selected-party.service';
-import { TracerService } from '../../../services/tracer.service';
-import { TranslationService } from '../../../services/translation-service';
-import { UserProgressService } from '../../../services/user-progress.service';
-import { EPermissionAreaType, IAppVersionInfo, IWebUserDto } from '../../../services/webapi/webapi-models';
-import { IPartyHeaderDto } from './../../../services/webapi/webapi-models';
 
 interface MenuItemContext {
     party: IPartyHeaderDto;

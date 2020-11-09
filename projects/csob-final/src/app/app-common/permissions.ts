@@ -1,6 +1,6 @@
 import { ViewContainerRef } from '@angular/core';
 import { BasePermissionsComponent } from '../app-shell/basePermissionsComponent';
-import { EPermissionType, IPartyHeaderDto } from '../services/webapi/webapi-models';
+import { EPermissionType, IPartyHeaderDto } from 'projects/services/src/public-api';
 
 interface IPermissionData {
     Permissions: string[];

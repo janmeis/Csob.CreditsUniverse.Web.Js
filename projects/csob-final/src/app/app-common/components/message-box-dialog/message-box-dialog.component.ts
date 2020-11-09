@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Injector } from '@angular/core';
+import { AppDialog, AppDialogContainerService } from 'projects/app-common/src/public-api';
+import { TranslationService } from 'projects/services/src/public-api';
 import { isObservable, Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { TranslationService } from '../../../services/translation-service';
-import { AppDialog, AppDialogContainerService } from '../../services/app-dialog-container.service';
 
 interface Button {
     title: string;

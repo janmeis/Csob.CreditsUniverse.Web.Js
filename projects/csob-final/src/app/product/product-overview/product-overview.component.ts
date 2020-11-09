@@ -8,11 +8,11 @@ import { GroupDescriptor, State } from '@progress/kendo-data-query';
 import { tap } from 'rxjs/operators';
 import { showTooltip } from '../../app-common/common-functions';
 import { BasePermissionsComponent } from '../../app-shell/basePermissionsComponent';
-import { SecurityService } from '../../services/security.service';
-import { SelectedPartyService } from '../../services/selected-party.service';
-import { TranslationService } from '../../services/translation-service';
-import { UserNotificationService } from '../../services/user-notification.service';
-import { ETimeUnit, IProductViewDto } from '../../services/webapi/webapi-models';
+import { SecurityService } from 'projects/services/src/public-api';
+import { SelectedPartyService } from 'projects/services/src/public-api';
+import { TranslationService } from 'projects/services/src/public-api';
+import { UserNotificationService } from 'projects/services/src/public-api';
+import { ETimeUnit, IProductViewDto } from 'projects/services/src/public-api';
 import { ProductCollateralDialogComponent } from '../product-collateral-dialog/product-collateral-dialog.component';
 import { ProductOverviewService } from './product-overview.service';
 

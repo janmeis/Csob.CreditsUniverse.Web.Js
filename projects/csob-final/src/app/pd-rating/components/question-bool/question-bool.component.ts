@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, Output, Injector, EventEmitter, Optional } from '@angular/core';
-import { IPDRatingCritDto } from '../../../services/webapi/webapi-models';
+import { IPDRatingCritDto } from 'projects/services/src/public-api';
 import { uniqueId } from '../../../app-common/uniqueId';
 import { ControlContainer, NgForm, NgModelGroup } from '@angular/forms';
-import { TranslationService } from '../../../services/translation-service';
+import { TranslationService } from 'projects/services/src/public-api';
 
 @Component({
     selector: 'question-bool',

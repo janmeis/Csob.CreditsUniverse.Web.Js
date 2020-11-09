@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform, Injector } from '@angular/core';
-import { TranslationService } from '../../services/translation-service';
+import { TranslationService } from 'projects/services/src/public-api';
 
 @Pipe({
     name: 'booleanLookup'

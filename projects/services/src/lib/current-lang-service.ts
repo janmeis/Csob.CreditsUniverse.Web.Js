@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
-import { AppConfig } from "../app-config";
-import {  Languages } from "../app-common/models/language";
+import { AppConfig } from "./app-config";
+import { Languages } from './models/language';
 
 @Injectable({
     providedIn: 'root'

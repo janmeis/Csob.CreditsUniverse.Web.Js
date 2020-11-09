@@ -2,12 +2,12 @@ import { Component, EventEmitter, Injector, Input, OnInit, Output } from '@angul
 import { GetEmptyCodebookProvider, GetStaticCodebookProvider, ICodebookProvider } from '../../../app-common/components/editor-codebook/editor-codebook.component';
 import { uniqueId } from '../../../app-common/uniqueId';
 import { PartySearchDialogComponent } from '../../../party/party-search-dialog/party-search-dialog.component';
-import { SharedCacheService } from '../../../services/shared-cache.service';
-import { TranslationService } from '../../../services/translation-service';
-import { UserNotificationService } from '../../../services/user-notification.service';
-import { CodebookApiService } from '../../../services/webapi/codebook-api-service';
-import { ICodebookItem, IPDRatingModelDto, IPDRSelectedAnswerDto } from '../../../services/webapi/webapi-models';
-import { InfluenceEss, PDRSelectedAnswerDto } from '../../../services/webapi/webapi-models-classes';
+import { SharedCacheService } from 'projects/services/src/public-api';
+import { TranslationService } from 'projects/services/src/public-api';
+import { UserNotificationService } from 'projects/services/src/public-api';
+import { CodebookApiService } from 'projects/services/src/public-api';
+import { ICodebookItem, IPDRatingModelDto, IPDRSelectedAnswerDto } from 'projects/services/src/public-api';
+import { InfluenceEss, PDRSelectedAnswerDto } from 'projects/services/src/public-api';
 import { PDRatingDetailComponent } from '../../pd-rating-detail/pd-rating-detail.component';
 import { PdRatingSelectDialogComponent } from '../pd-rating-select-dialog/pd-rating-select-dialog.component';
 

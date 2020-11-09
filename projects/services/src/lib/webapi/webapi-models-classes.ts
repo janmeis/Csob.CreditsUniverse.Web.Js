@@ -1572,7 +1572,7 @@ export class MonitoringFilterDto {
     ByEvaluationDate: boolean = null;
     ClientCreatedOn: Date = null;
 }
-export class MonitoringDetailsDto implements IMonitoringFilter {
+export class MonitoringDetailsDto implements WebApiModels.IMonitoringFilter {
     CreditFileId: number = null;
     ClientSemaphore: MonitoringClientSemaphoreDto = null;
     ByEvaluationDate: boolean = null;
@@ -1585,15 +1585,7 @@ export class MonitoringDetailsDto implements IMonitoringFilter {
     CurrentFilter: MonitoringFilterDto = null;
     Culture: string = null;
 }
-export class IMonitoringFilter {
-    CreditFileId: number = null;
-    ByEvaluationDate: boolean = null;
-    Granularity: WebApiModels.EFrequencyUnit = null;
-    SOP: Date = null;
-    EOP: Date = null;
-    Culture: string = null;
-}
-export class MonitoringDetailColumnDto implements IMonitoringFilter {
+export class MonitoringDetailColumnDto implements WebApiModels.IMonitoringFilter {
     ColumnId: number = null;
     MonitoringClientInfoId?: number = null;
     Title: string = null;
@@ -1670,7 +1662,7 @@ export class MonitoringCellClickDto {
     Category: WebApiModels.EMonitoringCategory = null;
     PartyId: number = null;
 }
-export class MonitoringCellEditDto extends MonitoringCellClickDto implements IMonitoringFilter {
+export class MonitoringCellEditDto extends MonitoringCellClickDto implements WebApiModels.IMonitoringFilter {
     CategoryDescription: string = null;
     Description: string = null;
     Month: Date = null;
@@ -1785,7 +1777,7 @@ export class MonitoringRowDetailDto {
     BatchId?: any = null;
     KeyString: string = null;
 }
-export class MonitoringContainerDto implements IMonitoringFilter {
+export class MonitoringContainerDto implements WebApiModels.IMonitoringFilter {
     CreditFileId: number = null;
     SOP: Date = null;
     EOP: Date = null;

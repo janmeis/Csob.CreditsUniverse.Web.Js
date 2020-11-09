@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IMonitoringRowDto } from '../../../services/webapi/webapi-models';
+import { IMonitoringRowDto } from 'projects/services/src/public-api';
 
 interface IMonitoringPaymentFlowRow {
     Validity: boolean;

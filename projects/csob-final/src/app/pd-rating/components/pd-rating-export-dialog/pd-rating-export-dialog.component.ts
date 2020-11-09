@@ -1,12 +1,7 @@
 import { Component, EventEmitter, Injector } from '@angular/core';
-import { Language, Languages } from '../../../app-common/models/language';
+import { AppDialog, AppDialogContainerService } from 'projects/app-common/src/public-api';
+import { EExportFormat, IExportOptions, Language, Languages, PdRatingApiService, TranslationService, UserProgressService } from 'projects/services/src/public-api';
 import { UserBlobService } from '../../../app-common/services/user-blob-service';
-import { TranslationService } from '../../../services/translation-service';
-import { UserProgressService } from '../../../services/user-progress.service';
-import { PdRatingApiService } from '../../../services/webapi/pdrating-api-service';
-import { EExportFormat } from '../../../services/webapi/webapi-models';
-import { AppDialog, AppDialogContainerService } from './../../../app-common/services/app-dialog-container.service';
-import { IExportOptions } from './../../../services/webapi/webapi-models';
 
 @Component({
     selector: 'pd-rating-export-dialog',

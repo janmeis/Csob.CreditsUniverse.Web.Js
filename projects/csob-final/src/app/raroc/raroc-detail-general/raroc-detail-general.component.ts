@@ -7,14 +7,14 @@ import { EditorCodeBookComponent, ICodebookProvider, GetStaticCodebookProvider }
 import { EditorValidation } from '../../app-common/directives/editor-validator.directive';
 import { BasePermissionsComponent } from '../../app-shell/basePermissionsComponent';
 import { PdRatingSelectDialogComponent } from '../../pd-rating/components/pd-rating-select-dialog/pd-rating-select-dialog.component';
-import { SecurityService } from '../../services/security.service';
-import { SelectedPartyService } from '../../services/selected-party.service';
-import { TranslationService } from '../../services/translation-service';
-import { UserNotificationService } from '../../services/user-notification.service';
-import { UserProgressService } from '../../services/user-progress.service';
-import { CodebookApiService } from '../../services/webapi/codebook-api-service';
-import { RarocApiService } from '../../services/webapi/raroc-api-service';
-import { ERarocMode, EStateRaroc, ICodebookItem, ILGDModelCodebookItem, IPartyHeaderDto, IPDRatingOverviewResDto, IRarocDto, IRarocValidationDto } from '../../services/webapi/webapi-models';
+import { SecurityService } from 'projects/services/src/public-api';
+import { SelectedPartyService } from 'projects/services/src/public-api';
+import { TranslationService } from 'projects/services/src/public-api';
+import { UserNotificationService } from 'projects/services/src/public-api';
+import { UserProgressService } from 'projects/services/src/public-api';
+import { CodebookApiService } from 'projects/services/src/public-api';
+import { RarocApiService } from 'projects/services/src/public-api';
+import { ERarocMode, EStateRaroc, ICodebookItem, ILGDModelCodebookItem, IPartyHeaderDto, IPDRatingOverviewResDto, IRarocDto, IRarocValidationDto } from 'projects/services/src/public-api';
 import { RarocDetailService } from '../raroc-detail/raroc-detail.service';
 import { IsValid } from '../raroc-overview/raroc-overview.component';
 

@@ -9,16 +9,16 @@ import { showTooltip } from '../../app-common/common-functions';
 import { MessageBoxDialogComponent } from '../../app-common/components/message-box-dialog/message-box-dialog.component';
 import { EditorValidation } from '../../app-common/directives/editor-validator.directive';
 import { BasePermissionsComponent } from '../../app-shell/basePermissionsComponent';
-import { SecurityService } from '../../services/security.service';
-import { SelectedPartyService } from '../../services/selected-party.service';
-import { TranslationService } from '../../services/translation-service';
-import { UserProgressService } from '../../services/user-progress.service';
-import { RarocApiService } from '../../services/webapi/raroc-api-service';
-import { EStateRaroc, IPartyHeaderDto } from '../../services/webapi/webapi-models';
-import { IRarocOverviewResDto } from './../../services/webapi/webapi-models';
+import { SecurityService } from 'projects/services/src/public-api';
+import { SelectedPartyService } from 'projects/services/src/public-api';
+import { TranslationService } from 'projects/services/src/public-api';
+import { UserProgressService } from 'projects/services/src/public-api';
+import { RarocApiService } from 'projects/services/src/public-api';
+import { EStateRaroc, IPartyHeaderDto } from 'projects/services/src/public-api';
+import { IRarocOverviewResDto } from 'projects/services/src/public-api';
 import { RarocCriteria, RarocOverviewService } from './raroc-overview.service';
 import { tap } from 'rxjs/operators';
-import { UserNotificationService, ENotificationType } from '../../services/user-notification.service';
+import { UserNotificationService, ENotificationType } from 'projects/services/src/public-api';
 
 export enum EViewMode {
     DetailView = 0,

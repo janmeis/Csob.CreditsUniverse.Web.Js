@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
-import { RarocApiService } from '../../services/webapi/raroc-api-service';
-import { IGridResult, IRarocOverviewResDto, IRarocOverviewReqDto } from '../../services/webapi/webapi-models';
+import { RarocApiService } from 'projects/services/src/public-api';
+import { IGridResult, IRarocOverviewResDto, IRarocOverviewReqDto } from 'projects/services/src/public-api';
 import { GridState } from '../../app-common/models/GridBaseDto';
 
 export class RarocCriteria extends GridState implements IRarocOverviewReqDto {

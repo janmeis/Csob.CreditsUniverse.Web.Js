@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard, CanDeactivateGuard, DialogGuard } from '../services/app-navigation-guard.service';
-import { EPermissionAreaType } from '../services/webapi/webapi-models';
+import { AuthGuard, CanDeactivateGuard, DialogGuard } from 'projects/services/src/public-api';
+import { EPermissionAreaType } from 'projects/services/src/public-api';
 import { RarocDetailComponent } from './raroc-detail/raroc-detail.component';
 import { RarocOverviewComponent } from './raroc-overview/raroc-overview.component';
 

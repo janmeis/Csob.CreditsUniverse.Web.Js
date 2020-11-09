@@ -7,14 +7,14 @@ import { EditorCodeBookComponent, GetStaticCodebookProvider, ICodebookProvider }
 import { MessageBoxDialogComponent } from '../../app-common/components/message-box-dialog/message-box-dialog.component';
 import { getToday } from '../../app-common/dates';
 import { EditorValidation } from '../../app-common/directives/editor-validator.directive';
-import { AppDialog, AppDialogContainerService } from '../../app-common/services/app-dialog-container.service';
-import { TranslationService } from '../../services/translation-service';
-import { UserNotificationService } from '../../services/user-notification.service';
-import { UserProgressService } from '../../services/user-progress.service';
-import { ELGDProdCommited, ETimeUnit, EValidationType, ICodebookItem, IRarocProductValueDto } from '../../services/webapi/webapi-models';
+import { TranslationService } from 'projects/services/src/public-api';
+import { UserNotificationService } from 'projects/services/src/public-api';
+import { UserProgressService } from 'projects/services/src/public-api';
+import { ELGDProdCommited, ETimeUnit, EValidationType, ICodebookItem, IRarocProductValueDto } from 'projects/services/src/public-api';
 import { RarocDetailProductService } from '../raroc-detail-product/raroc-detail-product.service';
 import { RarocDetailService } from '../raroc-detail/raroc-detail.service';
 import { IsValid } from '../raroc-overview/raroc-overview.component';
+import { AppDialog, AppDialogContainerService } from 'projects/app-common/src/public-api';
 
 
 @Component({

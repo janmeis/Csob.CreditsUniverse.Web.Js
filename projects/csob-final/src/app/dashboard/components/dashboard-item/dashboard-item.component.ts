@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { hexToRGB } from '../../../app-common/common-functions';
-import { IDashboardItemDto } from '../../../services/webapi/webapi-models';
+import { IDashboardItemDto } from 'projects/services/src/public-api';
 import { IDashboardType } from '../../dashboard-events/dashboard-events.service';
 
 @Component({

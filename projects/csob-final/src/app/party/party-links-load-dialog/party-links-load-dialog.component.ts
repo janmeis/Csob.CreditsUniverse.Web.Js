@@ -1,5 +1,5 @@
-import { Component, OnInit, Injector, EventEmitter } from '@angular/core';
-import { AppDialog, AppDialogContainerService } from '../../app-common/services/app-dialog-container.service';
+import { Component, EventEmitter, Injector, OnInit } from '@angular/core';
+import { AppDialog, AppDialogContainerService } from 'projects/app-common/src/public-api';
 
 @Component({
     selector: 'app-party-links-load-dialog',

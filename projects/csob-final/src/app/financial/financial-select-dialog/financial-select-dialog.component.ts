@@ -2,19 +2,13 @@ import { Component, EventEmitter, Injector, Input, OnInit } from '@angular/core'
 import { DataStateChangeEvent, GridDataResult, SelectableSettings } from '@progress/kendo-angular-grid';
 import { TooltipDirective } from '@progress/kendo-angular-tooltip';
 import { State } from '@progress/kendo-data-query';
-
+import { AppDialog, AppDialogContainerService } from 'projects/app-common/src/public-api';
+import { EFormat, EStateFinData, FinancialApiService, FinStatAdditionalSearchParams, IFinStatHeaderDto, IFinStatOverviewReqDto, IFinStatOverviewResDto, TranslationService, UserNotificationService, UserProgressService } from 'projects/services/src/public-api';
 import { showTooltip } from '../../app-common/common-functions';
-import { UserNotificationService } from '../../services/user-notification.service';
 import { MessageBoxDialogComponent } from '../../app-common/components/message-box-dialog/message-box-dialog.component';
 import { setGridToCriteria } from '../../app-common/models/GridBaseDto';
-import { AppDialog, AppDialogContainerService } from '../../app-common/services/app-dialog-container.service';
-import { TranslationService } from '../../services/translation-service';
-import { UserProgressService } from '../../services/user-progress.service';
-import { FinancialApiService } from '../../services/webapi/financial-api-service';
-import { EFormat, EStateFinData, IFinStatOverviewReqDto, IFinStatOverviewResDto } from '../../services/webapi/webapi-models';
 import { isValidToSame } from '../financial-overview/financial-overview.component';
-import { IFinStatHeaderDto } from './../../services/webapi/webapi-models';
-import { FinStatAdditionalSearchParams } from './../../services/webapi/webapi-models-classes';
+
 
 type ModeType = 'pd-rating' | 'compare' | 'raroc';
 

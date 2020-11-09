@@ -3,9 +3,9 @@ import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot } from '@angul
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { MessageBoxDialogComponent } from '../../app-common/components/message-box-dialog/message-box-dialog.component';
-import { SecurityService } from '../../services/security.service';
-import { TranslationService } from '../../services/translation-service';
-import { PdRatingApiService } from './../../services/webapi/pdrating-api-service';
+import { SecurityService } from 'projects/services/src/public-api';
+import { TranslationService } from 'projects/services/src/public-api';
+import { PdRatingApiService } from 'projects/services/src/public-api';
 
 @Injectable({
     providedIn: 'root'

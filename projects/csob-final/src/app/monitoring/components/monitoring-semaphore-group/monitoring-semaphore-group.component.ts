@@ -3,8 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { isColor } from '../../../app-common/common-functions';
-import { MonitoringApiService } from '../../../services/webapi/monitoring-api-service';
-import { EMonitoringCategory, IMonitoringCellClickDto, IMonitoringGroupDto, IMonitoringRowDto } from '../../../services/webapi/webapi-models';
+import { MonitoringApiService } from 'projects/services/src/public-api';
+import { EMonitoringCategory, IMonitoringCellClickDto, IMonitoringGroupDto, IMonitoringRowDto } from 'projects/services/src/public-api';
 import { getLinkClicked } from '../../monitoring-overview/monitoring-overview-utils';
 
 @Component({

@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CompositeFilterDescriptor, filterBy, FilterDescriptor } from '@progress/kendo-data-query';
-import { EColor, IMonitoringRowDto } from '../../../services/webapi/webapi-models';
+import { EColor, IMonitoringRowDto } from 'projects/services/src/public-api';
 
 
 interface IMonitoringInsolvencyRow {
